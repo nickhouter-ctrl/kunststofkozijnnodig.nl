@@ -32,7 +32,6 @@ export function Header() {
             src="/logos/logo-white.svg"
             alt={site.name}
             className="h-10 w-auto sm:h-12 md:h-14"
-            priority
           />
         </Link>
 
