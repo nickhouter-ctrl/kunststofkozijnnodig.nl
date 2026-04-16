@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     images: ["/images/hero-main.jpg"],
   },
   alternates: { canonical: site.url },
-  icons: { icon: "/logos/favicon.png" },
+  icons: { icon: "/logos/favicon.svg" },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
