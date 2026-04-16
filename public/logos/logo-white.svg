@@ -1,12 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 40" fill="none">
-  <!-- Bold door icon -->
-  <rect x="1" y="1" width="26" height="38" rx="3" stroke="white" stroke-width="2.5" fill="none"/>
-  <rect x="4" y="4" width="20" height="15" rx="1.5" stroke="white" stroke-width="1.5" fill="none" opacity="0.7"/>
-  <rect x="4" y="22" width="20" height="14" rx="1.5" stroke="white" stroke-width="1.5" fill="none" opacity="0.7"/>
-  <circle cx="21" cy="25" r="2.2" fill="#60a5fa"/>
-  <!-- Accent bar -->
-  <rect x="33" y="5" width="2.5" height="30" rx="1.25" fill="#60a5fa"/>
-  <!-- Text compact -->
-  <text x="42" y="17" font-family="system-ui,-apple-system,sans-serif" font-weight="900" font-size="15" fill="white" letter-spacing="0.5">KUNSTSTOFKOZIJN</text>
-  <text x="42" y="34" font-family="system-ui,-apple-system,sans-serif" font-weight="900" font-size="15" fill="white" letter-spacing="0.5">NODIG<tspan fill="#60a5fa">.NL</tspan></text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 50" fill="none">
+  <!-- KKN monogram badge -->
+  <rect x="0" y="5" width="42" height="40" rx="8" fill="white" opacity="0.15"/>
+  <text x="21" y="33" font-family="system-ui,-apple-system,sans-serif" font-weight="900" font-size="22" fill="white" text-anchor="middle" letter-spacing="1.5">KKN</text>
+  <!-- Accent dot -->
+  <circle cx="46" cy="25" r="3" fill="#60a5fa"/>
+  <!-- Full name -->
+  <text x="56" y="22" font-family="system-ui,-apple-system,sans-serif" font-weight="800" font-size="14" fill="white" letter-spacing="0.8">KUNSTSTOFKOZIJN</text>
+  <text x="56" y="40" font-family="system-ui,-apple-system,sans-serif" font-weight="400" font-size="14" fill="white" opacity="0.8" letter-spacing="0.8">NODIG<tspan font-weight="800" fill="#60a5fa" opacity="1">.NL</tspan></text>
 </svg>
