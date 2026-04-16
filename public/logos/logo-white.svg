@@ -1,10 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 50" fill="none">
-  <!-- KKN monogram badge -->
-  <rect x="0" y="5" width="42" height="40" rx="8" fill="white" opacity="0.15"/>
-  <text x="21" y="33" font-family="system-ui,-apple-system,sans-serif" font-weight="900" font-size="22" fill="white" text-anchor="middle" letter-spacing="1.5">KKN</text>
-  <!-- Accent dot -->
-  <circle cx="46" cy="25" r="3" fill="#60a5fa"/>
-  <!-- Full name -->
-  <text x="56" y="22" font-family="system-ui,-apple-system,sans-serif" font-weight="800" font-size="14" fill="white" letter-spacing="0.8">KUNSTSTOFKOZIJN</text>
-  <text x="56" y="40" font-family="system-ui,-apple-system,sans-serif" font-weight="400" font-size="14" fill="white" opacity="0.8" letter-spacing="0.8">NODIG<tspan font-weight="800" fill="#60a5fa" opacity="1">.NL</tspan></text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 48" fill="none">
+  <!-- Background badge -->
+  <rect x="0" y="0" width="120" height="48" rx="10" fill="white" opacity="0.12"/>
+  <!-- KKN letters -->
+  <text x="60" y="34" font-family="system-ui,-apple-system,sans-serif" font-weight="900" font-size="30" fill="white" text-anchor="middle" letter-spacing="4">KKN</text>
+  <!-- Blue accent line bottom -->
+  <rect x="20" y="42" width="80" height="3" rx="1.5" fill="#60a5fa"/>
 </svg>
