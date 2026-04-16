@@ -1,15 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 64" fill="none">
-  <!-- Door icon - larger and bolder -->
-  <rect x="2" y="2" width="38" height="60" rx="4" stroke="white" stroke-width="3" fill="none"/>
-  <!-- Door panels -->
-  <rect x="7" y="7" width="28" height="24" rx="2" stroke="white" stroke-width="2" fill="none" opacity="0.7"/>
-  <rect x="7" y="35" width="28" height="22" rx="2" stroke="white" stroke-width="2" fill="none" opacity="0.7"/>
-  <!-- Door handle - bright blue accent -->
-  <circle cx="31" cy="38" r="3" fill="#60a5fa"/>
-  <line x1="31" y1="41" x2="31" y2="47" stroke="#60a5fa" stroke-width="2" stroke-linecap="round"/>
-  <!-- Decorative accent line -->
-  <line x1="50" y1="8" x2="50" y2="56" stroke="#60a5fa" stroke-width="2.5" stroke-linecap="round"/>
-  <!-- Text - larger and bolder -->
-  <text x="62" y="28" font-family="system-ui,-apple-system,BlinkMacSystemFont,sans-serif" font-weight="900" font-size="22" letter-spacing="0.3" fill="white">KUNSTSTOF</text>
-  <text x="62" y="54" font-family="system-ui,-apple-system,BlinkMacSystemFont,sans-serif" font-weight="900" font-size="22" letter-spacing="0.3" fill="white">KOZIJN<tspan font-weight="500" fill="white" opacity="0.75">NODIG</tspan><tspan fill="#60a5fa" font-weight="900">.NL</tspan></text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 40" fill="none">
+  <!-- Bold door icon -->
+  <rect x="1" y="1" width="26" height="38" rx="3" stroke="white" stroke-width="2.5" fill="none"/>
+  <rect x="4" y="4" width="20" height="15" rx="1.5" stroke="white" stroke-width="1.5" fill="none" opacity="0.7"/>
+  <rect x="4" y="22" width="20" height="14" rx="1.5" stroke="white" stroke-width="1.5" fill="none" opacity="0.7"/>
+  <circle cx="21" cy="25" r="2.2" fill="#60a5fa"/>
+  <!-- Accent bar -->
+  <rect x="33" y="5" width="2.5" height="30" rx="1.25" fill="#60a5fa"/>
+  <!-- Text compact -->
+  <text x="42" y="17" font-family="system-ui,-apple-system,sans-serif" font-weight="900" font-size="15" fill="white" letter-spacing="0.5">KUNSTSTOFKOZIJN</text>
+  <text x="42" y="34" font-family="system-ui,-apple-system,sans-serif" font-weight="900" font-size="15" fill="white" letter-spacing="0.5">NODIG<tspan fill="#60a5fa">.NL</tspan></text>
 </svg>

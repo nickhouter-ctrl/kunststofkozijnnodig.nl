@@ -31,7 +31,7 @@ export function Header() {
           <img
             src="/logos/logo-white.svg"
             alt={site.name}
-            className="h-10 w-auto sm:h-12 md:h-14"
+            className="h-12 w-auto sm:h-14 md:h-16 lg:h-[72px]"
           />
         </Link>
 
