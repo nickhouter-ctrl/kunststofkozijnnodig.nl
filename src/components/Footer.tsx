@@ -13,7 +13,7 @@ export function Footer() {
         <div className="grid gap-12 lg:grid-cols-4">
           <div className="lg:col-span-2">
             <Image
-              src="/logos/logo-white.svg"
+              src="/logos/logo-white-header.png"
               alt={site.name}
               width={180}
               height={56}

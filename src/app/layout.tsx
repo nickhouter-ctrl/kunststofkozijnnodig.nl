@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     images: ["/images/hero-main.jpg"],
   },
   alternates: { canonical: site.url },
-  icons: { icon: "/logos/favicon.svg" },
+  icons: { icon: "/logos/favicon.png" },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -56,7 +56,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     name: site.name,
-    image: `${site.url}/logos/logo-white.svg`,
+    image: `${site.url}/logos/logo-white-header.png`,
     "@id": site.url,
     url: site.url,
     telephone: site.phone,
