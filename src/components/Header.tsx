@@ -25,7 +25,7 @@ export function Header() {
           : "bg-rebu-green-dark/65 backdrop-blur-lg"
       }`}
     >
-      <div className="container-rebu flex items-center justify-between py-3 md:py-4">
+      <div className="container-rebu flex items-center justify-between py-2 md:py-3">
         <Link href="/" className="flex items-center gap-3" aria-label={site.name}>
           <Image
             src="/logos/logo-header.png"
