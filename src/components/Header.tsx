@@ -28,7 +28,7 @@ export function Header() {
       <div className="container-rebu flex items-center justify-between py-3 md:py-4">
         <Link href="/" className="flex items-center gap-3" aria-label={site.name}>
           <Image
-            src="/logos/logo-white.png"
+            src="/logos/logo-bright.png"
             alt={site.name}
             width={703}
             height={320}
