@@ -12,13 +12,11 @@ export function Footer() {
       <div className="container-rebu relative py-20">
         <div className="grid gap-12 lg:grid-cols-4">
           <div className="lg:col-span-2">
-            <Image
-              src="/logos/logo-header.png?v=2"
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/logos/logo-white.svg"
               alt={site.name}
-              width={728}
-              height={440}
-              unoptimized
-              className="h-16 w-auto sm:h-20 md:h-24"
+              className="h-14 w-auto md:h-16"
             />
             <p className="mt-6 max-w-md text-sm leading-relaxed text-white/70">
               {site.description}

@@ -1,24 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 80" fill="none">
-  <!-- 3D Isometric kozijn shape -->
-  <!-- Front face -->
-  <path d="M10 25 L50 10 L50 70 L10 55 Z" fill="none" stroke="white" stroke-width="2.5" stroke-linejoin="round"/>
-  <!-- Side face (3D depth) -->
-  <path d="M50 10 L75 18 L75 78 L50 70 Z" fill="white" fill-opacity="0.15" stroke="white" stroke-width="2" stroke-linejoin="round"/>
-  <!-- Top face -->
-  <path d="M10 25 L50 10 L75 18 L35 33 Z" fill="white" fill-opacity="0.1" stroke="white" stroke-width="2" stroke-linejoin="round"/>
-  <!-- Window dividers on front -->
-  <line x1="30" y1="17" x2="30" y2="63" stroke="white" stroke-width="2"/>
-  <line x1="10" y1="40" x2="50" y2="40" stroke="white" stroke-width="2"/>
-  <!-- KK letters inside kozijn -->
-  <text x="20" y="36" font-family="system-ui,-apple-system,sans-serif" font-weight="900" font-size="14" fill="#60a5fa" letter-spacing="0.5">K</text>
-  <text x="34" y="36" font-family="system-ui,-apple-system,sans-serif" font-weight="900" font-size="14" fill="#60a5fa" letter-spacing="0.5">K</text>
-  <!-- Bottom detail -->
-  <path d="M10 55 L35 63 L75 78 L50 70 Z" fill="white" fill-opacity="0.08" stroke="white" stroke-width="1.5" stroke-linejoin="round"/>
-
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 56" fill="none">
+  <!-- Stylized door icon -->
+  <rect x="2" y="2" width="32" height="52" rx="3" stroke="white" stroke-width="2.5" fill="none"/>
+  <rect x="6" y="6" width="24" height="22" rx="1.5" stroke="white" stroke-width="1.5" fill="none" opacity="0.65"/>
+  <rect x="6" y="32" width="24" height="18" rx="1.5" stroke="white" stroke-width="1.5" fill="none" opacity="0.65"/>
+  <circle cx="26" cy="34" r="2" fill="#60a5fa"/>
+  <!-- Accent bar -->
+  <line x1="42" y1="10" x2="42" y2="46" stroke="#60a5fa" stroke-width="2" stroke-linecap="round"/>
   <!-- Text -->
-  <text x="90" y="30" font-family="system-ui,-apple-system,sans-serif" font-weight="900" font-size="20" fill="white" letter-spacing="1">KUNSTSTOF</text>
-  <text x="90" y="52" font-family="system-ui,-apple-system,sans-serif" font-weight="900" font-size="20" fill="#60a5fa" letter-spacing="1">KOZIJN NODIG</text>
-  <text x="262" y="52" font-family="system-ui,-apple-system,sans-serif" font-weight="900" font-size="20" fill="white" letter-spacing="0">.NL</text>
-  <!-- Tagline -->
-  <text x="90" y="68" font-family="system-ui,-apple-system,sans-serif" font-weight="400" font-size="10" fill="white" opacity="0.7" letter-spacing="1.5">VAKMANSCHAP EN KWALITEIT</text>
+  <text x="52" y="24" font-family="system-ui,-apple-system,sans-serif" font-weight="800" font-size="18" letter-spacing="0.5" fill="white">KUNSTSTOF</text>
+  <text x="52" y="44" font-family="system-ui,-apple-system,sans-serif" font-weight="800" font-size="18" letter-spacing="0.5" fill="white">KOZIJN<tspan font-weight="400" fill="white" opacity="0.7">NODIG</tspan><tspan fill="#60a5fa" font-weight="800">.NL</tspan></text>
 </svg>

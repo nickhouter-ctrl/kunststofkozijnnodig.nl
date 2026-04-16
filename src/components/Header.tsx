@@ -27,13 +27,11 @@ export function Header() {
     >
       <div className="container-rebu flex items-center justify-between py-2 md:py-3">
         <Link href="/" className="flex items-center gap-3" aria-label={site.name}>
-          <Image
-            src="/logos/logo-header.png?v=2"
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/logos/logo-white.svg"
             alt={site.name}
-            width={728}
-            height={440}
-            unoptimized
-            className="h-16 w-auto sm:h-20 md:h-24"
+            className="h-10 w-auto sm:h-12 md:h-14"
             priority
           />
         </Link>

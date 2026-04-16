@@ -1,6 +1,6 @@
 export const site = {
   name: "Kunststofkozijnnodig.nl",
-  tagline: "Specialist in kunststof kozijnen voor particulier en zakelijk",
+  tagline: "Scherpe prijzen. Snelle levering.",
   description:
     "Kunststofkozijnnodig.nl levert en plaatst hoogwaardige kunststof kozijnen, deuren en schuifpuien. Binnen 4 weken geleverd, scherpe prijzen en persoonlijk advies van vakmensen.",
   url: "https://kunststofkozijnnodig.nl",
