@@ -234,9 +234,9 @@ export default async function CityPage({
           </div>
           <div className="mt-14 grid gap-6 md:grid-cols-3">
             {[
-              { title: "Kunststof kozijnen", slug: "kozijnen", desc: `Draaikiepramen, vastglas, uitzetramen — elk type kozijn leverbaar in ${city.name}. Onderhoudsvrij, isolerend en naar wens vormgegeven.`, img: "/images/icon-kozijnen.png" },
-              { title: "Kunststof deuren", slug: "deuren", desc: `Voordeuren, achterdeuren en openslaande deuren voor woningen in ${city.name}. 3-puntsvergrendeling standaard.`, img: "/images/icon-deuren.png" },
-              { title: "Schuifpuien", slug: "schuifpuien", desc: `2-, 3- en 4-delige schuifpuien en hefschuifdeuren. Slanke profielen, groot glasoppervlak — populair in ${city.name}.`, img: "/images/icon-schuifpuien.png" },
+              { title: "Kunststof kozijnen", slug: "kozijnen", desc: `Draaikiepramen, vastglas, uitzetramen — elk type kozijn leverbaar in ${city.name}. Onderhoudsvrij, isolerend en naar wens vormgegeven.`, img: "/images/icon-kozijnen.svg" },
+              { title: "Kunststof deuren", slug: "deuren", desc: `Voordeuren, achterdeuren en openslaande deuren voor woningen in ${city.name}. 3-puntsvergrendeling standaard.`, img: "/images/icon-deuren.svg" },
+              { title: "Schuifpuien", slug: "schuifpuien", desc: `2-, 3- en 4-delige schuifpuien en hefschuifdeuren. Slanke profielen, groot glasoppervlak — populair in ${city.name}.`, img: "/images/icon-schuifpuien.svg" },
             ].map((p) => (
               <Link
                 key={p.slug}

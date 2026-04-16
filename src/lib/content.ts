@@ -4,21 +4,21 @@ export const products = [
     title: "Kozijnen",
     description: "Het duurzame raamwerk voor een comfortabele leefomgeving. Onderhoudsvrij, energiezuinig en naar wens vormgegeven.",
     image: "/images/product-kozijnen-1.png",
-    icon: "/images/icon-kozijnen.png",
+    icon: "/images/icon-kozijnen.svg",
   },
   {
     slug: "deuren",
     title: "Deuren",
     description: "De duurzame en onderhoudsvrije toegang tot jouw huis. Voordeuren, achterdeuren en bijzetdeuren in elke stijl.",
     image: "/images/product-kozijnen-2.png",
-    icon: "/images/icon-deuren.png",
+    icon: "/images/icon-deuren.svg",
   },
   {
     slug: "schuifpuien",
     title: "Schuifpuien",
     description: "De stijlvolle verbinding tussen binnen en buiten. Slanke profielen, groot glasoppervlak en soepele bediening.",
     image: "/images/product-kozijnen-3.png",
-    icon: "/images/icon-schuifpuien.png",
+    icon: "/images/icon-schuifpuien.svg",
   },
 ] as const;
 
