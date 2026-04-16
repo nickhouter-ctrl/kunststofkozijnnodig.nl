@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * AI SEO Agent — Rebu Kozijnen
+ * AI SEO Agent — Kunststofkozijnnodig.nl
  *
  * Scant alle pagina's in src/app, laat Claude Opus 4.6 meta tags, Open Graph,
  * JSON-LD structured data en alt teksten optimaliseren voor Nederlandse SEO
@@ -67,7 +67,7 @@ function extractContent(source) {
 
 const SYSTEM_PROMPT = `Je bent een senior SEO-consultant gespecialiseerd in Nederlandse lokale
 zoekmachine-optimalisatie voor installatie- en bouwbedrijven. Je werkt voor
-Rebu Kozijnen — een leverancier en installateur van kunststof kozijnen,
+Kunststofkozijnnodig.nl — een leverancier en installateur van kunststof kozijnen,
 deuren en schuifpuien gevestigd in Wormerveer (Noord-Holland, Zaanstreek).
 
 Kernmerken van Rebu:
