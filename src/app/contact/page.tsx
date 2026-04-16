@@ -6,7 +6,7 @@ import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: "Neem vrijblijvend contact op met Rebu Kozijnen in Wormerveer. Telefoon, WhatsApp, e-mail of kom langs op afspraak.",
+  description: "Neem vrijblijvend contact op met Kunststofkozijnnodig.nl in Wormerveer. Telefoon, WhatsApp, e-mail of kom langs op afspraak.",
 };
 
 export default function ContactPage() {
@@ -38,7 +38,7 @@ export default function ContactPage() {
                   {site.address.postalCode} {site.address.city}
                 </p>
                 <a
-                  href="https://www.google.nl/maps/dir//Rebu+kozijnen+-+Kunststof+kozijnen.,+Samsonweg+26+F,+1521+RM+Wormerveer"
+                  href="https://www.google.nl/maps/dir//Kunststofkozijnnodig.nl.,+Samsonweg+26+F,+1521+RM+Wormerveer"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-rebu-green hover:text-rebu-green-dark"
@@ -95,7 +95,7 @@ export default function ContactPage() {
           <div className="lg:col-span-2">
             <div className="overflow-hidden rounded-3xl shadow-soft">
               <iframe
-                title="Rebu Kozijnen locatie"
+                title="Kunststofkozijnnodig.nl locatie"
                 src="https://maps.google.com/maps?q=Samsonweg+26F+Wormerveer&t=&z=14&ie=UTF8&iwloc=&output=embed"
                 width="100%"
                 height="480"

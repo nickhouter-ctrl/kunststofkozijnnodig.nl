@@ -82,7 +82,7 @@ export function Hero() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="mt-8 max-w-xl text-lg text-white/80"
             >
-              Wij zijn Rebu: kleinschalig maar groots in wat we doen. Maatwerk kozijnen, deuren en schuifpuien — geleverd én vakkundig geplaatst door ons eigen team.
+              Wij zijn Kunststofkozijnnodig.nl: kleinschalig maar groots in wat we doen. Maatwerk kozijnen, deuren en schuifpuien — geleverd én vakkundig geplaatst door ons eigen team.
             </motion.p>
 
             <motion.div
@@ -118,7 +118,7 @@ export function Hero() {
                     <Star key={i} className="h-4 w-4 fill-yellow-300 text-yellow-300" />
                   ))}
                 </div>
-                <span className="text-white/90">5,0 op Google</span>
+                <span className="text-white/90">Vakmanschap gegarandeerd</span>
               </div>
               <div className="h-4 w-px bg-white/20" />
               <div className="flex items-center gap-2 text-white/85">

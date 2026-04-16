@@ -5,8 +5,6 @@ import { AboutIntro } from "@/components/AboutIntro";
 import { Workflow } from "@/components/Workflow";
 import { ProjectsShowcase } from "@/components/ProjectsShowcase";
 import { ProjectsMarquee } from "@/components/ProjectsMarquee";
-import { InstagramReels } from "@/components/InstagramReels";
-import { Reviews } from "@/components/Reviews";
 import { CTASection } from "@/components/CTASection";
 
 export default function HomePage() {
@@ -19,8 +17,6 @@ export default function HomePage() {
       <Workflow />
       <ProjectsShowcase />
       <ProjectsMarquee />
-      <InstagramReels />
-      <Reviews />
       <CTASection />
     </>
   );

@@ -4,8 +4,8 @@ import { ProjectsGrid } from "@/components/ProjectsGrid";
 import { CTASection } from "@/components/CTASection";
 
 export const metadata: Metadata = {
-  title: "Projecten — zo werkt Rebu Kozijnen",
-  description: "Een selectie van recente projecten van Rebu Kozijnen. Klik op een project om alle foto's en details te bekijken.",
+  title: "Projecten — zo werkt Kunststofkozijnnodig.nl",
+  description: "Een selectie van recente projecten van Kunststofkozijnnodig.nl. Klik op een project om alle foto's en details te bekijken.",
 };
 
 export default function ProjectenPage() {

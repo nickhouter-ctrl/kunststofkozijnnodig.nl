@@ -4,17 +4,16 @@ import Link from "next/link";
 import { Building2, HardHat, Hammer, Users, ArrowRight, Check } from "lucide-react";
 import { PageHero } from "@/components/PageHero";
 import { BrandMarquee } from "@/components/BrandMarquee";
-import { Reviews } from "@/components/Reviews";
 import { CTASection } from "@/components/CTASection";
 
 export const metadata: Metadata = {
   title: "Zakelijk — kozijnen voor aannemers, bouwbedrijven & VvE",
   description:
-    "Rebu Kozijnen is dé partner voor aannemers, architecten, bouwbedrijven, VvE en vastgoedbeheerders. Maatwerk kozijnen, korte lijnen en gratis leads.",
+    "Kunststofkozijnnodig.nl is dé partner voor aannemers, architecten, bouwbedrijven, VvE en vastgoedbeheerders. Maatwerk kozijnen, korte lijnen en gratis leads.",
 };
 
 const audiences = [
-  { icon: HardHat, title: "Aannemers", body: "Korte lijnen, maatwerk en gratis leads voor partners die bij Rebu afnemen." },
+  { icon: HardHat, title: "Aannemers", body: "Korte lijnen, maatwerk en gratis leads voor partners die bij Kunststofkozijnnodig.nl afnemen." },
   { icon: Building2, title: "Architecten", body: "Technische ondersteuning bij bestekken en detailleringen — wij denken mee." },
   { icon: Hammer, title: "Bouwbedrijven", body: "Voor nieuwbouw én renovatie: levering op afroep, planning afgestemd op jouw project." },
   { icon: Users, title: "VvE & Vastgoedbeheer", body: "Grotere projecten efficiënt en zorgvuldig uitgevoerd, met transparante rapportage." },
@@ -25,8 +24,8 @@ export default function ZakelijkPage() {
     <>
       <PageHero
         eyebrow="Voor de vakman"
-        title="Rebu kozijnen maken het verschil. Voor en door de vakman."
-        description="Wij zijn Rebu: kleinschalig maar groots in wat we doen. Voor zakelijke afnemers leveren we maatwerk kozijnen met vakmanschap, korte lijnen en advies dat écht meedenkt met jouw project."
+        title="Kunststofkozijnnodig.nl maken het verschil. Voor en door de vakman."
+        description="Wij zijn Kunststofkozijnnodig.nl: kleinschalig maar groots in wat we doen. Voor zakelijke afnemers leveren we maatwerk kozijnen met vakmanschap, korte lijnen en advies dat écht meedenkt met jouw project."
         image="/images/project-zaandam-4.jpg"
         breadcrumb={[
           { label: "Home", href: "/" },
@@ -73,10 +72,10 @@ export default function ZakelijkPage() {
           <div>
             <span className="section-eyebrow">Gratis leads</span>
             <h2 className="section-title mt-3">
-              Afnemen bij Rebu? <span className="italic text-rebu-green">Krijg leads cadeau.</span>
+              Afnemen bij Kunststofkozijnnodig.nl? <span className="italic text-rebu-green">Krijg leads cadeau.</span>
             </h2>
             <p className="mt-6 text-lg text-neutral-600">
-              Partners die hun kozijnen bij Rebu afnemen krijgen van ons gratis klantleads in hun werkgebied. Zo groei je samen met ons, zonder extra marketingkosten.
+              Partners die hun kozijnen bij Kunststofkozijnnodig.nl afnemen krijgen van ons gratis klantleads in hun werkgebied. Zo groei je samen met ons, zonder extra marketingkosten.
             </p>
             <ul className="mt-6 space-y-3 text-sm text-neutral-700">
               {[
@@ -100,7 +99,6 @@ export default function ZakelijkPage() {
         </div>
       </section>
 
-      <Reviews />
       <CTASection />
     </>
   );

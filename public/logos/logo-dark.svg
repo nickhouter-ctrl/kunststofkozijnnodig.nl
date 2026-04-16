@@ -1,11 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 60" fill="none">
-  <!-- Window icon -->
-  <rect x="2" y="8" width="44" height="44" rx="4" stroke="#1e3a5f" stroke-width="3" fill="none"/>
-  <line x1="24" y1="8" x2="24" y2="52" stroke="#1e3a5f" stroke-width="2.5"/>
-  <line x1="2" y1="30" x2="46" y2="30" stroke="#1e3a5f" stroke-width="2.5"/>
-  <!-- Small handle -->
-  <rect x="27" y="24" width="8" height="3" rx="1.5" fill="#1e3a5f"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 56" fill="none">
+  <!-- Stylized door/kozijn icon -->
+  <rect x="2" y="2" width="32" height="52" rx="3" stroke="#1e3a5f" stroke-width="2.5" fill="none"/>
+  <!-- Door panels -->
+  <rect x="6" y="6" width="24" height="22" rx="1.5" stroke="#1e3a5f" stroke-width="1.5" fill="none" opacity="0.5"/>
+  <rect x="6" y="32" width="24" height="18" rx="1.5" stroke="#1e3a5f" stroke-width="1.5" fill="none" opacity="0.5"/>
+  <!-- Door handle -->
+  <circle cx="26" cy="34" r="2" fill="#2563eb"/>
+  <!-- Decorative line -->
+  <line x1="42" y1="10" x2="42" y2="46" stroke="#2563eb" stroke-width="2" stroke-linecap="round"/>
   <!-- Text -->
-  <text x="56" y="28" font-family="system-ui,-apple-system,sans-serif" font-weight="700" font-size="20" fill="#1e3a5f">KUNSTSTOF</text>
-  <text x="56" y="48" font-family="system-ui,-apple-system,sans-serif" font-weight="700" font-size="20" fill="#1e3a5f">KOZIJNNODIG<tspan fill="#2563eb" font-weight="800">.NL</tspan></text>
+  <text x="52" y="24" font-family="system-ui,-apple-system,sans-serif" font-weight="800" font-size="18" letter-spacing="0.5" fill="#1e3a5f">KUNSTSTOF</text>
+  <text x="52" y="46" font-family="system-ui,-apple-system,sans-serif" font-weight="800" font-size="18" letter-spacing="0.5" fill="#1e3a5f">KOZIJN<tspan font-weight="400" fill="#1e3a5f" opacity="0.6">NODIG</tspan><tspan fill="#2563eb" font-weight="800">.NL</tspan></text>
 </svg>

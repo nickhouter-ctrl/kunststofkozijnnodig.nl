@@ -8,7 +8,7 @@ import { site } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Veelgestelde vragen over kunststof kozijnen",
   description:
-    "Antwoorden op veelgestelde vragen over kunststof kozijnen: prijzen, levertijd, onderhoud, subsidie, isolatie, kleuren en meer. Advies van Rebu Kozijnen.",
+    "Antwoorden op veelgestelde vragen over kunststof kozijnen: prijzen, levertijd, onderhoud, subsidie, isolatie, kleuren en meer. Advies van Kunststofkozijnnodig.nl.",
   keywords: [
     "veelgestelde vragen kunststof kozijnen",
     "FAQ kozijnen",

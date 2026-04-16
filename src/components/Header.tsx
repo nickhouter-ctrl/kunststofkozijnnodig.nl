@@ -52,10 +52,10 @@ export function Header() {
         <div className="flex items-center gap-2">
           <a
             href={site.phoneHref}
-            className="hidden items-center gap-2 rounded-full px-3 py-2 text-sm font-semibold text-white transition-colors hover:bg-white/10 md:inline-flex"
+            className="hidden items-center gap-2 whitespace-nowrap rounded-full px-3 py-2 text-sm font-semibold text-white transition-colors hover:bg-white/10 md:inline-flex"
           >
-            <Phone className="h-4 w-4 text-rebu-cream" />
-            {site.phone}
+            <Phone className="h-4 w-4 flex-none text-rebu-cream" />
+            <span className="whitespace-nowrap">{site.phone}</span>
           </a>
           <Link
             href="/offerte"

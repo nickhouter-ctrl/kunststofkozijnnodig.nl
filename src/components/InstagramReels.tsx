@@ -41,7 +41,7 @@ export function InstagramReels() {
             <div className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-full bg-white p-1 ring-2 ring-white/40 md:h-14 md:w-14">
               <Image
                 src="/logos/favicon.png"
-                alt="Rebu Kozijnen"
+                alt="Kunststofkozijnnodig.nl"
                 width={56}
                 height={56}
                 className="h-full w-full object-contain"

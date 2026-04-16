@@ -280,7 +280,7 @@ export function QuoteWizard() {
             <p className="mt-8 mb-3 text-xs font-semibold uppercase tracking-wider text-neutral-500">Dienstverlening</p>
             <OptionGrid cols={2}>
               <BigOption icon={Truck} label={label("leveren")} description="Ik laat het zelf plaatsen" selected={data.service === "leveren"} onSelect={() => update("service", "leveren")} />
-              <BigOption icon={Wrench} label={label("leveren-plaatsen")} description="Inclusief montage door Rebu" selected={data.service === "leveren-plaatsen"} onSelect={() => update("service", "leveren-plaatsen")} />
+              <BigOption icon={Wrench} label={label("leveren-plaatsen")} description="Inclusief montage door Kunststofkozijnnodig.nl" selected={data.service === "leveren-plaatsen"} onSelect={() => update("service", "leveren-plaatsen")} />
             </OptionGrid>
 
             <p className="mt-8 mb-3 text-xs font-semibold uppercase tracking-wider text-neutral-500">Houtlook verbinding</p>
@@ -513,7 +513,7 @@ export function QuoteWizard() {
 
             <label className="mt-6 flex items-start gap-3 text-sm text-neutral-700">
               <input type="checkbox" className="mt-0.5 h-5 w-5 flex-none rounded border-rebu-stone text-rebu-green focus:ring-rebu-green" checked={data.consent ?? false} onChange={(e) => update("consent", e.target.checked)} />
-              <span>Ik ga akkoord met de <Link href="/privacyverklaring" className="text-rebu-green underline">privacyverklaring</Link> en dat Rebu Kozijnen contact met mij opneemt over deze aanvraag.</span>
+              <span>Ik ga akkoord met de <Link href="/privacyverklaring" className="text-rebu-green underline">privacyverklaring</Link> en dat Kunststofkozijnnodig.nl contact met mij opneemt over deze aanvraag.</span>
             </label>
 
             {status === "error" && (

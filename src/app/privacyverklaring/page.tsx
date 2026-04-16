@@ -4,7 +4,7 @@ import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Privacyverklaring",
-  description: "Privacyverklaring van Rebu Kozijnen — hoe wij omgaan met persoonsgegevens.",
+  description: "Privacyverklaring van Kunststofkozijnnodig.nl — hoe wij omgaan met persoonsgegevens.",
 };
 
 export default function PrivacyPage() {
@@ -13,7 +13,7 @@ export default function PrivacyPage() {
       <PageHero
         eyebrow="Privacy"
         title="Privacyverklaring"
-        description="Wij respecteren jouw privacy. Hieronder lees je hoe Rebu Kozijnen omgaat met persoonsgegevens."
+        description="Wij respecteren jouw privacy. Hieronder lees je hoe Kunststofkozijnnodig.nl omgaat met persoonsgegevens."
         image="/images/project-latten-4.webp"
         breadcrumb={[
           { label: "Home", href: "/" },

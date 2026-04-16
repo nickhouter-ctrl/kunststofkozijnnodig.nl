@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 const perks = [
   { icon: Clock, text: "Binnen 1 werkdag antwoord" },
   { icon: Euro, text: "Altijd gratis en vrijblijvend" },
-  { icon: Star, text: "5,0 ster beoordeling" },
+  { icon: Star, text: "Persoonlijk advies" },
   { icon: ShieldCheck, text: "Persoonlijk advies" },
 ];
 

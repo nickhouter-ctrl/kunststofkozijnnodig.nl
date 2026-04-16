@@ -19,7 +19,7 @@ export function AboutIntro() {
           <div className="relative overflow-hidden rounded-3xl shadow-glow">
             <Image
               src="/images/villa-kozijn.jpg"
-              alt="Rebu Kozijnen aan het werk"
+              alt="Kunststofkozijnnodig.nl aan het werk"
               width={900}
               height={1100}
               className="h-[560px] w-full object-cover"
@@ -37,7 +37,7 @@ export function AboutIntro() {
             Een jong team, <span className="italic text-rebu-green">ouderwets</span> vakmanschap.
           </h2>
           <p className="mt-6 text-lg text-neutral-600">
-            Rebu Kozijnen wordt geleid door een enthousiast team jonge ondernemers met een grote passie voor hun vak. Wij plaatsen jouw kunststof kozijnen met veel liefde en aandacht, waarbij kwaliteit altijd voorop staat.
+            Kunststofkozijnnodig.nl wordt geleid door een enthousiast team jonge ondernemers met een grote passie voor hun vak. Wij plaatsen jouw kunststof kozijnen met veel liefde en aandacht, waarbij kwaliteit altijd voorop staat.
           </p>
           <p className="mt-4 text-neutral-600">
             Ons doel: iedereen topkwaliteit kozijnen bieden, geheel naar wens en met een lange levensduur, tegen scherpe prijzen.
@@ -55,7 +55,7 @@ export function AboutIntro() {
           </ul>
 
           <Link href="/over-ons" className="mt-10 inline-flex items-center gap-2 text-sm font-semibold text-rebu-green transition-colors hover:text-rebu-green-dark">
-            Meer over Rebu Kozijnen <ArrowRight className="h-4 w-4" />
+            Meer over Kunststofkozijnnodig.nl <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
       </div>

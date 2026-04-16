@@ -2,10 +2,9 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowRight, Check, MapPin, Clock, ShieldCheck, Star, Phone, ChevronRight, Truck } from "lucide-react";
+import { ArrowRight, Check, MapPin, Clock, ShieldCheck, Phone, ChevronRight, Truck } from "lucide-react";
 import { cities, getCity } from "@/lib/cities";
 import { site } from "@/lib/site";
-import { reviews } from "@/lib/content";
 import { CTASection } from "@/components/CTASection";
 import { BrandMarquee } from "@/components/BrandMarquee";
 
@@ -22,10 +21,10 @@ export async function generateMetadata({
   const city = getCity(slug);
   if (!city) return {};
   return {
-    title: `Kunststof kozijnen ${city.name} — leveren & plaatsen | Rebu`,
-    description: `Kunststof kozijnen in ${city.name} (${city.region})? Rebu Kozijnen levert en plaatst maatwerk kozijnen, deuren en schuifpuien. SKG 2-ster, binnen 4 weken. Gratis offerte.`,
+    title: `Kunststof kozijnen ${city.name} — leveren & plaatsen | Kunststofkozijnnodig.nl`,
+    description: `Kunststof kozijnen in ${city.name} (${city.region})? Kunststofkozijnnodig.nl levert en plaatst maatwerk kozijnen, deuren en schuifpuien. SKG 2-ster, binnen 4 weken. Gratis offerte.`,
     openGraph: {
-      title: `Kunststof kozijnen ${city.name} | Rebu Kozijnen`,
+      title: `Kunststof kozijnen ${city.name} | Kunststofkozijnnodig.nl`,
       description: `Specialist in kunststof kozijnen in ${city.name}. Maatwerk, scherpe prijs, binnen 4 weken geleverd. Vraag gratis een offerte aan.`,
     },
     alternates: { canonical: `${site.url}/kozijnen/${city.slug}` },
@@ -70,7 +69,6 @@ export default async function CityPage({
   const sametype = cities.filter((c) => c.slug !== slug && c.serviceType === city.serviceType);
   const othertype = cities.filter((c) => c.slug !== slug && c.serviceType !== city.serviceType);
   const otherCities = [...sametype.slice(0, 6), ...othertype.slice(0, 2)];
-  const selectedReviews = reviews.slice(0, 3);
 
   return (
     <>
@@ -132,7 +130,6 @@ export default async function CityPage({
           {[
             { icon: Clock, title: "Binnen 4 weken", sub: "Geleverd én geplaatst" },
             { icon: ShieldCheck, title: "SKG 2‑ster", sub: "Inbraakwerend gecertificeerd" },
-            { icon: Star, title: "5,0 op Google", sub: "100% tevreden klanten" },
             { icon: Truck, title: city.serviceType === "leveren-plaatsen" ? "Leveren + plaatsen" : "Landelijke levering", sub: city.serviceType === "leveren-plaatsen" ? `${city.distance} vanaf Wormerveer` : `Levering aan aannemers in ${city.name}` },
           ].map((u) => (
             <div key={u.title} className="flex items-start gap-3">
@@ -154,7 +151,7 @@ export default async function CityPage({
           <div>
             <span className="section-eyebrow">Kozijnen in {city.name}</span>
             <h2 className="section-title mt-3">
-              Waarom kiezen voor Rebu in{" "}
+              Waarom kiezen voor Kunststofkozijnnodig.nl in{" "}
               <span className="italic text-rebu-green">{city.name}?</span>
             </h2>
             <p className="mt-6 text-lg leading-relaxed text-neutral-600">{city.description}</p>
@@ -257,30 +254,6 @@ export default async function CityPage({
         </div>
       </section>
 
-      {/* Reviews */}
-      <section className="section bg-rebu-cream">
-        <div className="container-rebu">
-          <div className="mx-auto max-w-3xl text-center">
-            <span className="section-eyebrow">Klanten in de regio {city.region}</span>
-            <h2 className="section-title mt-3">
-              Dit zeggen onze klanten
-            </h2>
-          </div>
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
-            {selectedReviews.map((r) => (
-              <div key={r.name} className="card">
-                <div className="flex gap-1">
-                  {[...Array(r.rating)].map((_, i) => (
-                    <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                  ))}
-                </div>
-                <p className="mt-4 text-sm leading-relaxed text-neutral-700">"{r.body}"</p>
-                <p className="mt-4 text-sm font-semibold text-rebu-charcoal">{r.name}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       <BrandMarquee />
 

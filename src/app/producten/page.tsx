@@ -6,7 +6,7 @@ import { CTASection } from "@/components/CTASection";
 
 export const metadata: Metadata = {
   title: "Producten — kozijnen, deuren en schuifpuien",
-  description: "Ontdek het complete productassortiment van Rebu Kozijnen: kunststof kozijnen, deuren en schuifpuien in elke stijl en kleur.",
+  description: "Ontdek het complete productassortiment van Kunststofkozijnnodig.nl: kunststof kozijnen, deuren en schuifpuien in elke stijl en kleur.",
 };
 
 export default function ProductenPage() {

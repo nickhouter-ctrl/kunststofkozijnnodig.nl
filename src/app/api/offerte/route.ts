@@ -44,7 +44,7 @@ export async function POST(req: Request) {
   try {
     // 1. Send full quote to info@rebukozijnen.nl (with attachments)
     await transporter.sendMail({
-      from: `Rebu Kozijnen Website <${process.env.GMAIL_USER}>`,
+      from: `Kunststofkozijnnodig.nl Website <${process.env.GMAIL_USER}>`,
       to,
       replyTo: data.email,
       subject,
@@ -54,10 +54,10 @@ export async function POST(req: Request) {
 
     // 2. Send confirmation to customer + BCC to info@ so you always know
     await transporter.sendMail({
-      from: `Rebu Kozijnen <${process.env.GMAIL_USER}>`,
+      from: `Kunststofkozijnnodig.nl <${process.env.GMAIL_USER}>`,
       to: data.email,
       bcc: to,
-      subject: "Bedankt voor je offerteaanvraag — Rebu Kozijnen",
+      subject: "Bedankt voor je offerteaanvraag — Kunststofkozijnnodig.nl",
       html: renderConfirmation(data),
     }).catch(() => {});
 
@@ -103,7 +103,7 @@ function renderEmail(d: QuoteData): string {
       <table width="640" cellpadding="0" cellspacing="0" style="background:#ffffff;border-radius:16px;overflow:hidden;box-shadow:0 10px 40px -10px rgba(15,58,36,.15)">
         <tr><td style="background:#1f5f3f;padding:32px 40px;color:#fff">
           <h1 style="margin:0;font-size:24px;font-weight:600">Nieuwe offerteaanvraag</h1>
-          <p style="margin:6px 0 0;opacity:.8;font-size:14px">Via de website van Rebu Kozijnen — ${totalItems} product${totalItems === 1 ? "" : "en"}</p>
+          <p style="margin:6px 0 0;opacity:.8;font-size:14px">Via de website van Kunststofkozijnnodig.nl — ${totalItems} product${totalItems === 1 ? "" : "en"}</p>
         </td></tr>
         <tr><td style="padding:32px 40px">
 
@@ -174,10 +174,10 @@ function renderConfirmation(d: QuoteData): string {
           <p>We hebben je offerteaanvraag goed ontvangen voor <strong>${summary}</strong> (${totalItems} ${totalItems === 1 ? "stuk" : "stuks"}).</p>
           <p>Binnen <strong>1 werkdag</strong> nemen we persoonlijk contact met je op om de details door te nemen en een prijs op maat te maken.</p>
           <p style="margin-top:24px">Vragen? Bel of app ons gerust op <a href="tel:+31658866070" style="color:#1f5f3f">+31 6 58 86 60 70</a>.</p>
-          <p style="margin-top:24px">Met vriendelijke groet,<br><strong>Team Rebu Kozijnen</strong></p>
+          <p style="margin-top:24px">Met vriendelijke groet,<br><strong>Team Kunststofkozijnnodig.nl</strong></p>
         </td></tr>
         <tr><td style="padding:20px 40px;background:#f7f5f0;font-size:12px;color:#6b7280;text-align:center">
-          Rebu Kozijnen · Samsonweg 26F · 1521 RM Wormerveer · info@rebukozijnen.nl
+          Kunststofkozijnnodig.nl · Samsonweg 26F · 1521 RM Wormerveer · info@rebukozijnen.nl
         </td></tr>
       </table>
     </td></tr>

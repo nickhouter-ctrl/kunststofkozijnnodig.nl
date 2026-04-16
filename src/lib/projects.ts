@@ -60,7 +60,7 @@ export const projects: Project[] = [
     summary:
       "Een greep uit onze leveringen op locatie — van kleine bijzetdeuren tot volledige gevelpakketten.",
     description:
-      "Bij Rebu komt elk kozijn rechtstreeks uit de fabriek, wordt zorgvuldig ingepakt en op locatie geleverd. Deze showcase laat zien hoe onze leveringen eruit zien: kozijnen per stuk beschermd, eerlijke labels, en onze monteurs die alles direct klaarzetten voor plaatsing.",
+      "Bij ons komt elk kozijn rechtstreeks uit de fabriek, wordt zorgvuldig ingepakt en op locatie geleverd. Deze showcase laat zien hoe onze leveringen eruit zien: kozijnen per stuk beschermd, eerlijke labels, en onze monteurs die alles direct klaarzetten voor plaatsing.",
     cover: "/images/showcase-leveringen-3.webp",
     gallery: [
       "/images/showcase-leveringen-3.webp",

@@ -5,14 +5,12 @@ import { Check, ArrowRight, Home, PiggyBank, Globe2 } from "lucide-react";
 import { PageHero } from "@/components/PageHero";
 import { ProductGrid } from "@/components/ProductGrid";
 import { Workflow } from "@/components/Workflow";
-import { InstagramReels } from "@/components/InstagramReels";
-import { Reviews } from "@/components/Reviews";
 import { CTASection } from "@/components/CTASection";
 
 export const metadata: Metadata = {
   title: "Kunststof kozijnen voor particulieren",
   description:
-    "Voor particulieren levert Rebu Kozijnen hoogwaardige kunststof kozijnen, deuren en schuifpuien op maat. Inclusief advies, inmeten, plaatsen en financiering.",
+    "Voor particulieren levert Kunststofkozijnnodig.nl hoogwaardige kunststof kozijnen, deuren en schuifpuien op maat. Inclusief advies, inmeten, plaatsen en financiering.",
 };
 
 const benefits = [
@@ -43,7 +41,7 @@ export default function ParticulierPage() {
               De perfecte balans tussen <span className="italic text-rebu-green">stijl en functionaliteit.</span>
             </h2>
             <p className="mt-6 text-lg text-neutral-600">
-              Kunststof kozijnen zijn populair vanwege hun duurzaamheid, onderhoudsvriendelijkheid en uitstekende isolatie-eigenschappen. Rebu Kozijnen is gespecialiseerd in het plaatsen en vervangen van kunststof kozijnen, deuren en schuifpuien van hoogwaardige kwaliteit.
+              Kunststof kozijnen zijn populair vanwege hun duurzaamheid, onderhoudsvriendelijkheid en uitstekende isolatie-eigenschappen. Kunststofkozijnnodig.nl is gespecialiseerd in het plaatsen en vervangen van kunststof kozijnen, deuren en schuifpuien van hoogwaardige kwaliteit.
             </p>
 
             <div className="mt-10 grid gap-5 sm:grid-cols-3">
@@ -111,8 +109,8 @@ export default function ParticulierPage() {
           </div>
           <div className="order-1 overflow-hidden rounded-3xl shadow-soft lg:order-2">
             <Image
-              src="/images/kleur-rebu.jpg"
-              alt="Kleurkeuze kozijnen"
+              src="/images/villa-kozijn.jpg"
+              alt="Kunststof kozijnen villa"
               width={900}
               height={700}
               className="h-[460px] w-full object-cover"
@@ -121,8 +119,6 @@ export default function ParticulierPage() {
         </div>
       </section>
 
-      <InstagramReels />
-      <Reviews />
       <CTASection />
     </>
   );

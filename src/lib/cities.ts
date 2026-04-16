@@ -246,7 +246,7 @@ export const cities: City[] = [
     name: "Utrecht",
     region: "Utrecht",
     description:
-      "Aannemers en bouwbedrijven in Utrecht en omgeving kunnen bij Rebu Kozijnen terecht voor de levering van hoogwaardige kunststof kozijnen, deuren en schuifpuien. Wij leveren direct vanuit onze fabriek, binnen 4 weken op jouw bouwplaats — scherpe zakelijke tarieven inclusief.",
+      "Aannemers en bouwbedrijven in Utrecht en omgeving kunnen bij Kunststofkozijnnodig.nl terecht voor de levering van hoogwaardige kunststof kozijnen, deuren en schuifpuien. Wij leveren direct vanuit onze fabriek, binnen 4 weken op jouw bouwplaats — scherpe zakelijke tarieven inclusief.",
     highlights: ["Levering op jouw bouwplaats", "Zakelijke staffelkorting", "Binnen 4 weken geleverd"],
     nearbyAreas: ["Nieuwegein", "IJsselstein", "Zeist", "Amersfoort"],
     serviceType: "leveren",

@@ -66,41 +66,4 @@ export const projects = [
   { title: "Levering met lattenstructuur", location: "Zaanstreek", image: "/images/project-latten-8.webp" },
 ] as const;
 
-export const reviews = [
-  {
-    name: "Paul Iske",
-    role: "Tevreden klant",
-    rating: 5,
-    body: "REBU heeft vrijwel al onze kozijnen vervangen en ik kan niet anders zeggen dan dat ik heel erg tevreden ben. Alles is perfect gelopen. Mooi materiaal en hardwerkende, aardige vakmensen. Elke dag werd de rommel opgeruimd en alles is perfect opgeleverd.",
-  },
-  {
-    name: "Chantal Sperling",
-    role: "Google review",
-    rating: 5,
-    body: "Ons nieuwe huis helemaal voorzien van kunststof kozijnen. Mooie kozijnen, snelle levering, plaatsing in een week. Wij zijn heel erg tevreden en raden Rebu kozijnen zeker bij iedereen aan.",
-  },
-  {
-    name: "Constant van Brenk",
-    role: "Google review",
-    rating: 5,
-    body: "Zeer tevreden met de service en kwaliteit. Twee duidelijke afspraken om wensen te bespreken en in te meten. Binnen 6 weken geleverd en geplaatst, bij anderen 5 tot 9 maanden. Eerlijke prijs, afspraken nagekomen. Aanrader!",
-  },
-  {
-    name: "Marc Derby",
-    role: "Tevreden klant",
-    rating: 5,
-    body: "Topwerk geleverd. Al mijn kozijnen op verschillende etages vervangen. Kwamen met een flink team, uiterst keurige en sympathieke werkers. Binnen no-time klaar en alles netjes en schoon opgeleverd.",
-  },
-  {
-    name: "Sjak Scholten",
-    role: "Tevreden klant",
-    rating: 5,
-    body: "Vooraf duidelijk geïnformeerd en meegedacht over de mogelijkheden in onze jaren dertig woning. Offerte duidelijk en afspraken keurig nagekomen. Super tevreden!",
-  },
-  {
-    name: "Ahmed Al Hasani",
-    role: "Tevreden klant",
-    rating: 5,
-    body: "Uitstekend werk geleverd voor het plaatsen van de kozijnen, schuifpui en voordeur. Prettige communicatie en alle afspraken netjes op tijd nagekomen. Zeker een aanrader!",
-  },
-] as const;
+export const reviews = [] as const;
