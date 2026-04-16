@@ -32,7 +32,7 @@ export function Header() {
             alt={site.name}
             width={140}
             height={44}
-            className="h-10 w-auto md:h-11"
+            className="h-11 w-auto md:h-14"
             priority
           />
         </Link>
