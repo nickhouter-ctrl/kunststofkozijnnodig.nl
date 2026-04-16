@@ -13,12 +13,12 @@ export function Footer() {
         <div className="grid gap-12 lg:grid-cols-4">
           <div className="lg:col-span-2">
             <Image
-              src="/logos/logo-header.png"
+              src="/logos/logo-header.png?v=2"
               alt={site.name}
-              width={879}
-              height={400}
+              width={728}
+              height={440}
               unoptimized
-              className="h-14 w-auto md:h-16"
+              className="h-16 w-auto sm:h-20 md:h-24"
             />
             <p className="mt-6 max-w-md text-sm leading-relaxed text-white/70">
               {site.description}
