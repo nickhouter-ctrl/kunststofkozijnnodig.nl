@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --rebu-green: #1e40af;
+  --rebu-green-light: #3b82f6;
+  --rebu-green-dark: #1e3a5f;
+  --rebu-cream: #f0f4f8;
+  --rebu-stone: #dce4ed;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--rebu-cream);
+  color: #1a1a1a;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+@layer components {
+  .container-rebu {
+    @apply mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12;
+  }
+  .btn-primary {
+    @apply inline-flex items-center gap-2 rounded-full bg-rebu-green px-6 py-3 text-sm font-semibold text-white shadow-soft transition-all hover:bg-rebu-green-dark hover:shadow-glow focus:outline-none focus:ring-2 focus:ring-rebu-green focus:ring-offset-2;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center gap-2 rounded-full border border-rebu-green/20 bg-white px-6 py-3 text-sm font-semibold text-rebu-green transition-all hover:border-rebu-green hover:bg-rebu-green hover:text-white;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold text-rebu-green-dark transition-colors hover:bg-rebu-stone;
+  }
+  .section {
+    @apply py-20 md:py-28;
+  }
+  .section-title {
+    @apply font-display text-3xl md:text-5xl font-semibold leading-[1.1] tracking-tight text-rebu-charcoal;
+  }
+  .section-eyebrow {
+    @apply inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-rebu-green;
+  }
+  .card {
+    @apply rounded-2xl bg-white p-6 shadow-soft ring-1 ring-black/5;
+  }
+  .input {
+    @apply w-full rounded-xl border border-rebu-stone bg-white px-4 py-3 text-sm text-rebu-charcoal placeholder:text-neutral-400 focus:border-rebu-green focus:outline-none focus:ring-2 focus:ring-rebu-green/20;
+  }
+  .chip {
+    @apply inline-flex items-center gap-2 rounded-full bg-rebu-stone px-3 py-1 text-xs font-medium text-rebu-green-dark;
+  }
+}
+
+/* Marquee for brand logos */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+/* Subtle grain overlay */
+.grain::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.04;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
