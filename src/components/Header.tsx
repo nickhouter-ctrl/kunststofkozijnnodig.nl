@@ -30,8 +30,10 @@ export function Header() {
           <Image
             src="/logos/logo-white.png"
             alt={site.name}
-            width={400}
-            height={178}
+            width={703}
+            height={320}
+            quality={100}
+            unoptimized
             className="h-12 w-auto sm:h-14 md:h-16"
             priority
           />
