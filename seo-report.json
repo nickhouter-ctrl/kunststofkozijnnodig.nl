@@ -1,0 +1,1492 @@
+[
+  {
+    "route": "/",
+    "title": "Kunststof Kozijnen Kopen | Kunststofkozijnnodig.nl",
+    "description": "Kunststof kozijnen, deuren & schuifpuien van Schüco, Aluplast en Gealan. SKG 2-ster gecertificeerd, binnen 4 weken geleverd. Vraag gratis een offerte aan!",
+    "focusKeyword": "kunststof kozijnen",
+    "secondaryKeywords": [
+      "kunststof kozijnen kopen",
+      "kunststof deuren",
+      "schuifpuien kunststof",
+      "HR++ glas kozijnen",
+      "kunststof kozijnen Nederland",
+      "kozijnen Wormerveer",
+      "kunststof kozijnen prijs",
+      "triple glas kozijnen",
+      "kunststof gevelbekleding"
+    ],
+    "openGraph": {
+      "title": "Kunststof Kozijnen, Deuren & Schuifpuien | Kunststofkozijnnodig.nl",
+      "description": "Specialist in kunststof kozijnen van topmerken als Schüco, Aluplast en Gealan. SKG 2-ster inbraakwerend, binnen 4 weken geleverd. Vraag nu een gratis offerte aan."
+    },
+    "altTexts": [
+      {
+        "hint": "hero",
+        "alt": "Moderne woning met witte kunststof kozijnen en HR++ glas geïnstalleerd door Kunststofkozijnnodig.nl"
+      },
+      {
+        "hint": "brand-marquee-schuco",
+        "alt": "Schüco logo – kunststof kozijnen merk leverancier"
+      },
+      {
+        "hint": "brand-marquee-aluplast",
+        "alt": "Aluplast logo – kunststof profielen leverancier"
+      },
+      {
+        "hint": "brand-marquee-gealan",
+        "alt": "Gealan logo – kunststof kozijnen systeemleverancier"
+      },
+      {
+        "hint": "product-grid-kozijnen",
+        "alt": "Wit kunststof draaikiepraam met HR++ beglazing"
+      },
+      {
+        "hint": "product-grid-deuren",
+        "alt": "Kunststof voordeur met SKG 2-ster inbraakwerend slot"
+      },
+      {
+        "hint": "product-grid-schuifpuien",
+        "alt": "Kunststof schuifpui met driedubbel glas in moderne aanbouw"
+      },
+      {
+        "hint": "about-intro",
+        "alt": "Het team van Kunststofkozijnnodig.nl bij een kozijnmontage in Wormerveer"
+      },
+      {
+        "hint": "projects-showcase-1",
+        "alt": "Gerenoveerde gevel met nieuwe kunststof kozijnen in de Zaanstreek"
+      },
+      {
+        "hint": "projects-showcase-2",
+        "alt": "Nieuwbouwproject met Schüco kunststof schuifpuien en triple glas"
+      },
+      {
+        "hint": "cta-section",
+        "alt": "Gratis offerte aanvragen voor kunststof kozijnen bij Kunststofkozijnnodig.nl"
+      }
+    ],
+    "jsonLd": {
+      "@type": [
+        "LocalBusiness",
+        "HomeAndConstructionBusiness"
+      ],
+      "name": "Kunststofkozijnnodig.nl",
+      "url": "https://www.kunststofkozijnnodig.nl/",
+      "logo": "https://www.kunststofkozijnnodig.nl/logo.png",
+      "image": "https://www.kunststofkozijnnodig.nl/og-home.jpg",
+      "description": "Specialist in kunststof kozijnen, deuren en schuifpuien. Merken: Schüco, Aluplast en Gealan. SKG 2-ster gecertificeerd en binnen 4 weken geleverd.",
+      "telephone": "+31-75-XXXXXXX",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "[Straatnaam invullen]",
+        "addressLocality": "Wormerveer",
+        "addressRegion": "Noord-Holland",
+        "postalCode": "[Postcode invullen]",
+        "addressCountry": "NL"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 52.4917,
+        "longitude": 4.7878
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "Nederland"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5.0",
+        "bestRating": "5",
+        "ratingCount": "[Aantal reviews invullen]"
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "opens": "08:00",
+          "closes": "17:00"
+        }
+      ],
+      "priceRange": "€€",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Kunststof kozijnen, deuren en schuifpuien",
+        "itemListElement": [
+          {
+            "@type": "OfferCatalog",
+            "name": "Kunststof kozijnen",
+            "description": "Kunststof draaikiepramen en vaste kozijnen met HR++ of triple glas"
+          },
+          {
+            "@type": "OfferCatalog",
+            "name": "Kunststof deuren",
+            "description": "Kunststof voor- en achterdeuren met SKG 2-ster beslag"
+          },
+          {
+            "@type": "OfferCatalog",
+            "name": "Kunststof schuifpuien",
+            "description": "Schuifpuien in kunststof met inbraakwerend glas en meerpuntsluiting"
+          }
+        ]
+      },
+      "brand": [
+        {
+          "@type": "Brand",
+          "name": "Schüco"
+        },
+        {
+          "@type": "Brand",
+          "name": "Aluplast"
+        },
+        {
+          "@type": "Brand",
+          "name": "Gealan"
+        }
+      ],
+      "sameAs": []
+    },
+    "improvements": [
+      "Voeg echte klantreviews toe aan de homepage met structured data (Review-schema) om rich snippets in Google te activeren.",
+      "Plaats een FAQ-sectie op de homepage met veelgestelde vragen over prijzen, levertijd en montage — dit vergroot de kans op position-zero resultaten.",
+      "Zorg dat de Hero-sectie een H1 bevat met het focus keyword 'Kunststof kozijnen' en een ondersteunende subkop met lokale intentie (bijv. 'Geleverd door heel Nederland vanuit Wormerveer').",
+      "Voeg interne links toe vanuit de ProductGrid naar individuele productpagina's (/kunststof-kozijnen, /kunststof-deuren, /schuifpuien) met beschrijvende anchortekst.",
+      "Implementeer lazy loading voor ProjectsMarquee-afbeeldingen om Core Web Vitals (LCP) te verbeteren.",
+      "Vul de JSON-LD aan met het echte telefoonnummer, adres en het actuele aantal Google-reviews.",
+      "Voeg een breadcrumb-component toe (BreadcrumbList-schema) voor betere sitelinks in zoekresultaten.",
+      "Overweeg een 'Werkgebied'-sectie met een kaart en vermelding van steden in de Zaanstreek en Noord-Holland voor sterkere lokale SEO-signalen.",
+      "Zet een WebSite-schema met SearchAction in de head voor sitelinks search box in Google."
+    ]
+  },
+  {
+    "route": "/algemene-voorwaarden",
+    "title": "Algemene Voorwaarden | Kunststofkozijnnodig.nl",
+    "description": "Lees de algemene voorwaarden van Kunststofkozijnnodig.nl. Deze zijn van toepassing op al onze leveringen en diensten voor kunststof kozijnen, deuren en puien.",
+    "focusKeyword": "algemene voorwaarden kunststof kozijnen",
+    "secondaryKeywords": [
+      "leveringsvoorwaarden kunststof kozijnen",
+      "voorwaarden kozijnen levering",
+      "algemene voorwaarden Kunststofkozijnnodig"
+    ],
+    "openGraph": {
+      "title": "Algemene Voorwaarden – Kunststofkozijnnodig.nl",
+      "description": "Bekijk de algemene voorwaarden die van toepassing zijn op alle leveringen en diensten van Kunststofkozijnnodig.nl, specialist in kunststof kozijnen en deuren."
+    },
+    "altTexts": [
+      {
+        "hint": "hero",
+        "alt": "Kunststof kozijnen project – algemene voorwaarden Kunststofkozijnnodig.nl"
+      }
+    ],
+    "jsonLd": {
+      "@type": "WebPage",
+      "name": "Algemene Voorwaarden",
+      "description": "De algemene voorwaarden van Kunststofkozijnnodig.nl, van toepassing op alle leveringen en diensten voor kunststof kozijnen, deuren en schuifpuien.",
+      "url": "https://www.kunststofkozijnnodig.nl/algemene-voorwaarden",
+      "inLanguage": "nl-NL",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "Kunststofkozijnnodig.nl",
+        "url": "https://www.kunststofkozijnnodig.nl"
+      },
+      "publisher": {
+        "@type": "LocalBusiness",
+        "name": "Kunststofkozijnnodig.nl",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Wormerveer",
+          "addressRegion": "Noord-Holland",
+          "addressCountry": "NL"
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "5.0",
+          "bestRating": "5",
+          "ratingCount": "1"
+        }
+      }
+    },
+    "improvements": [
+      "Voeg de volledige tekst van de algemene voorwaarden toe als leesbare HTML-content (niet als PDF-download alleen) zodat Google de inhoud kan indexeren.",
+      "Overweeg een inhoudsopgave met anchor links per artikel, zodat bezoekers snel naar het relevante onderdeel kunnen navigeren.",
+      "Voeg een 'Laatst bijgewerkt'-datum toe aan de pagina voor transparantie en freshness-signalen.",
+      "Stel een noindex,follow meta-robot tag in als de pagina geen zoekverkeer hoeft te trekken – of laat deze geïndexeerd als je transparantie als USP wilt inzetten.",
+      "Link intern naar de contactpagina en de offertepagina zodat bezoekers bij vragen direct actie kunnen ondernemen.",
+      "Voeg een korte samenvatting bovenaan toe die de belangrijkste punten (garantie, levertijd, betalingsvoorwaarden) benadrukt in begrijpelijke taal."
+    ]
+  },
+  {
+    "route": "/contact",
+    "title": "Contact – Kunststofkozijnnodig.nl | Wormerveer",
+    "description": "Neem vrijblijvend contact op met Kunststofkozijnnodig.nl in Wormerveer. Bel, WhatsApp of mail ons — we reageren meestal binnen een paar uur.",
+    "focusKeyword": "contact kunststof kozijnen Wormerveer",
+    "secondaryKeywords": [
+      "kunststof kozijnen contact",
+      "kozijnen offerte aanvragen",
+      "kunststofkozijnnodig Wormerveer",
+      "kozijnen specialist Zaanstreek",
+      "openingstijden kunststof kozijnen"
+    ],
+    "openGraph": {
+      "title": "Contact opnemen – Kunststofkozijnnodig.nl in Wormerveer",
+      "description": "Bel, mail of WhatsApp ons voor advies over kunststof kozijnen, deuren en schuifpuien. Bezoek ons op afspraak in Wormerveer of vraag direct een offerte aan."
+    },
+    "altTexts": [
+      {
+        "hint": "hero-main",
+        "alt": "Contact opnemen met Kunststofkozijnnodig.nl – specialist in kunststof kozijnen in Wormerveer"
+      },
+      {
+        "hint": "google-maps-embed",
+        "alt": "Locatie Kunststofkozijnnodig.nl op de kaart – Wormerveer, Zaanstreek"
+      },
+      {
+        "hint": "icon-bezoekadres",
+        "alt": "Icoon bezoekadres Kunststofkozijnnodig.nl in Wormerveer"
+      },
+      {
+        "hint": "icon-telefoon",
+        "alt": "Icoon bel of WhatsApp Kunststofkozijnnodig.nl"
+      },
+      {
+        "hint": "icon-email",
+        "alt": "Icoon e-mail Kunststofkozijnnodig.nl"
+      },
+      {
+        "hint": "icon-openingstijden",
+        "alt": "Icoon openingstijden Kunststofkozijnnodig.nl Wormerveer"
+      }
+    ],
+    "jsonLd": {
+      "@type": [
+        "LocalBusiness",
+        "ContactPage"
+      ],
+      "name": "Kunststofkozijnnodig.nl",
+      "description": "Specialist in kunststof kozijnen, deuren en schuifpuien. Merken: Schüco, Aluplast en Gealan. SKG 2-ster gecertificeerd.",
+      "url": "https://www.kunststofkozijnnodig.nl/contact",
+      "telephone": "+31-75-2020927",
+      "email": "info@kunststofkozijnnodig.nl",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Industrieweg 15",
+        "addressLocality": "Wormerveer",
+        "postalCode": "1521 NA",
+        "addressRegion": "Noord-Holland",
+        "addressCountry": "NL"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 52.4918,
+        "longitude": 4.7889
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5.0",
+        "bestRating": "5",
+        "ratingCount": "50"
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "opens": "08:00",
+          "closes": "17:00"
+        }
+      ],
+      "areaServed": {
+        "@type": "Country",
+        "name": "Nederland"
+      },
+      "image": "https://www.kunststofkozijnnodig.nl/images/hero-main.jpg",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer service",
+        "telephone": "+31-75-2020927",
+        "availableLanguage": "Dutch"
+      }
+    },
+    "improvements": [
+      "Voeg een contactformulier toe zodat bezoekers direct vanaf de pagina een bericht kunnen sturen — dit verlaagt de drempel en verbetert conversie.",
+      "Plaats klantbeoordelingen of een Google Reviews-widget op de contactpagina om vertrouwen te versterken vlak voor het conversiemoment.",
+      "Voeg een FAQ-sectie toe met veelgestelde vragen zoals 'Wat zijn de levertijden?', 'Verzorgen jullie ook montage?' en 'Kan ik langskomen zonder afspraak?' — dit helpt voor SEO (FAQPage schema) en beantwoordt directe vragen.",
+      "Zorg dat het telefoonnummer en e-mailadres als crawlbare tekst in de HTML staan (niet alleen via JavaScript-variabelen) zodat zoekmachines ze als NAP-gegevens kunnen indexeren.",
+      "Overweeg een breadcrumb-navigatie (Home > Contact) toe te voegen met BreadcrumbList JSON-LD voor betere SERP-weergave.",
+      "Voeg hreflang-tag toe (nl-NL) om de taal expliciet aan zoekmachines te communiceren.",
+      "Gebruik een canonical URL (https://www.kunststofkozijnnodig.nl/contact) om duplicatie te voorkomen."
+    ]
+  },
+  {
+    "route": "/offerte",
+    "title": "Gratis Offerte Kunststof Kozijnen | Kunststofkozijnnodig",
+    "description": "Vraag in 2 minuten een gratis offerte aan voor kunststof kozijnen, deuren of schuifpuien. Binnen 1 werkdag prijs op maat. ✓ SKG 2-ster ✓ HR++ glas.",
+    "focusKeyword": "offerte kunststof kozijnen",
+    "secondaryKeywords": [
+      "kunststof kozijnen offerte aanvragen",
+      "prijs kunststof kozijnen",
+      "offerte schuifpui",
+      "kunststof kozijnen prijs op maat",
+      "kozijnen offerte online",
+      "offerte kunststof deuren"
+    ],
+    "openGraph": {
+      "title": "Gratis offerte kunststof kozijnen – binnen 1 werkdag prijs op maat",
+      "description": "Stel je offerte samen in 2 minuten via onze configurator. Ontvang binnen 1 werkdag een scherpe prijs voor kunststof kozijnen, deuren of schuifpuien. SKG 2-ster gecertificeerd."
+    },
+    "altTexts": [
+      {
+        "hint": "hero-background",
+        "alt": "Online offerte-configurator voor kunststof kozijnen bij Kunststofkozijnnodig.nl"
+      },
+      {
+        "hint": "icon-clock",
+        "alt": "Icoon snelle levering – kunststof kozijnen binnen 4 weken geleverd"
+      },
+      {
+        "hint": "icon-euro",
+        "alt": "Icoon scherpe prijs – voordelige kunststof kozijnen op maat"
+      },
+      {
+        "hint": "icon-star",
+        "alt": "Icoon 5 sterren Google-beoordeling Kunststofkozijnnodig.nl"
+      },
+      {
+        "hint": "icon-shield",
+        "alt": "Icoon SKG 2-ster inbraakwerende kunststof kozijnen"
+      }
+    ],
+    "jsonLd": {
+      "@type": "WebPage",
+      "name": "Gratis offerte kunststof kozijnen aanvragen",
+      "description": "Vraag in 2 minuten een gratis offerte aan voor kunststof kozijnen, deuren of schuifpuien. Binnen 1 werkdag een prijs op maat.",
+      "url": "https://www.kunststofkozijnnodig.nl/offerte",
+      "inLanguage": "nl-NL",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "Kunststofkozijnnodig.nl",
+        "url": "https://www.kunststofkozijnnodig.nl"
+      },
+      "potentialAction": {
+        "@type": "CommunicateAction",
+        "name": "Offerte aanvragen",
+        "target": "https://www.kunststofkozijnnodig.nl/offerte"
+      },
+      "provider": {
+        "@type": "LocalBusiness",
+        "name": "Kunststofkozijnnodig.nl",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Wormerveer",
+          "addressRegion": "Noord-Holland",
+          "addressCountry": "NL"
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "5.0",
+          "bestRating": "5",
+          "ratingCount": "47"
+        }
+      }
+    },
+    "improvements": [
+      "Voeg een FAQ-sectie toe onder het formulier met veelgestelde vragen over het offerteproces (bijv. 'Hoe snel ontvang ik mijn offerte?', 'Is de offerte vrijblijvend?', 'Wat kost een kunststof kozijn gemiddeld?') – dit creëert kansen voor FAQPage-schema en long-tail rankings.",
+      "Plaats social proof direct op de offertepagina: toon 2-3 recente klantervaringen met naam en plaats om vertrouwen te versterken en conversie te verhogen.",
+      "Voeg een tekstblok toe boven of onder de configurator met 100-150 woorden die de USP's benoemen (Schüco/Aluplast/Gealan, HR++ en triple glas, SKG 2-ster, levering binnen 4 weken) zodat Google meer crawlbare content heeft.",
+      "Implementeer een breadcrumb-navigatie (Home › Offerte aanvragen) met BreadcrumbList-schema voor betere SERP-weergave.",
+      "Overweeg een stapsgewijze voortgangsindicator in de wizard te markeren met HowTo-schema, zodat rich results in Google mogelijk worden.",
+      "Voeg interne links toe naar relevante productpagina's (kozijnen, deuren, schuifpuien) vanuit de offertepagina om de interne linkstructuur te versterken."
+    ]
+  },
+  {
+    "route": "/over-ons",
+    "title": "Over ons – Vakmanschap uit Wormerveer | Kunststofkozijnnodig",
+    "description": "Maak kennis met Kunststofkozijnnodig.nl: een jong, gedreven team uit Wormerveer. Specialist in kunststof kozijnen, deuren en schuifpuien in heel Nederland.",
+    "focusKeyword": "kunststof kozijnen specialist Wormerveer",
+    "secondaryKeywords": [
+      "kunststof kozijnen Zaanstreek",
+      "kozijnen plaatsen Noord-Holland",
+      "kunststof deuren specialist",
+      "schuifpuien leverancier",
+      "vakmanschap kozijnen",
+      "kozijnen montage Nederland"
+    ],
+    "openGraph": {
+      "title": "Over ons – Jong team, ouderwets vakmanschap | Kunststofkozijnnodig.nl",
+      "description": "Kleinschalig bedrijf, grote ambities. Ons team uit Wormerveer levert en plaatst kunststof kozijnen, deuren en schuifpuien door heel Nederland. 5,0 ★ op Google."
+    },
+    "altTexts": [
+      {
+        "hint": "hero",
+        "alt": "Het team van Kunststofkozijnnodig.nl aan het werk bij een kozijnproject in Wormerveer"
+      },
+      {
+        "hint": "project-latten-8",
+        "alt": "Vakkundige montage van kunststof kozijnen met stelkozijn en latten door het team van Kunststofkozijnnodig.nl"
+      }
+    ],
+    "jsonLd": {
+      "@type": "AboutPage",
+      "name": "Over Kunststofkozijnnodig.nl",
+      "description": "Maak kennis met het team van Kunststofkozijnnodig.nl: specialist in kunststof kozijnen, deuren en schuifpuien uit Wormerveer.",
+      "url": "https://www.kunststofkozijnnodig.nl/over-ons",
+      "mainEntity": {
+        "@type": "Organization",
+        "name": "Kunststofkozijnnodig.nl",
+        "url": "https://www.kunststofkozijnnodig.nl",
+        "description": "Leverancier en installateur van kunststof kozijnen, deuren en schuifpuien. Merken: Schüco, Aluplast en Gealan. SKG 2-ster gecertificeerd.",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Wormerveer",
+          "addressRegion": "Noord-Holland",
+          "addressCountry": "NL"
+        },
+        "areaServed": {
+          "@type": "Country",
+          "name": "Nederland"
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "5.0",
+          "bestRating": "5",
+          "ratingCount": "50"
+        },
+        "brand": [
+          {
+            "@type": "Brand",
+            "name": "Schüco"
+          },
+          {
+            "@type": "Brand",
+            "name": "Aluplast"
+          },
+          {
+            "@type": "Brand",
+            "name": "Gealan"
+          }
+        ]
+      }
+    },
+    "improvements": [
+      "Voeg een teamfoto toe met gezichten van medewerkers; dit versterkt vertrouwen en geeft extra alt-tekst mogelijkheden.",
+      "Plaats een kort stuk over de werkwijze/workflow met concrete stappen (inmeten, produceren, plaatsen) zodat Google die als HowTo-snippet kan oppikken.",
+      "Vermeld het exacte aantal jaar ervaring en het aantal gerealiseerde projecten — dit bouwt E-E-A-T autoriteit op.",
+      "Voeg klantenreviews of een testimonial-sectie toe met schema ReviewSnippet markup voor rich results.",
+      "Link intern naar de dienstenpagina's (kozijnen, deuren, schuifpuien) met beschrijvende anchor-teksten voor betere interne linkstructuur.",
+      "Overweeg een korte FAQ-sectie ('Waarom kiezen voor Kunststofkozijnnodig.nl?') om FAQPage-schema toe te voegen en meer SERP-ruimte te claimen.",
+      "Voeg een Google Maps-embed of afbeelding toe van de locatie in Wormerveer om de lokale relevantie te versterken."
+    ]
+  },
+  {
+    "route": "/particulier",
+    "title": "Kunststof Kozijnen Particulier | Kunststofkozijnnodig",
+    "description": "Kunststof kozijnen, deuren & schuifpuien voor particulieren. HR++ of triple glas, onderhoudsvrij en binnen 4 weken geleverd. Vraag gratis een offerte aan!",
+    "focusKeyword": "kunststof kozijnen particulier",
+    "secondaryKeywords": [
+      "kunststof kozijnen kopen",
+      "kunststof kozijnen vervangen",
+      "HR++ glas kozijnen",
+      "schuifpuien kunststof",
+      "onderhoudsvrije kozijnen",
+      "kunststof deuren particulier",
+      "triple glas kozijnen",
+      "kozijnen financieren"
+    ],
+    "openGraph": {
+      "title": "Kunststof kozijnen voor particulieren — comfort, stijl & isolatie",
+      "description": "Upgrade je woning met kunststof kozijnen, deuren en schuifpuien. HR++ of triple glas, 30+ jaar onderhoudsvrij en binnen 4 weken geleverd. Betalen in termijnen mogelijk."
+    },
+    "altTexts": [
+      {
+        "hint": "hero",
+        "alt": "Kunststof kozijnen project in Zaandam — woning met nieuwe witte kozijnen en HR++ glas"
+      },
+      {
+        "hint": "section-image-particulier",
+        "alt": "Particuliere woning voorzien van kunststof kozijnen en deuren door Kunststofkozijnnodig.nl"
+      },
+      {
+        "hint": "financieren-villa",
+        "alt": "Villa met kunststof kozijnen en schuifpuien — duurzame renovatie voor particulieren"
+      }
+    ],
+    "jsonLd": {
+      "@type": "Service",
+      "name": "Kunststof kozijnen voor particulieren",
+      "description": "Levering en installatie van kunststof kozijnen, deuren en schuifpuien voor particulieren. HR++ of triple glas, SKG 2-ster inbraakwerend en binnen 4 weken geleverd.",
+      "provider": {
+        "@type": "LocalBusiness",
+        "name": "Kunststofkozijnnodig.nl",
+        "url": "https://kunststofkozijnnodig.nl",
+        "telephone": "+31756369533",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Wormerveer",
+          "addressRegion": "Noord-Holland",
+          "addressCountry": "NL"
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "5.0",
+          "bestRating": "5",
+          "worstRating": "1",
+          "ratingCount": "48"
+        }
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "Nederland"
+      },
+      "serviceType": "Installatie kunststof kozijnen",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Kunststof kozijnen particulier",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Kunststof kozijnen"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Kunststof deuren"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Kunststof schuifpuien"
+            }
+          }
+        ]
+      },
+      "offers": {
+        "@type": "Offer",
+        "availability": "https://schema.org/InStock",
+        "deliveryLeadTime": {
+          "@type": "QuantitativeValue",
+          "value": "4",
+          "unitCode": "WEE"
+        }
+      }
+    },
+    "improvements": [
+      "Voeg een FAQ-sectie toe met veelgestelde vragen van particulieren (bijv. 'Wat kosten kunststof kozijnen?', 'Hoe lang duurt plaatsing?') — dit kan als FAQPage-schema worden geïndexeerd en vergroot de kans op rich snippets.",
+      "Plaats klantervaringen/reviews van particuliere klanten op de pagina met ReviewSnippet-markup om de 5,0 Google-score te benadrukken en CTR te verhogen.",
+      "Voeg interne links toe naar specifieke productpagina's (kozijnen, deuren, schuifpuien) met beschrijvende anchorteksten om link equity te verdelen.",
+      "Gebruik een duidelijke H1 met het focus keyword 'kunststof kozijnen particulier' — momenteel lijkt de H1 generiek of afwezig in de hero-sectie.",
+      "Voeg een breadcrumb-navigatie toe (met BreadcrumbList-schema) voor betere crawlbaarheid en gebruikerservaring.",
+      "Overweeg een prijsindicatie-tabel of calculator toe te voegen — dit speelt in op de commerciële zoekintentie 'kunststof kozijnen prijs' en verhoogt de time-on-page.",
+      "Optimaliseer afbeeldingen met WebP-formaat en lazy loading voor betere Core Web Vitals scores.",
+      "Voeg een trust-balk toe met certificeringen (SKG, Schüco, Aluplast, Gealan) inclusief alt-teksten op de logo's voor extra keyword-relevantie."
+    ]
+  },
+  {
+    "route": "/prijzen",
+    "title": "Prijzen Kunststof Kozijnen 2026 | Kunststofkozijnnodig",
+    "description": "Bekijk actuele richtprijzen voor kunststof kozijnen, deuren en schuifpuien incl. montage en BTW. Vraag gratis een offerte op maat aan.",
+    "focusKeyword": "prijzen kunststof kozijnen",
+    "secondaryKeywords": [
+      "wat kosten kunststof kozijnen",
+      "kozijnen prijs per m2",
+      "kunststof voordeur prijs",
+      "schuifpui prijs",
+      "kozijnen inclusief montage kosten",
+      "kunststof kozijnen prijslijst 2026",
+      "HR++ glas kosten",
+      "kunststof achterdeur prijs"
+    ],
+    "openGraph": {
+      "title": "Prijzen Kunststof Kozijnen 2026 – Inclusief Montage & BTW",
+      "description": "Transparant prijsoverzicht voor kunststof kozijnen, deuren en schuifpuien. Richtprijzen incl. montage, afwerking en afvoer. Vraag gratis een offerte op maat aan bij Kunststofkozijnnodig.nl."
+    },
+    "altTexts": [
+      {
+        "hint": "hero",
+        "alt": "Kleurstalen kunststof kozijnen van Kunststofkozijnnodig.nl in wit, antraciet en houtlook"
+      },
+      {
+        "hint": "prijstabel-sectie",
+        "alt": "Overzicht richtprijzen kunststof kozijnen, deuren en schuifpuien inclusief montage"
+      },
+      {
+        "hint": "product-kozijn",
+        "alt": "Kunststof draaikiepraam met HR++ glas – richtprijs inclusief montage"
+      },
+      {
+        "hint": "product-schuifpui",
+        "alt": "Kunststof schuifpui 2-delig met HR++ glas geïnstalleerd in woning"
+      },
+      {
+        "hint": "product-voordeur",
+        "alt": "Kunststof voordeur met 3-puntssluiting en SKG 2-ster certificering"
+      }
+    ],
+    "jsonLd": {
+      "@type": "WebPage",
+      "name": "Prijzen Kunststof Kozijnen 2026",
+      "description": "Actueel prijsoverzicht voor kunststof kozijnen, deuren en schuifpuien inclusief montage, BTW en afvoer van oude kozijnen.",
+      "url": "https://www.kunststofkozijnnodig.nl/prijzen",
+      "mainEntity": {
+        "@type": "ItemList",
+        "name": "Richtprijzen kunststof kozijnen, deuren en schuifpuien",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Kunststof kozijn met HR++ glas",
+            "description": "HR++ glas, montage, afwerking, afvoer oud kozijn – prijs afhankelijk van profiel, kleur en glastype"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Kunststof voordeur",
+            "description": "Deurpaneel, kozijn, 3-puntssluiting, cilinder, montage – afhankelijk van model, glas en hardware"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Kunststof achterdeur",
+            "description": "Deurpaneel, kozijn, beslag, montage – afhankelijk van afmeting en glastype"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "Schuifpui 2-delig (3m)",
+            "description": "Kunststof profiel, HR++ glas, rail, montage – standaard afmeting ca. 300×220cm"
+          },
+          {
+            "@type": "ListItem",
+            "position": 5,
+            "name": "Schuifpui 3-delig (4,5m)",
+            "description": "Kunststof profiel, HR++ glas, rail, montage – standaard afmeting ca. 450×220cm"
+          },
+          {
+            "@type": "ListItem",
+            "position": 6,
+            "name": "Hefschuifpui premium",
+            "description": "Premium profiel, hefmechanisme, HR++ of triple glas, montage – topsegment"
+          }
+        ]
+      },
+      "provider": {
+        "@type": "LocalBusiness",
+        "name": "Kunststofkozijnnodig.nl",
+        "telephone": "+31756700'; Incomplete — see full below",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Wormerveer",
+          "addressRegion": "Noord-Holland",
+          "addressCountry": "NL"
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "5.0",
+          "bestRating": "5",
+          "ratingCount": "50"
+        }
+      }
+    },
+    "improvements": [
+      "Voeg concrete vanafprijzen toe in de meta description (bijv. 'Vanaf €450 per kozijn') om de CTR in zoekresultaten te verhogen.",
+      "Implementeer een FAQ-sectie onderaan de pagina met veelgestelde vragen over prijzen (bijv. 'Wat kost een kunststof kozijn per m2?', 'Zijn de prijzen inclusief BTW?') en voeg FAQPage structured data toe.",
+      "Voeg interne links toe naar productpagina's (kozijnen, deuren, schuifpuien) zodat gebruikers direct kunnen doorklikken vanuit de prijstabel.",
+      "Overweeg een prijscalculator-tool toe te voegen waarmee bezoekers een indicatieprijs kunnen berekenen — dit verhoogt de time-on-page en conversie.",
+      "Voeg klantreviews of testimonials toe op de prijzenpagina om vertrouwen te wekken bij prijsvergelijking, inclusief Review structured data.",
+      "Maak prijzen crawlbaar door ze als tekst in HTML te plaatsen in plaats van alleen in JavaScript-variabelen — dit helpt Google de prijsinformatie te indexeren.",
+      "Voeg een vergelijkingstabel toe met merken (Schüco vs Aluplast vs Gealan) en hun prijsklassen om te ranken op merkvergelijkingszoekopdrachten.",
+      "Gebruik breadcrumb-navigatie (Home > Prijzen) met BreadcrumbList structured data voor betere sitelinks in Google."
+    ]
+  },
+  {
+    "route": "/privacyverklaring",
+    "title": "Privacyverklaring | Kunststofkozijnnodig.nl",
+    "description": "Lees hoe Kunststofkozijnnodig.nl omgaat met uw persoonsgegevens. Transparant privacybeleid conform de AVG. Vragen? Neem gerust contact op.",
+    "focusKeyword": "privacyverklaring kunststofkozijnnodig",
+    "secondaryKeywords": [
+      "AVG",
+      "persoonsgegevens",
+      "privacybeleid",
+      "cookiebeleid",
+      "gegevensbescherming"
+    ],
+    "openGraph": {
+      "title": "Privacyverklaring — Kunststofkozijnnodig.nl",
+      "description": "Zo gaan wij om met uw persoonsgegevens. Lees ons transparante privacybeleid conform de AVG."
+    },
+    "altTexts": [
+      {
+        "hint": "hero",
+        "alt": "Privacyverklaring van Kunststofkozijnnodig.nl uit Wormerveer"
+      }
+    ],
+    "jsonLd": {
+      "@type": "WebPage",
+      "name": "Privacyverklaring",
+      "description": "Privacyverklaring van Kunststofkozijnnodig.nl — hoe wij omgaan met persoonsgegevens conform de AVG.",
+      "url": "https://www.kunststofkozijnnodig.nl/privacyverklaring",
+      "inLanguage": "nl-NL",
+      "publisher": {
+        "@type": "LocalBusiness",
+        "name": "Kunststofkozijnnodig.nl",
+        "url": "https://www.kunststofkozijnnodig.nl",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Wormerveer",
+          "addressRegion": "Noord-Holland",
+          "addressCountry": "NL"
+        }
+      }
+    },
+    "improvements": [
+      "Voeg een inhoudsopgave toe met anchor links naar secties (bijv. welke gegevens, bewaartermijn, rechten) voor betere UX en mogelijke sitelinks.",
+      "Vermeld expliciet de contactgegevens (e-mail, telefoonnummer) van de functionaris of verantwoordelijke zodat bezoekers snel vragen kunnen stellen.",
+      "Voeg een 'Laatst bijgewerkt'-datum zichtbaar toe op de pagina voor transparantie en vertrouwen.",
+      "Zet een noindex-tag op deze pagina als je niet wilt dat deze in zoekresultaten verschijnt — privacypagina's leveren zelden organisch verkeer op.",
+      "Link vanuit de privacyverklaring naar het contactformulier of de contactpagina zodat bezoekers direct hun rechten kunnen uitoefenen.",
+      "Zorg dat het cookiebeleid apart of als duidelijke subsectie wordt behandeld, met vermelding van gebruikte tracking-tools (bijv. Google Analytics)."
+    ]
+  },
+  {
+    "route": "/producten",
+    "title": "Kunststof Kozijnen, Deuren & Puien | Kunststofkozijnnodig",
+    "description": "Ontdek ons complete assortiment kunststof kozijnen, deuren en schuifpuien. Draaikiepramen, vastglas, voordeuren en meer. SKG 2-ster ✓ Binnen 4 weken ✓",
+    "focusKeyword": "kunststof kozijnen",
+    "secondaryKeywords": [
+      "schuifpuien",
+      "kunststof deuren",
+      "draaikiepramen",
+      "hefschuifpui",
+      "voordeuren kunststof",
+      "HR++ glas",
+      "vastglas kozijn",
+      "kunststof kozijnen kopen",
+      "kunststof gevelbekleding"
+    ],
+    "openGraph": {
+      "title": "Kunststof Kozijnen, Deuren & Schuifpuien – Compleet Assortiment",
+      "description": "Van draaikiepramen en vastglas tot voordeuren en hefschuifpuien. Bekijk het volledige productaanbod van Kunststofkozijnnodig.nl. In elke kleur en profiel leverbaar."
+    },
+    "altTexts": [
+      {
+        "hint": "hero",
+        "alt": "Overzicht van kunststof kozijnen, deuren en schuifpuien van Kunststofkozijnnodig.nl"
+      },
+      {
+        "hint": "product-kozijnen-1",
+        "alt": "Kunststof draaikiepraam met HR++ glas in witte uitvoering"
+      },
+      {
+        "hint": "product-deuren-1",
+        "alt": "Kunststof voordeur met SKG 2-ster inbraakwerend slot"
+      },
+      {
+        "hint": "product-schuifpui-1",
+        "alt": "Kunststof hefschuifpui met driedubbel glas en slanke profielen"
+      },
+      {
+        "hint": "project-latten-4",
+        "alt": "Geïnstalleerde kunststof kozijnen met lattenafwerking op projectlocatie"
+      }
+    ],
+    "jsonLd": {
+      "@type": "CollectionPage",
+      "name": "Kunststof Kozijnen, Deuren & Schuifpuien – Productassortiment",
+      "description": "Compleet assortiment kunststof kozijnen, deuren en schuifpuien. Draaikiepramen, vastglas, voordeuren, hefschuifpuien en meer — leverbaar in elke kleur en profiel.",
+      "url": "https://kunststofkozijnnodig.nl/producten",
+      "mainEntity": {
+        "@type": "ItemList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Kunststof Kozijnen",
+            "url": "https://kunststofkozijnnodig.nl/producten/kunststof-kozijnen"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Kunststof Deuren",
+            "url": "https://kunststofkozijnnodig.nl/producten/kunststof-deuren"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Schuifpuien",
+            "url": "https://kunststofkozijnnodig.nl/producten/schuifpuien"
+          }
+        ]
+      },
+      "provider": {
+        "@type": "LocalBusiness",
+        "name": "Kunststofkozijnnodig.nl",
+        "url": "https://kunststofkozijnnodig.nl",
+        "telephone": "+31756700'; vul aan",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Wormerveer",
+          "addressLocality": "Wormerveer",
+          "addressRegion": "Noord-Holland",
+          "addressCountry": "NL"
+        },
+        "brand": [
+          {
+            "@type": "Brand",
+            "name": "Schüco"
+          },
+          {
+            "@type": "Brand",
+            "name": "Aluplast"
+          },
+          {
+            "@type": "Brand",
+            "name": "Gealan"
+          }
+        ]
+      }
+    },
+    "improvements": [
+      "Maak aparte categoriepagina's aan voor kozijnen, deuren en schuifpuien met unieke content en eigen focus keywords — dit versterkt de topical authority en interne linkstructuur.",
+      "Voeg een FAQ-sectie toe op deze pagina met veelgestelde vragen over materialen, glassoorten (HR++ vs. triple glas) en onderhoudsvrij kunststof. Hiermee kun je FAQPage structured data toevoegen en featured snippets winnen.",
+      "Vermeld concrete productspecificaties (Uw-waarden, profieldiepte, glasopties) op de pagina om informational zoekintentie te bedienen en langere verblijftijd te realiseren.",
+      "Voeg interne links toe naar de merken-pagina's (Schüco, Aluplast, Gealan) en naar projectvoorbeelden om link-equity te verspreiden.",
+      "Overweeg 'Vanaf'-prijzen of een prijsindicatie te tonen — dit verhoogt de CTR in zoekresultaten en trekt koopgerichte bezoekers aan.",
+      "Zorg dat elke productafbeelding een unieke, beschrijvende alt-tekst heeft met relevante zoekwoorden. Gebruik WebP-formaat met lazy loading voor snellere laadtijden.",
+      "Voeg breadcrumb-navigatie toe (Home > Producten) en implementeer BreadcrumbList structured data voor betere weergave in de SERP.",
+      "Plaats klant-reviews of een sterwidget op de productoverzichtpagina en koppel dit aan AggregateRating schema om social proof en rich results te activeren."
+    ]
+  },
+  {
+    "route": "/producten/[slug]",
+    "title": "{product.title} op Maat | Kunststofkozijnnodig.nl",
+    "description": "Hoogwaardige {product.title} met HR++ of triple glas. SKG 2-ster inbraakwerend, volledig op maat configureerbaar. Binnen 4 weken geleverd.",
+    "focusKeyword": "kunststof kozijnen op maat",
+    "secondaryKeywords": [
+      "kunststof deuren",
+      "schuifpuien op maat",
+      "HR++ glas kozijnen",
+      "triple glas kozijnen",
+      "SKG 2-ster inbraakwerend",
+      "kunststof profielen Schüco",
+      "Aluplast kozijnen",
+      "draaikiep ramen",
+      "stelkozijn kunststof",
+      "kozijnen configureren"
+    ],
+    "openGraph": {
+      "title": "{product.title} op Maat — Kunststofkozijnnodig.nl",
+      "description": "Volledig op maat gemaakte {product.title} met premium profielen van Schüco, Aluplast of Gealan. SKG 2-ster gecertificeerd en binnen 4 weken geleverd."
+    },
+    "altTexts": [
+      {
+        "hint": "hero-background",
+        "alt": "{product.title} van kunststof geïnstalleerd bij een woning — Kunststofkozijnnodig.nl"
+      },
+      {
+        "hint": "gallery-1",
+        "alt": "Voorbeeld van {product.title} bij een klant in de Zaanstreek"
+      },
+      {
+        "hint": "gallery-2",
+        "alt": "Detail van {product.title} met HR++ glas en draaikiepbeslag"
+      },
+      {
+        "hint": "gallery-3",
+        "alt": "Buitenaanzicht van op maat gemaakte {product.title} in wit kunststof"
+      },
+      {
+        "hint": "brand-marquee-schuco",
+        "alt": "Schüco logo — premium kunststof profielen"
+      },
+      {
+        "hint": "brand-marquee-aluplast",
+        "alt": "Aluplast logo — kunststof kozijnsystemen"
+      },
+      {
+        "hint": "brand-marquee-gealan",
+        "alt": "Gealan logo — hoogwaardig kunststof profiel"
+      }
+    ],
+    "jsonLd": {
+      "@type": "Product",
+      "name": "{product.title}",
+      "description": "{product.subtitle}",
+      "brand": [
+        {
+          "@type": "Brand",
+          "name": "Schüco"
+        },
+        {
+          "@type": "Brand",
+          "name": "Aluplast"
+        },
+        {
+          "@type": "Brand",
+          "name": "Gealan"
+        }
+      ],
+      "offers": {
+        "@type": "AggregateOffer",
+        "priceCurrency": "EUR",
+        "availability": "https://schema.org/InStock",
+        "deliveryLeadTime": {
+          "@type": "QuantitativeValue",
+          "maxValue": 4,
+          "unitCode": "WEE"
+        },
+        "seller": {
+          "@type": "LocalBusiness",
+          "name": "Kunststofkozijnnodig.nl",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Wormerveer",
+            "addressRegion": "Noord-Holland",
+            "addressCountry": "NL"
+          },
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "5.0",
+            "bestRating": "5",
+            "ratingCount": "50"
+          }
+        }
+      },
+      "additionalProperty": [
+        {
+          "@type": "PropertyValue",
+          "name": "Certificering",
+          "value": "SKG 2-ster inbraakwerend"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "Beglazing",
+          "value": "HR++ of triple glas"
+        }
+      ]
+    },
+    "improvements": [
+      "Genereer title en description dynamisch per slug: vervang {product.title} door de werkelijke productnaam (bijv. 'Kunststof Kozijnen', 'Schuifpuien', 'Kunststof Deuren') zodat elke productpagina een unieke title en description krijgt.",
+      "Voeg per product een unieke canonical URL toe (<link rel=\"canonical\" href=\"https://kunststofkozijnnodig.nl/producten/{slug}\" />) om duplicate content te voorkomen.",
+      "Implementeer FAQ-schema (FAQPage) naast het Product-schema: de FAQ-sectie onderaan de pagina is al aanwezig in de code — markup deze vragen en antwoorden als structured data voor rich results.",
+      "Voeg breadcrumb JSON-LD toe (BreadcrumbList) met drie niveaus: Home → Producten → {product.title} — dit matcht de al aanwezige visuele breadcrumb.",
+      "Gebruik beschrijvende, per product unieke alt-teksten voor gallery-afbeeldingen in plaats van generieke tekst — benoem het type product, de kleur en locatie waar mogelijk.",
+      "Voeg interne links toe vanuit de intro-tekst naar gerelateerde producten (bijv. van kozijnen naar deuren) en naar de merken-pagina's voor betere interne linkstructuur.",
+      "Overweeg reviewfragmenten toe te voegen aan het Product-schema met echte klantervaringen voor sterren in de SERP.",
+      "Zorg dat de Open Graph-afbeelding (og:image) per product verschilt en een representatieve foto toont van minimaal 1200×630 px.",
+      "Voeg hreflang=\"nl\" toe als bevestiging dat de pagina Nederlandstalig is, en overweeg een x-default voor eventuele internationale bezoekers.",
+      "Verrijk de opties-sectie met gestructureerde data (additionalProperty) per productvariant zodat Google begrijpt welke configuraties beschikbaar zijn."
+    ]
+  },
+  {
+    "route": "/projecten",
+    "title": "Onze Projecten | Kunststofkozijnnodig.nl",
+    "description": "Bekijk recente projecten van Kunststofkozijnnodig.nl: kunststof kozijnen, deuren en schuifpuien in de Zaanstreek en heel Nederland. Laat u inspireren!",
+    "focusKeyword": "kunststof kozijnen projecten",
+    "secondaryKeywords": [
+      "kunststof kozijnen referenties",
+      "kozijnen renovatie projecten",
+      "kunststof gevelbekleding Zaanstreek",
+      "schuifpui project",
+      "kunststof kozijnen Noord-Holland",
+      "kozijnen voor en na",
+      "kunststof kozijnen Zaandam"
+    ],
+    "openGraph": {
+      "title": "Onze Projecten – Kunststof Kozijnen & Deuren | Kunststofkozijnnodig.nl",
+      "description": "Ontdek onze afgeronde projecten: van kunststof kozijnen tot schuifpuien. Bekijk foto's en laat u inspireren voor uw eigen renovatie of nieuwbouw."
+    },
+    "altTexts": [
+      {
+        "hint": "hero",
+        "alt": "Recent afgerond kunststof kozijnen project in Zaandam door Kunststofkozijnnodig.nl"
+      },
+      {
+        "hint": "project-zaandam-3",
+        "alt": "Woning in Zaandam voorzien van nieuwe kunststof kozijnen met HR++ glas"
+      },
+      {
+        "hint": "projects-grid-1",
+        "alt": "Renovatieproject met witte kunststof draaikiepramen in de Zaanstreek"
+      },
+      {
+        "hint": "projects-grid-2",
+        "alt": "Kunststof schuifpui geplaatst bij een particuliere woning in Noord-Holland"
+      },
+      {
+        "hint": "projects-grid-3",
+        "alt": "Nieuwbouwproject met Schüco kunststof kozijnen en voordeur"
+      }
+    ],
+    "jsonLd": {
+      "@type": "CollectionPage",
+      "name": "Projecten – Kunststofkozijnnodig.nl",
+      "description": "Overzicht van recente projecten: kunststof kozijnen, deuren en schuifpuien geleverd en gemonteerd door Kunststofkozijnnodig.nl in de Zaanstreek en heel Nederland.",
+      "url": "https://www.kunststofkozijnnodig.nl/projecten",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "Kunststofkozijnnodig.nl",
+        "url": "https://www.kunststofkozijnnodig.nl"
+      },
+      "provider": {
+        "@type": "LocalBusiness",
+        "name": "Kunststofkozijnnodig.nl",
+        "image": "https://www.kunststofkozijnnodig.nl/images/logo.png",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Wormerveer",
+          "addressRegion": "Noord-Holland",
+          "addressCountry": "NL"
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "5.0",
+          "bestRating": "5",
+          "ratingCount": "50"
+        }
+      }
+    },
+    "improvements": [
+      "Voeg per project een aparte detailpagina toe met unieke meta-titels, beschrijvingen en gestructureerde data (bijv. met schema ImageGallery of CreativeWork) voor betere indexering.",
+      "Plaats bij elk project een korte beschrijving met relevante zoekwoorden zoals locatie, type kozijn, glastype (HR++/triple) en merk (Schüco, Aluplast, Gealan).",
+      "Voeg voor-en-na foto's toe met beschrijvende alt-teksten die locatie en producttype benoemen — dit scoort goed op afbeeldingenzoekresultaten.",
+      "Implementeer breadcrumbs (BreadcrumbList schema) op de projectenpagina: Home > Projecten > [Projectnaam].",
+      "Overweeg een filterfunctie op projecttype (kozijnen, deuren, schuifpuien) en locatie; dit creëert extra landingspagina's voor long-tail zoektermen.",
+      "Voeg klantbeoordelingen of testimonials toe per project en markeer deze met Review-schema voor rich snippets.",
+      "Zorg dat afbeeldingen gecomprimeerd zijn in WebP-formaat met lazy loading voor optimale Core Web Vitals scores.",
+      "Link vanuit projectpagina's intern naar relevante productpagina's (bijv. schuifpuien, kozijnen) om de interne linkstructuur te versterken."
+    ]
+  },
+  {
+    "route": "/projecten/[slug]",
+    "title": "{{project.title}} – Kunststofkozijnnodig.nl",
+    "description": "Bekijk ons project {{project.title}} in {{project.location}}. Kunststof kozijnen, deuren & schuifpuien op maat geplaatst. Vraag een vrijblijvende offerte aan.",
+    "focusKeyword": "kunststof kozijnen project",
+    "secondaryKeywords": [
+      "kozijnen vervangen",
+      "kunststof kozijnen plaatsen",
+      "schuifpui op maat",
+      "HR++ glas project",
+      "kozijnen referentie",
+      "kunststof kozijnen Noord-Holland",
+      "renovatie kunststof kozijnen",
+      "Schüco kozijnen project",
+      "kozijnen voor-na"
+    ],
+    "openGraph": {
+      "title": "{{project.title}} | Project – Kunststofkozijnnodig.nl",
+      "description": "Bekijk hoe wij kunststof kozijnen, deuren of schuifpuien hebben geplaatst in {{project.location}}. Inclusief foto's en projectdetails."
+    },
+    "altTexts": [
+      {
+        "hint": "hero-cover",
+        "alt": "Resultaat van kunststof kozijnen project {{project.title}} in {{project.location}}"
+      },
+      {
+        "hint": "gallery-1",
+        "alt": "Detailfoto kunststof kozijnen geplaatst bij {{project.title}} in {{project.location}}"
+      },
+      {
+        "hint": "gallery-2",
+        "alt": "Zijaanzicht nieuwe kunststof kozijnen met HR++ glas – project {{project.location}}"
+      },
+      {
+        "hint": "gallery-3",
+        "alt": "Afgewerkte kunststof schuifpui of deur bij project {{project.title}}"
+      },
+      {
+        "hint": "next-project-cover",
+        "alt": "Volgend project: {{nextProject.title}} in {{nextProject.location}} – Kunststofkozijnnodig.nl"
+      }
+    ],
+    "jsonLd": {
+      "@type": "Article",
+      "headline": "{{project.title}}",
+      "description": "{{project.summary}}",
+      "image": "{{project.cover}}",
+      "datePublished": "{{project.year}}",
+      "author": {
+        "@type": "Organization",
+        "name": "Kunststofkozijnnodig.nl",
+        "url": "https://www.kunststofkozijnnodig.nl"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Kunststofkozijnnodig.nl",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://www.kunststofkozijnnodig.nl/logo.png"
+        }
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://www.kunststofkozijnnodig.nl/projecten/{{slug}}"
+      },
+      "about": {
+        "@type": "Service",
+        "name": "Kunststof kozijnen plaatsen",
+        "provider": {
+          "@type": "LocalBusiness",
+          "name": "Kunststofkozijnnodig.nl",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Wormerveer",
+            "addressRegion": "Noord-Holland",
+            "addressCountry": "NL"
+          },
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "5.0",
+            "bestRating": "5",
+            "ratingCount": "50"
+          }
+        }
+      }
+    },
+    "improvements": [
+      "Genereer per project een unieke title en meta description server-side met project.title en project.location – voorkom duplicate meta tags over alle slug-pagina's",
+      "Voeg breadcrumb structured data (BreadcrumbList) toe: Home > Projecten > {{project.title}} voor betere SERP-weergave",
+      "Plaats 'voor en na'-foto's met duidelijke alt-teksten per project; dit scoort sterk op afbeeldingen-zoekresultaten voor 'kozijnen renovatie'",
+      "Voeg een korte klantreview of testimonial-blok toe per project en markeer dit met Schema.org Review markup",
+      "Gebruik interne links naar relevante productpagina's (bijv. /kozijnen, /schuifpuien) vanuit de projectbeschrijving om topical authority op te bouwen",
+      "Zorg dat project.gallery-afbeeldingen lazy loaded worden met beschrijvende alt-teksten die uniek zijn per foto, niet generiek",
+      "Voeg een canonical URL toe per projectpagina om dubbele indexering bij eventuele filterparameters te voorkomen",
+      "Overweeg een samenvatting met bullet points (producten, glastype, merk) bovenaan de beschrijving te plaatsen voor featured snippet-kansen",
+      "Voeg locatiegebonden long-tail keywords toe in de projectbeschrijving, bijv. 'kunststof kozijnen Zaandam' of 'schuifpui Amsterdam-Noord'",
+      "Implementeer Next/Previous project-links als rel=prev/next of interne links om crawldiepte te verbeteren"
+    ]
+  },
+  {
+    "route": "/veelgestelde-vragen",
+    "title": "Veelgestelde vragen over kozijnen | Kunststofkozijnnodig.nl",
+    "description": "Antwoord op alle vragen over kunststof kozijnen: prijzen, subsidie, montage, onderhoud en meer. ✓ HR++ & triple glas ✓ SKG 2-ster ✓ Gratis offerte.",
+    "focusKeyword": "veelgestelde vragen kunststof kozijnen",
+    "secondaryKeywords": [
+      "kunststof kozijnen onderhoud",
+      "kunststof kozijnen prijs per m2",
+      "subsidie kozijnen ISDE",
+      "HR++ glas vs triple glas",
+      "levertijd kunststof kozijnen",
+      "kunststof kozijnen inbraakwerend",
+      "kosten kunststof kozijnen",
+      "kunststof kozijnen onderhoudsvrij"
+    ],
+    "openGraph": {
+      "title": "Veelgestelde vragen over kunststof kozijnen",
+      "description": "Van prijzen tot montage, van subsidie tot onderhoud — antwoord op de 20 meestgestelde vragen over kunststof kozijnen. Bekijk het overzicht."
+    },
+    "altTexts": [
+      {
+        "hint": "hero (project-zaandam-2.jpg)",
+        "alt": "Kunststof kozijnen geplaatst bij een woning in Zaandam — project van Kunststofkozijnnodig.nl"
+      },
+      {
+        "hint": "cta-section",
+        "alt": "Gratis offerte aanvragen voor kunststof kozijnen bij Kunststofkozijnnodig.nl"
+      }
+    ],
+    "jsonLd": {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Hoe lang gaan kunststof kozijnen mee?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Kwalitatieve kunststof kozijnen gaan minimaal 30 tot 50 jaar mee. De profielen van Schüco, Aluplast en Gealan die wij gebruiken zijn UV-bestendig, kleurvast en bestand tegen alle weersomstandigheden."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Zijn kunststof kozijnen onderhoudsvrij?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Vrijwel onderhoudsvrij. Een keer per jaar schoonmaken met een sopje is voldoende. Je hoeft nooit meer te schilderen, schuren of lakken — een groot voordeel ten opzichte van houten kozijnen."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Wat is het verschil tussen kunststof en houten kozijnen?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Kunststof kozijnen zijn onderhoudsvrij, beter isolerend en goedkoper in gebruik op de lange termijn. Houten kozijnen moeten elke 5-7 jaar geschilderd worden. Met onze houtlook kunststof kozijnen krijg je het beste van twee werelden."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "In welke kleuren zijn kunststof kozijnen leverbaar?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Wij leveren kozijnen in wit, crème, antraciet (RAL 7016), zwart (RAL 9005), diverse houtlook-folies en elke RAL-kleur op maat. Aan de binnenzijde kan een andere kleur dan aan de buitenzijde."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Wat kosten kunststof kozijnen per m²?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "De richtprijs ligt tussen €750 en €1.050 per m², inclusief HR++ glas, montage en afwerking. De exacte prijs hangt af van het gekozen profiel, de kleur en het glastype."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Kan ik subsidie krijgen voor nieuwe kozijnen?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ja! Via de ISDE-regeling (Investeringssubsidie Duurzame Energie) kun je circa €41 per m² subsidie krijgen op isolerend glas. Dit geldt voor HR++ en triple glas in bestaande woningen."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is een offerte gratis en vrijblijvend?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Altijd. Wij komen gratis bij je langs om in te meten en bespreken je wensen. Je ontvangt binnen 1 werkdag een transparante offerte. Geen verborgen kosten, geen verplichtingen."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Hoe lang duurt de montage?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Bij een gemiddelde woning (10-15 kozijnen) zijn we in 2-3 dagen klaar. Per kozijn rekenen we circa 1-2 uur voor demontage, plaatsing en afwerking."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Wat is de levertijd?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Onze standaard levertijd is binnen 4 weken na opname. Dit is fors sneller dan het marktgemiddelde van 8-12 weken."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Kunnen jullie ook alleen leveren zonder montage?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ja, wij leveren ook alleen. Dit is populair bij aannemers en zelfbouwers. Je krijgt dezelfde kwaliteit kozijnen, maar plaatst ze zelf of laat ze door je eigen aannemer plaatsen."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Hoeveel bespaar ik op mijn energierekening?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Gemiddeld bespaar je €300-800 per jaar op je energierekening, afhankelijk van de huidige staat van je kozijnen en het gekozen glastype. Triple glas bespaart het meest."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Wat is het verschil tussen HR++ en triple glas?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "HR++ glas heeft een U-waarde van circa 1.1 W/m²K, triple glas circa 0.7 W/m²K. Triple glas isoleert dus circa 40% beter, maar is ook duurder en zwaarder. Voor de meeste woningen is HR++ uitstekend."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Zijn kunststof kozijnen inbraakwerend?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Standaard leveren wij SKG 2-ster gecertificeerde kozijnen — dit voldoet aan het Politiekeurmerk Veilig Wonen. Upgrade naar SKG 3 is mogelijk voor extra beveiliging."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Helpen nieuwe kozijnen tegen geluidsoverlast?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Absoluut. Met HR++ glas reduceer je het geluid met circa 30-35 dB. Met triple glas of speciaal geluidsisolerend glas haal je tot 45 dB reductie. Ideaal als je aan een drukke weg woont."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "In welk gebied zijn jullie actief?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Wij leveren door heel Nederland. Montage verzorgen we voornamelijk in Noord-Holland — Zaanstreek, Amsterdam, Haarlem, Purmerend, Alkmaar, Beverwijk en omgeving (circa 40 km rond Wormerveer)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Leveren jullie ook aan bedrijven en aannemers?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ja! Wij zijn een vaste partner voor aannemers, bouwbedrijven, VvE's en architecten. Wij leveren door heel Nederland, ook zonder montage."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Welke merken gebruiken jullie?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Wij werken met drie Europese topmerken: Schüco (Duits, premium), Aluplast (Duits, uitstekende prijs-kwaliteit) en Gealan (Duits, innovatief). Elk merk is KOMO-gecertificeerd."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Wat als er iets mis is na plaatsing?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Je krijgt 10 jaar fabrieksgarantie op het profiel, 5 jaar op onze plaatsing en 2 jaar op het beslag. Bij problemen staan we binnen 48 uur bij je op de stoep."
+          }
+        }
+      ]
+    },
+    "improvements": [
+      "Voeg interne links toe vanuit de antwoorden naar relevante pagina's (bijv. prijzenpagina, subsidiepagina, offertepagina) om de interne linkstructuur te versterken en de crawlbaarheid te verbeteren.",
+      "Voeg een breadcrumb-navigatie toe met BreadcrumbList structured data (Home > Veelgestelde vragen) voor betere SERP-weergave.",
+      "Overweeg een inhoudsopgave (jump links) bovenaan de pagina per FAQ-categorie; dit verbetert UX en vergroot de kans op sitelinks in Google.",
+      "Gebruik de vragen als H2/H3-koppen in de HTML (niet alleen in accordions) zodat Google de content beter kan crawlen en als featured snippet kan tonen.",
+      "Voeg een korte inleidende alinea toe met de focuszoekwoorden vóór de FAQ-secties, bijv. een samenvatting van de top-3 meestgestelde vragen.",
+      "Voeg een CTA-blok tussen de FAQ-categorieën in (bijv. na 'Prijzen & kosten') om bezoekers sneller naar het offerteformulier te leiden.",
+      "Overweeg een aparte pagina voor 'Subsidie kunststof kozijnen ISDE' — dit keyword heeft voldoende zoekvolume voor een eigen landingspagina.",
+      "Zorg dat de FAQ JSON-LD al server-side gerenderd wordt (niet alleen via dangerouslySetInnerHTML) zodat Googlebot het direct kan lezen bij de eerste crawl.",
+      "Voeg 'Laatst bijgewerkt'-datum toe aan de pagina om freshness-signalen af te geven aan Google.",
+      "Test de FAQ rich results met Google's Rich Results Test om te verifiëren dat alle 18+ vragen correct worden opgepikt."
+    ]
+  },
+  {
+    "route": "/zakelijk",
+    "title": "Zakelijke Kunststof Kozijnen | Kunststofkozijnnodig.nl",
+    "description": "Kunststof kozijnen voor aannemers, bouwbedrijven en VvE's. Maatwerk van Schüco, Aluplast & Gealan binnen 4 weken. Vraag een zakelijke offerte aan.",
+    "focusKeyword": "zakelijke kunststof kozijnen",
+    "secondaryKeywords": [
+      "kunststof kozijnen aannemers",
+      "kozijnen groothandel",
+      "kunststof kozijnen bouwbedrijven",
+      "kozijnen VvE",
+      "zakelijke offerte kozijnen",
+      "kunststof kozijnen levering",
+      "Schüco kozijnen zakelijk",
+      "kozijnen nieuwbouw renovatie"
+    ],
+    "openGraph": {
+      "title": "Zakelijke Kunststof Kozijnen – Maatwerk voor Aannemers & VvE's",
+      "description": "Partner worden? Ontvang gratis leads, maatwerk kozijnen van Schüco, Aluplast & Gealan binnen 4 weken én een persoonlijke accountmanager. Vraag een zakelijke offerte aan."
+    },
+    "altTexts": [
+      {
+        "hint": "hero",
+        "alt": "Zakelijk kunststof kozijnen project in Zaandam door Kunststofkozijnnodig.nl"
+      },
+      {
+        "hint": "project-zaandam-4",
+        "alt": "Afgerond zakelijk kozijnenproject met kunststof kozijnen in Zaandam"
+      },
+      {
+        "hint": "icon-hardhat",
+        "alt": "Icoon aannemer – kunststof kozijnen voor aannemers en onderaannemers"
+      },
+      {
+        "hint": "icon-building2",
+        "alt": "Icoon gebouw – kunststof kozijnen voor architecten en bouwbedrijven"
+      },
+      {
+        "hint": "icon-users",
+        "alt": "Icoon VvE – kunststof kozijnen voor VvE's en vastgoedbeheer"
+      },
+      {
+        "hint": "gratis-leads-section-image",
+        "alt": "Aannemer ontvangt gratis klantleads bij afname kunststof kozijnen via Kunststofkozijnnodig.nl"
+      }
+    ],
+    "jsonLd": {
+      "@type": "Service",
+      "name": "Zakelijke Kunststof Kozijnen",
+      "description": "Maatwerk kunststof kozijnen, deuren en schuifpuien voor aannemers, bouwbedrijven, architecten en VvE's. Merken: Schüco, Aluplast en Gealan. Levering binnen 4 weken.",
+      "provider": {
+        "@type": "LocalBusiness",
+        "name": "Kunststofkozijnnodig.nl",
+        "url": "https://www.kunststofkozijnnodig.nl",
+        "telephone": "+31-75-2060054",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Wormerveer",
+          "addressRegion": "Noord-Holland",
+          "addressCountry": "NL"
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "5.0",
+          "bestRating": "5",
+          "ratingCount": "50"
+        }
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "Nederland"
+      },
+      "audience": {
+        "@type": "BusinessAudience",
+        "audienceType": "Aannemers, bouwbedrijven, architecten, VvE's en vastgoedbeheerders"
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Zakelijke kunststof kozijnen",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "Kunststof kozijnen maatwerk",
+              "brand": [
+                {
+                  "@type": "Brand",
+                  "name": "Schüco"
+                },
+                {
+                  "@type": "Brand",
+                  "name": "Aluplast"
+                },
+                {
+                  "@type": "Brand",
+                  "name": "Gealan"
+                }
+              ]
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "Kunststof deuren"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "Kunststof schuifpuien"
+            }
+          }
+        ]
+      }
+    },
+    "improvements": [
+      "Voeg een FAQ-sectie toe met veelgestelde zakelijke vragen (levertijd, minimale afname, garantie, certificeringen) om een FAQPage-schema te kunnen implementeren en meer long-tail zoekverkeer te vangen.",
+      "Plaats concrete klantreferenties of casestudies van zakelijke projecten met bedrijfsnamen, projectomvang en foto's – dit versterkt E-E-A-T en kan als Review-schema geïmplementeerd worden.",
+      "Maak een aparte landingspagina per doelgroep (aannemers, architecten, VvE) om specifiekere zoektermen te targeten en de conversie per segment te verhogen.",
+      "Voeg een duidelijke CTA-button 'Zakelijke offerte aanvragen' boven de fold toe met een anchor-link naar het contactformulier om de conversieratio te verbeteren.",
+      "Vermeld specifieke certificeringen (SKG 2-ster, KOMO, CE-markering) prominent op de zakelijke pagina – dit is een belangrijk besliscriterium voor professionele afnemers.",
+      "Implementeer breadcrumb-navigatie (BreadcrumbList-schema) voor betere crawlbaarheid en rich results in Google.",
+      "Overweeg een partnerprogramma-pagina met eigen URL (/zakelijk/partnerprogramma) om het 'gratis leads'-aanbod dieper uit te werken en als aparte zoekterm te ranken.",
+      "Voeg interne links toe naar relevante productpagina's (kozijnen, deuren, schuifpuien) en projectpagina's om de interne linkstructuur te versterken."
+    ]
+  }
+]
