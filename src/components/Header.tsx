@@ -28,13 +28,12 @@ export function Header() {
       <div className="container-rebu flex items-center justify-between py-3 md:py-4">
         <Link href="/" className="flex items-center gap-3" aria-label={site.name}>
           <Image
-            src="/logos/logo-bright.png"
+            src="/logos/logo-header.png"
             alt={site.name}
-            width={703}
-            height={320}
-            quality={100}
+            width={879}
+            height={400}
             unoptimized
-            className="h-12 w-auto sm:h-14 md:h-16"
+            className="h-10 w-auto sm:h-12 md:h-14"
             priority
           />
         </Link>

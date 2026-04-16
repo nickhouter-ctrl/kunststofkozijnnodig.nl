@@ -56,7 +56,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     name: site.name,
-    image: `${site.url}/logos/logo-bright.png`,
+    image: `${site.url}/logos/logo-header.png`,
     "@id": site.url,
     url: site.url,
     telephone: site.phone,
