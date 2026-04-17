@@ -3,7 +3,6 @@ import { BrandMarquee } from "@/components/BrandMarquee";
 import { ProductGrid } from "@/components/ProductGrid";
 import { AboutIntro } from "@/components/AboutIntro";
 import { Workflow } from "@/components/Workflow";
-import { EnergySavingsCalc } from "@/components/EnergySavingsCalc";
 import { ProjectsShowcase } from "@/components/ProjectsShowcase";
 import { ProjectsMarquee } from "@/components/ProjectsMarquee";
 import { TrustBadges } from "@/components/TrustBadges";
@@ -17,7 +16,6 @@ export default function HomePage() {
       <ProductGrid />
       <AboutIntro />
       <Workflow />
-      <EnergySavingsCalc />
       <ProjectsShowcase />
       <ProjectsMarquee />
       <TrustBadges />

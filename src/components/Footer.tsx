@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Instagram, Facebook, Linkedin, MessageCircle, MapPin, Phone, Mail } from "lucide-react";
+import { MessageCircle, MapPin, Phone, Mail } from "lucide-react";
 import { nav, site } from "@/lib/site";
 
 export function Footer() {
@@ -22,33 +22,7 @@ export function Footer() {
               {site.description}
             </p>
             <div className="mt-6 flex items-center gap-3">
-              <a
-                href={site.social.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20"
-                aria-label="Instagram"
-              >
-                <Instagram className="h-4 w-4" />
-              </a>
-              <a
-                href={site.social.facebook}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20"
-                aria-label="Facebook"
-              >
-                <Facebook className="h-4 w-4" />
-              </a>
-              <a
-                href={site.social.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20"
-                aria-label="LinkedIn"
-              >
-                <Linkedin className="h-4 w-4" />
-              </a>
+              {/* Social media links worden toegevoegd zodra accounts zijn aangemaakt */}
               <a
                 href={site.social.whatsapp}
                 target="_blank"
