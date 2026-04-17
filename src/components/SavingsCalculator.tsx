@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from "react";
 import Link from "next/link";
-import { ArrowRight, Leaf, TrendingDown, Clock, Euro, Info } from "lucide-react";
+import { ArrowRight, Leaf, TrendingDown, Euro, Info } from "lucide-react";
 
 type GlassOld = "enkel" | "dubbel" | "hr";
 type GlassNew = "hrpp" | "triple";
@@ -174,17 +174,6 @@ export function SavingsCalculator() {
                 </div>
                 <p className="mt-3 font-display text-3xl font-bold text-rebu-charcoal">{results.co2} kg</p>
                 <p className="mt-1 text-xs text-neutral-500">minder CO₂ per jaar</p>
-              </div>
-
-              <div className="rounded-2xl border border-rebu-stone bg-white p-5">
-                <div className="flex items-center gap-2">
-                  <div className="flex h-9 w-9 items-center justify-center rounded-full bg-rebu-green/10 text-rebu-green">
-                    <Clock className="h-4 w-4" />
-                  </div>
-                  <span className="text-[10px] font-semibold uppercase tracking-wider text-neutral-500">Terugverdientijd</span>
-                </div>
-                <p className="mt-3 font-display text-3xl font-bold text-rebu-charcoal">{results.payback} jaar</p>
-                <p className="mt-1 text-xs text-neutral-500">incl. ISDE subsidie</p>
               </div>
 
               <div className="rounded-2xl border border-rebu-stone bg-white p-5">
