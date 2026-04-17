@@ -103,23 +103,18 @@ const categories = [
   },
 ];
 
-function DoorVisual({ model, color, hasGlass }: { model: DoorModel; color: string; hasGlass: boolean }) {
+function DoorVisual({ model }: { model: DoorModel }) {
   return (
-    <div className="relative flex aspect-[2/3] items-center justify-center overflow-hidden rounded-xl bg-neutral-100">
-      {/* Door shape */}
-      <div
-        className="relative h-[85%] w-[55%] rounded-sm shadow-lg"
-        style={{ backgroundColor: color }}
-      >
-        {/* Handle */}
-        <div className="absolute right-[15%] top-[45%] h-[20%] w-[3%] rounded-full bg-white/40" />
-        {hasGlass && (
-          <div className="absolute left-[20%] top-[15%] h-[35%] w-[35%] rounded-sm bg-white/20" />
-        )}
-      </div>
-      {/* Model number */}
+    <div className="relative aspect-[3/5] overflow-hidden rounded-xl bg-neutral-100">
+      {/* Real door image from brochure */}
+      <img
+        src={`/images/voordeuren/${model.model}.jpg`}
+        alt={`Model ${model.model}`}
+        className="h-full w-full object-contain"
+        loading="lazy"
+      />
       <div className="absolute bottom-2 left-3 rounded-full bg-rebu-green px-2.5 py-0.5 text-[10px] font-bold text-white">
-        {model.model}
+        Model {model.model}
       </div>
     </div>
   );
@@ -130,8 +125,8 @@ export default function VoordeurenPage() {
     <>
       <PageHero
         eyebrow="Voordeurmodellen"
-        title="Premium kunststof voordeuren."
-        description="Ontdek onze collectie van 30+ voordeurmodellen. Van minimalistisch modern tot klassiek elegant — elke deur op maat gemaakt in de kleur van jouw keuze."
+        title="Schüco voordeuren."
+        description="Ontdek onze collectie van 30+ Schüco voordeurmodellen. Van minimalistisch modern tot klassiek elegant — elke deur op maat gemaakt in de kleur van jouw keuze."
         image="/images/project-landsmeer.jpg"
         breadcrumb={[
           { label: "Home", href: "/" },
@@ -176,7 +171,7 @@ export default function VoordeurenPage() {
             <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {cat.models.map((m) => (
                 <div key={m.model} className="group overflow-hidden rounded-2xl bg-white shadow-soft ring-1 ring-black/5 transition-all hover:-translate-y-1 hover:shadow-glow">
-                  <DoorVisual model={m} color={m.color} hasGlass={m.hasGlass} />
+                  <DoorVisual model={m} />
                   <div className="p-5">
                     <p className="text-xs font-bold text-rebu-green">Model {m.model}</p>
                     <h3 className="mt-1 font-display text-lg font-semibold text-rebu-charcoal">{m.title}</h3>
