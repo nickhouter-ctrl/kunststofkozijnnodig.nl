@@ -24,7 +24,6 @@ export const productDetails: Record<ProductDetail["slug"], ProductDetail> = {
       "/images/project-latten-5.webp",
       "/images/project-latten-4.webp",
       "/images/project-latten-8.webp",
-      "/images/project-mijdrecht.webp",
     ],
     features: [
       { title: "Onderhoudsvrij", body: "Nooit meer schilderen — kunststof blijft decennia mooi." },
@@ -68,7 +67,6 @@ export const productDetails: Record<ProductDetail["slug"], ProductDetail> = {
     heroImage: "/images/project-zaandam-4.jpg",
     gallery: [
       "/images/project-landsmeer.jpg",
-      "/images/project-zaandam-1.jpg",
       "/images/project-krommenie.jpg",
       "/images/project-1-7.jpg",
     ],
@@ -110,7 +108,6 @@ export const productDetails: Record<ProductDetail["slug"], ProductDetail> = {
       "/images/villa-kozijn.jpg",
       "/images/project-zaandam-3.jpg",
       "/images/project-zaandam-2.jpg",
-      "/images/project-mijdrecht.webp",
     ],
     features: [
       { title: "Slanke profielen", body: "Maximaal glas, minimaal zichtbaar kozijn." },

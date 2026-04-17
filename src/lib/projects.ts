@@ -84,7 +84,6 @@ export const projects: Project[] = [
     gallery: [
       "/images/project-landsmeer.jpg",
       "/images/villa-kozijn.jpg",
-      "/images/kleur-rebu.jpg",
     ],
   },
   {
@@ -101,8 +100,6 @@ export const projects: Project[] = [
     cover: "/images/project-krommenie.jpg",
     gallery: [
       "/images/project-krommenie.jpg",
-      "/images/project-zaandam-2.jpg",
-      "/images/project-zaandam-3.jpg",
     ],
   },
   {
@@ -119,8 +116,6 @@ export const projects: Project[] = [
     cover: "/images/project-mijdrecht.webp",
     gallery: [
       "/images/project-mijdrecht.webp",
-      "/images/project-zaandam-4.jpg",
-      "/images/villa-kozijn.jpg",
     ],
   },
 ];
