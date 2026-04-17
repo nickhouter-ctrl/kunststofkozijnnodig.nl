@@ -187,6 +187,57 @@ export default function VoordeurenPage() {
         </section>
       ))}
 
+      {/* Schüco stadsnamen collectie */}
+      <section className="section bg-white">
+        <div className="container-rebu">
+          <span className="section-eyebrow">Schüco Collectie</span>
+          <h2 className="section-title mt-3">
+            Schüco voordeuren — <span className="italic text-rebu-green">stadsnamen collectie</span>
+          </h2>
+          <p className="mt-4 max-w-2xl text-neutral-600">
+            Vernoemd naar Nederlandse steden. Elke deur heeft een eigen karakter — van strak en modern tot klassiek met glas. Leverbaar in alle kleuren.
+          </p>
+          <div className="mt-10 grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-4">
+            {[
+              { name: "Amsterdam", file: "amsterdam.png" },
+              { name: "Rotterdam", file: "rotterdam.png" },
+              { name: "Utrecht", file: "utrecht.png" },
+              { name: "Eindhoven", file: "eindhoven.png" },
+              { name: "Groningen", file: "groningen.png" },
+              { name: "Arnhem", file: "arnhem.png" },
+              { name: "Nijmegen", file: "nijmegen.png" },
+              { name: "Maastricht", file: "maastricht.png" },
+              { name: "Amersfoort", file: "amersfoort.png" },
+              { name: "Apeldoorn", file: "apeldoorn.png" },
+              { name: "Deventer", file: "deventer.png" },
+              { name: "Enschede", file: "enschede.png" },
+              { name: "Leeuwarden", file: "leeuwarden.png" },
+              { name: "Venlo", file: "venlo.png" },
+              { name: "Middelburg", file: "middelburg.png" },
+              { name: "Vlissingen", file: "vlissingen.png" },
+            ].map((door) => (
+              <div key={door.name} className="group overflow-hidden rounded-2xl bg-white shadow-soft ring-1 ring-black/5 transition-all hover:-translate-y-1 hover:shadow-glow">
+                <div className="aspect-square overflow-hidden bg-neutral-50 p-4">
+                  <img
+                    src={`/images/voordeuren/${door.file}`}
+                    alt={`Schüco voordeur model ${door.name}`}
+                    className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                </div>
+                <div className="p-4">
+                  <p className="text-xs font-bold text-rebu-green">Schüco</p>
+                  <h3 className="mt-1 font-display text-lg font-semibold text-rebu-charcoal">Model {door.name}</h3>
+                  <Link href="/offerte" className="mt-2 inline-flex items-center gap-1 text-xs font-semibold text-rebu-green hover:text-rebu-green-dark">
+                    Offerte aanvragen <ArrowRight className="h-3 w-3" />
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Brochures */}
       <section className="section bg-rebu-cream">
         <div className="container-rebu max-w-3xl text-center">
