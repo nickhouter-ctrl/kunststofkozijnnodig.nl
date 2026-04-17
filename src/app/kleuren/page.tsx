@@ -35,6 +35,11 @@ const houtlookColors: ColorItem[] = [
   { code: "AP28", name: "Walnoot Terra", type: "Houtprint", structure: "Nerf", hex: "#C06020" },
   { code: "AP29", name: "Walnoot Amaretto", type: "Houtprint", structure: "Nerf", hex: "#8B4513" },
   { code: "AP52", name: "Berk", type: "Houtprint", structure: "Nerf", hex: "#D4B896" },
+  { code: "AP75", name: "Eiken Sheffield Licht", type: "Houtprint", structure: "Nerf", hex: "#E0D5C0" },
+  { code: "AP94", name: "Eiken Sheffield Donker", type: "Houtprint", structure: "Nerf", hex: "#A08050" },
+  { code: "AP95", name: "Winchester", type: "Houtprint", structure: "Nerf", hex: "#C07838" },
+  { code: "AP109", name: "Platinum", type: "Houtprint", structure: "Lichte nerf", hex: "#C0B8AE" },
+  { code: "AP110", name: "Goud", type: "Houtprint", structure: "Lichte nerf", hex: "#8C7E60" },
 ];
 
 const ralColors: ColorItem[] = [
@@ -47,6 +52,16 @@ const ralColors: ColorItem[] = [
   { code: "AP44", name: "Gebroken Wit", type: "RAL", structure: "Nerf", hex: "#E8E0D0" },
   { code: "AP47", name: "Briljant Blauw", type: "RAL", structure: "Nerf", hex: "#2E7BAF" },
   { code: "AP50", name: "Crème Wit", type: "RAL", structure: "Nerf", hex: "#FFF8E1" },
+  { code: "AP70", name: "Beton Grijs", type: "RAL", structure: "Nerf", hex: "#7D7A6E" },
+  { code: "AP71", name: "Agaat Grijs", type: "RAL", structure: "Nerf", hex: "#B5B8A0" },
+  { code: "AP72", name: "Maron Bruin", type: "RAL", structure: "Nerf", hex: "#3E2218" },
+  { code: "AP88", name: "Kwarts Grijs", type: "RAL", structure: "Nerf", hex: "#6A6A60" },
+  { code: "AP101", name: "Monumenten Blauw", type: "RAL", structure: "Nerf", hex: "#1A1A2E" },
+  { code: "AP102", name: "Basalt Grijs", type: "RAL", structure: "Nerf", hex: "#6B7068" },
+  { code: "AP113", name: "Donker Groen", type: "RAL", structure: "Nerf (onderbroken)", hex: "#1A2E1A" },
+  { code: "AP116", name: "Verkeers Wit", type: "RAL", structure: "Nerf (onderbroken)", hex: "#FAFAE8" },
+  { code: "AP117", name: "Monumenten Groen", type: "RAL", structure: "Nerf", hex: "#2A3A2A" },
+  { code: "AP121", name: "Zwart Grijs", type: "RAL", structure: "Nerf", hex: "#343840" },
 ];
 
 const grijsColors: ColorItem[] = [
@@ -56,6 +71,15 @@ const grijsColors: ColorItem[] = [
   { code: "AP63", name: "Geborsteld Aluminium / Zilver", type: "Brush", structure: "Brush (recht)", hex: "#C0C4C0" },
   { code: "AP65", name: "Kwarts Grijs", type: "Zandstructuur", structure: "Zandstructuur / Glad", hex: "#6B6E60" },
   { code: "AP69", name: "Zwart Grijs", type: "Zandstructuur", structure: "Zandstructuur / Glad", hex: "#2C3035" },
+  { code: "AP79", name: "Alux DB 703 / Antraciet Zwart Zilver", type: "Zandstructuur", structure: "Zandstructuur / Glad", hex: "#4A4E50" },
+  { code: "AP103", name: "Leisteen Grijs", type: "Zandstructuur", structure: "Zandstructuur / Glad", hex: "#6A6E68" },
+  { code: "AP105", name: "Trompet C-32", type: "Zandstructuur", structure: "Zandstructuur / Glad", hex: "#7A7560" },
+  { code: "AP106", name: "Jet Black Mat / Zwart", type: "Zandstructuur", structure: "Zandstructuur / Glad", hex: "#0E0E0E" },
+  { code: "AP107", name: "Silver Alux", type: "Zandstructuur", structure: "Zandstructuur / Glad", hex: "#A0A0A0" },
+  { code: "AP108", name: "Donker Bruin", type: "Brush", structure: "Brush (schuin)", hex: "#5A5050" },
+  { code: "AP111", name: "Zilver Blauw", type: "Brush", structure: "Brush (schuin)", hex: "#2A3545" },
+  { code: "AP112", name: "Gebroken Wit", type: "Zandstructuur", structure: "Zandstructuur / Glad", hex: "#E8E0D8" },
+  { code: "AP115", name: "Grijs Beton", type: "Zandstructuur", structure: "Speciale print", hex: "#A8A090" },
 ];
 
 const standardColors = [
