@@ -1,163 +1,111 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Check, Euro, Info, ChevronRight } from "lucide-react";
+import { ArrowRight, Check, Euro, ShieldCheck, Truck, Clock, BadgePercent, ChevronRight } from "lucide-react";
 import { PageHero } from "@/components/PageHero";
+import { BrandMarquee } from "@/components/BrandMarquee";
 import { CTASection } from "@/components/CTASection";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Prijzen kunststof kozijnen 2026 — wat kost het?",
+  title: "Prijzen kunststof kozijnen 2026 — altijd de scherpste prijs",
   description:
-    "Wat kosten kunststof kozijnen in 2026? Prijsoverzicht per m² inclusief montage. Kozijnen vanaf €750/m², deuren vanaf €3.500, schuifpuien vanaf €6.000. Gratis offerte.",
+    "Kunststof kozijnen tegen altijd de scherpste prijs. Rechtstreeks van de fabriek, geen tussenpersonen. Vraag gratis en vrijblijvend een offerte op maat aan.",
   keywords: [
-    "kunststof kozijnen prijs 2026",
-    "wat kosten kunststof kozijnen",
-    "kozijnen prijs per m2",
-    "schuifpui prijs",
-    "kunststof voordeur prijs",
-    "kozijnen inclusief montage kosten",
+    "kunststof kozijnen prijs",
+    "goedkope kunststof kozijnen",
+    "kozijnen scherpe prijs",
+    "kozijnen rechtstreeks fabriek",
+    "kunststof kozijnen offerte",
   ],
 };
 
-const pricing = [
+const reasons = [
   {
-    product: "Kunststof kozijn",
-    unit: "per m²",
-    from: "€ 550",
-    to: "€ 850",
-    includes: "HR++ glas, afwerking — exclusief montage",
-    note: "Prijs afhankelijk van profiel, kleur en glastype",
+    icon: BadgePercent,
+    title: "Altijd de scherpste prijs",
+    body: "Wij hanteren altijd de beste prijzen in de markt. Geen opslag, geen verborgen kosten — je betaalt een eerlijke prijs voor topkwaliteit.",
   },
   {
-    product: "Kunststof voordeur",
-    unit: "compleet",
-    from: "€ 2.500",
-    to: "€ 6.000",
-    includes: "Deurpaneel, kozijn, 3-puntssluiting, cilinder",
-    note: "Afhankelijk van model, glas en hardware",
+    icon: Truck,
+    title: "Rechtstreeks van de fabriek",
+    body: "Geen tussenpersonen of importeurs. Wij leveren rechtstreeks vanuit de fabriek, waardoor we scherper kunnen leveren dan de meeste concurrenten.",
   },
   {
-    product: "Kunststof achterdeur",
-    unit: "compleet",
-    from: "€ 1.800",
-    to: "€ 4.000",
-    includes: "Deurpaneel, kozijn, beslag",
-    note: "Afhankelijk van afmeting en glastype",
+    icon: Euro,
+    title: "Staffelkorting bij grotere aantallen",
+    body: "Hoe meer kozijnen je afneemt, hoe scherper de prijs per stuk. Ideaal voor aannemers, bouwbedrijven en VvE's.",
   },
   {
-    product: "Schuifpui 2-delig (3m)",
-    unit: "compleet",
-    from: "€ 4.500",
-    to: "€ 7.000",
-    includes: "Kunststof profiel, HR++ glas, rail",
-    note: "Prijs bij standaard afmeting ~300×220cm",
+    icon: ShieldCheck,
+    title: "Kwaliteit zonder compromis",
+    body: "Scherpe prijs betekent bij ons niet minder kwaliteit. Wij werken uitsluitend met Europese topmerken: Schüco, Aluplast en Gealan.",
   },
   {
-    product: "Schuifpui 3-delig (4,5m)",
-    unit: "compleet",
-    from: "€ 7.000",
-    to: "€ 10.500",
-    includes: "Kunststof profiel, HR++ glas, rail",
-    note: "Prijs bij standaard afmeting ~450×220cm",
-  },
-  {
-    product: "Hefschuifpui",
-    unit: "compleet",
-    from: "€ 8.500",
-    to: "€ 14.000",
-    includes: "Premium profiel, hefmechanisme, HR++ of triple glas",
-    note: "Topsegment — soepelste bediening",
+    icon: Clock,
+    title: "Binnen 4 weken geleverd",
+    body: "Snelle levering dankzij korte lijnen met de fabriek. Waar anderen maanden wachten, staan jouw kozijnen er binnen 4 weken.",
   },
 ];
 
 const factors = [
   { title: "Profielkeuze", desc: "Schüco, Aluplast of Gealan — elk merk heeft eigen prijsklassen en eigenschappen." },
-  { title: "Kleur", desc: "Wit is standaard. Antraciet, zwart, houtlook of RAL-kleur kost circa 10-20% extra." },
-  { title: "Glastype", desc: "HR++ is standaard. Triple glas (+€50-80/m²) of inbraakwerend glas (+€30-60/m²) op aanvraag." },
-  { title: "Openingstype", desc: "Vastglas is goedkoopst. Draaikiep, valraam en uitzetramen kosten meer door beslag." },
-  { title: "Aantal", desc: "Meer kozijnen = lager stuksprijs. Bij 10+ kozijnen krijg je bij ons scherpe staffelkorting." },
-  { title: "Montage", desc: "Alleen leveren scheelt gemiddeld €150-250 per kozijn. Wij adviseren montage door ons team." },
+  { title: "Kleur", desc: "Wit is standaard. Antraciet, zwart, houtlook of RAL-kleur op maat beschikbaar." },
+  { title: "Glastype", desc: "HR++ is standaard. Triple glas of inbraakwerend glas op aanvraag." },
+  { title: "Openingstype", desc: "Vastglas is het voordeligst. Draaikiep, valraam en uitzetramen variëren in prijs." },
+  { title: "Aantal", desc: "Meer kozijnen = lagere stuksprijs. Vraag naar onze staffelkorting bij 10+ stuks." },
+  { title: "Afmetingen", desc: "Elk kozijn wordt op maat gemaakt. De exacte prijs hangt af van breedte × hoogte." },
 ];
-
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  name: "Prijzen kunststof kozijnen 2026",
-  description: "Actueel prijsoverzicht voor kunststof kozijnen, deuren en schuifpuien inclusief montage.",
-  provider: {
-    "@type": "LocalBusiness",
-    name: site.name,
-    telephone: site.phone,
-  },
-};
 
 export default function PrijzenPage() {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-
       <PageHero
-        eyebrow="Prijzen 2026"
-        title="Wat kosten kunststof kozijnen?"
-        description="Transparante prijzen, geen verrassingen. Hieronder vind je actuele richtprijzen exclusief montage. Vraag een gratis offerte op maat aan voor jouw exacte situatie."
-        image="/images/kleur-rebu.jpg"
+        eyebrow="Onze prijzen"
+        title="Altijd de scherpste prijs. Gegarandeerd."
+        description="Wij geloven dat topkwaliteit kozijnen betaalbaar moeten zijn. Daarom leveren wij rechtstreeks van de fabriek — zonder tussenpersonen, zonder opslag. Vraag een offerte aan en ontdek het verschil."
+        image="/images/villa-kozijn.jpg"
         breadcrumb={[
           { label: "Home", href: "/" },
           { label: "Prijzen", href: "/prijzen" },
         ]}
       />
 
-      {/* Price table */}
+      {/* Why our prices are the best */}
       <section className="section bg-white">
         <div className="container-rebu">
-          <div className="mx-auto max-w-4xl">
-            <span className="section-eyebrow">Prijsoverzicht</span>
+          <div className="mx-auto max-w-3xl text-center">
+            <span className="section-eyebrow">Waarom wij</span>
             <h2 className="section-title mt-3">
-              Richtprijzen <span className="italic text-rebu-green">exclusief montage</span>
+              Hoe wij de <span className="italic text-rebu-green">beste prijs</span> garanderen
             </h2>
-            <p className="mt-4 text-neutral-600">
-              Onderstaande prijzen zijn inclusief BTW — exclusief montage. Montage is optioneel bij te bestellen. De exacte prijs hangt af van jouw specifieke situatie — vraag altijd een offerte op maat.
+            <p className="mt-5 text-lg text-neutral-600">
+              Elke offerte is maatwerk. De prijs hangt af van het type kozijn, de afmetingen, het profiel en de kleur. Maar één ding is zeker: bij ons krijg je altijd de scherpste deal.
             </p>
+          </div>
 
-            <div className="mt-10 space-y-4">
-              {pricing.map((p) => (
-                <div
-                  key={p.product}
-                  className="rounded-2xl border border-rebu-stone bg-rebu-cream p-6 transition-all hover:border-rebu-green hover:shadow-soft"
-                >
-                  <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-                    <div className="flex-1">
-                      <h3 className="font-display text-xl font-semibold text-rebu-charcoal">{p.product}</h3>
-                      <p className="mt-1 text-sm text-neutral-500">{p.includes}</p>
-                    </div>
-                    <div className="text-right">
-                      <p className="font-display text-2xl font-semibold text-rebu-green md:text-3xl">
-                        {p.from} — {p.to}
-                      </p>
-                      <p className="text-xs text-neutral-500">{p.unit} · {p.note}</p>
-                    </div>
-                  </div>
+          <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {reasons.map((r) => (
+              <div key={r.title} className="card transition-all hover:-translate-y-1 hover:shadow-glow">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-rebu-green/10 text-rebu-green">
+                  <r.icon className="h-6 w-6" />
                 </div>
-              ))}
-            </div>
-
-            <div className="mt-8 flex items-start gap-3 rounded-2xl bg-rebu-green/5 p-5 text-sm text-rebu-green-dark ring-1 ring-rebu-green/20">
-              <Info className="mt-0.5 h-4 w-4 flex-none" />
-              <div>
-                <p className="font-semibold">Richtprijzen — geen vaste prijzen</p>
-                <p className="mt-1 text-neutral-600">
-                  Bovenstaande bedragen zijn indicatief (2026). De exacte prijs hangt af van jouw specifieke situatie, afmetingen, kleurkeuze en glastype. Wij komen gratis langs om in te meten en een offerte op maat te maken.
-                </p>
+                <h3 className="mt-5 font-display text-xl font-semibold text-rebu-charcoal">{r.title}</h3>
+                <p className="mt-2 text-sm text-neutral-600">{r.body}</p>
               </div>
-            </div>
+            ))}
 
-            <div className="mt-8 text-center">
-              <Link href="/offerte" className="btn-primary">
-                Gratis offerte op maat <ArrowRight className="h-4 w-4" />
+            {/* CTA card */}
+            <div className="flex flex-col items-start justify-center rounded-2xl bg-rebu-green p-8 text-white shadow-glow">
+              <h3 className="font-display text-2xl font-semibold">Benieuwd naar jouw prijs?</h3>
+              <p className="mt-3 text-sm text-white/80">
+                Vul de offerte-configurator in en ontvang binnen 1 werkdag een prijs op maat.
+              </p>
+              <Link
+                href="/offerte"
+                className="mt-6 inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-rebu-green-dark transition-all hover:bg-rebu-cream"
+              >
+                Offerte aanvragen <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
           </div>
@@ -172,6 +120,9 @@ export default function PrijzenPage() {
             <h2 className="section-title mt-3">
               Waar hangt de prijs <span className="italic text-rebu-green">van af?</span>
             </h2>
+            <p className="mt-5 text-neutral-600">
+              Elke situatie is anders. Hieronder de factoren die de prijs van jouw kozijnen bepalen.
+            </p>
           </div>
           <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {factors.map((f) => (
@@ -187,6 +138,8 @@ export default function PrijzenPage() {
         </div>
       </section>
 
+      <BrandMarquee />
+
       {/* Subsidie */}
       <section className="section bg-white">
         <div className="container-rebu grid gap-14 lg:grid-cols-2">
@@ -196,7 +149,7 @@ export default function PrijzenPage() {
               ISDE subsidie op <span className="italic text-rebu-green">kozijnen & glas</span>
             </h2>
             <p className="mt-6 text-lg text-neutral-600">
-              In 2026 kun je via de ISDE-regeling (Investeringssubsidie Duurzame Energie) subsidie krijgen op energiebesparende maatregelen, waaronder het plaatsen van isolerend glas. De subsidie bedraagt circa €41 per m² glas.
+              In 2026 kun je via de ISDE-regeling subsidie krijgen op energiebesparende maatregelen, waaronder het plaatsen van isolerend glas. De subsidie bedraagt circa €41 per m² glas.
             </p>
             <ul className="mt-6 space-y-3 text-sm text-neutral-700">
               {[
