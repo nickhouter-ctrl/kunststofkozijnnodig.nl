@@ -4,15 +4,15 @@ import { useState, useEffect, useRef } from "react";
 import { Leaf, TrendingDown, ArrowRight, Calculator } from "lucide-react";
 import Link from "next/link";
 
-type GlassType = "enkel" | "dubbel" | "hr";
+type GlassType = "enkel" | "dubbel" | "hr" | "hr++";
 type NewGlassType = "hr++" | "triple";
 
 const glassLabels: Record<GlassType | NewGlassType, string> = {
   enkel: "Enkelglas",
-  dubbel: "Dubbelglas",
+  dubbel: "Oud dubbelglas",
   hr: "HR-glas",
   "hr++": "HR++ glas",
-  triple: "Triple glas",
+  triple: "Triple HR+++ glas",
 };
 
 // U-values (W/m2K) per glass type — approximate industry values
@@ -157,6 +157,7 @@ export function EnergySavingsCalc() {
                   <option value="enkel">{glassLabels.enkel}</option>
                   <option value="dubbel">{glassLabels.dubbel}</option>
                   <option value="hr">{glassLabels.hr}</option>
+                  <option value="hr++">{glassLabels["hr++"]}</option>
                 </select>
               </div>
 
