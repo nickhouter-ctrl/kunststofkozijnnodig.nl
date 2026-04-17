@@ -41,7 +41,7 @@ export const productDetails: Record<ProductDetail["slug"], ProductDetail> = {
         label: "Profielen",
         items: ["Aluplast", "Schüco", "Gealan"],
       },
-      { label: "Kleuren", items: ["Wit", "Crème", "Antraciet", "Zwart", "Houtlook eiken", "RAL op maat"] },
+      { label: "Kleuren (met en zonder nerf)", items: ["Wit (9016) glad", "Crème wit (9001) glad/nerf", "Antraciet (7016) glad/nerf", "Zwart (9005) glad/nerf", "Houtlook diverse tinten (nerf)", "Grijs tinten (zilver, basalt, kwarts, venster)", "RAL kleur op maat", "Geborsteld aluminium"] },
       { label: "Glas", items: ["HR++ dubbel", "HR+++ triple", "Inbraakwerend", "Zonwerend", "Geluidsisolerend"] },
     ],
     faqs: [
@@ -80,8 +80,8 @@ export const productDetails: Record<ProductDetail["slug"], ProductDetail> = {
     ],
     options: [
       { label: "Deurtypes", items: ["Voordeur", "Achterdeur", "Openslaande tuindeuren", "Bijzetdeur"] },
-      { label: "Afwerking", items: ["Glad paneel", "Met glas", "Met zijlicht", "Met bovenlicht"] },
-      { label: "Kleuren", items: ["Wit", "Antraciet", "Zwart", "Houtlook donker eiken", "RAL op maat"] },
+      { label: "Afwerking", items: ["Glad paneel", "Sierpaneel", "Met glas", "Met zijlicht", "Met bovenlicht"] },
+      { label: "Kleuren (met en zonder nerf)", items: ["Wit (9016) glad", "Crème wit (9001) glad/nerf", "Antraciet (7016) glad/nerf", "Zwart (9005) glad/nerf", "Houtlook diverse tinten (nerf)", "Grijs tinten", "RAL kleur op maat"] },
       { label: "Hardware", items: ["RVS deurkrukken", "Lange greep", "Smart lock", "Videofoon"] },
     ],
     faqs: [
@@ -121,7 +121,7 @@ export const productDetails: Record<ProductDetail["slug"], ProductDetail> = {
     options: [
       { label: "Types", items: ["2-delig schuiven", "3-delig schuiven", "4-delig schuiven", "Hefschuifdeur"] },
       { label: "Profielen", items: ["Aluplast", "Schüco", "Gealan"] },
-      { label: "Kleuren", items: ["Wit", "Antraciet", "Zwart", "Houtlook"] },
+      { label: "Kleuren (met en zonder nerf)", items: ["Wit (9016) glad", "Crème wit (9001) glad/nerf", "Antraciet (7016) glad/nerf", "Zwart (9005) glad/nerf", "Houtlook diverse tinten (nerf)", "RAL kleur op maat"] },
       { label: "Opties", items: ["Verborgen rail", "Lage drempel", "Motorisch bediend", "Inbraakwerend SKG 2"] },
     ],
     faqs: [
