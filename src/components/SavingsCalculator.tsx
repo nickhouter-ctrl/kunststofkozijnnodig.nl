@@ -6,7 +6,7 @@ import { ArrowRight, Leaf, TrendingDown, Euro, Info } from "lucide-react";
 
 type GlassOld = "enkel" | "dubbel" | "hr";
 type GlassNew = "hrpp" | "triple";
-type HouseType = "tussenwoning" | "hoekwoning" | "twee-onder-een-kap" | "vrijstaand";
+type HouseType = "appartement" | "tussenwoning" | "hoekwoning" | "twee-onder-een-kap" | "vrijstaand";
 
 // Jaarlijkse besparing per kozijn in EUR (marktgemiddelde)
 const savingsPerKozijn: Record<GlassOld, Record<GlassNew, number>> = {
@@ -20,6 +20,7 @@ const CO2_PER_EURO = 1.4;
 
 // Woningtype multiplier (meer geveloppervlak = meer warmteverlies)
 const houseMultiplier: Record<HouseType, number> = {
+  appartement: 0.7,
   tussenwoning: 0.8,
   hoekwoning: 1.0,
   "twee-onder-een-kap": 1.1,
@@ -141,9 +142,10 @@ export function SavingsCalculator() {
                 Woningtype
               </label>
               <div className="grid grid-cols-2 gap-2">
+                <ToggleButton label="Appartement" selected={houseType === "appartement"} onClick={() => setHouseType("appartement")} />
                 <ToggleButton label="Tussenwoning" selected={houseType === "tussenwoning"} onClick={() => setHouseType("tussenwoning")} />
                 <ToggleButton label="Hoekwoning" selected={houseType === "hoekwoning"} onClick={() => setHouseType("hoekwoning")} />
-                <ToggleButton label="Twee-onder-een-kap" selected={houseType === "twee-onder-een-kap"} onClick={() => setHouseType("twee-onder-een-kap")} />
+                <ToggleButton label="2-onder-1-kap" selected={houseType === "twee-onder-een-kap"} onClick={() => setHouseType("twee-onder-een-kap")} />
                 <ToggleButton label="Vrijstaand" selected={houseType === "vrijstaand"} onClick={() => setHouseType("vrijstaand")} />
               </div>
             </div>
