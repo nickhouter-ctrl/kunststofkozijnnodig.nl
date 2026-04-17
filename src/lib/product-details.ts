@@ -39,7 +39,7 @@ export const productDetails: Record<ProductDetail["slug"], ProductDetail> = {
       },
       {
         label: "Profielen",
-        items: ["Aluplast Ideal 7000", "Schüco LivIng", "Gealan S9000"],
+        items: ["Aluplast", "Schüco", "Gealan"],
       },
       { label: "Kleuren", items: ["Wit", "Crème", "Antraciet", "Zwart", "Houtlook eiken", "RAL op maat"] },
       { label: "Glas", items: ["HR++ dubbel", "HR+++ triple", "Inbraakwerend", "Zonwerend", "Geluidsisolerend"] },
@@ -120,7 +120,7 @@ export const productDetails: Record<ProductDetail["slug"], ProductDetail> = {
     ],
     options: [
       { label: "Types", items: ["2-delig schuiven", "3-delig schuiven", "4-delig schuiven", "Hefschuifdeur"] },
-      { label: "Profielen", items: ["Aluplast Smart-slide", "Schüco LivIng SlideLine", "Gealan S8000 IQ"] },
+      { label: "Profielen", items: ["Aluplast", "Schüco", "Gealan"] },
       { label: "Kleuren", items: ["Wit", "Antraciet", "Zwart", "Houtlook"] },
       { label: "Opties", items: ["Verborgen rail", "Lage drempel", "Motorisch bediend", "Inbraakwerend SKG 2"] },
     ],
