@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { MapPin, Phone, Mail, Clock, MessageCircle, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { PageHero } from "@/components/PageHero";
+import { ContactForm } from "@/components/ContactForm";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -103,6 +104,10 @@ export default function ContactPage() {
                 referrerPolicy="no-referrer-when-downgrade"
                 className="border-0"
               />
+            </div>
+
+            <div className="mt-10">
+              <ContactForm />
             </div>
 
             <div className="mt-10 rounded-3xl bg-rebu-green p-10 text-white">

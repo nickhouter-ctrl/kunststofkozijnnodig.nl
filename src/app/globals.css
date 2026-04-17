@@ -63,6 +63,12 @@ body {
   animation: marquee 30s linear infinite;
 }
 
+/* Slide-up animation (cookie banner, calc results) */
+@keyframes slideUp {
+  from { transform: translateY(100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
 /* Subtle grain overlay */
 .grain::before {
   content: "";
