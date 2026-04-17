@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowRight, Check, ChevronRight } from "lucide-react";
+import { ArrowRight, Check, ChevronRight, Download } from "lucide-react";
 import { productDetails } from "@/lib/product-details";
 import { createServiceClient } from "@/lib/supabase";
 import { ProjectGallery } from "@/components/ProjectGallery";
@@ -164,22 +164,56 @@ export default async function ProductDetailPage({
             </p>
           </div>
           <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-            {product.options.map((opt) => (
-              <div key={opt.label} className="rounded-2xl bg-white p-6 shadow-soft ring-1 ring-black/5">
-                <p className="text-xs font-semibold uppercase tracking-wider text-rebu-green">
-                  {opt.label}
-                </p>
-                <ul className="mt-4 space-y-2 text-sm text-rebu-charcoal">
-                  {opt.items.map((item) => (
-                    <li key={item} className="flex items-start gap-2">
-                      <span className="mt-1 h-1.5 w-1.5 flex-none rounded-full bg-rebu-green" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+            {product.options.map((opt) => {
+              const isKleuren = opt.label.toLowerCase().includes("kleur");
+              return (
+                <div key={opt.label} className="rounded-2xl bg-white p-6 shadow-soft ring-1 ring-black/5">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-rebu-green">
+                    {opt.label}
+                  </p>
+                  <ul className="mt-4 space-y-2 text-sm text-rebu-charcoal">
+                    {opt.items.slice(0, 6).map((item) => (
+                      <li key={item} className="flex items-start gap-2">
+                        <span className="mt-1 h-1.5 w-1.5 flex-none rounded-full bg-rebu-green" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                  {isKleuren && (
+                    <Link href="/kleuren" className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-rebu-green hover:text-rebu-green-dark">
+                      Bekijk alle kleuren <ArrowRight className="h-3 w-3" />
+                    </Link>
+                  )}
+                </div>
+              );
+            })}
           </div>
+
+          {/* Brochures - only for deuren */}
+          {slug === "deuren" && (
+            <div className="mt-10 rounded-2xl bg-white p-8 shadow-soft ring-1 ring-black/5">
+              <h3 className="font-display text-xl font-semibold text-rebu-charcoal">Voordeur brochures</h3>
+              <p className="mt-2 text-sm text-neutral-600">Download de volledige catalogus met alle voordeurmodellen.</p>
+              <div className="mt-5 flex flex-wrap gap-3">
+                <a
+                  href="https://rebukozijnen.nl/wp-content/uploads/2024/10/RebuKozijnen_Catalogus_buitendeuren.pdf-3.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full border border-rebu-green/20 bg-rebu-green/5 px-5 py-2.5 text-sm font-semibold text-rebu-green transition-all hover:bg-rebu-green hover:text-white"
+                >
+                  <Download className="h-4 w-4" /> Aluplast voordeuren catalogus (PDF)
+                </a>
+                <a
+                  href="https://rebukozijnen.nl/wp-content/uploads/2024/10/Voordeurmodellen-Gealan_rebukozijnen.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full border border-rebu-green/20 bg-rebu-green/5 px-5 py-2.5 text-sm font-semibold text-rebu-green transition-all hover:bg-rebu-green hover:text-white"
+                >
+                  <Download className="h-4 w-4" /> Gealan voordeurmodellen (PDF)
+                </a>
+              </div>
+            </div>
+          )}
         </div>
       </section>
 
