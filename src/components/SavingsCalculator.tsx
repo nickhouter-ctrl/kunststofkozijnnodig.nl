@@ -58,20 +58,20 @@ function ToggleButton({ label, selected, onClick }: { label: string; selected: b
 }
 
 export function SavingsCalculator() {
-  const [count, setCount] = useState(8);
+  const [m2, setM2] = useState(12);
   const [oldGlass, setOldGlass] = useState<GlassOld>("dubbel");
   const [newGlass, setNewGlass] = useState<GlassNew>("hrpp");
   const [houseType, setHouseType] = useState<HouseType>("tussenwoning");
 
   const results = useMemo(() => {
+    const kozijnen = Math.round(m2 / AVG_M2_PER_KOZIJN);
     const base = savingsPerKozijn[oldGlass][newGlass];
     const mult = houseMultiplier[houseType];
-    const yearlySaving = Math.round(base * count * mult);
+    const yearlySaving = Math.round(base * kozijnen * mult);
     const co2 = Math.round(yearlySaving * CO2_PER_EURO);
-    const m2Glas = +(count * AVG_M2_PER_KOZIJN).toFixed(1);
-    const subsidie = Math.round(m2Glas * ISDE_PER_M2[newGlass]);
-    return { yearlySaving, co2, subsidie, m2Glas };
-  }, [count, oldGlass, newGlass, houseType]);
+    const subsidie = Math.round(m2 * ISDE_PER_M2[newGlass]);
+    return { yearlySaving, co2, subsidie, kozijnen };
+  }, [m2, oldGlass, newGlass, houseType]);
 
   return (
     <section className="section bg-white">
@@ -91,28 +91,31 @@ export function SavingsCalculator() {
           <div className="space-y-8">
             <div>
               <label className="mb-3 block text-xs font-semibold uppercase tracking-wider text-neutral-500">
-                Aantal kozijnen
+                Glasoppervlak (m²)
               </label>
               <div className="flex items-center gap-4">
                 <input
                   type="range"
                   min={1}
-                  max={40}
-                  value={count}
-                  onChange={(e) => setCount(Number(e.target.value))}
+                  max={60}
+                  value={m2}
+                  onChange={(e) => setM2(Number(e.target.value))}
                   className="h-2 flex-1 cursor-pointer appearance-none rounded-full bg-rebu-stone accent-rebu-green"
                 />
-                <input
-                  type="number"
-                  min={1}
-                  max={100}
-                  value={count}
-                  onChange={(e) => setCount(Math.max(1, parseInt(e.target.value) || 1))}
-                  className="w-16 rounded-xl border border-rebu-stone bg-white px-3 py-2 text-center font-display text-lg font-semibold text-rebu-charcoal focus:border-rebu-green focus:outline-none"
-                />
+                <div className="flex items-center gap-1">
+                  <input
+                    type="number"
+                    min={1}
+                    max={100}
+                    value={m2}
+                    onChange={(e) => setM2(Math.max(1, parseInt(e.target.value) || 1))}
+                    className="w-16 rounded-xl border border-rebu-stone bg-white px-3 py-2 text-center font-display text-lg font-semibold text-rebu-charcoal focus:border-rebu-green focus:outline-none"
+                  />
+                  <span className="text-sm text-neutral-500">m²</span>
+                </div>
               </div>
               <p className="mt-2 text-xs text-neutral-400">
-                ≈ {results.m2Glas} m² glasoppervlak (gem. {AVG_M2_PER_KOZIJN} m² per kozijn)
+                ≈ {results.kozijnen} kozijnen (gem. {AVG_M2_PER_KOZIJN} m² per kozijn)
               </p>
             </div>
 
@@ -188,7 +191,7 @@ export function SavingsCalculator() {
                   <span className="text-[10px] font-semibold uppercase tracking-wider text-neutral-500">ISDE subsidie</span>
                 </div>
                 <p className="mt-3 font-display text-3xl font-bold text-rebu-charcoal">€{results.subsidie}</p>
-                <p className="mt-1 text-xs text-neutral-500">{results.m2Glas} m² glas × €{ISDE_PER_M2[newGlass]}/m²</p>
+                <p className="mt-1 text-xs text-neutral-500">{m2} m² glas × €{ISDE_PER_M2[newGlass]}/m²</p>
               </div>
             </div>
 
