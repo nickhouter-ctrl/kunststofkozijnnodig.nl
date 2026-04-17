@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowRight, Check, ChevronRight, Download } from "lucide-react";
+import { ArrowRight, Check, ChevronRight, Download, Palette } from "lucide-react";
 import { productDetails } from "@/lib/product-details";
 import { createServiceClient } from "@/lib/supabase";
 import { ProjectGallery } from "@/components/ProjectGallery";
@@ -189,28 +189,30 @@ export default async function ProductDetailPage({
             })}
           </div>
 
-          {/* Brochures - only for deuren */}
+          {/* Brochures + voordeuren link - only for deuren */}
           {slug === "deuren" && (
-            <div className="mt-10 rounded-2xl bg-white p-8 shadow-soft ring-1 ring-black/5">
-              <h3 className="font-display text-xl font-semibold text-rebu-charcoal">Voordeur brochures</h3>
-              <p className="mt-2 text-sm text-neutral-600">Download de volledige catalogus met alle voordeurmodellen.</p>
-              <div className="mt-5 flex flex-wrap gap-3">
-                <a
-                  href="https://rebukozijnen.nl/wp-content/uploads/2024/10/RebuKozijnen_Catalogus_buitendeuren.pdf-3.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full border border-rebu-green/20 bg-rebu-green/5 px-5 py-2.5 text-sm font-semibold text-rebu-green transition-all hover:bg-rebu-green hover:text-white"
-                >
-                  <Download className="h-4 w-4" /> Aluplast voordeuren catalogus (PDF)
-                </a>
-                <a
-                  href="https://rebukozijnen.nl/wp-content/uploads/2024/10/Voordeurmodellen-Gealan_rebukozijnen.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full border border-rebu-green/20 bg-rebu-green/5 px-5 py-2.5 text-sm font-semibold text-rebu-green transition-all hover:bg-rebu-green hover:text-white"
-                >
-                  <Download className="h-4 w-4" /> Gealan voordeurmodellen (PDF)
-                </a>
+            <div className="mt-10 space-y-4">
+              <Link href="/voordeuren" className="block rounded-2xl bg-rebu-green p-8 text-white shadow-glow transition-all hover:bg-rebu-green-dark">
+                <h3 className="font-display text-xl font-semibold">Bekijk alle 30+ voordeurmodellen</h3>
+                <p className="mt-2 text-sm text-white/80">Van Style tot Elegance — ontdek de volledige collectie premium voordeuren.</p>
+                <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold">
+                  Naar voordeurmodellen <ArrowRight className="h-4 w-4" />
+                </span>
+              </Link>
+              <div className="rounded-2xl bg-white p-8 shadow-soft ring-1 ring-black/5">
+                <h3 className="font-display text-xl font-semibold text-rebu-charcoal">Brochures</h3>
+                <p className="mt-2 text-sm text-neutral-600">Download de volledige catalogus met alle voordeurmodellen.</p>
+                <div className="mt-5 flex flex-wrap gap-3">
+                  <a href="https://rebukozijnen.nl/wp-content/uploads/2024/10/RebuKozijnen_Catalogus_buitendeuren.pdf-3.pdf" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full border border-rebu-green/20 bg-rebu-green/5 px-5 py-2.5 text-sm font-semibold text-rebu-green transition-all hover:bg-rebu-green hover:text-white">
+                    <Download className="h-4 w-4" /> Aluplast voordeuren (PDF)
+                  </a>
+                  <a href="https://rebukozijnen.nl/wp-content/uploads/2024/10/Voordeurmodellen-Gealan_rebukozijnen.pdf" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full border border-rebu-green/20 bg-rebu-green/5 px-5 py-2.5 text-sm font-semibold text-rebu-green transition-all hover:bg-rebu-green hover:text-white">
+                    <Download className="h-4 w-4" /> Gealan voordeuren (PDF)
+                  </a>
+                  <Link href="/kleuren" className="inline-flex items-center gap-2 rounded-full border border-rebu-green/20 bg-rebu-green/5 px-5 py-2.5 text-sm font-semibold text-rebu-green transition-all hover:bg-rebu-green hover:text-white">
+                    <Palette className="h-4 w-4" /> Alle kleuren bekijken
+                  </Link>
+                </div>
               </div>
             </div>
           )}
