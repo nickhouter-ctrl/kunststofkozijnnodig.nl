@@ -4,12 +4,39 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowRight, Check, ChevronRight } from "lucide-react";
 import { productDetails } from "@/lib/product-details";
+import { createServiceClient } from "@/lib/supabase";
 import { ProjectGallery } from "@/components/ProjectGallery";
 import { Workflow } from "@/components/Workflow";
 import { BrandMarquee } from "@/components/BrandMarquee";
 import { CTASection } from "@/components/CTASection";
 
+export const revalidate = 60;
+
 const SLUGS = ["kozijnen", "deuren", "schuifpuien"] as const;
+
+const PRODUCT_TAG: Record<string, string> = {
+  kozijnen: "Kozijnen",
+  deuren: "Deuren",
+  schuifpuien: "Schuifpuien",
+};
+
+async function getProductGallery(slug: string): Promise<string[]> {
+  try {
+    const tag = PRODUCT_TAG[slug];
+    if (!tag) return [];
+    const supabase = createServiceClient();
+    const { data } = await supabase
+      .from("projects")
+      .select("images")
+      .eq("published", true)
+      .contains("products", [tag])
+      .order("sort_order");
+    if (!data) return [];
+    return data.flatMap((p: any) => p.images ?? []);
+  } catch {
+    return [];
+  }
+}
 
 export async function generateStaticParams() {
   return SLUGS.map((slug) => ({ slug }));
@@ -44,6 +71,8 @@ export default async function ProductDetailPage({
   if (!product) notFound();
 
   const others = SLUGS.filter((s) => s !== slug).map((s) => productDetails[s]);
+  const supabaseGallery = await getProductGallery(slug);
+  const gallery = supabaseGallery.length > 0 ? supabaseGallery : product.gallery;
 
   return (
     <>
@@ -118,7 +147,7 @@ export default async function ProductDetailPage({
               Zo ziet het eruit <span className="italic text-rebu-cream/80">bij onze klanten.</span>
             </h2>
           </div>
-          <ProjectGallery images={product.gallery} title={product.title} />
+          <ProjectGallery images={gallery} title={product.title} />
         </div>
       </section>
 

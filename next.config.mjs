@@ -4,6 +4,7 @@ const nextConfig = {
     remotePatterns: [
       { protocol: "https", hostname: "rebukozijnen.nl" },
       { protocol: "https", hostname: "www.instagram.com" },
+      { protocol: "https", hostname: "jpjowxgkyjvydzwhalhy.supabase.co" },
     ],
   },
   experimental: {
