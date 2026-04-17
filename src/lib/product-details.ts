@@ -39,7 +39,7 @@ export const productDetails: Record<ProductDetail["slug"], ProductDetail> = {
       },
       {
         label: "Profielen",
-        items: ["Aluplast Ideal 7000", "Schüco LivIng", "Gealan S9000", "Retro hoekverbinding"],
+        items: ["Aluplast Ideal 7000", "Schüco LivIng", "Gealan S9000"],
       },
       { label: "Kleuren", items: ["Wit", "Crème", "Antraciet", "Zwart", "Houtlook eiken", "RAL op maat"] },
       { label: "Glas", items: ["HR++ dubbel", "HR+++ triple", "Inbraakwerend", "Zonwerend", "Geluidsisolerend"] },
