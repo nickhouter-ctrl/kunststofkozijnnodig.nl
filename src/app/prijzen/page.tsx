@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Check, Euro, ShieldCheck, Truck, Clock, BadgePercent, ChevronRight } from "lucide-react";
+import { ArrowRight, Check, Euro, ShieldCheck, Truck, Clock, BadgePercent, Wrench, ChevronRight } from "lucide-react";
 import { PageHero } from "@/components/PageHero";
 import { BrandMarquee } from "@/components/BrandMarquee";
 import { CTASection } from "@/components/CTASection";
@@ -45,6 +45,11 @@ const reasons = [
     icon: Clock,
     title: "Binnen 4 weken geleverd",
     body: "Snelle levering dankzij korte lijnen met de fabriek. Waar anderen maanden wachten, staan jouw kozijnen er binnen 4 weken.",
+  },
+  {
+    icon: Wrench,
+    title: "Plaatsing mogelijk via onze aannemers",
+    body: "Geen eigen aannemer? Geen probleem. Wij koppelen je aan een van onze aangesloten, ervaren monteurs die de plaatsing voor je verzorgen.",
   },
 ];
 
