@@ -1,36 +1,44 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import Link from "next/link";
 import { ArrowRight, Leaf, TrendingDown, Clock, Euro, Info } from "lucide-react";
 
-type CurrentGlass = "enkel" | "dubbel" | "hr";
-type NewGlass = "hr++" | "triple";
-type HouseType = "tussenwoning" | "hoekwoning" | "2-onder-1-kap" | "vrijstaand";
+type GlassOld = "enkel" | "dubbel" | "hr";
+type GlassNew = "hrpp" | "triple";
+type HouseType = "tussenwoning" | "hoekwoning" | "twee-onder-een-kap" | "vrijstaand";
 
-const M2_PER_KOZIJN = 1.5;
-const GAS_PRICE = 0.14;
-const DEGREE_HOURS = 72_000;
-const CO2_PER_KWH = 0.204;
-const ISDE_PER_M2 = 62;
-const COST_PER_M2 = 800;
-
-const uValues: Record<string, number> = {
-  enkel: 5.8, dubbel: 2.8, hr: 1.6, "hr++": 1.0, triple: 0.6,
+// Jaarlijkse besparing per kozijn in EUR (marktgemiddelde)
+const savingsPerKozijn: Record<GlassOld, Record<GlassNew, number>> = {
+  enkel:  { hrpp: 45, triple: 60 },
+  dubbel: { hrpp: 22, triple: 35 },
+  hr:     { hrpp: 10, triple: 18 },
 };
 
-function calculate(kozijnen: number, current: CurrentGlass, newGlass: NewGlass) {
-  const m2 = kozijnen * M2_PER_KOZIJN;
-  const deltaU = uValues[current] - uValues[newGlass];
-  if (deltaU <= 0) return { euros: 0, co2: 0, isde: 0, payback: 0, m2 };
-  const kwhSaved = (deltaU * m2 * DEGREE_HOURS) / 1000;
-  const euros = Math.round(kwhSaved * GAS_PRICE);
-  const co2 = Math.round(kwhSaved * CO2_PER_KWH);
-  const isde = Math.round(m2 * ISDE_PER_M2);
-  const netCost = m2 * COST_PER_M2 - isde;
-  const payback = euros > 0 ? Math.round((netCost / euros) * 10) / 10 : 0;
-  return { euros, co2, isde, payback, m2 };
-}
+// CO2: ~1.8 kg CO2 per m³ gas, ~0.03 m³ gas per €1 bespaard (gasprijs ~€1.30/m³)
+const CO2_PER_EURO = 1.4;
+
+// Woningtype multiplier (meer geveloppervlak = meer warmteverlies)
+const houseMultiplier: Record<HouseType, number> = {
+  tussenwoning: 0.8,
+  hoekwoning: 1.0,
+  "twee-onder-een-kap": 1.1,
+  vrijstaand: 1.3,
+};
+
+// ISDE subsidie per m² glas (indicatie 2026, check rvo.nl)
+const ISDE_PER_M2: Record<GlassNew, number> = {
+  hrpp: 62,    // U-waarde ≤ 1.2
+  triple: 93,  // U-waarde ≤ 0.7
+};
+
+const AVG_M2_PER_KOZIJN = 1.5;
+
+// Gemiddelde investering per kozijn (alleen levering)
+const investmentPerKozijn: Record<GlassNew, number> = {
+  hrpp: 750,
+  triple: 950,
+};
 
 function ToggleButton({ label, selected, onClick }: { label: string; selected: boolean; onClick: () => void }) {
   return (
@@ -49,12 +57,21 @@ function ToggleButton({ label, selected, onClick }: { label: string; selected: b
 }
 
 export function SavingsCalculator() {
-  const [kozijnen, setKozijnen] = useState(8);
-  const [current, setCurrent] = useState<CurrentGlass>("dubbel");
-  const [newGlass, setNewGlass] = useState<NewGlass>("hr++");
+  const [count, setCount] = useState(8);
+  const [oldGlass, setOldGlass] = useState<GlassOld>("dubbel");
+  const [newGlass, setNewGlass] = useState<GlassNew>("hrpp");
   const [houseType, setHouseType] = useState<HouseType>("tussenwoning");
 
-  const result = calculate(kozijnen, current, newGlass);
+  const results = useMemo(() => {
+    const base = savingsPerKozijn[oldGlass][newGlass];
+    const mult = houseMultiplier[houseType];
+    const yearlySaving = Math.round(base * count * mult);
+    const co2 = Math.round(yearlySaving * CO2_PER_EURO);
+    const subsidie = Math.round(count * AVG_M2_PER_KOZIJN * ISDE_PER_M2[newGlass]);
+    const totalInvestment = count * investmentPerKozijn[newGlass] - subsidie;
+    const payback = yearlySaving > 0 ? +(totalInvestment / yearlySaving).toFixed(1) : 0;
+    return { yearlySaving, co2, payback, subsidie };
+  }, [count, oldGlass, newGlass, houseType]);
 
   return (
     <section className="section bg-white">
@@ -72,7 +89,6 @@ export function SavingsCalculator() {
         <div className="mt-12 grid gap-10 lg:grid-cols-2">
           {/* Left: inputs */}
           <div className="space-y-8">
-            {/* Aantal kozijnen - slider + number */}
             <div>
               <label className="mb-3 block text-xs font-semibold uppercase tracking-wider text-neutral-500">
                 Aantal kozijnen
@@ -82,45 +98,42 @@ export function SavingsCalculator() {
                   type="range"
                   min={1}
                   max={40}
-                  value={kozijnen}
-                  onChange={(e) => setKozijnen(Number(e.target.value))}
+                  value={count}
+                  onChange={(e) => setCount(Number(e.target.value))}
                   className="h-2 flex-1 cursor-pointer appearance-none rounded-full bg-rebu-stone accent-rebu-green"
                 />
                 <input
                   type="number"
                   min={1}
                   max={100}
-                  value={kozijnen}
-                  onChange={(e) => setKozijnen(Math.max(1, parseInt(e.target.value) || 1))}
+                  value={count}
+                  onChange={(e) => setCount(Math.max(1, parseInt(e.target.value) || 1))}
                   className="w-16 rounded-xl border border-rebu-stone bg-white px-3 py-2 text-center font-display text-lg font-semibold text-rebu-charcoal focus:border-rebu-green focus:outline-none"
                 />
               </div>
             </div>
 
-            {/* Huidig glastype - toggle buttons */}
             <div>
               <label className="mb-3 block text-xs font-semibold uppercase tracking-wider text-neutral-500">
                 Huidig glastype
               </label>
               <div className="flex gap-2">
-                <ToggleButton label="Enkel glas" selected={current === "enkel"} onClick={() => setCurrent("enkel")} />
-                <ToggleButton label="Dubbel glas" selected={current === "dubbel"} onClick={() => setCurrent("dubbel")} />
-                <ToggleButton label="HR glas" selected={current === "hr"} onClick={() => setCurrent("hr")} />
+                <ToggleButton label="Enkel glas" selected={oldGlass === "enkel"} onClick={() => setOldGlass("enkel")} />
+                <ToggleButton label="Dubbel glas" selected={oldGlass === "dubbel"} onClick={() => setOldGlass("dubbel")} />
+                <ToggleButton label="HR glas" selected={oldGlass === "hr"} onClick={() => setOldGlass("hr")} />
               </div>
             </div>
 
-            {/* Nieuw glastype - toggle buttons */}
             <div>
               <label className="mb-3 block text-xs font-semibold uppercase tracking-wider text-neutral-500">
                 Nieuw glastype
               </label>
               <div className="flex gap-2">
-                <ToggleButton label="HR++" selected={newGlass === "hr++"} onClick={() => setNewGlass("hr++")} />
+                <ToggleButton label="HR++" selected={newGlass === "hrpp"} onClick={() => setNewGlass("hrpp")} />
                 <ToggleButton label="Triple glas" selected={newGlass === "triple"} onClick={() => setNewGlass("triple")} />
               </div>
             </div>
 
-            {/* Woningtype - toggle buttons 2x2 */}
             <div>
               <label className="mb-3 block text-xs font-semibold uppercase tracking-wider text-neutral-500">
                 Woningtype
@@ -128,13 +141,13 @@ export function SavingsCalculator() {
               <div className="grid grid-cols-2 gap-2">
                 <ToggleButton label="Tussenwoning" selected={houseType === "tussenwoning"} onClick={() => setHouseType("tussenwoning")} />
                 <ToggleButton label="Hoekwoning" selected={houseType === "hoekwoning"} onClick={() => setHouseType("hoekwoning")} />
-                <ToggleButton label="Twee-onder-een-kap" selected={houseType === "2-onder-1-kap"} onClick={() => setHouseType("2-onder-1-kap")} />
+                <ToggleButton label="Twee-onder-een-kap" selected={houseType === "twee-onder-een-kap"} onClick={() => setHouseType("twee-onder-een-kap")} />
                 <ToggleButton label="Vrijstaand" selected={houseType === "vrijstaand"} onClick={() => setHouseType("vrijstaand")} />
               </div>
             </div>
           </div>
 
-          {/* Right: results (always visible) */}
+          {/* Right: results */}
           <div>
             <h3 className="font-display text-2xl font-semibold text-rebu-charcoal md:text-3xl">
               Jouw geschatte besparing
@@ -148,7 +161,7 @@ export function SavingsCalculator() {
                   </div>
                   <span className="text-[10px] font-semibold uppercase tracking-wider text-neutral-500">Jaarlijkse besparing</span>
                 </div>
-                <p className="mt-3 font-display text-3xl font-bold text-rebu-charcoal">€{result.euros}</p>
+                <p className="mt-3 font-display text-3xl font-bold text-rebu-charcoal">€{results.yearlySaving}</p>
                 <p className="mt-1 text-xs text-neutral-500">per jaar op energie</p>
               </div>
 
@@ -159,7 +172,7 @@ export function SavingsCalculator() {
                   </div>
                   <span className="text-[10px] font-semibold uppercase tracking-wider text-neutral-500">CO₂ besparing</span>
                 </div>
-                <p className="mt-3 font-display text-3xl font-bold text-rebu-charcoal">{result.co2} kg</p>
+                <p className="mt-3 font-display text-3xl font-bold text-rebu-charcoal">{results.co2} kg</p>
                 <p className="mt-1 text-xs text-neutral-500">minder CO₂ per jaar</p>
               </div>
 
@@ -170,7 +183,7 @@ export function SavingsCalculator() {
                   </div>
                   <span className="text-[10px] font-semibold uppercase tracking-wider text-neutral-500">Terugverdientijd</span>
                 </div>
-                <p className="mt-3 font-display text-3xl font-bold text-rebu-charcoal">{result.payback} jaar</p>
+                <p className="mt-3 font-display text-3xl font-bold text-rebu-charcoal">{results.payback} jaar</p>
                 <p className="mt-1 text-xs text-neutral-500">incl. ISDE subsidie</p>
               </div>
 
@@ -181,8 +194,8 @@ export function SavingsCalculator() {
                   </div>
                   <span className="text-[10px] font-semibold uppercase tracking-wider text-neutral-500">ISDE subsidie</span>
                 </div>
-                <p className="mt-3 font-display text-3xl font-bold text-rebu-charcoal">€{result.isde}</p>
-                <p className="mt-1 text-xs text-neutral-500">{kozijnen} kozijnen × {M2_PER_KOZIJN} m² × €{ISDE_PER_M2}/m²</p>
+                <p className="mt-3 font-display text-3xl font-bold text-rebu-charcoal">€{results.subsidie}</p>
+                <p className="mt-1 text-xs text-neutral-500">{count} kozijnen × {AVG_M2_PER_KOZIJN} m² × €{ISDE_PER_M2[newGlass]}/m²</p>
               </div>
             </div>
 
@@ -193,13 +206,12 @@ export function SavingsCalculator() {
                 <p className="font-semibold text-rebu-charcoal">Disclaimer</p>
                 <p className="mt-1 text-neutral-600">
                   Deze berekening is een indicatie op basis van gemiddelden. De werkelijke besparing hangt af van je specifieke situatie (isolatie, stookgedrag, gasprijs). ISDE-subsidiebedragen zijn indicatief — check{" "}
-                  <a href="https://www.rvo.nl/subsidie-en-financieringswijzer/isde" target="_blank" rel="noopener noreferrer" className="text-rebu-green underline">rvo.nl</a>{" "}
+                  <a href="https://www.rvo.nl/subsidies-financiering/isde" target="_blank" rel="noopener noreferrer" className="text-rebu-green underline">rvo.nl</a>{" "}
                   voor actuele tarieven. Subsidie geldt alleen voor bestaande woningen.
                 </p>
               </div>
             </div>
 
-            {/* CTA */}
             <Link
               href="/offerte"
               className="mt-6 flex w-full items-center justify-center gap-2 rounded-xl bg-rebu-green px-8 py-4 text-sm font-semibold text-white transition-all hover:bg-rebu-green-dark"
