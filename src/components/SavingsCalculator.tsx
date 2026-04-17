@@ -67,10 +67,9 @@ export function SavingsCalculator() {
     const mult = houseMultiplier[houseType];
     const yearlySaving = Math.round(base * count * mult);
     const co2 = Math.round(yearlySaving * CO2_PER_EURO);
-    const subsidie = Math.round(count * AVG_M2_PER_KOZIJN * ISDE_PER_M2[newGlass]);
-    const totalInvestment = count * investmentPerKozijn[newGlass] - subsidie;
-    const payback = yearlySaving > 0 ? +(totalInvestment / yearlySaving).toFixed(1) : 0;
-    return { yearlySaving, co2, payback, subsidie };
+    const m2Glas = +(count * AVG_M2_PER_KOZIJN).toFixed(1);
+    const subsidie = Math.round(m2Glas * ISDE_PER_M2[newGlass]);
+    return { yearlySaving, co2, subsidie, m2Glas };
   }, [count, oldGlass, newGlass, houseType]);
 
   return (
@@ -111,6 +110,9 @@ export function SavingsCalculator() {
                   className="w-16 rounded-xl border border-rebu-stone bg-white px-3 py-2 text-center font-display text-lg font-semibold text-rebu-charcoal focus:border-rebu-green focus:outline-none"
                 />
               </div>
+              <p className="mt-2 text-xs text-neutral-400">
+                ≈ {results.m2Glas} m² glasoppervlak (gem. {AVG_M2_PER_KOZIJN} m² per kozijn)
+              </p>
             </div>
 
             <div>
@@ -184,7 +186,7 @@ export function SavingsCalculator() {
                   <span className="text-[10px] font-semibold uppercase tracking-wider text-neutral-500">ISDE subsidie</span>
                 </div>
                 <p className="mt-3 font-display text-3xl font-bold text-rebu-charcoal">€{results.subsidie}</p>
-                <p className="mt-1 text-xs text-neutral-500">{count} kozijnen × {AVG_M2_PER_KOZIJN} m² × €{ISDE_PER_M2[newGlass]}/m²</p>
+                <p className="mt-1 text-xs text-neutral-500">{results.m2Glas} m² glas × €{ISDE_PER_M2[newGlass]}/m²</p>
               </div>
             </div>
 
