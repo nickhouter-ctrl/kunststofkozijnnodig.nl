@@ -24,49 +24,49 @@ const pricing = [
   {
     product: "Kunststof kozijn",
     unit: "per m²",
-    from: "€ 750",
-    to: "€ 1.050",
-    includes: "HR++ glas, montage, afwerking, afvoer oud kozijn",
+    from: "€ 550",
+    to: "€ 850",
+    includes: "HR++ glas, afwerking — exclusief montage",
     note: "Prijs afhankelijk van profiel, kleur en glastype",
   },
   {
     product: "Kunststof voordeur",
     unit: "compleet",
-    from: "€ 3.500",
-    to: "€ 7.500",
-    includes: "Deurpaneel, kozijn, 3-puntssluiting, cilinder, montage",
+    from: "€ 2.500",
+    to: "€ 6.000",
+    includes: "Deurpaneel, kozijn, 3-puntssluiting, cilinder",
     note: "Afhankelijk van model, glas en hardware",
   },
   {
     product: "Kunststof achterdeur",
     unit: "compleet",
-    from: "€ 2.800",
-    to: "€ 5.000",
-    includes: "Deurpaneel, kozijn, beslag, montage",
+    from: "€ 1.800",
+    to: "€ 4.000",
+    includes: "Deurpaneel, kozijn, beslag",
     note: "Afhankelijk van afmeting en glastype",
   },
   {
     product: "Schuifpui 2-delig (3m)",
     unit: "compleet",
-    from: "€ 6.000",
-    to: "€ 8.500",
-    includes: "Kunststof profiel, HR++ glas, rail, montage",
+    from: "€ 4.500",
+    to: "€ 7.000",
+    includes: "Kunststof profiel, HR++ glas, rail",
     note: "Prijs bij standaard afmeting ~300×220cm",
   },
   {
     product: "Schuifpui 3-delig (4,5m)",
     unit: "compleet",
-    from: "€ 9.000",
-    to: "€ 12.500",
-    includes: "Kunststof profiel, HR++ glas, rail, montage",
+    from: "€ 7.000",
+    to: "€ 10.500",
+    includes: "Kunststof profiel, HR++ glas, rail",
     note: "Prijs bij standaard afmeting ~450×220cm",
   },
   {
     product: "Hefschuifpui",
     unit: "compleet",
-    from: "€ 10.000",
-    to: "€ 16.000",
-    includes: "Premium profiel, hefmechanisme, HR++ of triple, montage",
+    from: "€ 8.500",
+    to: "€ 14.000",
+    includes: "Premium profiel, hefmechanisme, HR++ of triple glas",
     note: "Topsegment — soepelste bediening",
   },
 ];
@@ -103,7 +103,7 @@ export default function PrijzenPage() {
       <PageHero
         eyebrow="Prijzen 2026"
         title="Wat kosten kunststof kozijnen?"
-        description="Transparante prijzen, geen verrassingen. Hieronder vind je actuele richtprijzen inclusief montage. Vraag een gratis offerte op maat aan voor jouw exacte situatie."
+        description="Transparante prijzen, geen verrassingen. Hieronder vind je actuele richtprijzen exclusief montage. Vraag een gratis offerte op maat aan voor jouw exacte situatie."
         image="/images/kleur-rebu.jpg"
         breadcrumb={[
           { label: "Home", href: "/" },
@@ -117,10 +117,10 @@ export default function PrijzenPage() {
           <div className="mx-auto max-w-4xl">
             <span className="section-eyebrow">Prijsoverzicht</span>
             <h2 className="section-title mt-3">
-              Richtprijzen <span className="italic text-rebu-green">inclusief montage</span>
+              Richtprijzen <span className="italic text-rebu-green">exclusief montage</span>
             </h2>
             <p className="mt-4 text-neutral-600">
-              Onderstaande prijzen zijn inclusief BTW, montage, afwerking en afvoer van oude kozijnen. De exacte prijs hangt af van jouw specifieke situatie — vraag altijd een offerte op maat.
+              Onderstaande prijzen zijn inclusief BTW — exclusief montage. Montage is optioneel bij te bestellen. De exacte prijs hangt af van jouw specifieke situatie — vraag altijd een offerte op maat.
             </p>
 
             <div className="mt-10 space-y-4">
