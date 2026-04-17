@@ -14,7 +14,7 @@ type ColorItem = {
   code: string;
   name: string;
   type: "Houtprint" | "RAL" | "Zandstructuur" | "Brush" | "Glad";
-  structure: "Nerf" | "Glad" | "Zandstructuur / Glad" | "Brush (recht)";
+  structure: string;
   hex: string;
 };
 
