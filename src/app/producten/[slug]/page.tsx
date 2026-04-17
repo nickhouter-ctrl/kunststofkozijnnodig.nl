@@ -189,16 +189,9 @@ export default async function ProductDetailPage({
             })}
           </div>
 
-          {/* Brochures + voordeuren link - only for deuren */}
+          {/* Brochures - only for deuren */}
           {slug === "deuren" && (
-            <div className="mt-10 space-y-4">
-              <Link href="/voordeuren" className="block rounded-2xl bg-rebu-green p-8 text-white shadow-glow transition-all hover:bg-rebu-green-dark">
-                <h3 className="font-display text-xl font-semibold">Bekijk alle 30+ voordeurmodellen</h3>
-                <p className="mt-2 text-sm text-white/80">Van Style tot Elegance — ontdek de volledige collectie premium voordeuren.</p>
-                <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold">
-                  Naar voordeurmodellen <ArrowRight className="h-4 w-4" />
-                </span>
-              </Link>
+            <div className="mt-10">
               <div className="rounded-2xl bg-white p-8 shadow-soft ring-1 ring-black/5">
                 <h3 className="font-display text-xl font-semibold text-rebu-charcoal">Brochures</h3>
                 <p className="mt-2 text-sm text-neutral-600">Download de volledige catalogus met alle voordeurmodellen.</p>
