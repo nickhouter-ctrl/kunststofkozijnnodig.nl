@@ -93,15 +93,17 @@ export function SavingsCalculator() {
               <label className="mb-2 block text-xs font-semibold uppercase tracking-wider text-neutral-500">
                 Aantal kozijnen
               </label>
-              <select
+              <input
+                type="number"
+                inputMode="numeric"
+                min={1}
+                max={100}
                 value={kozijnen}
-                onChange={(e) => { setKozijnen(Number(e.target.value)); setCalculated(false); }}
+                onChange={(e) => { setKozijnen(Math.max(1, parseInt(e.target.value) || 1)); setCalculated(false); }}
                 className="input"
-              >
-                {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 15, 18, 20, 25, 30].map((n) => (
-                  <option key={n} value={n}>{n} kozijnen ({(n * M2_PER_KOZIJN).toFixed(1)} m² glas)</option>
-                ))}
-              </select>
+                placeholder="Bijv. 10"
+              />
+              <p className="mt-1 text-xs text-neutral-400">{kozijnen} kozijnen × {M2_PER_KOZIJN} m² = {(kozijnen * M2_PER_KOZIJN).toFixed(1)} m² glasoppervlak</p>
             </div>
 
             {/* Huidig glastype */}
@@ -170,7 +172,7 @@ export function SavingsCalculator() {
                   <Euro className="h-6 w-6" />
                 </div>
                 <p className="mt-4 font-display text-3xl font-bold text-rebu-green">€{result.euros}</p>
-                <p className="mt-1 text-xs text-neutral-500">besparing per jaar</p>
+                <p className="mt-1 text-xs text-neutral-500">per jaar op energie</p>
               </div>
 
               <div className="rounded-2xl border border-rebu-stone bg-rebu-cream p-6 text-center">
@@ -178,7 +180,7 @@ export function SavingsCalculator() {
                   <Leaf className="h-6 w-6" />
                 </div>
                 <p className="mt-4 font-display text-3xl font-bold text-rebu-charcoal">{result.co2} kg</p>
-                <p className="mt-1 text-xs text-neutral-500">CO₂ reductie per jaar</p>
+                <p className="mt-1 text-xs text-neutral-500">minder CO₂ per jaar</p>
               </div>
 
               <div className="rounded-2xl border border-rebu-stone bg-rebu-cream p-6 text-center">
@@ -186,7 +188,7 @@ export function SavingsCalculator() {
                   <Clock className="h-6 w-6" />
                 </div>
                 <p className="mt-4 font-display text-3xl font-bold text-rebu-charcoal">{result.payback} jaar</p>
-                <p className="mt-1 text-xs text-neutral-500">terugverdientijd (incl. subsidie)</p>
+                <p className="mt-1 text-xs text-neutral-500">incl. ISDE subsidie</p>
               </div>
 
               <div className="rounded-2xl border border-rebu-stone bg-rebu-cream p-6 text-center">
@@ -198,17 +200,15 @@ export function SavingsCalculator() {
               </div>
             </div>
 
-            {/* ISDE info */}
-            <div className="mt-6 flex items-start gap-3 rounded-2xl bg-rebu-green/5 p-5 text-sm ring-1 ring-rebu-green/20">
-              <Info className="mt-0.5 h-4 w-4 flex-none text-rebu-green" />
-              <div>
-                <p className="font-semibold text-rebu-green-dark">ISDE subsidie: €{ISDE_PER_M2} per m² glas</p>
-                <p className="mt-1 text-neutral-600">
-                  Berekening: {kozijnen} kozijnen × {M2_PER_KOZIJN} m² × €{ISDE_PER_M2}/m² = €{result.isde}. Kijk op{" "}
-                  <a href="https://www.rvo.nl/subsidie-en-financieringswijzer/isde" target="_blank" rel="noopener noreferrer" className="text-rebu-green underline">rvo.nl</a>{" "}
-                  voor de actuele tarieven.
-                </p>
-              </div>
+            {/* Disclaimer */}
+            <div className="mt-6 rounded-2xl bg-rebu-green/5 p-5 text-sm ring-1 ring-rebu-green/20">
+              <p className="font-semibold text-rebu-green-dark">ISDE subsidie: {kozijnen} kozijnen × {M2_PER_KOZIJN} m² × €{ISDE_PER_M2}/m² = €{result.isde}</p>
+              <p className="mt-2 text-neutral-600">
+                Deze berekening is een indicatie op basis van gemiddelden. Werkelijke resultaten variëren naar jouw specifieke situatie.
+                Subsidiebedragen zijn indicatief — kijk op{" "}
+                <a href="https://www.rvo.nl/subsidie-en-financieringswijzer/isde" target="_blank" rel="noopener noreferrer" className="text-rebu-green underline">rvo.nl</a>{" "}
+                voor actuele tarieven. Subsidie geldt alleen voor bestaande woningen.
+              </p>
             </div>
 
             {/* CTA */}
