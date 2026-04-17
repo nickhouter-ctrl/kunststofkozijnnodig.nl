@@ -47,6 +47,7 @@ export const nav = [
   { label: "Producten", href: "/producten" },
   { label: "Projecten", href: "/projecten" },
   { label: "Prijzen", href: "/prijzen" },
+  { label: "Kleuren", href: "/kleuren" },
   { label: "Besparing", href: "/besparing" },
   { label: "FAQ", href: "/veelgestelde-vragen" },
   { label: "Contact", href: "/contact" },
