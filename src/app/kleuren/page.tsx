@@ -83,9 +83,8 @@ const grijsColors: ColorItem[] = [
 ];
 
 const standardColors = [
-  { name: "Wit (RAL 9016)", hex: "#FFFFFF", border: true, structure: "Glad (zonder folie)" },
-  { name: "Crème Wit (RAL 9001)", hex: "#FFF5E0", border: false, structure: "Glad (zonder folie)" },
-  { name: "Zwart (RAL 9005)", hex: "#0D0D0D", border: false, structure: "Glad / nerf" },
+  { name: "Wit (RAL 9016)", hex: "#FFFFFF", border: true, structure: "Zonder folie" },
+  { name: "Crème wit (RAL 9001)", hex: "#FFF5E0", border: false, structure: "Zonder folie" },
 ];
 
 function ColorCard({ color }: { color: ColorItem }) {
@@ -123,9 +122,9 @@ export default function KleurenPage() {
         <div className="container-rebu">
           <span className="section-eyebrow">Standaard</span>
           <h2 className="section-title mt-3">
-            Standaard kleuren <span className="italic text-rebu-green">zonder folie</span>
+            Standaard <span className="italic text-rebu-green">basiskleuren</span>
           </h2>
-          <p className="mt-4 text-neutral-600">Glad profiel zonder nerf — de meest gekozen basiskleuren.</p>
+          <p className="mt-4 text-neutral-600">De basiskleuren zonder folie. Snelst leverbaar en het meest gekozen.</p>
           <div className="mt-10 grid gap-6 md:grid-cols-3">
             {standardColors.map((c) => (
               <div key={c.name} className="overflow-hidden rounded-2xl border border-rebu-stone bg-white">

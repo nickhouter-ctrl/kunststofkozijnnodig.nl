@@ -43,8 +43,8 @@ const GAS_PRICE = 0.14;
 const DEGREE_HOURS = 72_000;
 // CO2 per kWh gas
 const CO2_PER_KWH = 0.204;
-// ISDE subsidie per m² glas
-const ISDE_PER_M2 = 41;
+// ISDE subsidie per m² glas (actueel RVO tarief 2026)
+const ISDE_PER_M2 = 62;
 // Average cost per m² kozijn (for payback calc)
 const COST_PER_M2 = 800;
 
@@ -204,8 +204,9 @@ export function SavingsCalculator() {
               <div>
                 <p className="font-semibold text-rebu-green-dark">ISDE subsidie: €{ISDE_PER_M2} per m² glas</p>
                 <p className="mt-1 text-neutral-600">
-                  Via de ISDE-regeling ontvang je €{ISDE_PER_M2} per m² bij het upgraden naar HR++ of triple glas in bestaande woningen.
-                  Berekening op basis van {kozijnen} kozijnen × {M2_PER_KOZIJN} m² = {result.m2.toFixed(1)} m² glasoppervlak.
+                  Berekening: {kozijnen} kozijnen × {M2_PER_KOZIJN} m² × €{ISDE_PER_M2}/m² = €{result.isde}. Kijk op{" "}
+                  <a href="https://www.rvo.nl/subsidie-en-financieringswijzer/isde" target="_blank" rel="noopener noreferrer" className="text-rebu-green underline">rvo.nl</a>{" "}
+                  voor de actuele tarieven.
                 </p>
               </div>
             </div>
