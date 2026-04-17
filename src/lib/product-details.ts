@@ -20,11 +20,11 @@ export const productDetails: Record<ProductDetail["slug"], ProductDetail> = {
     heroImage: "/images/project-zaandam-1.jpg",
     gallery: [
       "/images/project-zaandam-1.jpg",
-      "/images/project-zaandam-2.jpg",
-      "/images/project-zaandam-3.jpg",
       "/images/project-zaandam-4.jpg",
       "/images/project-latten-5.webp",
-      "/images/villa-kozijn.jpg",
+      "/images/project-latten-4.webp",
+      "/images/project-latten-8.webp",
+      "/images/project-mijdrecht.webp",
     ],
     features: [
       { title: "Onderhoudsvrij", body: "Nooit meer schilderen — kunststof blijft decennia mooi." },
@@ -67,11 +67,10 @@ export const productDetails: Record<ProductDetail["slug"], ProductDetail> = {
       "Voordeuren, achterdeuren en openslaande deuren in kunststof — zonder verf, zonder zorgen. Warm, stil, inbraakwerend en met een uitstraling die past bij jouw woning. Uit voorraad leverbaar in de meest populaire kleuren.",
     heroImage: "/images/project-zaandam-4.jpg",
     gallery: [
-      "/images/project-zaandam-4.jpg",
-      "/images/project-krommenie.jpg",
       "/images/project-landsmeer.jpg",
-      "/images/product-kozijnen-2.png",
-      "/images/project-latten-4.webp",
+      "/images/project-zaandam-1.jpg",
+      "/images/project-krommenie.jpg",
+      "/images/project-1-7.jpg",
     ],
     features: [
       { title: "3-puntsvergrendeling", body: "Standaard op elke voordeur — extra inbraakwerend." },
@@ -108,11 +107,10 @@ export const productDetails: Record<ProductDetail["slug"], ProductDetail> = {
       "Slanke profielen, groot glasoppervlak en soepele bediening — een schuifpui maakt je woonkamer ineens twee keer zo groot. Wij leveren 2-, 3- en 4-delige schuifpuien én luxe hefschuifdeuren voor het topsegment.",
     heroImage: "/images/project-landsmeer.jpg",
     gallery: [
-      "/images/project-landsmeer.jpg",
-      "/images/project-zaandam-3.jpg",
-      "/images/product-kozijnen-3.png",
-      "/images/project-mijdrecht.webp",
       "/images/villa-kozijn.jpg",
+      "/images/project-zaandam-3.jpg",
+      "/images/project-zaandam-2.jpg",
+      "/images/project-mijdrecht.webp",
     ],
     features: [
       { title: "Slanke profielen", body: "Maximaal glas, minimaal zichtbaar kozijn." },
