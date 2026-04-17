@@ -4,9 +4,19 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowUpRight, MapPin, Calendar, Images } from "lucide-react";
-import { projects } from "@/lib/projects";
 
-export function ProjectsGrid() {
+type ProjectCard = {
+  slug: string;
+  title: string;
+  location: string;
+  year: string;
+  category: string;
+  summary: string;
+  cover: string;
+  imageCount: number;
+};
+
+export function ProjectsGrid({ projects }: { projects: ProjectCard[] }) {
   return (
     <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
       {projects.map((p, i) => (
@@ -34,7 +44,7 @@ export function ProjectsGrid() {
               {/* Photo count badge */}
               <div className="absolute left-4 top-4 inline-flex items-center gap-1.5 rounded-full bg-rebu-green-dark/70 px-3 py-1 text-xs font-medium text-white backdrop-blur-md ring-1 ring-white/15">
                 <Images className="h-3 w-3" />
-                {p.gallery.length} foto's
+                {p.imageCount} foto's
               </div>
 
               {/* Arrow */}
