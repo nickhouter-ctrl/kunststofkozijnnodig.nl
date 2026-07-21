@@ -18,9 +18,8 @@ export const site = {
   emailHref: "mailto:info@rebukozijnen.nl",
   kvk: "",
   social: {
-    instagram: "https://www.instagram.com/rebukozijnen/",
-    facebook: "https://www.facebook.com/profile.php?id=100088551289159",
-    linkedin: "https://www.linkedin.com/company/rebu-kozijnen",
+    // Instagram/Facebook/LinkedIn stonden nog op de Rebu-profielen; teruggezet
+    // zodra het nieuwe bedrijf eigen accounts heeft.
     whatsapp: "https://wa.me/31658866070",
   },
   hours: [

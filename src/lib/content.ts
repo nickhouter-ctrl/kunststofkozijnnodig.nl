@@ -63,7 +63,7 @@ export const projects = [
   { title: "Woning met schuifpui", location: "Landsmeer", image: "/images/project-landsmeer.jpg" },
   { title: "Volledige gevel", location: "Krommenie", image: "/images/project-krommenie.jpg" },
   { title: "Showcase", location: "Mijdrecht", image: "/images/project-mijdrecht.webp" },
-  { title: "Levering met lattenstructuur", location: "Zaanstreek", image: "/images/project-latten-8.webp" },
+  { title: "Levering met lattenstructuur", location: "Zaanstreek", image: "/images/project-latten-4.webp" },
 ] as const;
 
 export const reviews = [] as const;

@@ -73,7 +73,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     },
     geo: { "@type": "GeoCoordinates", latitude: 52.50847, longitude: 4.78471 },
     priceRange: "€€",
-    sameAs: [site.social.instagram, site.social.facebook, site.social.linkedin],
   };
 
   return (

@@ -13,7 +13,7 @@ export default function AVPage() {
         eyebrow="Juridisch"
         title="Algemene voorwaarden"
         description="De voorwaarden zoals deze van toepassing zijn op al onze leveringen en diensten."
-        image="/images/project-latten-8.webp"
+        image="/images/project-latten-5.webp"
         breadcrumb={[
           { label: "Home", href: "/" },
           { label: "Algemene voorwaarden", href: "/algemene-voorwaarden" },

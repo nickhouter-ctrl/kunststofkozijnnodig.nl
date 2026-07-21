@@ -46,8 +46,6 @@ export const projects: Project[] = [
     gallery: [
       "/images/project-latten-4.webp",
       "/images/project-latten-5.webp",
-      "/images/project-latten-8.webp",
-      "/images/project-latten-8.jpg",
     ],
   },
   {
@@ -65,7 +63,6 @@ export const projects: Project[] = [
     gallery: [
       "/images/showcase-leveringen-3.webp",
       "/images/showcase-leveringen-6.webp",
-      "/images/showcase-leveringen-9.webp",
       "/images/project-1-7.jpg",
     ],
   },

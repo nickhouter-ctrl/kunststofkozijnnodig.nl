@@ -16,7 +16,7 @@ export default function OverOnsPage() {
         eyebrow="Over ons"
         title="Jong team, ouderwets vakmanschap."
         description="Wij zijn een kleinschalig bedrijf met grote ambities. Vanuit Wormerveer leveren en plaatsen we kozijnen door heel Nederland."
-        image="/images/project-latten-8.webp"
+        image="/images/showcase-leveringen-3.webp"
         breadcrumb={[
           { label: "Home", href: "/" },
           { label: "Over ons", href: "/over-ons" },

@@ -23,7 +23,6 @@ export const productDetails: Record<ProductDetail["slug"], ProductDetail> = {
       "/images/project-zaandam-4.jpg",
       "/images/project-latten-5.webp",
       "/images/project-latten-4.webp",
-      "/images/project-latten-8.webp",
     ],
     features: [
       { title: "Onderhoudsvrij", body: "Nooit meer schilderen — kunststof blijft decennia mooi." },
