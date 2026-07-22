@@ -14,9 +14,11 @@ export const site = {
   phone: "+31 6 58 86 60 70",
   phoneHref: "tel:+31658866070",
   whatsapp: "https://wa.me/31658866070",
-  email: "info@rebukozijnen.nl",
-  emailHref: "mailto:info@rebukozijnen.nl",
-  kvk: "",
+  email: "info@kunststofkozijnnodig.nl",
+  emailHref: "mailto:info@kunststofkozijnnodig.nl",
+  kvk: "42075957",
+  btw: "NL869595313B01",
+  iban: "NL69 INGB 0119 2791 93",
   social: {
     // Instagram/Facebook/LinkedIn stonden nog op de Rebu-profielen; teruggezet
     // zodra het nieuwe bedrijf eigen accounts heeft.
