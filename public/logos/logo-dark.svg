@@ -1,10 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 68" fill="none">
-  <rect x="2" y="2" width="32" height="52" rx="3" stroke="#1e3a5f" stroke-width="2.5" fill="none"/>
-  <rect x="6" y="6" width="24" height="22" rx="1.5" stroke="#1e3a5f" stroke-width="1.5" fill="none" opacity="0.5"/>
-  <rect x="6" y="32" width="24" height="18" rx="1.5" stroke="#1e3a5f" stroke-width="1.5" fill="none" opacity="0.5"/>
-  <circle cx="26" cy="34" r="2" fill="#2563eb"/>
-  <line x1="42" y1="10" x2="42" y2="46" stroke="#2563eb" stroke-width="2" stroke-linecap="round"/>
-  <text x="52" y="22" font-family="system-ui,-apple-system,sans-serif" font-weight="800" font-size="17" letter-spacing="0.5" fill="#1e3a5f">KUNSTSTOF</text>
-  <text x="52" y="42" font-family="system-ui,-apple-system,sans-serif" font-weight="800" font-size="17" letter-spacing="0.5" fill="#1e3a5f">KOZIJN<tspan font-weight="400" fill="#1e3a5f" opacity="0.6">NODIG</tspan><tspan fill="#2563eb" font-weight="800">.NL</tspan></text>
-  <text x="52" y="60" font-family="system-ui,-apple-system,sans-serif" font-weight="400" font-size="10" letter-spacing="1.2" fill="#1e3a5f" opacity="0.5">SCHERPE PRIJZEN. SNELLE LEVERING.</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 60" fill="none">
+  <!-- Kozijn mark: a clean four-pane window frame -->
+  <rect x="2" y="8" width="44" height="44" rx="3" stroke="#00a66e" stroke-width="3"/>
+  <line x1="24" y1="8" x2="24" y2="52" stroke="#00a66e" stroke-width="3"/>
+  <line x1="2" y1="30" x2="46" y2="30" stroke="#00a66e" stroke-width="3"/>
+  <!-- Wordmark -->
+  <text x="62" y="27" font-family="Montserrat,system-ui,sans-serif" font-weight="700" font-size="17" letter-spacing="0.5" fill="#141917">KUNSTSTOF</text>
+  <text x="62" y="47" font-family="Montserrat,system-ui,sans-serif" font-weight="700" font-size="17" letter-spacing="0.5" fill="#141917">KOZIJNNODIG<tspan fill="#00a66e">.NL</tspan></text>
 </svg>

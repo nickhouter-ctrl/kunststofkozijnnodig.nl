@@ -1,8 +1,8 @@
 export const site = {
   name: "Kunststofkozijnnodig.nl",
-  tagline: "Scherpe prijzen. Snelle levering.",
+  tagline: "Uw zakelijke partner in kunststof kozijnen",
   description:
-    "Kunststofkozijnnodig.nl levert en plaatst hoogwaardige kunststof kozijnen, deuren en schuifpuien. Binnen 4 weken geleverd, scherpe prijzen en persoonlijk advies van vakmensen.",
+    "Kunststofkozijnnodig.nl is de projectleverancier van kunststof kozijnen, deuren en schuifpuien voor aannemers, VvE's, woningcorporaties en projectontwikkelaars. Vaste projectprijzen, betrouwbare planning en levering door heel Nederland.",
   url: "https://kunststofkozijnnodig.nl",
   locale: "nl-NL",
   address: {
@@ -30,10 +30,35 @@ export const site = {
     { day: "Zondag", time: "Gesloten" },
   ],
   usps: [
-    { title: "Binnen 4 weken geleverd", description: "Korte levertijden dankzij eigen voorraad en directe lijnen met de fabriek." },
-    { title: "Maatwerk voor elk project", description: "Van renovatie tot nieuwbouw — elk kozijn precies op maat." },
-    { title: "Scherpe prijs, hoge kwaliteit", description: "Duitse topmerken zoals Schüco, Aluplast en Gealan tegen eerlijke prijzen." },
-    { title: "SKG 2-ster gecertificeerd", description: "Inbraakwerend volgens Politiekeurmerk — upgrade naar SKG 3 mogelijk." },
+    { title: "Vaste projectprijzen", description: "Eén heldere prijs per project — scherp gecalculeerd, zonder verrassingen achteraf." },
+    { title: "Betrouwbare planning", description: "Voorspelbare levertijden zodat uw bouwplanning blijft staan." },
+    { title: "Levering door heel NL", description: "Van losse posten tot complete gevelpakketten, op locatie geleverd." },
+    { title: "Duitse topmerken", description: "Schüco, Aluplast en Gealan — SKG-gecertificeerd en onderhoudsvrij." },
+  ],
+  // Zakelijke doelgroepen — de kern van de positionering.
+  audiences: [
+    {
+      title: "Aannemers & bouwbedrijven",
+      body: "Projectlevering met vaste inkoopprijzen, korte lijnen en betrouwbare levertijden die uw planning respecteren.",
+      href: "/zakelijk",
+    },
+    {
+      title: "VvE's & woningcorporaties",
+      body: "Groot onderhoud en renovatie van tientallen tot honderden woningen — uniform, gecertificeerd en gefaseerd geleverd.",
+      href: "/zakelijk",
+    },
+    {
+      title: "Projectontwikkelaars",
+      body: "Nieuwbouw op volume, volledig op maat per bouwstroom en afgestemd op uw bestek en detaillering.",
+      href: "/zakelijk",
+    },
+  ],
+  // Kengetallen voor de vertrouwensstrook.
+  stats: [
+    { value: "15.000+", label: "Kozijnen per jaar geleverd" },
+    { value: "4 wk", label: "Gemiddelde levertijd" },
+    { value: "100%", label: "SKG-gecertificeerd" },
+    { value: "NL", label: "Levering door heel Nederland" },
   ],
   brands: [
     { name: "Schüco", logo: "/images/merk-schuco.jpg" },
@@ -43,12 +68,10 @@ export const site = {
 } as const;
 
 export const nav = [
-  { label: "Particulier", href: "/particulier" },
   { label: "Zakelijk", href: "/zakelijk" },
   { label: "Producten", href: "/producten" },
   { label: "Projecten", href: "/projecten" },
   { label: "Prijzen", href: "/prijzen" },
-  { label: "Besparing", href: "/besparing" },
-  { label: "FAQ", href: "/veelgestelde-vragen" },
+  { label: "Over ons", href: "/over-ons" },
   { label: "Contact", href: "/contact" },
 ] as const;

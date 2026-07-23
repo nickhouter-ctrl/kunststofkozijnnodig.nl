@@ -16,32 +16,29 @@ export function PageHero({
   breadcrumb: { label: string; href: string }[];
 }) {
   return (
-    <section className="relative overflow-hidden bg-rebu-green-dark text-white">
-      <div className="absolute inset-0">
-        <Image src={image} alt="" fill priority className="object-cover opacity-30" />
-        <div className="absolute inset-0 bg-gradient-to-br from-rebu-green-dark via-rebu-green/85 to-rebu-green-dark" />
-        <div className="absolute inset-0 bg-gradient-to-t from-rebu-green-dark via-transparent to-transparent" />
-      </div>
+    <section className="relative overflow-hidden border-b border-ink/10 bg-rebu-cream">
+      <div className="container-rebu relative grid gap-12 py-16 md:grid-cols-2 md:items-end md:py-24">
+        <div>
+          <nav className="mb-8 flex flex-wrap items-center gap-2 text-[0.7rem] uppercase tracking-[0.16em] text-ink-soft">
+            {breadcrumb.map((b, i) => (
+              <span key={b.href} className="flex items-center gap-2">
+                {i > 0 && <ChevronRight className="h-3 w-3 text-ink-soft/50" />}
+                <Link href={b.href} className="transition-colors hover:text-ink">
+                  {b.label}
+                </Link>
+              </span>
+            ))}
+          </nav>
+          <span className="eyebrow">{eyebrow}</span>
+          <h1 className="mt-5 max-w-2xl font-display text-4xl font-medium leading-[1.04] tracking-[-0.01em] text-ink md:text-6xl">
+            {title}
+          </h1>
+          <p className="mt-6 max-w-xl text-base leading-relaxed text-ink-soft md:text-lg">{description}</p>
+        </div>
 
-      {/* Lighter green glow */}
-      <div className="pointer-events-none absolute -left-40 top-1/2 h-[400px] w-[400px] -translate-y-1/2 rounded-full bg-rebu-green-light/25 blur-3xl" />
-
-      <div className="container-rebu relative py-20 md:py-28">
-        <nav className="mb-6 flex items-center gap-2 text-xs text-white/70">
-          {breadcrumb.map((b, i) => (
-            <span key={b.href} className="flex items-center gap-2">
-              {i > 0 && <ChevronRight className="h-3 w-3" />}
-              <Link href={b.href} className="transition-colors hover:text-white">
-                {b.label}
-              </Link>
-            </span>
-          ))}
-        </nav>
-        <span className="section-eyebrow text-rebu-cream/90">{eyebrow}</span>
-        <h1 className="mt-3 max-w-3xl font-display text-5xl font-semibold leading-tight md:text-6xl">
-          {title}
-        </h1>
-        <p className="mt-5 max-w-2xl text-lg text-white/80">{description}</p>
+        <div className="relative aspect-[4/3] w-full overflow-hidden md:aspect-[5/4]">
+          <Image src={image} alt="" fill priority sizes="(max-width:768px) 100vw, 50vw" className="object-cover" />
+        </div>
       </div>
     </section>
   );

@@ -2,68 +2,126 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ----------------------------------------------------------------------------
+   KUNSTSTOFKOZIJNNODIG.NL — editorial design system
+   Neutral cream/ink base, Rebu-green as the single accent, serif display.
+---------------------------------------------------------------------------- */
+
 :root {
-  --rebu-green: #1e40af;
-  --rebu-green-light: #3b82f6;
-  --rebu-green-dark: #1e3a5f;
-  --rebu-cream: #f0f4f8;
-  --rebu-stone: #dce4ed;
+  --rebu-green: #00a66e;
+  --rebu-green-light: #2bbd8a;
+  --rebu-green-dark: #0b3d2e;
+  --rebu-tint: #e8f6f0;
+  --rebu-cream: #f7f5f0;
+  --rebu-stone: #e4e0d6;
+  --ink: #141917;
+  --ink-soft: #565c58;
 }
 
 html {
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  overflow-x: clip;
 }
 
 body {
   background-color: var(--rebu-cream);
-  color: #1a1a1a;
+  color: var(--ink);
+  font-feature-settings: "ss01";
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
 
-@layer components {
-  .container-rebu {
-    @apply mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12;
-  }
-  .btn-primary {
-    @apply inline-flex items-center gap-2 rounded-full bg-rebu-green px-6 py-3 text-sm font-semibold text-white shadow-soft transition-all hover:bg-rebu-green-dark hover:shadow-glow focus:outline-none focus:ring-2 focus:ring-rebu-green focus:ring-offset-2;
-  }
-  .btn-secondary {
-    @apply inline-flex items-center gap-2 rounded-full border border-rebu-green/20 bg-white px-6 py-3 text-sm font-semibold text-rebu-green transition-all hover:border-rebu-green hover:bg-rebu-green hover:text-white;
-  }
-  .btn-ghost {
-    @apply inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold text-rebu-green-dark transition-colors hover:bg-rebu-stone;
-  }
-  .section {
-    @apply py-20 md:py-28;
-  }
-  .section-title {
-    @apply font-display text-3xl md:text-5xl font-semibold leading-[1.1] tracking-tight text-rebu-charcoal;
-  }
-  .section-eyebrow {
-    @apply inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-rebu-green;
-  }
-  .card {
-    @apply rounded-2xl bg-white p-6 shadow-soft ring-1 ring-black/5;
-  }
-  .input {
-    @apply w-full rounded-xl border border-rebu-stone bg-white px-4 py-3 text-sm text-rebu-charcoal placeholder:text-neutral-400 focus:border-rebu-green focus:outline-none focus:ring-2 focus:ring-rebu-green/20;
-  }
-  .chip {
-    @apply inline-flex items-center gap-2 rounded-full bg-rebu-stone px-3 py-1 text-xs font-medium text-rebu-green-dark;
+@layer base {
+  ::selection {
+    background: var(--rebu-green);
+    color: #fff;
   }
 }
 
-/* Marquee for brand logos */
+@layer components {
+  /* Wide editorial container — grows with the viewport up to a calm cap */
+  .container-rebu {
+    @apply mx-auto w-full max-w-[104rem] px-5 sm:px-8 lg:px-12 2xl:px-16;
+  }
+
+  .section {
+    @apply py-20 md:py-28;
+  }
+
+  /* Serif display heading */
+  .section-title {
+    @apply font-display text-[2rem] font-medium leading-[1.05] tracking-[-0.01em] text-ink sm:text-4xl md:text-5xl;
+  }
+
+  /* Eyebrow / kicker — uppercase label with a leading hairline rule */
+  .eyebrow,
+  .section-eyebrow {
+    @apply inline-flex items-center gap-3 text-[0.7rem] font-semibold uppercase tracking-[0.28em] text-rebu-green;
+  }
+  .eyebrow::before,
+  .section-eyebrow::before {
+    content: "";
+    @apply h-px w-7 bg-rebu-green/50;
+  }
+  .eyebrow.is-light,
+  .section-eyebrow.is-light {
+    @apply text-white/70;
+  }
+  .eyebrow.is-light::before,
+  .section-eyebrow.is-light::before {
+    @apply bg-white/40;
+  }
+
+  /* Buttons — flat, square, uppercase, hairline; hover inverts */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2.5 px-7 py-3.5 text-[0.72rem] font-semibold uppercase tracking-[0.16em] transition-all duration-300 ease-out-soft;
+  }
+  .btn-primary {
+    @apply btn border border-rebu-green bg-rebu-green text-white hover:bg-transparent hover:text-rebu-green;
+  }
+  .btn-secondary {
+    @apply btn border border-ink bg-transparent text-ink hover:bg-ink hover:text-paper;
+  }
+  .btn-ghost {
+    @apply btn border border-ink/25 bg-transparent text-ink hover:border-ink hover:bg-ink hover:text-paper;
+  }
+  .btn-light {
+    @apply btn border border-white/60 bg-transparent text-white hover:bg-white hover:text-ink;
+  }
+  /* Quiet inline text link with an underline flourish */
+  .link-underline {
+    @apply inline-flex items-center gap-2 text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-ink underline decoration-ink/25 underline-offset-[6px] transition-colors hover:decoration-ink;
+  }
+
+  /* Card surface — flat paper with a hairline border */
+  .card {
+    @apply border border-ink/10 bg-paper p-7;
+  }
+
+  .input {
+    @apply w-full border border-rebu-stone bg-paper px-4 py-3 text-sm text-ink placeholder:text-ink-soft/60 transition-colors focus:border-rebu-green focus:outline-none focus:ring-1 focus:ring-rebu-green/40;
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-2 border border-ink/10 bg-paper px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-ink-soft;
+  }
+
+  /* Numbered editorial index used in feature lists (01 / 02 / …) */
+  .index-num {
+    @apply shrink-0 font-display text-3xl font-medium leading-none tabular-nums text-ink/25 md:text-4xl;
+  }
+}
+
+/* Marquee for brand logos / trust strip */
 @keyframes marquee {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
 }
 .animate-marquee {
-  animation: marquee 30s linear infinite;
+  animation: marquee 34s linear infinite;
 }
 
-/* Slide-up animation (cookie banner, calc results) */
 @keyframes slideUp {
   from { transform: translateY(100%); opacity: 0; }
   to { transform: translateY(0); opacity: 1; }

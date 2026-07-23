@@ -5,18 +5,29 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        // Editorial neutrals — the base of the aesthetic (à la Habitat One)
+        ink: "#141917",
+        "ink-soft": "#565c58",
+        paper: "#ffffff",
+        sand: "#efece4",
+        // Rebu-green brand accent + legacy token names (kept so existing
+        // markup keeps working — they now resolve to the green editorial set).
         rebu: {
-          green: "#1e40af",
-          "green-light": "#3b82f6",
-          "green-dark": "#1e3a5f",
-          cream: "#f0f4f8",
-          stone: "#dce4ed",
-          charcoal: "#1a1a1a",
+          green: "#00a66e",
+          "green-light": "#2bbd8a",
+          "green-dark": "#0b3d2e",
+          tint: "#e8f6f0",
+          cream: "#f7f5f0",
+          stone: "#e4e0d6",
+          charcoal: "#141917",
         },
       },
       fontFamily: {
-        sans: ["var(--font-inter)", "system-ui", "sans-serif"],
-        display: ["var(--font-playfair)", "Georgia", "serif"],
+        sans: ["var(--font-sans)", "system-ui", "sans-serif"],
+        display: ["var(--font-display)", "Georgia", "serif"],
+      },
+      letterSpacing: {
+        editorial: "0.28em",
       },
       animation: {
         "fade-in": "fadeIn 0.6s ease-out",
@@ -35,8 +46,11 @@ const config: Config = {
         },
       },
       boxShadow: {
-        soft: "0 10px 40px -10px rgba(30, 58, 95, 0.15)",
-        glow: "0 0 0 1px rgba(30, 64, 175, 0.1), 0 20px 60px -15px rgba(30, 64, 175, 0.25)",
+        soft: "0 24px 60px -30px rgba(20, 25, 23, 0.28)",
+        glow: "0 30px 70px -25px rgba(0, 166, 110, 0.30)",
+      },
+      transitionTimingFunction: {
+        "out-soft": "cubic-bezier(0.16, 1, 0.3, 1)",
       },
     },
   },
