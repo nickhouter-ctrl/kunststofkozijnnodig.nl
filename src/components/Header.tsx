@@ -22,14 +22,16 @@ export function Header() {
 
   return (
     <header
-      className={`sticky top-0 z-50 border-b transition-all duration-300 ${
-        scrolled ? "border-white/10 bg-rebu-green-dark/95 backdrop-blur-xl" : "border-transparent bg-rebu-green-dark"
+      className={`sticky top-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? "border-b border-ink/10 bg-rebu-cream/90 backdrop-blur-xl"
+          : "border-b border-transparent bg-rebu-cream/70 backdrop-blur"
       }`}
     >
-      <div className="container-rebu flex items-center justify-between py-3.5">
+      <div className="container-rebu flex items-center justify-between py-3">
         <Link href="/" className="flex items-center" aria-label={site.name}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/logos/logo-white.svg" alt={site.name} className="h-9 w-auto sm:h-10 md:h-11" />
+          <img src="/logos/logo-dark.svg" alt={site.name} className="h-11 w-auto sm:h-12 md:h-14" />
         </Link>
 
         <nav className="hidden items-center gap-8 lg:flex">
@@ -40,7 +42,7 @@ export function Header() {
                 key={item.href}
                 href={item.href}
                 className={`text-[0.82rem] font-medium tracking-wide transition-colors ${
-                  active ? "text-rebu-green-light" : "text-white/75 hover:text-white"
+                  active ? "text-rebu-green" : "text-ink/80 hover:text-ink"
                 }`}
               >
                 {item.label}
@@ -52,9 +54,9 @@ export function Header() {
         <div className="flex items-center gap-4">
           <a
             href={site.phoneHref}
-            className="hidden items-center gap-2 whitespace-nowrap text-[0.82rem] font-medium text-white/75 transition-colors hover:text-white xl:inline-flex"
+            className="hidden items-center gap-2 whitespace-nowrap text-[0.82rem] font-medium text-ink/80 transition-colors hover:text-ink xl:inline-flex"
           >
-            <Phone className="h-4 w-4 flex-none text-rebu-green-light" />
+            <Phone className="h-4 w-4 flex-none text-rebu-green" />
             {site.phone}
           </a>
           <Link href="/offerte" className="hidden btn-primary md:inline-flex">
@@ -63,7 +65,7 @@ export function Header() {
           <button
             type="button"
             onClick={() => setOpen(!open)}
-            className="inline-flex h-11 w-11 items-center justify-center text-white transition-colors hover:text-rebu-green-light lg:hidden"
+            className="inline-flex h-11 w-11 items-center justify-center text-ink transition-colors hover:text-rebu-green lg:hidden"
             aria-label="Menu"
           >
             {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -72,14 +74,14 @@ export function Header() {
       </div>
 
       {open && (
-        <div className="border-t border-white/10 bg-rebu-green-dark lg:hidden">
+        <div className="border-t border-ink/10 bg-rebu-cream lg:hidden">
           <div className="container-rebu flex flex-col py-4">
             {nav.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
                 onClick={() => setOpen(false)}
-                className="border-b border-white/10 py-3.5 text-base font-medium text-white hover:text-rebu-green-light"
+                className="border-b border-ink/10 py-3.5 text-base font-medium text-ink hover:text-rebu-green"
               >
                 {item.label}
               </Link>
@@ -89,9 +91,9 @@ export function Header() {
             </Link>
             <a
               href={site.phoneHref}
-              className="mt-3 inline-flex items-center justify-center gap-2 py-3 text-sm font-medium text-white"
+              className="mt-3 inline-flex items-center justify-center gap-2 py-3 text-sm font-medium text-ink"
             >
-              <Phone className="h-4 w-4 text-rebu-green-light" />
+              <Phone className="h-4 w-4 text-rebu-green" />
               {site.phone}
             </a>
           </div>

@@ -109,6 +109,9 @@ export function QuoteWizard() {
 
   const totalItems = items.reduce((sum, i) => sum + i.quantity, 0);
 
+  const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email ?? "");
+  const phoneValid = (data.phone ?? "").replace(/\D/g, "").length >= 8;
+
   const canContinue = (() => {
     switch (current.id as StepId) {
       case "customer":
@@ -124,7 +127,7 @@ export function QuoteWizard() {
       case "timeline":
         return !!data.timeline;
       case "contact":
-        return !!(data.firstName && data.lastName && data.email && data.phone && data.street && data.houseNumber && data.postalCode && data.city);
+        return !!(data.firstName && data.lastName && emailValid && phoneValid && data.street && data.houseNumber && data.postalCode && data.city);
       case "review":
         return !!data.consent;
     }
@@ -142,8 +145,12 @@ export function QuoteWizard() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
-      const json = await res.json();
-      if (!res.ok) throw new Error(json.error || "Er ging iets mis");
+      const json = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        if (res.status === 422) throw new Error("Niet alle gegevens zijn correct ingevuld. Ga terug en controleer je contactgegevens.");
+        if (res.status === 502) throw new Error("De aanvraag kon niet verzonden worden. Bel of app ons op +31 6 58 86 60 70, dan pakken we het direct op.");
+        throw new Error(json.error || "Er ging iets mis. Probeer het later opnieuw.");
+      }
       setStatus("success");
     } catch (e) {
       setStatus("error");
@@ -427,8 +434,16 @@ export function QuoteWizard() {
               )}
               <div><Label>Voornaam *</Label><input className="input" value={data.firstName ?? ""} onChange={(e) => update("firstName", e.target.value)} /></div>
               <div><Label>Achternaam *</Label><input className="input" value={data.lastName ?? ""} onChange={(e) => update("lastName", e.target.value)} /></div>
-              <div><Label>E-mailadres *</Label><input type="email" className="input" value={data.email ?? ""} onChange={(e) => update("email", e.target.value)} /></div>
-              <div><Label>Telefoonnummer *</Label><input type="tel" className="input" value={data.phone ?? ""} onChange={(e) => update("phone", e.target.value)} placeholder="+31 6 ..." /></div>
+              <div>
+                <Label>E-mailadres *</Label>
+                <input type="email" className="input" value={data.email ?? ""} onChange={(e) => update("email", e.target.value)} />
+                {data.email && !emailValid && <p className="mt-1.5 text-xs text-red-600">Vul een geldig e-mailadres in.</p>}
+              </div>
+              <div>
+                <Label>Telefoonnummer *</Label>
+                <input type="tel" className="input" value={data.phone ?? ""} onChange={(e) => update("phone", e.target.value)} placeholder="+31 6 ..." />
+                {data.phone && !phoneValid && <p className="mt-1.5 text-xs text-red-600">Vul een geldig telefoonnummer in.</p>}
+              </div>
               <div className="md:col-span-2"><Label>Straat *</Label><input className="input" value={data.street ?? ""} onChange={(e) => update("street", e.target.value)} /></div>
               <div><Label>Huisnummer *</Label><input className="input" value={data.houseNumber ?? ""} onChange={(e) => update("houseNumber", e.target.value)} /></div>
               <div><Label>Postcode *</Label><input className="input" value={data.postalCode ?? ""} onChange={(e) => update("postalCode", e.target.value)} placeholder="1521 RM" /></div>
@@ -512,7 +527,7 @@ export function QuoteWizard() {
             </div>
 
             <label className="mt-6 flex items-start gap-3 text-sm text-neutral-700">
-              <input type="checkbox" className="mt-0.5 h-5 w-5 flex-none rounded border-rebu-stone text-rebu-green focus:ring-rebu-green" checked={data.consent ?? false} onChange={(e) => update("consent", e.target.checked)} />
+              <input type="checkbox" className="mt-0.5 h-5 w-5 flex-none accent-rebu-green" checked={data.consent ?? false} onChange={(e) => update("consent", e.target.checked)} />
               <span>Ik ga akkoord met de <Link href="/privacyverklaring" className="text-rebu-green underline">privacyverklaring</Link> en dat Kunststofkozijnnodig.nl contact met mij opneemt over deze aanvraag.</span>
             </label>
 
