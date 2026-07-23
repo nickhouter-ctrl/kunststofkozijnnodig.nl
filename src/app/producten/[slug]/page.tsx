@@ -192,17 +192,22 @@ export default async function ProductDetailPage({
           {/* Brochures - only for deuren */}
           {slug === "deuren" && (
             <div className="mt-10">
-              <div className="rounded-2xl bg-white p-8 shadow-soft ring-1 ring-black/5">
-                <h3 className="font-display text-xl font-semibold text-rebu-charcoal">Brochures</h3>
-                <p className="mt-2 text-sm text-neutral-600">Download de volledige catalogus met alle voordeurmodellen.</p>
-                <div className="mt-5 flex flex-wrap gap-3">
-                  <a href="https://rebukozijnen.nl/wp-content/uploads/2024/10/RebuKozijnen_Catalogus_buitendeuren.pdf-3.pdf" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full border border-rebu-green/20 bg-rebu-green/5 px-5 py-2.5 text-sm font-semibold text-rebu-green transition-all hover:bg-rebu-green hover:text-white">
-                    <Download className="h-4 w-4" /> Aluplast voordeuren (PDF)
+              <div className="border border-ink/10 bg-paper p-8">
+                <h3 className="font-display text-2xl font-medium text-ink">Catalogus</h3>
+                <p className="mt-2 text-sm text-ink-soft">Download de volledige catalogus buitendeuren 2025 met alle modellen, materialen en opties.</p>
+                <div className="mt-6 flex flex-wrap gap-3">
+                  <a
+                    href="/brochures/catalogus-buitendeuren-2025.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 border border-rebu-green bg-rebu-green px-6 py-3 text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-white transition-all hover:bg-transparent hover:text-rebu-green"
+                  >
+                    <Download className="h-4 w-4" /> Catalogus buitendeuren (PDF)
                   </a>
-                  <a href="https://rebukozijnen.nl/wp-content/uploads/2024/10/Voordeurmodellen-Gealan_rebukozijnen.pdf" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full border border-rebu-green/20 bg-rebu-green/5 px-5 py-2.5 text-sm font-semibold text-rebu-green transition-all hover:bg-rebu-green hover:text-white">
-                    <Download className="h-4 w-4" /> Gealan voordeuren (PDF)
-                  </a>
-                  <Link href="/kleuren" className="inline-flex items-center gap-2 rounded-full border border-rebu-green/20 bg-rebu-green/5 px-5 py-2.5 text-sm font-semibold text-rebu-green transition-all hover:bg-rebu-green hover:text-white">
+                  <Link
+                    href="/kleuren"
+                    className="inline-flex items-center gap-2 border border-ink/25 px-6 py-3 text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-ink transition-all hover:border-ink hover:bg-ink hover:text-paper"
+                  >
                     <Palette className="h-4 w-4" /> Alle kleuren bekijken
                   </Link>
                 </div>
