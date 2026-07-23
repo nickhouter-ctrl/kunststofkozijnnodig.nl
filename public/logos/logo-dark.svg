@@ -1,9 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 60" fill="none">
   <!-- Kozijn mark: a clean four-pane window frame -->
-  <rect x="2" y="8" width="44" height="44" rx="3" stroke="#00a66e" stroke-width="3"/>
-  <line x1="24" y1="8" x2="24" y2="52" stroke="#00a66e" stroke-width="3"/>
-  <line x1="2" y1="30" x2="46" y2="30" stroke="#00a66e" stroke-width="3"/>
+  <rect x="2" y="8" width="44" height="44" rx="3" stroke="#141917" stroke-width="3"/>
+  <line x1="24" y1="8" x2="24" y2="52" stroke="#141917" stroke-width="3"/>
+  <line x1="2" y1="30" x2="46" y2="30" stroke="#5aad2c" stroke-width="3"/>
   <!-- Wordmark -->
-  <text x="62" y="27" font-family="Montserrat,system-ui,sans-serif" font-weight="700" font-size="17" letter-spacing="0.5" fill="#141917">KUNSTSTOF</text>
-  <text x="62" y="47" font-family="Montserrat,system-ui,sans-serif" font-weight="700" font-size="17" letter-spacing="0.5" fill="#141917">KOZIJNNODIG<tspan fill="#00a66e">.NL</tspan></text>
+  <text x="62" y="27" font-family="Montserrat,system-ui,sans-serif" font-weight="800" font-size="17" letter-spacing="0.5" fill="#141917">KUNSTSTOF</text>
+  <text x="62" y="47" font-family="Montserrat,system-ui,sans-serif" font-weight="800" font-size="17" letter-spacing="0.5"><tspan fill="#5aad2c">KOZIJN</tspan><tspan fill="#141917">NODIG</tspan><tspan fill="#5aad2c">.NL</tspan></text>
 </svg>

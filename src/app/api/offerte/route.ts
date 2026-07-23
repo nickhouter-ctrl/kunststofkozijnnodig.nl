@@ -83,7 +83,7 @@ function renderEmail(d: QuoteData): string {
   // Build items section
   let itemsHtml = "";
   for (const item of d.items) {
-    itemsHtml += `<tr><td colspan="2" style="padding:12px 16px;background:#1e3a5f;color:#fff;font-weight:600;font-size:14px;border-bottom:1px solid #e8e4db">${escape(label(item.product))} — ${item.quantity}×</td></tr>`;
+    itemsHtml += `<tr><td colspan="2" style="padding:12px 16px;background:#141917;color:#fff;font-weight:600;font-size:14px;border-bottom:1px solid #e8e4db">${escape(label(item.product))} — ${item.quantity}×</td></tr>`;
     if (item.dimensions) {
       for (let i = 0; i < item.dimensions.length; i++) {
         const dim = item.dimensions[i];
@@ -101,13 +101,13 @@ function renderEmail(d: QuoteData): string {
   <table width="100%" cellpadding="0" cellspacing="0" style="background:#f7f5f0;padding:40px 20px">
     <tr><td align="center">
       <table width="640" cellpadding="0" cellspacing="0" style="background:#ffffff;border-radius:16px;overflow:hidden;box-shadow:0 10px 40px -10px rgba(30,58,95,.15)">
-        <tr><td style="background:#1e3a5f;padding:32px 40px;color:#fff">
+        <tr><td style="background:#141917;padding:32px 40px;color:#fff">
           <h1 style="margin:0;font-size:24px;font-weight:600">Nieuwe offerteaanvraag</h1>
           <p style="margin:6px 0 0;opacity:.8;font-size:14px">Via de website van Kunststofkozijnnodig.nl — ${totalItems} product${totalItems === 1 ? "" : "en"}</p>
         </td></tr>
         <tr><td style="padding:32px 40px">
 
-          <h2 style="margin:0 0 16px;font-size:16px;color:#1e3a5f;text-transform:uppercase;letter-spacing:.1em">Aanvraag</h2>
+          <h2 style="margin:0 0 16px;font-size:16px;color:#141917;text-transform:uppercase;letter-spacing:.1em">Aanvraag</h2>
           <table width="100%" cellpadding="0" cellspacing="0" style="border-radius:8px;overflow:hidden;border:1px solid #e8e4db">
             ${row("Type klant", label(d.customerType))}
             ${row("Project", label(d.projectType))}
@@ -120,12 +120,12 @@ function renderEmail(d: QuoteData): string {
             ${row("Planning", label(d.timeline))}
           </table>
 
-          <h2 style="margin:32px 0 16px;font-size:16px;color:#1e3a5f;text-transform:uppercase;letter-spacing:.1em">Producten & afmetingen</h2>
+          <h2 style="margin:32px 0 16px;font-size:16px;color:#141917;text-transform:uppercase;letter-spacing:.1em">Producten & afmetingen</h2>
           <table width="100%" cellpadding="0" cellspacing="0" style="border-radius:8px;overflow:hidden;border:1px solid #e8e4db">
             ${itemsHtml}
           </table>
 
-          <h2 style="margin:32px 0 16px;font-size:16px;color:#1e3a5f;text-transform:uppercase;letter-spacing:.1em">Contact</h2>
+          <h2 style="margin:32px 0 16px;font-size:16px;color:#141917;text-transform:uppercase;letter-spacing:.1em">Contact</h2>
           <table width="100%" cellpadding="0" cellspacing="0" style="border-radius:8px;overflow:hidden;border:1px solid #e8e4db">
             ${d.companyName ? row("Bedrijf", d.companyName) : ""}
             ${row("Naam", `${d.firstName} ${d.lastName}`)}
@@ -135,17 +135,17 @@ function renderEmail(d: QuoteData): string {
           </table>
 
           ${d.description
-            ? `<h2 style="margin:32px 0 12px;font-size:16px;color:#1e3a5f;text-transform:uppercase;letter-spacing:.1em">Beschrijving</h2>
+            ? `<h2 style="margin:32px 0 12px;font-size:16px;color:#141917;text-transform:uppercase;letter-spacing:.1em">Beschrijving</h2>
                <div style="padding:16px 20px;background:#f7f5f0;border-radius:8px;font-size:14px;color:#1a1a1a;white-space:pre-wrap">${escape(d.description)}</div>`
             : ""}
 
           ${(d.attachments?.length ?? 0) > 0
-            ? `<h2 style="margin:32px 0 12px;font-size:16px;color:#1e3a5f;text-transform:uppercase;letter-spacing:.1em">Bijlagen</h2>
+            ? `<h2 style="margin:32px 0 12px;font-size:16px;color:#141917;text-transform:uppercase;letter-spacing:.1em">Bijlagen</h2>
                <div style="padding:16px 20px;background:#f7f5f0;border-radius:8px;font-size:14px;color:#1a1a1a">${d.attachments!.length} bestand${d.attachments!.length === 1 ? "" : "en"} bijgevoegd: ${d.attachments!.map((a) => escape(a.name)).join(", ")}</div>`
             : ""}
 
           ${d.notes
-            ? `<h2 style="margin:32px 0 12px;font-size:16px;color:#1e3a5f;text-transform:uppercase;letter-spacing:.1em">Opmerkingen</h2>
+            ? `<h2 style="margin:32px 0 12px;font-size:16px;color:#141917;text-transform:uppercase;letter-spacing:.1em">Opmerkingen</h2>
                <div style="padding:16px 20px;background:#f7f5f0;border-radius:8px;font-size:14px;color:#1a1a1a;white-space:pre-wrap">${escape(d.notes)}</div>`
             : ""}
 
@@ -166,14 +166,14 @@ function renderConfirmation(d: QuoteData): string {
   <table width="100%" cellpadding="0" cellspacing="0" style="background:#f7f5f0;padding:40px 20px">
     <tr><td align="center">
       <table width="560" cellpadding="0" cellspacing="0" style="background:#ffffff;border-radius:16px;overflow:hidden;box-shadow:0 10px 40px -10px rgba(30,58,95,.15)">
-        <tr><td style="background:#1e3a5f;padding:40px;text-align:center;color:#fff">
+        <tr><td style="background:#141917;padding:40px;text-align:center;color:#fff">
           <h1 style="margin:0;font-size:26px;font-weight:600">Bedankt voor je aanvraag!</h1>
         </td></tr>
         <tr><td style="padding:32px 40px;color:#1a1a1a;font-size:15px;line-height:1.6">
           <p>Hoi ${escape(d.firstName)},</p>
           <p>We hebben je offerteaanvraag goed ontvangen voor <strong>${summary}</strong> (${totalItems} ${totalItems === 1 ? "stuk" : "stuks"}).</p>
           <p>Binnen <strong>1 werkdag</strong> nemen we persoonlijk contact met je op om de details door te nemen en een prijs op maat te maken.</p>
-          <p style="margin-top:24px">Vragen? Bel of app ons gerust op <a href="tel:+31658866070" style="color:#1e3a5f">+31 6 58 86 60 70</a>.</p>
+          <p style="margin-top:24px">Vragen? Bel of app ons gerust op <a href="tel:+31658866070" style="color:#141917">+31 6 58 86 60 70</a>.</p>
           <p style="margin-top:24px">Met vriendelijke groet,<br><strong>Team Kunststofkozijnnodig.nl</strong></p>
         </td></tr>
         <tr><td style="padding:20px 40px;background:#f7f5f0;font-size:12px;color:#6b7280;text-align:center">

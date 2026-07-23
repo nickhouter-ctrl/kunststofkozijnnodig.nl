@@ -13,10 +13,10 @@ const config: Config = {
         // Rebu-green brand accent + legacy token names (kept so existing
         // markup keeps working — they now resolve to the green editorial set).
         rebu: {
-          green: "#00a66e",
-          "green-light": "#2bbd8a",
-          "green-dark": "#0b3d2e",
-          tint: "#e8f6f0",
+          green: "#5aad2c",
+          "green-light": "#7ac74a",
+          "green-dark": "#0b0c0b",
+          tint: "#eef7e6",
           cream: "#f7f5f0",
           stone: "#e4e0d6",
           charcoal: "#141917",
