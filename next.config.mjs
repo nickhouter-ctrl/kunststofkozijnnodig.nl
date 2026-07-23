@@ -10,6 +10,15 @@ const nextConfig = {
   experimental: {
     optimizePackageImports: ["lucide-react", "framer-motion"],
   },
+  async rewrites() {
+    return {
+      beforeFiles: [
+        // Statische kleurencatalogi (public/kleuren/*.html) op schone URL's
+        { source: "/kleuren/gealan", destination: "/kleuren/gealan.html" },
+        { source: "/kleuren/aluplast", destination: "/kleuren/aluplast.html" },
+      ],
+    };
+  },
 };
 
 export default nextConfig;

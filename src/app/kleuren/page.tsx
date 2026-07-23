@@ -117,6 +117,41 @@ export default function KleurenPage() {
         ]}
       />
 
+      {/* Merk-kleurencatalogi */}
+      <section className="section bg-rebu-cream">
+        <div className="container-rebu">
+          <span className="section-eyebrow">Decorfolies</span>
+          <h2 className="section-title mt-3">
+            Volledige <span className="italic text-rebu-green">merkcatalogi</span>
+          </h2>
+          <p className="mt-4 max-w-2xl text-ink-soft">
+            Blader door alle decorfolies per profielmerk — zoek op naam, kleur of artikelnummer en bekijk realistische kleurindrukken.
+          </p>
+          <div className="mt-10 grid gap-6 md:grid-cols-2">
+            {[
+              { merk: "Gealan", href: "/kleuren/gealan", desc: "52 decorfolies van Gealan — het volledige overzicht met houtlook en effen tinten." },
+              { merk: "Aluplast", href: "/kleuren/aluplast", desc: "De complete Aluplast-decorfoliecollectie voor kozijnen, deuren en schuifpuien." },
+            ].map((b) => (
+              <Link
+                key={b.merk}
+                href={b.href}
+                className="group flex flex-col justify-between border border-ink/10 bg-paper p-8 transition-colors hover:border-rebu-green"
+              >
+                <div>
+                  <p className="text-[0.7rem] font-semibold uppercase tracking-[0.24em] text-rebu-green">Kleurencatalogus</p>
+                  <h3 className="mt-3 font-display text-3xl font-medium text-ink">{b.merk}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-ink-soft">{b.desc}</p>
+                </div>
+                <span className="mt-8 inline-flex items-center gap-2 text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-ink">
+                  Bekijk catalogus
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+                </span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Standard colors */}
       <section className="section bg-white">
         <div className="container-rebu">
