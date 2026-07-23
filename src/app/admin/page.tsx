@@ -154,7 +154,7 @@ export default function AdminPage() {
     return (
       <div className="flex min-h-screen items-center justify-center bg-neutral-950">
         <div className="w-full max-w-sm rounded-2xl bg-neutral-900 p-8 ring-1 ring-white/10">
-          <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-blue-600/20 text-blue-400">
+          <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-rebu-green/20 text-rebu-green-light">
             <Lock className="h-6 w-6" />
           </div>
           <h1 className="mt-4 text-center text-xl font-bold text-white">Admin Panel</h1>
@@ -164,12 +164,12 @@ export default function AdminPage() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && login()}
-            className="mt-6 w-full rounded-xl border border-white/10 bg-neutral-800 px-4 py-3 text-white placeholder:text-neutral-600 focus:border-blue-500 focus:outline-none"
+            className="mt-6 w-full rounded-xl border border-white/10 bg-neutral-800 px-4 py-3 text-white placeholder:text-neutral-600 focus:border-rebu-green focus:outline-none"
             placeholder="Wachtwoord"
             autoFocus
           />
           {loginError && <p className="mt-2 text-sm text-red-400">{loginError}</p>}
-          <button onClick={login} className="mt-4 w-full rounded-xl bg-blue-600 py-3 text-sm font-semibold text-white hover:bg-blue-700">
+          <button onClick={login} className="mt-4 w-full rounded-xl bg-rebu-green py-3 text-sm font-semibold text-white hover:bg-rebu-green-dark">
             Inloggen
           </button>
         </div>
@@ -191,28 +191,28 @@ export default function AdminPage() {
           <div className="mt-8 grid gap-6 md:grid-cols-2">
             <div>
               <label className="mb-1 block text-xs font-semibold uppercase tracking-wider text-neutral-500">Titel *</label>
-              <input value={editing.title} onChange={(e) => setEditing({ ...editing, title: e.target.value })} className="w-full rounded-xl border border-white/10 bg-neutral-900 px-4 py-3 text-white focus:border-blue-500 focus:outline-none" />
+              <input value={editing.title} onChange={(e) => setEditing({ ...editing, title: e.target.value })} className="w-full rounded-xl border border-white/10 bg-neutral-900 px-4 py-3 text-white focus:border-rebu-green focus:outline-none" />
             </div>
             <div>
               <label className="mb-1 block text-xs font-semibold uppercase tracking-wider text-neutral-500">Slug *</label>
               <input
                 value={editing.slug}
                 onChange={(e) => setEditing({ ...editing, slug: e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, "-") })}
-                className="w-full rounded-xl border border-white/10 bg-neutral-900 px-4 py-3 text-white focus:border-blue-500 focus:outline-none"
+                className="w-full rounded-xl border border-white/10 bg-neutral-900 px-4 py-3 text-white focus:border-rebu-green focus:outline-none"
                 placeholder="bijv. complete-renovatie-zaandam"
               />
             </div>
             <div>
               <label className="mb-1 block text-xs font-semibold uppercase tracking-wider text-neutral-500">Locatie</label>
-              <input value={editing.location} onChange={(e) => setEditing({ ...editing, location: e.target.value })} className="w-full rounded-xl border border-white/10 bg-neutral-900 px-4 py-3 text-white focus:border-blue-500 focus:outline-none" />
+              <input value={editing.location} onChange={(e) => setEditing({ ...editing, location: e.target.value })} className="w-full rounded-xl border border-white/10 bg-neutral-900 px-4 py-3 text-white focus:border-rebu-green focus:outline-none" />
             </div>
             <div>
               <label className="mb-1 block text-xs font-semibold uppercase tracking-wider text-neutral-500">Jaar</label>
-              <input value={editing.year} onChange={(e) => setEditing({ ...editing, year: e.target.value })} className="w-full rounded-xl border border-white/10 bg-neutral-900 px-4 py-3 text-white focus:border-blue-500 focus:outline-none" />
+              <input value={editing.year} onChange={(e) => setEditing({ ...editing, year: e.target.value })} className="w-full rounded-xl border border-white/10 bg-neutral-900 px-4 py-3 text-white focus:border-rebu-green focus:outline-none" />
             </div>
             <div>
               <label className="mb-1 block text-xs font-semibold uppercase tracking-wider text-neutral-500">Categorie</label>
-              <select value={editing.category} onChange={(e) => setEditing({ ...editing, category: e.target.value })} className="w-full rounded-xl border border-white/10 bg-neutral-900 px-4 py-3 text-white focus:border-blue-500 focus:outline-none">
+              <select value={editing.category} onChange={(e) => setEditing({ ...editing, category: e.target.value })} className="w-full rounded-xl border border-white/10 bg-neutral-900 px-4 py-3 text-white focus:border-rebu-green focus:outline-none">
                 <option>Renovatie</option>
                 <option>Deuren</option>
                 <option>Schuifpuien</option>
@@ -234,7 +234,7 @@ export default function AdminPage() {
                       setEditing({ ...editing, products: has ? editing.products.filter((x) => x !== p) : [...editing.products, p] });
                     }}
                     className={`rounded-full px-3 py-1.5 text-xs font-semibold transition-colors ${
-                      editing.products.includes(p) ? "bg-blue-600 text-white" : "bg-neutral-800 text-neutral-400 hover:bg-neutral-700"
+                      editing.products.includes(p) ? "bg-rebu-green text-white" : "bg-neutral-800 text-neutral-400 hover:bg-neutral-700"
                     }`}
                   >
                     {p}
@@ -246,24 +246,24 @@ export default function AdminPage() {
 
           <div className="mt-6">
             <label className="mb-1 block text-xs font-semibold uppercase tracking-wider text-neutral-500">Samenvatting</label>
-            <textarea value={editing.summary ?? ""} onChange={(e) => setEditing({ ...editing, summary: e.target.value })} rows={2} className="w-full rounded-xl border border-white/10 bg-neutral-900 px-4 py-3 text-white focus:border-blue-500 focus:outline-none" />
+            <textarea value={editing.summary ?? ""} onChange={(e) => setEditing({ ...editing, summary: e.target.value })} rows={2} className="w-full rounded-xl border border-white/10 bg-neutral-900 px-4 py-3 text-white focus:border-rebu-green focus:outline-none" />
           </div>
 
           <div className="mt-6">
             <label className="mb-1 block text-xs font-semibold uppercase tracking-wider text-neutral-500">Beschrijving</label>
-            <textarea value={editing.description ?? ""} onChange={(e) => setEditing({ ...editing, description: e.target.value })} rows={4} className="w-full rounded-xl border border-white/10 bg-neutral-900 px-4 py-3 text-white focus:border-blue-500 focus:outline-none" />
+            <textarea value={editing.description ?? ""} onChange={(e) => setEditing({ ...editing, description: e.target.value })} rows={4} className="w-full rounded-xl border border-white/10 bg-neutral-900 px-4 py-3 text-white focus:border-rebu-green focus:outline-none" />
           </div>
 
           {/* Review */}
           <div className="mt-8 rounded-xl border border-white/10 bg-neutral-900 p-6">
             <h3 className="text-sm font-semibold uppercase tracking-wider text-neutral-500">Klantreview (optioneel)</h3>
             <div className="mt-4 grid gap-4 md:grid-cols-2">
-              <input value={editing.review_name ?? ""} onChange={(e) => setEditing({ ...editing, review_name: e.target.value })} placeholder="Naam klant" className="rounded-xl border border-white/10 bg-neutral-800 px-4 py-3 text-white focus:border-blue-500 focus:outline-none" />
-              <select value={editing.review_rating} onChange={(e) => setEditing({ ...editing, review_rating: Number(e.target.value) })} className="rounded-xl border border-white/10 bg-neutral-800 px-4 py-3 text-white focus:border-blue-500 focus:outline-none">
+              <input value={editing.review_name ?? ""} onChange={(e) => setEditing({ ...editing, review_name: e.target.value })} placeholder="Naam klant" className="rounded-xl border border-white/10 bg-neutral-800 px-4 py-3 text-white focus:border-rebu-green focus:outline-none" />
+              <select value={editing.review_rating} onChange={(e) => setEditing({ ...editing, review_rating: Number(e.target.value) })} className="rounded-xl border border-white/10 bg-neutral-800 px-4 py-3 text-white focus:border-rebu-green focus:outline-none">
                 {[5, 4, 3, 2, 1].map((n) => <option key={n} value={n}>{n} sterren</option>)}
               </select>
             </div>
-            <textarea value={editing.review_text ?? ""} onChange={(e) => setEditing({ ...editing, review_text: e.target.value })} rows={3} placeholder="Review tekst..." className="mt-4 w-full rounded-xl border border-white/10 bg-neutral-800 px-4 py-3 text-white focus:border-blue-500 focus:outline-none" />
+            <textarea value={editing.review_text ?? ""} onChange={(e) => setEditing({ ...editing, review_text: e.target.value })} rows={3} placeholder="Review tekst..." className="mt-4 w-full rounded-xl border border-white/10 bg-neutral-800 px-4 py-3 text-white focus:border-rebu-green focus:outline-none" />
           </div>
 
           {/* Images */}
@@ -274,10 +274,10 @@ export default function AdminPage() {
                 <div key={img} className="group relative aspect-square overflow-hidden rounded-xl bg-neutral-900 ring-1 ring-white/10">
                   <img src={img} alt="" className="h-full w-full object-cover" />
                   {img === editing.cover && (
-                    <div className="absolute left-1 top-1 rounded-full bg-blue-600 px-2 py-0.5 text-[10px] font-bold text-white">COVER</div>
+                    <div className="absolute left-1 top-1 rounded-full bg-rebu-green px-2 py-0.5 text-[10px] font-bold text-white">COVER</div>
                   )}
                   <div className="absolute inset-0 flex items-center justify-center gap-2 bg-black/60 opacity-0 transition-opacity group-hover:opacity-100">
-                    <button onClick={() => setCover(img)} className="rounded-full bg-blue-600 p-2 text-white hover:bg-blue-700" title="Stel in als cover">
+                    <button onClick={() => setCover(img)} className="rounded-full bg-rebu-green p-2 text-white hover:bg-rebu-green-dark" title="Stel in als cover">
                       <ImageIcon className="h-3 w-3" />
                     </button>
                     <button onClick={() => removeImage(i)} className="rounded-full bg-red-600 p-2 text-white hover:bg-red-700" title="Verwijderen">
@@ -286,7 +286,7 @@ export default function AdminPage() {
                   </div>
                 </div>
               ))}
-              <label className="flex aspect-square cursor-pointer flex-col items-center justify-center rounded-xl border-2 border-dashed border-white/20 text-neutral-500 hover:border-blue-500 hover:text-blue-400">
+              <label className="flex aspect-square cursor-pointer flex-col items-center justify-center rounded-xl border-2 border-dashed border-white/20 text-neutral-500 hover:border-rebu-green hover:text-rebu-green-light">
                 <Upload className="h-6 w-6" />
                 <span className="mt-1 text-xs">{uploading ? "Bezig..." : "Upload"}</span>
                 <input type="file" accept="image/*" multiple className="hidden" onChange={(e) => {
@@ -297,7 +297,7 @@ export default function AdminPage() {
           </div>
 
           <div className="mt-8 flex gap-3">
-            <button onClick={saveProject} className="flex items-center gap-2 rounded-xl bg-blue-600 px-6 py-3 text-sm font-semibold text-white hover:bg-blue-700">
+            <button onClick={saveProject} className="flex items-center gap-2 rounded-xl bg-rebu-green px-6 py-3 text-sm font-semibold text-white hover:bg-rebu-green-dark">
               <Save className="h-4 w-4" /> Opslaan
             </button>
             <button onClick={() => setEditing(null)} className="rounded-xl border border-white/10 px-6 py-3 text-sm text-neutral-400 hover:text-white">
@@ -318,7 +318,7 @@ export default function AdminPage() {
             <h1 className="text-2xl font-bold">Projecten beheren</h1>
             <p className="mt-1 text-sm text-neutral-500">{projects.length} projecten</p>
           </div>
-          <button onClick={newProject} className="flex items-center gap-2 rounded-xl bg-blue-600 px-5 py-3 text-sm font-semibold text-white hover:bg-blue-700">
+          <button onClick={newProject} className="flex items-center gap-2 rounded-xl bg-rebu-green px-5 py-3 text-sm font-semibold text-white hover:bg-rebu-green-dark">
             <Plus className="h-4 w-4" /> Nieuw project
           </button>
         </div>

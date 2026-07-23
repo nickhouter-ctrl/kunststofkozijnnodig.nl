@@ -1,8 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 120" fill="none">
-  <rect x="10" y="10" width="120" height="100" rx="6" stroke="#1e40af" stroke-width="5" fill="none"/>
-  <line x1="75" y1="10" x2="75" y2="110" stroke="#1e40af" stroke-width="4"/>
-  <rect x="80" y="50" width="12" height="5" rx="2.5" fill="#1e40af"/>
-  <line x1="20" y1="20" x2="55" y2="50" stroke="#1e40af" stroke-width="2.5" opacity="0.4"/>
-  <path d="M85 30 L115 30" stroke="#1e40af" stroke-width="2" stroke-dasharray="4 3" opacity="0.3"/>
-  <path d="M85 75 L115 75" stroke="#1e40af" stroke-width="2" stroke-dasharray="4 3" opacity="0.3"/>
+  <rect x="10" y="10" width="120" height="100" rx="6" stroke="#00a66e" stroke-width="5" fill="none"/>
+  <line x1="75" y1="10" x2="75" y2="110" stroke="#00a66e" stroke-width="4"/>
+  <rect x="80" y="50" width="12" height="5" rx="2.5" fill="#00a66e"/>
+  <line x1="20" y1="20" x2="55" y2="50" stroke="#00a66e" stroke-width="2.5" opacity="0.4"/>
+  <path d="M85 30 L115 30" stroke="#00a66e" stroke-width="2" stroke-dasharray="4 3" opacity="0.3"/>
+  <path d="M85 75 L115 75" stroke="#00a66e" stroke-width="2" stroke-dasharray="4 3" opacity="0.3"/>
 </svg>
