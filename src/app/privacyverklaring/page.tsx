@@ -20,8 +20,8 @@ export default function PrivacyPage() {
           { label: "Privacyverklaring", href: "/privacyverklaring" },
         ]}
       />
-      <section className="section bg-white">
-        <div className="container-rebu prose prose-neutral mx-auto max-w-3xl">
+      <section className="section bg-paper">
+        <div className="container-rebu prose prose-neutral mx-auto max-w-3xl prose-headings:font-display prose-headings:font-medium prose-headings:text-ink prose-a:text-rebu-green prose-a:no-underline hover:prose-a:underline">
           <h2>Welke gegevens verwerken wij?</h2>
           <p>
             Wanneer je een offerte aanvraagt of contact met ons opneemt verwerken wij je naam, adres, e-mailadres,

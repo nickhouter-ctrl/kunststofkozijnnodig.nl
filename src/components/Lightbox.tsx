@@ -71,7 +71,7 @@ export function Lightbox({
                 e.stopPropagation();
                 onClose();
               }}
-              className="flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white backdrop-blur-sm transition-colors hover:bg-white/20"
+              className="flex h-11 w-11 items-center justify-center border border-white/15 bg-white/10 text-white transition-colors hover:bg-white/20"
               aria-label="Sluiten"
             >
               <X className="h-5 w-5" />
@@ -107,7 +107,7 @@ export function Lightbox({
                   e.stopPropagation();
                   prev();
                 }}
-                className="absolute left-4 top-1/2 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-white backdrop-blur-sm transition-all hover:bg-rebu-green hover:scale-110 md:left-8"
+                className="absolute left-4 top-1/2 flex h-12 w-12 -translate-y-1/2 items-center justify-center border border-white/15 bg-white/10 text-white transition-colors hover:bg-rebu-green hover:border-rebu-green md:left-8"
                 aria-label="Vorige"
               >
                 <ChevronLeft className="h-6 w-6" />
@@ -118,7 +118,7 @@ export function Lightbox({
                   e.stopPropagation();
                   next();
                 }}
-                className="absolute right-4 top-1/2 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-white backdrop-blur-sm transition-all hover:bg-rebu-green hover:scale-110 md:right-8"
+                className="absolute right-4 top-1/2 flex h-12 w-12 -translate-y-1/2 items-center justify-center border border-white/15 bg-white/10 text-white transition-colors hover:bg-rebu-green hover:border-rebu-green md:right-8"
                 aria-label="Volgende"
               >
                 <ChevronRight className="h-6 w-6" />
@@ -129,7 +129,7 @@ export function Lightbox({
           {/* Thumbnails */}
           {images.length > 1 && (
             <div
-              className="absolute bottom-5 left-1/2 flex -translate-x-1/2 gap-2 rounded-full bg-white/5 p-2 backdrop-blur-sm"
+              className="absolute bottom-5 left-1/2 flex -translate-x-1/2 gap-2 border border-white/12 bg-white/5 p-2 backdrop-blur-sm"
               onClick={(e) => e.stopPropagation()}
             >
               {images.map((img, i) => (
@@ -137,9 +137,9 @@ export function Lightbox({
                   key={img}
                   type="button"
                   onClick={() => setIndex(i)}
-                  className={`relative h-10 w-14 overflow-hidden rounded-lg transition-all ${
+                  className={`relative h-10 w-14 overflow-hidden transition-all ${
                     i === index
-                      ? "ring-2 ring-rebu-green-light"
+                      ? "outline outline-2 outline-rebu-green-light"
                       : "opacity-50 hover:opacity-100"
                   }`}
                   aria-label={`Ga naar foto ${i + 1}`}

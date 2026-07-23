@@ -4,9 +4,9 @@ import { site } from "@/lib/site";
 export function BrandMarquee() {
   const items = [...site.brands, ...site.brands, ...site.brands];
   return (
-    <section className="border-y border-rebu-stone bg-white py-14">
+    <section className="border-y border-ink/10 bg-rebu-cream py-14">
       <div className="container-rebu">
-        <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-neutral-500">
+        <p className="text-center text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-ink-soft">
           Wij werken met Europese topmerken
         </p>
         <div className="mt-8 overflow-hidden">

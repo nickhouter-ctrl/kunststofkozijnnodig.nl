@@ -24,7 +24,7 @@ export default function OffertePage() {
         <div className="container-rebu relative">
           <div className="mx-auto max-w-3xl text-center">
             <span className="section-eyebrow text-rebu-cream/90">Offerte-configurator</span>
-            <h1 className="mt-3 font-display text-4xl font-semibold leading-tight md:text-6xl">
+            <h1 className="mt-3 font-display text-4xl font-medium leading-tight md:text-6xl">
               Stel je offerte samen <span className="italic text-rebu-cream/90">in 2 minuten.</span>
             </h1>
             <p className="mt-5 text-lg text-white/80">
@@ -33,7 +33,7 @@ export default function OffertePage() {
 
             <div className="mt-8 flex flex-wrap justify-center gap-3">
               {perks.map((p) => (
-                <div key={p.text} className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-4 py-2 text-xs font-medium text-white/95 backdrop-blur-sm">
+                <div key={p.text} className="inline-flex items-center gap-2 border border-white/25 bg-white/10 px-4 py-2 text-xs font-medium text-white/95 backdrop-blur-sm">
                   <p.icon className="h-3.5 w-3.5" />
                   {p.text}
                 </div>

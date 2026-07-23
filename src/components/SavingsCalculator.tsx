@@ -46,10 +46,10 @@ function ToggleButton({ label, selected, onClick }: { label: string; selected: b
     <button
       type="button"
       onClick={onClick}
-      className={`flex-1 rounded-full px-4 py-2.5 text-sm font-semibold transition-all ${
+      className={`flex-1 border px-4 py-2.5 text-sm font-semibold transition-colors ${
         selected
-          ? "bg-rebu-green text-white shadow-md"
-          : "bg-rebu-stone/50 text-rebu-charcoal hover:bg-rebu-stone"
+          ? "border-rebu-green bg-rebu-green/5 text-rebu-green"
+          : "border-ink/15 bg-paper text-ink hover:border-rebu-green/40"
       }`}
     >
       {label}
@@ -81,7 +81,7 @@ export function SavingsCalculator() {
           <h2 className="section-title mt-3">
             Bereken jouw <span className="italic text-rebu-green">besparing.</span>
           </h2>
-          <p className="mt-4 text-neutral-600">
+          <p className="mt-4 text-ink-soft">
             Ontdek hoeveel je bespaart op energiekosten door te investeren in nieuwe kozijnen met hoogwaardig glas. Inclusief ISDE-subsidie berekening.
           </p>
         </div>
@@ -90,7 +90,7 @@ export function SavingsCalculator() {
           {/* Left: inputs */}
           <div className="space-y-8">
             <div>
-              <label className="mb-3 block text-xs font-semibold uppercase tracking-wider text-neutral-500">
+              <label className="mb-3 block text-xs font-semibold uppercase tracking-wider text-ink-soft">
                 Glasoppervlak (m²)
               </label>
               <div className="flex items-center gap-4">
@@ -100,7 +100,7 @@ export function SavingsCalculator() {
                   max={60}
                   value={m2}
                   onChange={(e) => setM2(Number(e.target.value))}
-                  className="h-2 flex-1 cursor-pointer appearance-none rounded-full bg-rebu-stone accent-rebu-green"
+                  className="h-2 flex-1 cursor-pointer appearance-none bg-rebu-stone accent-rebu-green"
                 />
                 <div className="flex items-center gap-1">
                   <input
@@ -109,18 +109,18 @@ export function SavingsCalculator() {
                     max={100}
                     value={m2}
                     onChange={(e) => setM2(Math.max(1, parseInt(e.target.value) || 1))}
-                    className="w-16 rounded-xl border border-rebu-stone bg-white px-3 py-2 text-center font-display text-lg font-semibold text-rebu-charcoal focus:border-rebu-green focus:outline-none"
+                    className="w-16 border border-rebu-stone bg-paper px-3 py-2 text-center font-display text-lg font-semibold text-ink focus:border-rebu-green focus:outline-none focus:ring-1 focus:ring-rebu-green/40"
                   />
-                  <span className="text-sm text-neutral-500">m²</span>
+                  <span className="text-sm text-ink-soft">m²</span>
                 </div>
               </div>
-              <p className="mt-2 text-xs text-neutral-400">
+              <p className="mt-2 text-xs text-ink-soft">
                 ≈ {results.kozijnen} kozijnen (gem. {AVG_M2_PER_KOZIJN} m² per kozijn)
               </p>
             </div>
 
             <div>
-              <label className="mb-3 block text-xs font-semibold uppercase tracking-wider text-neutral-500">
+              <label className="mb-3 block text-xs font-semibold uppercase tracking-wider text-ink-soft">
                 Huidig glastype
               </label>
               <div className="flex gap-2">
@@ -131,7 +131,7 @@ export function SavingsCalculator() {
             </div>
 
             <div>
-              <label className="mb-3 block text-xs font-semibold uppercase tracking-wider text-neutral-500">
+              <label className="mb-3 block text-xs font-semibold uppercase tracking-wider text-ink-soft">
                 Nieuw glastype
               </label>
               <div className="flex gap-2">
@@ -141,7 +141,7 @@ export function SavingsCalculator() {
             </div>
 
             <div>
-              <label className="mb-3 block text-xs font-semibold uppercase tracking-wider text-neutral-500">
+              <label className="mb-3 block text-xs font-semibold uppercase tracking-wider text-ink-soft">
                 Woningtype
               </label>
               <div className="grid grid-cols-2 gap-2">
@@ -156,51 +156,51 @@ export function SavingsCalculator() {
 
           {/* Right: results */}
           <div>
-            <h3 className="font-display text-2xl font-semibold text-rebu-charcoal md:text-3xl">
+            <h3 className="font-display text-2xl font-semibold text-ink md:text-3xl">
               Jouw geschatte besparing
             </h3>
 
             <div className="mt-6 grid grid-cols-2 gap-4">
-              <div className="rounded-2xl border border-rebu-stone bg-white p-5">
+              <div className="border border-ink/10 bg-paper p-5">
                 <div className="flex items-center gap-2">
-                  <div className="flex h-9 w-9 items-center justify-center rounded-full bg-rebu-green/10 text-rebu-green">
+                  <div className="flex h-9 w-9 items-center justify-center bg-rebu-green/10 text-rebu-green">
                     <Euro className="h-4 w-4" />
                   </div>
-                  <span className="text-[10px] font-semibold uppercase tracking-wider text-neutral-500">Jaarlijkse besparing</span>
+                  <span className="text-[10px] font-semibold uppercase tracking-wider text-ink-soft">Jaarlijkse besparing</span>
                 </div>
-                <p className="mt-3 font-display text-3xl font-bold text-rebu-charcoal">€{results.yearlySaving}</p>
-                <p className="mt-1 text-xs text-neutral-500">per jaar op energie</p>
+                <p className="mt-3 font-display text-3xl font-bold text-ink">€{results.yearlySaving}</p>
+                <p className="mt-1 text-xs text-ink-soft">per jaar op energie</p>
               </div>
 
-              <div className="rounded-2xl border border-rebu-stone bg-white p-5">
+              <div className="border border-ink/10 bg-paper p-5">
                 <div className="flex items-center gap-2">
-                  <div className="flex h-9 w-9 items-center justify-center rounded-full bg-rebu-green/10 text-rebu-green">
+                  <div className="flex h-9 w-9 items-center justify-center bg-rebu-green/10 text-rebu-green">
                     <Leaf className="h-4 w-4" />
                   </div>
-                  <span className="text-[10px] font-semibold uppercase tracking-wider text-neutral-500">CO₂ besparing</span>
+                  <span className="text-[10px] font-semibold uppercase tracking-wider text-ink-soft">CO₂ besparing</span>
                 </div>
-                <p className="mt-3 font-display text-3xl font-bold text-rebu-charcoal">{results.co2} kg</p>
-                <p className="mt-1 text-xs text-neutral-500">minder CO₂ per jaar</p>
+                <p className="mt-3 font-display text-3xl font-bold text-ink">{results.co2} kg</p>
+                <p className="mt-1 text-xs text-ink-soft">minder CO₂ per jaar</p>
               </div>
 
-              <div className="rounded-2xl border border-rebu-stone bg-white p-5">
+              <div className="border border-ink/10 bg-paper p-5">
                 <div className="flex items-center gap-2">
-                  <div className="flex h-9 w-9 items-center justify-center rounded-full bg-rebu-green/10 text-rebu-green">
+                  <div className="flex h-9 w-9 items-center justify-center bg-rebu-green/10 text-rebu-green">
                     <TrendingDown className="h-4 w-4" />
                   </div>
-                  <span className="text-[10px] font-semibold uppercase tracking-wider text-neutral-500">ISDE subsidie</span>
+                  <span className="text-[10px] font-semibold uppercase tracking-wider text-ink-soft">ISDE subsidie</span>
                 </div>
-                <p className="mt-3 font-display text-3xl font-bold text-rebu-charcoal">€{results.subsidie}</p>
-                <p className="mt-1 text-xs text-neutral-500">{m2} m² glas × €{ISDE_PER_M2[newGlass]}/m²</p>
+                <p className="mt-3 font-display text-3xl font-bold text-ink">€{results.subsidie}</p>
+                <p className="mt-1 text-xs text-ink-soft">{m2} m² glas × €{ISDE_PER_M2[newGlass]}/m²</p>
               </div>
             </div>
 
             {/* Disclaimer */}
-            <div className="mt-5 flex items-start gap-3 rounded-2xl bg-rebu-green/5 p-4 text-sm ring-1 ring-rebu-green/15">
+            <div className="mt-5 flex items-start gap-3 border border-rebu-green/20 bg-rebu-green/5 p-4 text-sm">
               <Info className="mt-0.5 h-4 w-4 flex-none text-rebu-green" />
               <div>
-                <p className="font-semibold text-rebu-charcoal">Disclaimer</p>
-                <p className="mt-1 text-neutral-600">
+                <p className="font-semibold text-ink">Disclaimer</p>
+                <p className="mt-1 text-ink-soft">
                   Deze berekening is een indicatie op basis van gemiddelden. De werkelijke besparing hangt af van je specifieke situatie (isolatie, stookgedrag, gasprijs). ISDE-subsidiebedragen zijn indicatief — check{" "}
                   <a href="https://www.rvo.nl/subsidies-financiering/isde" target="_blank" rel="noopener noreferrer" className="text-rebu-green underline">rvo.nl</a>{" "}
                   voor actuele tarieven. Subsidie geldt alleen voor bestaande woningen.
@@ -208,13 +208,10 @@ export function SavingsCalculator() {
               </div>
             </div>
 
-            <Link
-              href="/offerte"
-              className="mt-6 flex w-full items-center justify-center gap-2 rounded-xl bg-rebu-green px-8 py-4 text-sm font-semibold text-white transition-all hover:bg-rebu-green-dark"
-            >
+            <Link href="/offerte" className="btn-primary mt-6 w-full">
               Offerte aanvragen <ArrowRight className="h-4 w-4" />
             </Link>
-            <p className="mt-2 text-center text-xs text-neutral-500">Vrijblijvend en gratis — binnen 1 werkdag reactie</p>
+            <p className="mt-2 text-center text-xs text-ink-soft">Vrijblijvend en gratis — binnen 1 werkdag reactie</p>
           </div>
         </div>
       </div>

@@ -34,7 +34,7 @@ export function ProjectsMarquee() {
             <Link
               key={`r1-${i}`}
               href={`/projecten/${t.slug}`}
-              className="group relative h-56 w-80 flex-none overflow-hidden rounded-2xl ring-1 ring-white/15 transition-all hover:ring-white/60 md:h-64 md:w-96"
+              className="group relative h-56 w-80 flex-none overflow-hidden border border-white/12 transition-colors hover:border-white/40 md:h-64 md:w-96"
             >
               <Image
                 src={t.img}
@@ -65,7 +65,7 @@ export function ProjectsMarquee() {
             <Link
               key={`r2-${i}`}
               href={`/projecten/${t.slug}`}
-              className="group relative h-48 w-72 flex-none overflow-hidden rounded-2xl ring-1 ring-white/15 transition-all hover:ring-white/60 md:h-56 md:w-80"
+              className="group relative h-48 w-72 flex-none overflow-hidden border border-white/12 transition-colors hover:border-white/40 md:h-56 md:w-80"
             >
               <Image
                 src={t.img}

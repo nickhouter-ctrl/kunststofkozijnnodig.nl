@@ -20,8 +20,8 @@ export default function AVPage() {
           { label: "Algemene voorwaarden", href: "/algemene-voorwaarden" },
         ]}
       />
-      <section className="section bg-white">
-        <div className="container-rebu prose prose-neutral mx-auto max-w-3xl">
+      <section className="section bg-paper">
+        <div className="container-rebu prose prose-neutral mx-auto max-w-3xl prose-headings:font-display prose-headings:font-medium prose-headings:text-ink prose-a:text-rebu-green prose-a:no-underline hover:prose-a:underline">
           <p>
             De algemene voorwaarden van Kunststofkozijnnodig.nl zijn op aanvraag beschikbaar. Stuur een e-mail naar{" "}
             <a href={site.emailHref}>{site.email}</a> voor de meest recente versie.

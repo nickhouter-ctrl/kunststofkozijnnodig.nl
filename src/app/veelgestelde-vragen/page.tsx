@@ -161,42 +161,40 @@ export default function FAQPage() {
         ]}
       />
 
-      <section className="section bg-white">
+      <section className="section bg-paper">
         <div className="container-rebu max-w-4xl">
           {faqCategories.map((cat) => (
             <div key={cat.title} className="mb-14">
-              <h2 className="flex items-center gap-3 font-display text-2xl font-semibold text-rebu-charcoal md:text-3xl">
-                <span className="h-px flex-1 bg-rebu-stone" />
+              <h2 className="flex items-center gap-4 font-display text-2xl font-medium text-ink md:text-3xl">
+                <span className="h-px flex-1 bg-ink/10" />
                 <span>{cat.title}</span>
-                <span className="h-px flex-1 bg-rebu-stone" />
+                <span className="h-px flex-1 bg-ink/10" />
               </h2>
-              <div className="mt-6 space-y-3">
+              <div className="mt-6 divide-y divide-ink/10 border-y border-ink/10">
                 {cat.faqs.map((faq) => (
-                  <details
-                    key={faq.q}
-                    className="group rounded-2xl border border-rebu-stone bg-rebu-cream p-6 transition-all hover:border-rebu-green open:border-rebu-green open:shadow-soft"
-                  >
-                    <summary className="flex cursor-pointer items-center justify-between gap-4 font-display text-lg font-semibold text-rebu-charcoal">
+                  <details key={faq.q} className="group">
+                    <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-5 font-display text-lg font-medium text-ink transition-colors hover:text-rebu-green">
                       {faq.q}
                       <ChevronRight className="h-5 w-5 flex-none text-rebu-green transition-transform group-open:rotate-90" />
                     </summary>
-                    <p className="mt-4 leading-relaxed text-neutral-600">{faq.a}</p>
+                    <p className="pb-6 leading-relaxed text-ink-soft">{faq.a}</p>
                   </details>
                 ))}
               </div>
             </div>
           ))}
 
-          <div className="mt-10 rounded-3xl bg-rebu-green p-10 text-center text-white">
-            <h2 className="font-display text-3xl font-semibold">Vraag niet beantwoord?</h2>
-            <p className="mt-3 text-white/80">
+          <div className="mt-10 bg-rebu-green-dark p-10 text-center text-white">
+            <span className="eyebrow is-light justify-center">Nog vragen?</span>
+            <h2 className="mt-4 font-display text-3xl font-medium">Vraag niet beantwoord?</h2>
+            <p className="mt-3 leading-relaxed text-white/70">
               Neem gerust contact op — we helpen je graag persoonlijk.
             </p>
             <div className="mt-6 flex flex-wrap justify-center gap-3">
-              <Link href="/contact" className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-rebu-green-dark hover:bg-rebu-cream">
+              <Link href="/contact" className="btn-light">
                 Contact opnemen <ArrowRight className="h-4 w-4" />
               </Link>
-              <Link href="/offerte" className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-6 py-3 text-sm font-semibold text-white hover:bg-white/20">
+              <Link href="/offerte" className="btn-light">
                 Offerte aanvragen <ArrowRight className="h-4 w-4" />
               </Link>
             </div>

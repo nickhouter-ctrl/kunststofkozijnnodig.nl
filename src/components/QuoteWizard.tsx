@@ -160,15 +160,15 @@ export function QuoteWizard() {
 
   if (status === "success") {
     return (
-      <div className="mx-auto max-w-2xl rounded-3xl bg-white p-10 text-center shadow-glow ring-1 ring-black/5">
+      <div className="mx-auto max-w-2xl border border-ink/10 bg-paper p-10 text-center">
         <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-rebu-green/10 text-rebu-green">
           <PartyPopper className="h-8 w-8" />
         </div>
-        <h2 className="mt-6 font-display text-3xl font-semibold text-rebu-charcoal">Bedankt, {data.firstName}!</h2>
-        <p className="mt-4 text-neutral-600">
+        <h2 className="mt-6 font-display text-3xl font-medium text-ink">Bedankt, {data.firstName}!</h2>
+        <p className="mt-4 text-ink-soft">
           Je aanvraag is ontvangen. We nemen binnen 1 werkdag contact met je op via{" "}
-          <span className="font-semibold text-rebu-charcoal">{data.email}</span> of{" "}
-          <span className="font-semibold text-rebu-charcoal">{data.phone}</span>.
+          <span className="font-semibold text-ink">{data.email}</span> of{" "}
+          <span className="font-semibold text-ink">{data.phone}</span>.
         </p>
         <div className="mt-8 flex flex-wrap justify-center gap-3">
           <Link href="/" className="btn-secondary">Terug naar home</Link>
@@ -181,18 +181,18 @@ export function QuoteWizard() {
   return (
     <div className="mx-auto max-w-4xl">
       {/* Progress */}
-      <div className="mb-10 rounded-2xl bg-white p-5 shadow-soft ring-1 ring-black/5">
-        <div className="mb-3 flex items-center justify-between text-xs font-semibold uppercase tracking-wider text-neutral-500">
+      <div className="mb-10 border border-ink/10 bg-paper p-5">
+        <div className="mb-3 flex items-center justify-between text-xs font-semibold uppercase tracking-wider text-ink-soft">
           <span>Stap {stepIndex + 1} van {STEPS.length}</span>
           <span className="text-rebu-green">{current.title}</span>
         </div>
-        <div className="h-1.5 w-full overflow-hidden rounded-full bg-rebu-stone">
-          <div className="h-full rounded-full bg-rebu-green transition-all duration-500 ease-out" style={{ width: `${((stepIndex + 1) / STEPS.length) * 100}%` }} />
+        <div className="h-1.5 w-full overflow-hidden bg-rebu-stone">
+          <div className="h-full bg-rebu-green transition-all duration-500 ease-out" style={{ width: `${((stepIndex + 1) / STEPS.length) * 100}%` }} />
         </div>
         <div className="mt-4 hidden items-center justify-between gap-2 md:flex">
           {STEPS.map((s, i) => (
-            <div key={s.id} className={`flex flex-1 items-center gap-2 text-xs ${i <= stepIndex ? "text-rebu-green" : "text-neutral-400"}`}>
-              <span className={`flex h-6 w-6 flex-none items-center justify-center rounded-full text-[10px] font-bold ${i < stepIndex ? "bg-rebu-green text-white" : i === stepIndex ? "border-2 border-rebu-green text-rebu-green" : "border border-neutral-300 text-neutral-400"}`}>
+            <div key={s.id} className={`flex flex-1 items-center gap-2 text-xs ${i <= stepIndex ? "text-rebu-green" : "text-ink-soft/60"}`}>
+              <span className={`flex h-6 w-6 flex-none items-center justify-center text-[10px] font-bold ${i < stepIndex ? "bg-rebu-green text-white" : i === stepIndex ? "border border-rebu-green text-rebu-green" : "border border-ink/20 text-ink-soft/60"}`}>
                 {i < stepIndex ? <Check className="h-3 w-3" /> : i + 1}
               </span>
               <span className="hidden font-medium lg:inline">{s.short}</span>
@@ -202,7 +202,7 @@ export function QuoteWizard() {
       </div>
 
       {/* Step content */}
-      <div className="rounded-3xl bg-white p-6 shadow-glow ring-1 ring-black/5 md:p-10">
+      <div className="border border-ink/10 bg-paper p-6 md:p-10">
 
         {/* Step 1: Customer type */}
         {current.id === "customer" && (
@@ -236,7 +236,7 @@ export function QuoteWizard() {
                 return (
                   <div
                     key={p}
-                    className={`rounded-2xl border-2 p-5 transition-all ${selected ? "border-rebu-green bg-rebu-green/5" : "border-rebu-stone hover:border-rebu-green/40"}`}
+                    className={`border p-5 transition-colors ${selected ? "border-rebu-green bg-rebu-green/5" : "border-ink/10 hover:border-rebu-green/40"}`}
                   >
                     <div className="flex items-center justify-between gap-4">
                       <button
@@ -244,17 +244,17 @@ export function QuoteWizard() {
                         onClick={() => toggleProduct(p)}
                         className="flex flex-1 items-center gap-4 text-left"
                       >
-                        <div className={`flex h-6 w-6 flex-none items-center justify-center rounded-lg transition-colors ${selected ? "bg-rebu-green text-white" : "border border-neutral-300"}`}>
+                        <div className={`flex h-6 w-6 flex-none items-center justify-center transition-colors ${selected ? "bg-rebu-green text-white" : "border border-ink/25"}`}>
                           {selected && <Check className="h-3.5 w-3.5" />}
                         </div>
-                        <span className={`font-display text-xl font-semibold ${selected ? "text-rebu-green" : "text-rebu-charcoal"}`}>
+                        <span className={`font-display text-xl font-medium ${selected ? "text-rebu-green" : "text-ink"}`}>
                           {label(p)}
                         </span>
                       </button>
 
                       {selected && item && (
                         <div className="flex items-center gap-2">
-                          <button type="button" onClick={() => setItemQuantity(p, item.quantity - 1)} className="flex h-10 w-10 items-center justify-center rounded-xl bg-rebu-cream text-rebu-green-dark hover:bg-rebu-stone disabled:opacity-40" disabled={item.quantity <= 1}>
+                          <button type="button" onClick={() => setItemQuantity(p, item.quantity - 1)} className="flex h-10 w-10 items-center justify-center border border-ink/15 bg-rebu-cream text-rebu-green-dark hover:bg-rebu-stone disabled:opacity-40" disabled={item.quantity <= 1}>
                             <Minus className="h-4 w-4" />
                           </button>
                           <input
@@ -264,12 +264,12 @@ export function QuoteWizard() {
                             max={99}
                             value={item.quantity}
                             onChange={(e) => setItemQuantity(p, parseInt(e.target.value, 10) || 1)}
-                            className="w-16 appearance-none bg-transparent text-center font-display text-2xl font-semibold tabular-nums text-rebu-charcoal focus:outline-none [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                            className="w-16 appearance-none bg-transparent text-center font-display text-2xl font-semibold tabular-nums text-ink focus:outline-none [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
                           />
-                          <button type="button" onClick={() => setItemQuantity(p, item.quantity + 1)} className="flex h-10 w-10 items-center justify-center rounded-xl bg-rebu-green text-white hover:bg-rebu-green-dark">
+                          <button type="button" onClick={() => setItemQuantity(p, item.quantity + 1)} className="flex h-10 w-10 items-center justify-center bg-rebu-green text-white hover:bg-rebu-green-dark">
                             <Plus className="h-4 w-4" />
                           </button>
-                          <span className="ml-1 text-sm text-neutral-500">stuks</span>
+                          <span className="ml-1 text-sm text-ink-soft">stuks</span>
                         </div>
                       )}
                     </div>
@@ -279,36 +279,36 @@ export function QuoteWizard() {
             </div>
 
             {items.length > 0 && (
-              <div className="mt-4 rounded-xl bg-rebu-stone/50 px-4 py-3 text-sm text-neutral-600">
-                Totaal: <span className="font-semibold text-rebu-charcoal">{totalItems}</span> {totalItems === 1 ? "stuk" : "stuks"} ({items.map((i) => `${i.quantity}× ${label(i.product)}`).join(", ")})
+              <div className="mt-4 border border-ink/10 bg-rebu-cream px-4 py-3 text-sm text-ink-soft">
+                Totaal: <span className="font-semibold text-ink">{totalItems}</span> {totalItems === 1 ? "stuk" : "stuks"} ({items.map((i) => `${i.quantity}× ${label(i.product)}`).join(", ")})
               </div>
             )}
 
-            <p className="mt-8 mb-3 text-xs font-semibold uppercase tracking-wider text-neutral-500">Dienstverlening</p>
+            <p className="mt-8 mb-3 text-xs font-semibold uppercase tracking-wider text-ink-soft">Dienstverlening</p>
             <OptionGrid cols={2}>
               <BigOption icon={Truck} label={label("leveren")} description="Ik laat het zelf plaatsen" selected={data.service === "leveren"} onSelect={() => update("service", "leveren")} />
               <BigOption icon={Wrench} label={label("leveren-plaatsen")} description="Inclusief montage door Kunststofkozijnnodig.nl" selected={data.service === "leveren-plaatsen"} onSelect={() => update("service", "leveren-plaatsen")} />
             </OptionGrid>
 
-            <p className="mt-8 mb-3 text-xs font-semibold uppercase tracking-wider text-neutral-500">Houtlook verbinding</p>
+            <p className="mt-8 mb-3 text-xs font-semibold uppercase tracking-wider text-ink-soft">Houtlook verbinding</p>
             <div className="flex gap-3">
               <button
                 type="button"
                 onClick={() => update("houtlookVerbinding", true)}
-                className={`flex-1 rounded-2xl border-2 px-5 py-4 text-left transition-all ${data.houtlookVerbinding ? "border-rebu-green bg-rebu-green/5 shadow-soft" : "border-rebu-stone hover:border-rebu-green/40"}`}
+                className={`flex-1 border px-5 py-4 text-left transition-colors ${data.houtlookVerbinding ? "border-rebu-green bg-rebu-green/5" : "border-ink/10 hover:border-rebu-green/40"}`}
               >
-                <p className={`font-display text-lg font-semibold ${data.houtlookVerbinding ? "text-rebu-green" : "text-rebu-charcoal"}`}>Ja, houtlook verbinding</p>
-                <p className="mt-1 text-sm text-neutral-500">Hoekverbinding met houtlook uitstraling</p>
-                {data.houtlookVerbinding && <span className="mt-2 inline-flex items-center gap-1 rounded-full bg-rebu-green/10 px-2.5 py-0.5 text-xs font-medium text-rebu-green"><Check className="h-3 w-3" /> Geselecteerd</span>}
+                <p className={`font-display text-lg font-medium ${data.houtlookVerbinding ? "text-rebu-green" : "text-ink"}`}>Ja, houtlook verbinding</p>
+                <p className="mt-1 text-sm text-ink-soft">Hoekverbinding met houtlook uitstraling</p>
+                {data.houtlookVerbinding && <span className="mt-2 inline-flex items-center gap-1 bg-rebu-green/10 px-2.5 py-0.5 text-xs font-medium text-rebu-green"><Check className="h-3 w-3" /> Geselecteerd</span>}
               </button>
               <button
                 type="button"
                 onClick={() => update("houtlookVerbinding", false)}
-                className={`flex-1 rounded-2xl border-2 px-5 py-4 text-left transition-all ${!data.houtlookVerbinding ? "border-rebu-green bg-rebu-green/5 shadow-soft" : "border-rebu-stone hover:border-rebu-green/40"}`}
+                className={`flex-1 border px-5 py-4 text-left transition-colors ${!data.houtlookVerbinding ? "border-rebu-green bg-rebu-green/5" : "border-ink/10 hover:border-rebu-green/40"}`}
               >
-                <p className={`font-display text-lg font-semibold ${!data.houtlookVerbinding ? "text-rebu-green" : "text-rebu-charcoal"}`}>Nee, standaard (verstek)</p>
-                <p className="mt-1 text-sm text-neutral-500">Standaard verstekverbinding</p>
-                {!data.houtlookVerbinding && <span className="mt-2 inline-flex items-center gap-1 rounded-full bg-rebu-green/10 px-2.5 py-0.5 text-xs font-medium text-rebu-green"><Check className="h-3 w-3" /> Geselecteerd</span>}
+                <p className={`font-display text-lg font-medium ${!data.houtlookVerbinding ? "text-rebu-green" : "text-ink"}`}>Nee, standaard (verstek)</p>
+                <p className="mt-1 text-sm text-ink-soft">Standaard verstekverbinding</p>
+                {!data.houtlookVerbinding && <span className="mt-2 inline-flex items-center gap-1 bg-rebu-green/10 px-2.5 py-0.5 text-xs font-medium text-rebu-green"><Check className="h-3 w-3" /> Geselecteerd</span>}
               </button>
             </div>
           </StepShell>
@@ -319,7 +319,7 @@ export function QuoteWizard() {
           <StepShell title="Afmetingen & foto's" subtitle="Vul afmetingen in per stuk en voeg eventueel foto's of tekeningen toe. Alles is optioneel — we meten sowieso in bij een afspraak.">
             {items.map((item) => (
               <div key={item.product} className="mb-8">
-                <h3 className="mb-4 flex items-center gap-2 font-display text-xl font-semibold text-rebu-charcoal">
+                <h3 className="mb-4 flex items-center gap-2 font-display text-xl font-medium text-ink">
                   <Ruler className="h-5 w-5 text-rebu-green" />
                   {label(item.product)} — {item.quantity} {item.quantity === 1 ? "stuk" : "stuks"}
                 </h3>
@@ -327,8 +327,8 @@ export function QuoteWizard() {
                   {Array.from({ length: item.quantity }, (_, idx) => {
                     const dim = item.dimensions?.[idx] ?? {};
                     return (
-                      <div key={idx} className="flex flex-wrap items-center gap-3 rounded-xl border border-rebu-stone bg-rebu-cream p-4">
-                        <span className="flex h-7 w-7 flex-none items-center justify-center rounded-lg bg-rebu-green/10 text-xs font-bold text-rebu-green">
+                      <div key={idx} className="flex flex-wrap items-center gap-3 border border-ink/10 bg-rebu-cream p-4">
+                        <span className="flex h-7 w-7 flex-none items-center justify-center bg-rebu-green/10 text-xs font-bold text-rebu-green">
                           {idx + 1}
                         </span>
                         <div className="flex items-center gap-2">
@@ -338,25 +338,25 @@ export function QuoteWizard() {
                             placeholder="Breedte"
                             value={dim.width ?? ""}
                             onChange={(e) => setDimension(item.product, idx, "width", parseInt(e.target.value, 10) || 0)}
-                            className="w-24 rounded-lg border border-rebu-stone bg-white px-3 py-2 text-sm focus:border-rebu-green focus:outline-none focus:ring-1 focus:ring-rebu-green/20"
+                            className="w-24 border border-rebu-stone bg-paper px-3 py-2 text-sm focus:border-rebu-green focus:outline-none focus:ring-1 focus:ring-rebu-green/40"
                           />
-                          <span className="text-sm text-neutral-400">×</span>
+                          <span className="text-sm text-ink-soft">×</span>
                           <input
                             type="number"
                             inputMode="numeric"
                             placeholder="Hoogte"
                             value={dim.height ?? ""}
                             onChange={(e) => setDimension(item.product, idx, "height", parseInt(e.target.value, 10) || 0)}
-                            className="w-24 rounded-lg border border-rebu-stone bg-white px-3 py-2 text-sm focus:border-rebu-green focus:outline-none focus:ring-1 focus:ring-rebu-green/20"
+                            className="w-24 border border-rebu-stone bg-paper px-3 py-2 text-sm focus:border-rebu-green focus:outline-none focus:ring-1 focus:ring-rebu-green/40"
                           />
-                          <span className="text-xs text-neutral-400">cm</span>
+                          <span className="text-xs text-ink-soft">cm</span>
                         </div>
                         <input
                           type="text"
                           placeholder="Opmerking (optioneel)"
                           value={dim.note ?? ""}
                           onChange={(e) => setDimension(item.product, idx, "note", e.target.value)}
-                          className="min-w-[160px] flex-1 rounded-lg border border-rebu-stone bg-white px-3 py-2 text-sm placeholder:text-neutral-400 focus:border-rebu-green focus:outline-none focus:ring-1 focus:ring-rebu-green/20"
+                          className="min-w-[160px] flex-1 border border-rebu-stone bg-paper px-3 py-2 text-sm placeholder:text-ink-soft/60 focus:border-rebu-green focus:outline-none focus:ring-1 focus:ring-rebu-green/40"
                         />
                       </div>
                     );
@@ -366,11 +366,11 @@ export function QuoteWizard() {
             ))}
 
             {/* File upload */}
-            <div className="mt-8 border-t border-rebu-stone pt-8">
-              <h3 className="mb-2 font-display text-xl font-semibold text-rebu-charcoal">
+            <div className="mt-8 border-t border-ink/10 pt-8">
+              <h3 className="mb-2 font-display text-xl font-medium text-ink">
                 Foto's of tekeningen toevoegen
               </h3>
-              <p className="mb-4 text-sm text-neutral-500">
+              <p className="mb-4 text-sm text-ink-soft">
                 Voeg foto's toe van je huidige kozijnen, een plattegrond of een technische tekening. Dit helpt ons bij het maken van een nauwkeurige offerte.
               </p>
               <FileUpload
@@ -384,20 +384,20 @@ export function QuoteWizard() {
         {/* Step 5: Specs */}
         {current.id === "specs" && (
           <StepShell title="Specificaties" subtitle="Nog niet zeker? Kies 'geen voorkeur' en wij adviseren.">
-            <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-neutral-500">Merk voorkeur</p>
+            <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-ink-soft">Merk voorkeur</p>
             <OptionGrid cols={4}>
               {(["geen-voorkeur", "schuco", "aluplast", "gealan"] as const).map((b) => (
                 <MiniOption key={b} label={label(b)} selected={data.brand === b} onSelect={() => update("brand", b)} />
               ))}
             </OptionGrid>
 
-            <p className="mt-8 mb-3 text-xs font-semibold uppercase tracking-wider text-neutral-500">Kleur buitenkant</p>
+            <p className="mt-8 mb-3 text-xs font-semibold uppercase tracking-wider text-ink-soft">Kleur buitenkant</p>
             <ColorPicker value={data.colorBuiten} onChange={(v) => update("colorBuiten", v)} />
 
-            <p className="mt-8 mb-3 text-xs font-semibold uppercase tracking-wider text-neutral-500">Kleur binnenkant</p>
+            <p className="mt-8 mb-3 text-xs font-semibold uppercase tracking-wider text-ink-soft">Kleur binnenkant</p>
             <ColorPicker value={data.colorBinnen} onChange={(v) => update("colorBinnen", v)} />
 
-            <p className="mt-8 mb-3 text-xs font-semibold uppercase tracking-wider text-neutral-500">Glastype</p>
+            <p className="mt-8 mb-3 text-xs font-semibold uppercase tracking-wider text-ink-soft">Glastype</p>
             <OptionGrid cols={4}>
               {(["hr++", "triple", "inbraakwerend", "advies"] as const).map((g) => (
                 <MiniOption key={g} label={label(g)} selected={data.glass === g} onSelect={() => update("glass", g)} />
@@ -416,7 +416,7 @@ export function QuoteWizard() {
               <BigOption icon={HelpCircle} label={label("flexibel")} description="Ik oriënteer me nog" selected={data.timeline === "flexibel"} onSelect={() => update("timeline", "flexibel")} />
             </OptionGrid>
             <div className="mt-8">
-              <label className="mb-2 block text-xs font-semibold uppercase tracking-wider text-neutral-500">Opmerkingen of wensen (optioneel)</label>
+              <label className="mb-2 block text-xs font-semibold uppercase tracking-wider text-ink-soft">Opmerkingen of wensen (optioneel)</label>
               <textarea className="input min-h-[100px] resize-y" placeholder="Bijv. specifieke wensen, bouwjaar woning..." value={data.notes ?? ""} onChange={(e) => update("notes", e.target.value)} />
             </div>
           </StepShell>
@@ -472,18 +472,18 @@ export function QuoteWizard() {
             </div>
 
             {/* Items overview */}
-            <div className="mt-4 rounded-2xl border border-rebu-stone bg-rebu-cream p-5">
+            <div className="mt-4 border border-ink/10 bg-rebu-cream p-5">
               <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-rebu-green">Producten & afmetingen</p>
               {items.map((item) => (
                 <div key={item.product} className="mb-4 last:mb-0">
-                  <p className="font-semibold text-rebu-charcoal">{label(item.product)} — {item.quantity}×</p>
+                  <p className="font-semibold text-ink">{label(item.product)} — {item.quantity}×</p>
                   {item.dimensions && item.dimensions.some((d) => d.width || d.height) && (
-                    <ul className="mt-1 space-y-0.5 text-sm text-neutral-600">
+                    <ul className="mt-1 space-y-0.5 text-sm text-ink-soft">
                       {item.dimensions.map((d, i) => (
                         (d.width || d.height) && (
                           <li key={i}>
                             #{i + 1}: {d.width ?? "?"}×{d.height ?? "?"} cm
-                            {d.note && <span className="text-neutral-400"> — {d.note}</span>}
+                            {d.note && <span className="text-ink-soft/70"> — {d.note}</span>}
                           </li>
                         )
                       ))}
@@ -502,13 +502,13 @@ export function QuoteWizard() {
 
             {/* Attachments preview */}
             {(data.attachments?.length ?? 0) > 0 && (
-              <div className="mt-4 rounded-2xl border border-rebu-stone bg-rebu-cream p-5">
+              <div className="mt-4 border border-ink/10 bg-rebu-cream p-5">
                 <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-rebu-green">Bijlagen</p>
                 <div className="flex flex-wrap gap-2">
                   {data.attachments!.map((f, i) => (
-                    <div key={i} className="flex items-center gap-2 rounded-lg bg-white px-3 py-2 text-xs ring-1 ring-rebu-stone">
+                    <div key={i} className="flex items-center gap-2 border border-ink/10 bg-paper px-3 py-2 text-xs">
                       <FileImage className="h-3 w-3 text-rebu-green" />
-                      <span className="max-w-[120px] truncate text-rebu-charcoal">{f.name}</span>
+                      <span className="max-w-[120px] truncate text-ink">{f.name}</span>
                     </div>
                   ))}
                 </div>
@@ -517,7 +517,7 @@ export function QuoteWizard() {
 
             {/* Description */}
             <div className="mt-4">
-              <label className="mb-2 block text-xs font-semibold uppercase tracking-wider text-neutral-500">Beschrijving van je project (optioneel)</label>
+              <label className="mb-2 block text-xs font-semibold uppercase tracking-wider text-ink-soft">Beschrijving van je project (optioneel)</label>
               <textarea
                 className="input min-h-[120px] resize-y"
                 placeholder="Geef hier een korte beschrijving van je project, speciale wensen of aanvullende informatie..."
@@ -526,13 +526,13 @@ export function QuoteWizard() {
               />
             </div>
 
-            <label className="mt-6 flex items-start gap-3 text-sm text-neutral-700">
+            <label className="mt-6 flex items-start gap-3 text-sm text-ink-soft">
               <input type="checkbox" className="mt-0.5 h-5 w-5 flex-none accent-rebu-green" checked={data.consent ?? false} onChange={(e) => update("consent", e.target.checked)} />
               <span>Ik ga akkoord met de <Link href="/privacyverklaring" className="text-rebu-green underline">privacyverklaring</Link> en dat Kunststofkozijnnodig.nl contact met mij opneemt over deze aanvraag.</span>
             </label>
 
             {status === "error" && (
-              <div className="mt-4 flex items-start gap-3 rounded-2xl border border-red-200 bg-red-50 p-4 text-sm text-red-700">
+              <div className="mt-4 flex items-start gap-3 border border-red-200 bg-red-50 p-4 text-sm text-red-700">
                 <AlertCircle className="mt-0.5 h-4 w-4 flex-none" />
                 <div>
                   <p className="font-semibold">Er ging iets mis</p>
@@ -544,8 +544,8 @@ export function QuoteWizard() {
         )}
 
         {/* Navigation */}
-        <div className="mt-10 flex items-center justify-between border-t border-rebu-stone pt-6">
-          <button type="button" onClick={prev} disabled={stepIndex === 0} className="inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold text-neutral-500 transition-colors hover:text-rebu-green-dark disabled:cursor-not-allowed disabled:opacity-30">
+        <div className="mt-10 flex items-center justify-between border-t border-ink/10 pt-6">
+          <button type="button" onClick={prev} disabled={stepIndex === 0} className="btn-ghost disabled:cursor-not-allowed disabled:opacity-30">
             <ArrowLeft className="h-4 w-4" /> Vorige
           </button>
           {current.id !== "review" ? (
@@ -566,7 +566,7 @@ export function QuoteWizard() {
 /* ---------- Sub-components ---------- */
 
 function StepShell({ title, subtitle, children }: { title: string; subtitle: string; children: React.ReactNode }) {
-  return <div><h2 className="font-display text-2xl font-semibold text-rebu-charcoal md:text-3xl">{title}</h2><p className="mt-2 text-neutral-600">{subtitle}</p><div className="mt-8">{children}</div></div>;
+  return <div><h2 className="font-display text-2xl font-medium text-ink md:text-3xl">{title}</h2><p className="mt-2 text-ink-soft">{subtitle}</p><div className="mt-8">{children}</div></div>;
 }
 
 function OptionGrid({ cols, children }: { cols: 2 | 3 | 4; children: React.ReactNode }) {
@@ -576,11 +576,11 @@ function OptionGrid({ cols, children }: { cols: 2 | 3 | 4; children: React.React
 
 function BigOption({ icon: Icon, label, description, selected, onSelect }: { icon: React.ComponentType<{ className?: string }>; label: string; description: string; selected: boolean; onSelect: () => void }) {
   return (
-    <button type="button" onClick={onSelect} className={`group relative flex items-start gap-4 rounded-2xl border-2 p-5 text-left transition-all ${selected ? "border-rebu-green bg-rebu-green/5 shadow-soft" : "border-rebu-stone bg-white hover:border-rebu-green/40 hover:shadow-soft"}`}>
-      <div className={`flex h-12 w-12 flex-none items-center justify-center rounded-xl transition-colors ${selected ? "bg-rebu-green text-white" : "bg-rebu-stone text-rebu-green"}`}><Icon className="h-5 w-5" /></div>
+    <button type="button" onClick={onSelect} className={`group relative flex items-start gap-4 border p-5 text-left transition-colors ${selected ? "border-rebu-green bg-rebu-green/5" : "border-ink/10 bg-paper hover:border-rebu-green/40"}`}>
+      <div className={`flex h-12 w-12 flex-none items-center justify-center transition-colors ${selected ? "bg-rebu-green text-white" : "bg-rebu-green/10 text-rebu-green"}`}><Icon className="h-5 w-5" /></div>
       <div className="flex-1 pr-6">
-        <p className={`font-display text-lg font-semibold ${selected ? "text-rebu-green" : "text-rebu-charcoal"}`}>{label}</p>
-        <p className="mt-1 text-sm text-neutral-500">{description}</p>
+        <p className={`font-display text-lg font-medium ${selected ? "text-rebu-green" : "text-ink"}`}>{label}</p>
+        <p className="mt-1 text-sm text-ink-soft">{description}</p>
       </div>
       {selected && <span className="absolute right-4 top-4 flex h-6 w-6 items-center justify-center rounded-full bg-rebu-green text-white"><Check className="h-3 w-3" /></span>}
     </button>
@@ -606,13 +606,13 @@ function ColorPicker({ value, onChange }: { value: string | undefined; onChange:
           key={c.v}
           type="button"
           onClick={() => onChange(c.v)}
-          className={`flex items-center gap-3 rounded-2xl border-2 p-4 text-left transition-all ${value === c.v ? "border-rebu-green bg-rebu-green/5" : "border-rebu-stone hover:border-rebu-green/40"}`}
+          className={`flex items-center gap-3 border p-4 text-left transition-colors ${value === c.v ? "border-rebu-green bg-rebu-green/5" : "border-ink/10 hover:border-rebu-green/40"}`}
         >
           <span
-            className={`h-8 w-8 flex-none rounded-full ${c.v === "wit-9016" || c.v === "wit-9001" || c.v === "wit-folie" ? "ring-1 ring-neutral-300" : ""} ${c.v === "anders" ? "ring-2 ring-dashed ring-neutral-300" : ""}`}
+            className={`h-8 w-8 flex-none rounded-full ${c.v === "wit-9016" || c.v === "wit-9001" || c.v === "wit-folie" ? "ring-1 ring-ink/15" : ""} ${c.v === "anders" ? "ring-2 ring-dashed ring-ink/20" : ""}`}
             style={{ background: c.color }}
           />
-          <span className="text-sm font-medium text-rebu-charcoal">{c.label}</span>
+          <span className="text-sm font-medium text-ink">{c.label}</span>
         </button>
       ))}
     </div>
@@ -621,20 +621,20 @@ function ColorPicker({ value, onChange }: { value: string | undefined; onChange:
 
 function MiniOption({ label, selected, onSelect }: { label: string; selected: boolean; onSelect: () => void }) {
   return (
-    <button type="button" onClick={onSelect} className={`rounded-2xl border-2 px-4 py-4 text-sm font-semibold transition-all ${selected ? "border-rebu-green bg-rebu-green/5 text-rebu-green" : "border-rebu-stone bg-white text-rebu-charcoal hover:border-rebu-green/40"}`}>{label}</button>
+    <button type="button" onClick={onSelect} className={`border px-4 py-4 text-sm font-semibold transition-colors ${selected ? "border-rebu-green bg-rebu-green/5 text-rebu-green" : "border-ink/10 bg-paper text-ink hover:border-rebu-green/40"}`}>{label}</button>
   );
 }
 
 function Label({ children }: { children: React.ReactNode }) {
-  return <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-neutral-500">{children}</label>;
+  return <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-ink-soft">{children}</label>;
 }
 
 function ReviewCard({ title, items }: { title: string; items: [string, string][] }) {
   return (
-    <div className="mt-4 rounded-2xl border border-rebu-stone bg-rebu-cream p-5">
+    <div className="mt-4 border border-ink/10 bg-rebu-cream p-5">
       <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-rebu-green">{title}</p>
       <dl className="space-y-2 text-sm">
-        {items.map(([k, v]) => (<div key={k} className="flex gap-3"><dt className="w-20 flex-none text-neutral-500">{k}</dt><dd className="text-rebu-charcoal">{v || "—"}</dd></div>))}
+        {items.map(([k, v]) => (<div key={k} className="flex gap-3"><dt className="w-20 flex-none text-ink-soft">{k}</dt><dd className="text-ink">{v || "—"}</dd></div>))}
       </dl>
     </div>
   );

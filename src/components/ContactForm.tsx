@@ -44,13 +44,13 @@ export function ContactForm() {
 
   if (status === "success") {
     return (
-      <div className="rounded-3xl bg-white p-10 shadow-soft ring-1 ring-black/5">
+      <div className="border border-ink/10 bg-paper p-10">
         <div className="flex flex-col items-center text-center">
           <div className="flex h-16 w-16 items-center justify-center rounded-full bg-rebu-green/10">
             <CheckCircle className="h-8 w-8 text-rebu-green" />
           </div>
-          <h3 className="mt-4 font-display text-2xl font-semibold">Bericht verstuurd!</h3>
-          <p className="mt-2 text-neutral-600">
+          <h3 className="mt-4 font-display text-2xl font-medium text-ink">Bericht verstuurd!</h3>
+          <p className="mt-2 text-ink-soft">
             Bedankt voor je bericht. We nemen zo snel mogelijk contact met je op.
           </p>
           <button
@@ -65,17 +65,17 @@ export function ContactForm() {
   }
 
   return (
-    <div className="rounded-3xl bg-white p-8 shadow-soft ring-1 ring-black/5 sm:p-10">
-      <h2 className="font-display text-2xl font-semibold text-rebu-charcoal">
+    <div className="border border-ink/10 bg-paper p-8 sm:p-10">
+      <h2 className="font-display text-2xl font-medium text-ink">
         Stuur ons een bericht
       </h2>
-      <p className="mt-2 text-sm text-neutral-500">
+      <p className="mt-2 text-sm text-ink-soft">
         Vul het formulier in en we reageren meestal binnen een paar uur.
       </p>
 
       <form onSubmit={handleSubmit} className="mt-6 space-y-4">
         <div>
-          <label htmlFor="contact-name" className="mb-1.5 block text-sm font-medium text-rebu-charcoal">
+          <label htmlFor="contact-name" className="mb-1.5 block text-sm font-medium text-ink">
             Naam <span className="text-red-500">*</span>
           </label>
           <input
@@ -89,7 +89,7 @@ export function ContactForm() {
         </div>
 
         <div>
-          <label htmlFor="contact-email" className="mb-1.5 block text-sm font-medium text-rebu-charcoal">
+          <label htmlFor="contact-email" className="mb-1.5 block text-sm font-medium text-ink">
             E-mailadres <span className="text-red-500">*</span>
           </label>
           <input
@@ -103,7 +103,7 @@ export function ContactForm() {
         </div>
 
         <div>
-          <label htmlFor="contact-phone" className="mb-1.5 block text-sm font-medium text-rebu-charcoal">
+          <label htmlFor="contact-phone" className="mb-1.5 block text-sm font-medium text-ink">
             Telefoonnummer
           </label>
           <input
@@ -116,7 +116,7 @@ export function ContactForm() {
         </div>
 
         <div>
-          <label htmlFor="contact-message" className="mb-1.5 block text-sm font-medium text-rebu-charcoal">
+          <label htmlFor="contact-message" className="mb-1.5 block text-sm font-medium text-ink">
             Bericht <span className="text-red-500">*</span>
           </label>
           <textarea
@@ -130,7 +130,7 @@ export function ContactForm() {
         </div>
 
         {status === "error" && (
-          <div className="flex items-start gap-2 rounded-xl bg-red-50 p-4 text-sm text-red-700">
+          <div className="flex items-start gap-2 border border-red-200 bg-red-50 p-4 text-sm text-red-700">
             <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" />
             <span>{errorMsg}</span>
           </div>

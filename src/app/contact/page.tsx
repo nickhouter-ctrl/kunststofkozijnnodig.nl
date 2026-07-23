@@ -24,16 +24,16 @@ export default function ContactPage() {
         ]}
       />
 
-      <section className="section bg-white">
+      <section className="section bg-paper">
         <div className="container-rebu grid gap-12 lg:grid-cols-3">
           <div className="lg:col-span-1">
             <div className="sticky top-28 space-y-6">
               <div className="card">
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-rebu-green/10 text-rebu-green">
+                <div className="flex h-12 w-12 items-center justify-center bg-rebu-green/10 text-rebu-green">
                   <MapPin className="h-5 w-5" />
                 </div>
-                <h3 className="mt-4 font-display text-xl font-semibold">Bezoekadres</h3>
-                <p className="mt-2 text-sm text-neutral-600">
+                <h3 className="mt-4 font-display text-xl font-medium text-ink">Bezoekadres</h3>
+                <p className="mt-2 text-sm text-ink-soft">
                   {site.address.street}
                   <br />
                   {site.address.postalCode} {site.address.city}
@@ -49,11 +49,11 @@ export default function ContactPage() {
               </div>
 
               <div className="card">
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-rebu-green/10 text-rebu-green">
+                <div className="flex h-12 w-12 items-center justify-center bg-rebu-green/10 text-rebu-green">
                   <Phone className="h-5 w-5" />
                 </div>
-                <h3 className="mt-4 font-display text-xl font-semibold">Bel direct</h3>
-                <a href={site.phoneHref} className="mt-2 block text-sm text-neutral-600 hover:text-rebu-green">
+                <h3 className="mt-4 font-display text-xl font-medium text-ink">Bel direct</h3>
+                <a href={site.phoneHref} className="mt-2 block text-sm text-ink-soft hover:text-rebu-green">
                   {site.phone}
                 </a>
                 <a
@@ -67,25 +67,25 @@ export default function ContactPage() {
               </div>
 
               <div className="card">
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-rebu-green/10 text-rebu-green">
+                <div className="flex h-12 w-12 items-center justify-center bg-rebu-green/10 text-rebu-green">
                   <Mail className="h-5 w-5" />
                 </div>
-                <h3 className="mt-4 font-display text-xl font-semibold">E-mail</h3>
-                <a href={site.emailHref} className="mt-2 block text-sm text-neutral-600 hover:text-rebu-green">
+                <h3 className="mt-4 font-display text-xl font-medium text-ink">E-mail</h3>
+                <a href={site.emailHref} className="mt-2 block text-sm text-ink-soft hover:text-rebu-green">
                   {site.email}
                 </a>
               </div>
 
               <div className="card">
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-rebu-green/10 text-rebu-green">
+                <div className="flex h-12 w-12 items-center justify-center bg-rebu-green/10 text-rebu-green">
                   <Clock className="h-5 w-5" />
                 </div>
-                <h3 className="mt-4 font-display text-xl font-semibold">Openingstijden</h3>
-                <ul className="mt-2 space-y-1 text-sm text-neutral-600">
+                <h3 className="mt-4 font-display text-xl font-medium text-ink">Openingstijden</h3>
+                <ul className="mt-2 space-y-1 text-sm text-ink-soft">
                   {site.hours.map((h) => (
                     <li key={h.day} className="flex justify-between gap-4">
                       <span>{h.day}</span>
-                      <span className="text-neutral-500">{h.time}</span>
+                      <span className="text-ink-soft/70">{h.time}</span>
                     </li>
                   ))}
                 </ul>
@@ -94,7 +94,7 @@ export default function ContactPage() {
           </div>
 
           <div className="lg:col-span-2">
-            <div className="overflow-hidden rounded-3xl shadow-soft">
+            <div className="overflow-hidden border border-ink/10">
               <iframe
                 title="Kunststofkozijnnodig.nl locatie"
                 src="https://maps.google.com/maps?q=Samsonweg+26F+Wormerveer&t=&z=14&ie=UTF8&iwloc=&output=embed"
@@ -110,14 +110,15 @@ export default function ContactPage() {
               <ContactForm />
             </div>
 
-            <div className="mt-10 rounded-3xl bg-rebu-green p-10 text-white">
-              <h2 className="font-display text-3xl font-semibold md:text-4xl">
+            <div className="mt-10 bg-rebu-green-dark p-10 text-white">
+              <span className="eyebrow is-light">Sneller een prijs</span>
+              <h2 className="mt-4 font-display text-3xl font-medium md:text-4xl">
                 Liever direct een offerte?
               </h2>
-              <p className="mt-3 max-w-xl text-white/80">
+              <p className="mt-3 max-w-xl leading-relaxed text-white/70">
                 Gebruik onze stap-voor-stap configurator en ontvang binnen 1 werkdag een prijs op maat.
               </p>
-              <Link href="/offerte" className="mt-6 inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-rebu-green-dark hover:bg-rebu-cream">
+              <Link href="/offerte" className="btn-light mt-6">
                 Start offerte <ArrowRight className="h-4 w-4" />
               </Link>
             </div>

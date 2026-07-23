@@ -56,9 +56,9 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
         <div className="container-rebu relative flex min-h-[70vh] flex-col justify-end py-20">
           <Link href="/projecten" className="mb-8 inline-flex items-center gap-2 text-sm text-white/80 hover:text-white"><ArrowLeft className="h-4 w-4" /> Terug</Link>
           <div className="flex flex-wrap items-center gap-3">
-            <span className="chip bg-white/15 text-white ring-1 ring-white/25"><Tag className="h-3 w-3" /> {p.category}</span>
-            {p.location && <span className="chip bg-white/10 text-white/85 ring-1 ring-white/15"><MapPin className="h-3 w-3" /> {p.location}</span>}
-            <span className="chip bg-white/10 text-white/85 ring-1 ring-white/15"><Calendar className="h-3 w-3" /> {p.year}</span>
+            <span className="chip border-white/25 bg-white/10 text-white"><Tag className="h-3 w-3" /> {p.category}</span>
+            {p.location && <span className="chip border-white/20 bg-white/10 text-white/85"><MapPin className="h-3 w-3" /> {p.location}</span>}
+            <span className="chip border-white/20 bg-white/10 text-white/85"><Calendar className="h-3 w-3" /> {p.year}</span>
           </div>
           <h1 className="mt-6 max-w-4xl font-display text-5xl font-semibold leading-[1.05] md:text-7xl">{p.title}</h1>
           <p className="mt-5 max-w-2xl text-lg text-white/80">{p.summary}</p>
@@ -72,22 +72,22 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
             <h2 className="mt-3 font-display text-3xl font-semibold md:text-4xl">Wat we hebben geleverd</h2>
             <div className="mt-6 whitespace-pre-line text-lg leading-relaxed text-white/85">{p.description}</div>
             {p.review_text && (
-              <div className="mt-10 rounded-2xl border border-white/15 bg-white/10 p-6 backdrop-blur-sm">
+              <div className="mt-10 border border-white/15 bg-white/10 p-6 backdrop-blur-sm">
                 <div className="flex items-center gap-2 text-yellow-300">{[...Array(p.review_rating ?? 5)].map((_, i) => <Star key={i} className="h-4 w-4 fill-current" />)}</div>
                 <blockquote className="mt-4 italic text-white/90"><Quote className="mb-2 h-5 w-5 text-white/40" />&ldquo;{p.review_text}&rdquo;</blockquote>
                 {p.review_name && <p className="mt-3 text-sm font-semibold text-rebu-cream">— {p.review_name}</p>}
               </div>
             )}
           </div>
-          <aside className="rounded-3xl border border-white/15 bg-white/10 p-8 backdrop-blur-sm">
+          <aside className="border border-white/15 bg-white/10 p-8 backdrop-blur-sm">
             <h3 className="text-xs font-semibold uppercase tracking-wider text-rebu-cream/90">Project details</h3>
             <dl className="mt-5 space-y-5 text-sm">
               <div><dt className="text-white/60">Type</dt><dd className="mt-1 font-medium">{p.category}</dd></div>
               {p.location && <div><dt className="text-white/60">Locatie</dt><dd className="mt-1 font-medium">{p.location}</dd></div>}
               <div><dt className="text-white/60">Jaar</dt><dd className="mt-1 font-medium">{p.year}</dd></div>
-              <div><dt className="text-white/60">Producten</dt><dd className="mt-2 flex flex-wrap gap-1.5">{p.products.map((prod: string) => <span key={prod} className="inline-flex items-center gap-1 rounded-full bg-white/15 px-2.5 py-0.5 text-xs text-white ring-1 ring-white/20"><Check className="h-3 w-3" /> {prod}</span>)}</dd></div>
+              <div><dt className="text-white/60">Producten</dt><dd className="mt-2 flex flex-wrap gap-1.5">{p.products.map((prod: string) => <span key={prod} className="inline-flex items-center gap-1 border border-white/20 bg-white/10 px-2.5 py-0.5 text-xs text-white"><Check className="h-3 w-3" /> {prod}</span>)}</dd></div>
             </dl>
-            <Link href="/offerte" className="mt-8 inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-rebu-green-dark hover:bg-rebu-cream">Soortgelijk project? <ArrowRight className="h-4 w-4" /></Link>
+            <Link href="/offerte" className="btn-light mt-8 w-full">Soortgelijk project? <ArrowRight className="h-4 w-4" /></Link>
           </aside>
         </div>
       </section>
@@ -106,7 +106,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
           <div className="container-rebu relative text-center">
             <span className="section-eyebrow text-rebu-cream/90">Volgend project</span>
             <h3 className="mt-3 font-display text-4xl font-semibold md:text-6xl">{nextProject.title}</h3>
-            <Link href={`/projecten/${nextProject.slug}`} className="mt-8 inline-flex items-center gap-2 rounded-full bg-white px-7 py-4 text-sm font-semibold text-rebu-green-dark hover:scale-105">Bekijk project <ArrowRight className="h-4 w-4" /></Link>
+            <Link href={`/projecten/${nextProject.slug}`} className="btn-light mt-8">Bekijk project <ArrowRight className="h-4 w-4" /></Link>
           </div>
         </section>
       )}

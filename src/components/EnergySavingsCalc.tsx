@@ -106,20 +106,20 @@ export function EnergySavingsCalc() {
             Hoeveel bespaart u met{" "}
             <span className="italic text-rebu-green">nieuw glas</span>?
           </h2>
-          <p className="mt-5 text-lg text-neutral-600">
+          <p className="mt-5 text-lg text-ink-soft">
             Ontdek hoeveel u jaarlijks kunt besparen op uw energierekening door
             uw oude beglazing te vervangen.
           </p>
         </div>
 
         <div className="mx-auto mt-12 max-w-2xl">
-          <div className="rounded-3xl bg-rebu-cream p-8 ring-1 ring-rebu-stone sm:p-10">
+          <div className="border border-ink/10 bg-rebu-cream p-8 sm:p-10">
             <div className="grid gap-6 sm:grid-cols-3">
               {/* m2 input */}
               <div>
                 <label
                   htmlFor="calc-m2"
-                  className="mb-1.5 block text-sm font-medium text-rebu-charcoal"
+                  className="mb-1.5 block text-sm font-medium text-ink"
                 >
                   Glasoppervlak (m&sup2;)
                 </label>
@@ -141,7 +141,7 @@ export function EnergySavingsCalc() {
               <div>
                 <label
                   htmlFor="calc-current"
-                  className="mb-1.5 block text-sm font-medium text-rebu-charcoal"
+                  className="mb-1.5 block text-sm font-medium text-ink"
                 >
                   Huidig glas
                 </label>
@@ -165,7 +165,7 @@ export function EnergySavingsCalc() {
               <div>
                 <label
                   htmlFor="calc-new"
-                  className="mb-1.5 block text-sm font-medium text-rebu-charcoal"
+                  className="mb-1.5 block text-sm font-medium text-ink"
                 >
                   Nieuw glas
                 </label>
@@ -197,38 +197,38 @@ export function EnergySavingsCalc() {
                 className="mt-8 grid gap-4 sm:grid-cols-3"
                 style={{ animation: "slideUp 0.4s ease-out" }}
               >
-                <div className="rounded-2xl bg-white p-6 text-center shadow-soft ring-1 ring-black/5">
-                  <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-rebu-green/10 text-rebu-green">
+                <div className="border border-ink/10 bg-paper p-6 text-center">
+                  <div className="mx-auto flex h-10 w-10 items-center justify-center bg-rebu-green/10 text-rebu-green">
                     <TrendingDown className="h-5 w-5" />
                   </div>
                   <p className="mt-3 font-display text-3xl font-semibold text-rebu-green">
                     &euro;<AnimatedNumber value={result.euros} />
                   </p>
-                  <p className="mt-1 text-xs text-neutral-500">
+                  <p className="mt-1 text-xs text-ink-soft">
                     besparing per jaar
                   </p>
                 </div>
 
-                <div className="rounded-2xl bg-white p-6 text-center shadow-soft ring-1 ring-black/5">
-                  <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-rebu-green/10 text-rebu-green">
+                <div className="border border-ink/10 bg-paper p-6 text-center">
+                  <div className="mx-auto flex h-10 w-10 items-center justify-center bg-rebu-green/10 text-rebu-green">
                     <Leaf className="h-5 w-5" />
                   </div>
                   <p className="mt-3 font-display text-3xl font-semibold text-rebu-green">
                     <AnimatedNumber value={result.co2} suffix=" kg" />
                   </p>
-                  <p className="mt-1 text-xs text-neutral-500">
+                  <p className="mt-1 text-xs text-ink-soft">
                     minder CO&sup2; per jaar
                   </p>
                 </div>
 
-                <div className="rounded-2xl bg-white p-6 text-center shadow-soft ring-1 ring-black/5">
-                  <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-rebu-green/10 text-rebu-green">
+                <div className="border border-ink/10 bg-paper p-6 text-center">
+                  <div className="mx-auto flex h-10 w-10 items-center justify-center bg-rebu-green/10 text-rebu-green">
                     <TrendingDown className="h-5 w-5" />
                   </div>
                   <p className="mt-3 font-display text-3xl font-semibold text-rebu-green">
                     <AnimatedNumber value={result.kwh} suffix=" kWh" />
                   </p>
-                  <p className="mt-1 text-xs text-neutral-500">
+                  <p className="mt-1 text-xs text-ink-soft">
                     minder energieverbruik
                   </p>
                 </div>
@@ -237,7 +237,7 @@ export function EnergySavingsCalc() {
 
             {showResult && (
               <div className="mt-6 text-center">
-                <p className="text-sm text-neutral-500">
+                <p className="text-sm text-ink-soft">
                   * Indicatieve berekening op basis van gemiddelde Nederlandse
                   klimaatgegevens en actuele energieprijzen.
                 </p>

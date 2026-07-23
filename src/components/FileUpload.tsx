@@ -74,16 +74,16 @@ export function FileUpload({
           e.currentTarget.classList.remove("border-rebu-green", "bg-rebu-green/5");
           if (e.dataTransfer.files.length) handleFiles(e.dataTransfer.files);
         }}
-        className="cursor-pointer rounded-2xl border-2 border-dashed border-rebu-stone bg-rebu-cream/50 p-8 text-center transition-all hover:border-rebu-green hover:bg-rebu-green/5"
+        className="cursor-pointer border border-dashed border-rebu-stone bg-rebu-cream/50 p-8 text-center transition-colors hover:border-rebu-green hover:bg-rebu-green/5"
       >
         <Upload className="mx-auto h-8 w-8 text-rebu-green" />
-        <p className="mt-3 font-semibold text-rebu-charcoal">
+        <p className="mt-3 font-semibold text-ink">
           Klik om bestanden te selecteren
         </p>
-        <p className="mt-1 text-sm text-neutral-500">
+        <p className="mt-1 text-sm text-ink-soft">
           of sleep ze hierheen — foto's, tekeningen of PDF's
         </p>
-        <p className="mt-2 text-xs text-neutral-400">
+        <p className="mt-2 text-xs text-ink-soft/70">
           Max {MAX_FILES} bestanden, max 1.5 MB per stuk · JPG, PNG, WebP, PDF
         </p>
         <input
@@ -102,7 +102,7 @@ export function FileUpload({
           {files.map((file, idx) => (
             <div
               key={`${file.name}-${idx}`}
-              className="group relative overflow-hidden rounded-xl border border-rebu-stone bg-white"
+              className="group relative overflow-hidden border border-ink/10 bg-paper"
             >
               {file.preview ? (
                 <div className="relative aspect-square">
@@ -118,8 +118,8 @@ export function FileUpload({
                 </div>
               )}
               <div className="p-2">
-                <p className="truncate text-xs font-medium text-rebu-charcoal">{file.name}</p>
-                <p className="text-xs text-neutral-400">{formatSize(file.size)}</p>
+                <p className="truncate text-xs font-medium text-ink">{file.name}</p>
+                <p className="text-xs text-ink-soft">{formatSize(file.size)}</p>
               </div>
               <button
                 type="button"

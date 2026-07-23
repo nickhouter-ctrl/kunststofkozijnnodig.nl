@@ -92,7 +92,7 @@ export default async function CityPage({
             <span className="text-white">Kozijnen {city.name}</span>
           </nav>
 
-          <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.18em] text-white/90 backdrop-blur-sm">
+          <div className="inline-flex items-center gap-2 border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.18em] text-white/90 backdrop-blur-sm">
             <MapPin className="h-3 w-3" /> {city.region} · {city.distance} vanaf Wormerveer
           </div>
 
@@ -107,25 +107,22 @@ export default async function CityPage({
               : `Levering van hoogwaardige kunststof kozijnen, deuren en schuifpuien aan aannemers en bouwbedrijven in ${city.name} en omgeving. Rechtstreeks van de fabriek, binnen 4 weken.`}
           </p>
 
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Link
-              href="/offerte"
-              className="inline-flex items-center gap-2 rounded-full bg-white px-7 py-4 text-sm font-semibold text-rebu-green-dark shadow-lg transition-all hover:bg-rebu-cream"
-            >
+          <div className="mt-8 flex flex-wrap items-center gap-4">
+            <Link href="/offerte" className="btn-light">
               Gratis offerte aanvragen <ArrowRight className="h-4 w-4" />
             </Link>
             <a
               href={site.phoneHref}
-              className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-7 py-4 text-sm font-semibold text-white backdrop-blur-sm transition-colors hover:bg-white/20"
+              className="inline-flex items-center gap-2 text-sm font-medium text-white/85 transition-colors hover:text-white"
             >
-              <Phone className="h-4 w-4" /> {site.phone}
+              <Phone className="h-4 w-4 text-rebu-green-light" /> {site.phone}
             </a>
           </div>
         </div>
       </section>
 
       {/* USPs */}
-      <section className="border-b border-rebu-stone bg-white py-10">
+      <section className="border-b border-ink/10 bg-white py-10">
         <div className="container-rebu grid grid-cols-2 gap-6 md:grid-cols-4">
           {[
             { icon: Clock, title: "Binnen 4 weken", sub: "Geleverd én geplaatst" },
@@ -133,12 +130,12 @@ export default async function CityPage({
             { icon: Truck, title: city.serviceType === "leveren-plaatsen" ? "Leveren + plaatsen" : "Landelijke levering", sub: city.serviceType === "leveren-plaatsen" ? `${city.distance} vanaf Wormerveer` : `Levering aan aannemers in ${city.name}` },
           ].map((u) => (
             <div key={u.title} className="flex items-start gap-3">
-              <div className="flex h-10 w-10 flex-none items-center justify-center rounded-xl bg-rebu-green/10 text-rebu-green">
+              <div className="flex h-10 w-10 flex-none items-center justify-center bg-rebu-green/10 text-rebu-green">
                 <u.icon className="h-5 w-5" />
               </div>
               <div>
-                <p className="font-semibold text-rebu-charcoal">{u.title}</p>
-                <p className="text-xs text-neutral-500">{u.sub}</p>
+                <p className="font-semibold text-ink">{u.title}</p>
+                <p className="text-xs text-ink-soft">{u.sub}</p>
               </div>
             </div>
           ))}
@@ -154,30 +151,30 @@ export default async function CityPage({
               Waarom kiezen voor Kunststofkozijnnodig.nl in{" "}
               <span className="italic text-rebu-green">{city.name}?</span>
             </h2>
-            <p className="mt-6 text-lg leading-relaxed text-neutral-600">{city.description}</p>
+            <p className="mt-6 text-lg leading-relaxed text-ink-soft">{city.description}</p>
 
             <ul className="mt-8 space-y-3">
               {city.highlights.map((h) => (
-                <li key={h} className="flex items-start gap-3 text-neutral-700">
+                <li key={h} className="flex items-start gap-3 text-ink-soft">
                   <span className="mt-0.5 flex h-5 w-5 flex-none items-center justify-center rounded-full bg-rebu-green/10 text-rebu-green">
                     <Check className="h-3 w-3" />
                   </span>
                   {h}
                 </li>
               ))}
-              <li className="flex items-start gap-3 text-neutral-700">
+              <li className="flex items-start gap-3 text-ink-soft">
                 <span className="mt-0.5 flex h-5 w-5 flex-none items-center justify-center rounded-full bg-rebu-green/10 text-rebu-green">
                   <Check className="h-3 w-3" />
                 </span>
                 Schüco, Aluplast en Gealan profielen
               </li>
-              <li className="flex items-start gap-3 text-neutral-700">
+              <li className="flex items-start gap-3 text-ink-soft">
                 <span className="mt-0.5 flex h-5 w-5 flex-none items-center justify-center rounded-full bg-rebu-green/10 text-rebu-green">
                   <Check className="h-3 w-3" />
                 </span>
                 HR++ of triple glas standaard
               </li>
-              <li className="flex items-start gap-3 text-neutral-700">
+              <li className="flex items-start gap-3 text-ink-soft">
                 <span className="mt-0.5 flex h-5 w-5 flex-none items-center justify-center rounded-full bg-rebu-green/10 text-rebu-green">
                   <Check className="h-3 w-3" />
                 </span>
@@ -187,7 +184,7 @@ export default async function CityPage({
           </div>
 
           <div className="space-y-5">
-            <div className="overflow-hidden rounded-3xl shadow-glow">
+            <div className="overflow-hidden border border-ink/10">
               <Image
                 src="/images/project-zaandam-1.jpg"
                 alt={`Kunststof kozijnen project nabij ${city.name}`}
@@ -197,7 +194,7 @@ export default async function CityPage({
               />
             </div>
             <div className="grid grid-cols-2 gap-5">
-              <div className="overflow-hidden rounded-2xl">
+              <div className="overflow-hidden border border-ink/10">
                 <Image
                   src="/images/project-latten-5.webp"
                   alt="Kozijnen detail"
@@ -206,7 +203,7 @@ export default async function CityPage({
                   className="h-[180px] w-full object-cover"
                 />
               </div>
-              <div className="overflow-hidden rounded-2xl">
+              <div className="overflow-hidden border border-ink/10">
                 <Image
                   src="/images/showcase-leveringen-3.webp"
                   alt="Levering kozijnen"
@@ -238,13 +235,13 @@ export default async function CityPage({
               <Link
                 key={p.slug}
                 href={`/producten/${p.slug}`}
-                className="group card transition-all hover:-translate-y-1 hover:shadow-glow"
+                className="group card transition-colors hover:border-rebu-green"
               >
                 <div className="flex h-24 items-center justify-center">
                   <Image src={p.img} alt={p.title} width={80} height={80} className="h-20 w-auto object-contain" />
                 </div>
-                <h3 className="mt-4 text-center font-display text-xl font-semibold text-rebu-charcoal">{p.title}</h3>
-                <p className="mt-2 text-center text-sm text-neutral-600">{p.desc}</p>
+                <h3 className="mt-4 text-center font-display text-xl font-medium text-ink">{p.title}</h3>
+                <p className="mt-2 text-center text-sm text-ink-soft">{p.desc}</p>
                 <p className="mt-4 text-center text-sm font-semibold text-rebu-green">
                   Meer info <ArrowRight className="ml-1 inline h-3 w-3" />
                 </p>
@@ -266,7 +263,7 @@ export default async function CityPage({
               Kozijnen in de buurt van{" "}
               <span className="italic text-rebu-green">{city.name}</span>
             </h2>
-            <p className="mt-4 text-neutral-600">
+            <p className="mt-4 text-ink-soft">
               Naast {city.name} zijn we ook actief in {city.nearbyAreas.join(", ")} en de rest van {city.region}.
             </p>
           </div>
@@ -275,10 +272,10 @@ export default async function CityPage({
               <Link
                 key={c.slug}
                 href={`/kozijnen/${c.slug}`}
-                className="group rounded-2xl border border-rebu-stone bg-rebu-cream p-4 text-center transition-all hover:border-rebu-green hover:shadow-soft"
+                className="group border border-ink/10 bg-rebu-cream p-4 text-center transition-colors hover:border-rebu-green"
               >
-                <p className="font-display text-lg font-semibold text-rebu-charcoal group-hover:text-rebu-green">{c.name}</p>
-                <p className="mt-1 text-xs text-neutral-500">{c.region} · {c.distance}</p>
+                <p className="font-display text-lg font-medium text-ink group-hover:text-rebu-green">{c.name}</p>
+                <p className="mt-1 text-xs text-ink-soft">{c.region} · {c.distance}</p>
               </Link>
             ))}
           </div>

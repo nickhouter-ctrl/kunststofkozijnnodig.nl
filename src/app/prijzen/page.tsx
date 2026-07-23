@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Check, Euro, ShieldCheck, Truck, Clock, BadgePercent, Wrench, ChevronRight } from "lucide-react";
+import { ArrowRight, Check, Euro, ShieldCheck, Truck, Clock, BadgePercent, Wrench } from "lucide-react";
 import { PageHero } from "@/components/PageHero";
 import { BrandMarquee } from "@/components/BrandMarquee";
 import { CTASection } from "@/components/CTASection";
@@ -77,39 +77,37 @@ export default function PrijzenPage() {
       />
 
       {/* Why our prices are the best */}
-      <section className="section bg-white">
+      <section className="section bg-paper">
         <div className="container-rebu">
           <div className="mx-auto max-w-3xl text-center">
-            <span className="section-eyebrow">Waarom wij</span>
+            <span className="section-eyebrow justify-center">Waarom wij</span>
             <h2 className="section-title mt-3">
               Hoe wij de <span className="italic text-rebu-green">beste prijs</span> garanderen
             </h2>
-            <p className="mt-5 text-lg text-neutral-600">
+            <p className="mt-5 text-lg leading-relaxed text-ink-soft">
               Elke offerte is maatwerk. De prijs hangt af van het type kozijn, de afmetingen, het profiel en de kleur. Maar één ding is zeker: bij ons krijg je altijd de scherpste deal.
             </p>
           </div>
 
           <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {reasons.map((r) => (
-              <div key={r.title} className="card transition-all hover:-translate-y-1 hover:shadow-glow">
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-rebu-green/10 text-rebu-green">
+              <div key={r.title} className="card">
+                <div className="flex h-12 w-12 items-center justify-center bg-rebu-green/10 text-rebu-green">
                   <r.icon className="h-6 w-6" />
                 </div>
-                <h3 className="mt-5 font-display text-xl font-semibold text-rebu-charcoal">{r.title}</h3>
-                <p className="mt-2 text-sm text-neutral-600">{r.body}</p>
+                <h3 className="mt-5 font-display text-xl font-medium text-ink">{r.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-ink-soft">{r.body}</p>
               </div>
             ))}
 
             {/* CTA card */}
-            <div className="flex flex-col items-start justify-center rounded-2xl bg-rebu-green p-8 text-white shadow-glow">
-              <h3 className="font-display text-2xl font-semibold">Benieuwd naar jouw prijs?</h3>
-              <p className="mt-3 text-sm text-white/80">
+            <div className="flex flex-col items-start justify-center bg-rebu-green-dark p-8 text-white">
+              <span className="eyebrow is-light">Jouw prijs</span>
+              <h3 className="mt-4 font-display text-2xl font-medium">Benieuwd naar jouw prijs?</h3>
+              <p className="mt-3 text-sm leading-relaxed text-white/70">
                 Vul de offerte-configurator in en ontvang binnen 1 werkdag een prijs op maat.
               </p>
-              <Link
-                href="/offerte"
-                className="mt-6 inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-rebu-green-dark transition-all hover:bg-rebu-cream"
-              >
+              <Link href="/offerte" className="btn-light mt-6">
                 Offerte aanvragen <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
@@ -118,25 +116,25 @@ export default function PrijzenPage() {
       </section>
 
       {/* Price factors */}
-      <section className="section bg-rebu-cream">
+      <section className="section border-t border-ink/10 bg-rebu-cream">
         <div className="container-rebu">
           <div className="mx-auto max-w-3xl text-center">
-            <span className="section-eyebrow">Prijsbepalende factoren</span>
+            <span className="section-eyebrow justify-center">Prijsbepalende factoren</span>
             <h2 className="section-title mt-3">
               Waar hangt de prijs <span className="italic text-rebu-green">van af?</span>
             </h2>
-            <p className="mt-5 text-neutral-600">
+            <p className="mt-5 leading-relaxed text-ink-soft">
               Elke situatie is anders. Hieronder de factoren die de prijs van jouw kozijnen bepalen.
             </p>
           </div>
           <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {factors.map((f) => (
               <div key={f.title} className="card">
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-rebu-green/10 text-rebu-green">
+                <div className="flex h-10 w-10 items-center justify-center bg-rebu-green/10 text-rebu-green">
                   <Euro className="h-5 w-5" />
                 </div>
-                <h3 className="mt-4 font-display text-lg font-semibold text-rebu-charcoal">{f.title}</h3>
-                <p className="mt-2 text-sm text-neutral-600">{f.desc}</p>
+                <h3 className="mt-4 font-display text-lg font-medium text-ink">{f.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-ink-soft">{f.desc}</p>
               </div>
             ))}
           </div>
@@ -146,17 +144,17 @@ export default function PrijzenPage() {
       <BrandMarquee />
 
       {/* Subsidie */}
-      <section className="section bg-white">
+      <section className="section bg-paper">
         <div className="container-rebu grid gap-14 lg:grid-cols-2">
           <div>
             <span className="section-eyebrow">Subsidie 2026</span>
             <h2 className="section-title mt-3">
               ISDE subsidie op <span className="italic text-rebu-green">kozijnen & glas</span>
             </h2>
-            <p className="mt-6 text-lg text-neutral-600">
+            <p className="mt-6 text-lg leading-relaxed text-ink-soft">
               In 2026 kun je via de ISDE-regeling subsidie krijgen op energiebesparende maatregelen, waaronder het plaatsen van isolerend glas. De subsidie bedraagt circa €41 per m² glas.
             </p>
-            <ul className="mt-6 space-y-3 text-sm text-neutral-700">
+            <ul className="mt-6 space-y-3 text-sm text-ink-soft">
               {[
                 "Geldig voor HR++ en triple glas in bestaande woningen",
                 "Subsidie maximaal voor 45 m² glasoppervlak",
@@ -164,7 +162,7 @@ export default function PrijzenPage() {
                 "Wij helpen je graag met de aanvraag",
               ].map((item) => (
                 <li key={item} className="flex items-start gap-3">
-                  <span className="mt-0.5 flex h-5 w-5 flex-none items-center justify-center rounded-full bg-rebu-green/10 text-rebu-green">
+                  <span className="mt-0.5 flex h-5 w-5 flex-none items-center justify-center bg-rebu-green/10 text-rebu-green">
                     <Check className="h-3 w-3" />
                   </span>
                   {item}
@@ -175,7 +173,7 @@ export default function PrijzenPage() {
               Bereken jouw besparing <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
-          <div className="overflow-hidden rounded-3xl shadow-soft">
+          <div className="overflow-hidden border border-ink/10">
             <Image
               src="/images/villa-kozijn.jpg"
               alt="Villa met energiezuinige kozijnen"

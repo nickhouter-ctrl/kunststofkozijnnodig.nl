@@ -104,10 +104,7 @@ export default async function ProductDetailPage({
           </h1>
           <p className="mt-5 max-w-2xl text-lg text-white/80">{product.subtitle}</p>
           <div className="mt-8">
-            <Link
-              href="/offerte"
-              className="inline-flex items-center gap-2 rounded-full bg-white px-7 py-4 text-sm font-semibold text-rebu-green-dark shadow-lg transition-all hover:bg-rebu-cream hover:shadow-xl"
-            >
+            <Link href="/offerte" className="btn-light">
               Offerte aanvragen <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
@@ -122,16 +119,16 @@ export default async function ProductDetailPage({
             <h2 className="section-title mt-3">
               De kwaliteit die je <span className="italic text-rebu-green">verdient.</span>
             </h2>
-            <p className="mt-6 text-lg leading-relaxed text-neutral-600">{product.intro}</p>
+            <p className="mt-6 text-lg leading-relaxed text-ink-soft">{product.intro}</p>
           </div>
           <div className="grid gap-5 sm:grid-cols-2">
             {product.features.map((f) => (
-              <div key={f.title} className="rounded-2xl border border-rebu-stone bg-rebu-cream p-6">
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-rebu-green/10 text-rebu-green">
+              <div key={f.title} className="border border-ink/10 bg-rebu-cream p-6">
+                <div className="flex h-10 w-10 items-center justify-center bg-rebu-green/10 text-rebu-green">
                   <Check className="h-5 w-5" />
                 </div>
-                <p className="mt-4 font-display text-lg font-semibold text-rebu-charcoal">{f.title}</p>
-                <p className="mt-1 text-sm text-neutral-600">{f.body}</p>
+                <p className="mt-4 font-display text-lg font-medium text-ink">{f.title}</p>
+                <p className="mt-1 text-sm text-ink-soft">{f.body}</p>
               </div>
             ))}
           </div>
@@ -159,7 +156,7 @@ export default async function ProductDetailPage({
             <h2 className="section-title mt-3">
               Volledig <span className="italic text-rebu-green">op maat.</span>
             </h2>
-            <p className="mt-5 text-lg text-neutral-600">
+            <p className="mt-5 text-lg text-ink-soft">
               Van profiel tot kleur tot hardware — alles is configureerbaar.
             </p>
           </div>
@@ -167,11 +164,11 @@ export default async function ProductDetailPage({
             {product.options.map((opt) => {
               const isKleuren = opt.label.toLowerCase().includes("kleur");
               return (
-                <div key={opt.label} className="rounded-2xl bg-white p-6 shadow-soft ring-1 ring-black/5">
+                <div key={opt.label} className="border border-ink/10 bg-paper p-6">
                   <p className="text-xs font-semibold uppercase tracking-wider text-rebu-green">
                     {opt.label}
                   </p>
-                  <ul className="mt-4 space-y-2 text-sm text-rebu-charcoal">
+                  <ul className="mt-4 space-y-2 text-sm text-ink">
                     {opt.items.slice(0, 6).map((item) => (
                       <li key={item} className="flex items-start gap-2">
                         <span className="mt-1 h-1.5 w-1.5 flex-none rounded-full bg-rebu-green" />
@@ -180,7 +177,7 @@ export default async function ProductDetailPage({
                     ))}
                   </ul>
                   {isKleuren && (
-                    <Link href="/kleuren" className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-rebu-green hover:text-rebu-green-dark">
+                    <Link href="/kleuren" className="link-underline mt-4">
                       Bekijk alle kleuren <ArrowRight className="h-3 w-3" />
                     </Link>
                   )}
@@ -233,13 +230,13 @@ export default async function ProductDetailPage({
             {product.faqs.map((faq, i) => (
               <details
                 key={i}
-                className="group rounded-2xl border border-rebu-stone bg-rebu-cream p-6 transition-all hover:border-rebu-green open:border-rebu-green"
+                className="group border border-ink/10 bg-rebu-cream p-6 transition-colors hover:border-rebu-green open:border-rebu-green"
               >
-                <summary className="flex cursor-pointer items-center justify-between gap-4 font-display text-lg font-semibold text-rebu-charcoal">
+                <summary className="flex cursor-pointer items-center justify-between gap-4 font-display text-lg font-medium text-ink">
                   {faq.q}
                   <ChevronRight className="h-5 w-5 flex-none text-rebu-green transition-transform group-open:rotate-90" />
                 </summary>
-                <p className="mt-4 text-neutral-600">{faq.a}</p>
+                <p className="mt-4 text-ink-soft">{faq.a}</p>
               </details>
             ))}
           </div>
@@ -258,7 +255,7 @@ export default async function ProductDetailPage({
               <Link
                 key={o.slug}
                 href={`/producten/${o.slug}`}
-                className="group relative overflow-hidden rounded-3xl bg-white shadow-soft ring-1 ring-black/5 transition-all hover:-translate-y-1 hover:shadow-glow"
+                className="group relative overflow-hidden border border-ink/10 bg-paper transition-colors hover:border-rebu-green"
               >
                 <div className="relative aspect-[16/9] overflow-hidden">
                   <Image
@@ -270,8 +267,8 @@ export default async function ProductDetailPage({
                   />
                 </div>
                 <div className="p-7">
-                  <h3 className="font-display text-2xl font-semibold text-rebu-charcoal">{o.title}</h3>
-                  <p className="mt-2 text-sm text-neutral-600">{o.subtitle}</p>
+                  <h3 className="font-display text-2xl font-medium text-ink">{o.title}</h3>
+                  <p className="mt-2 text-sm text-ink-soft">{o.subtitle}</p>
                   <div className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-rebu-green">
                     Bekijk {o.title.toLowerCase()} <ArrowRight className="h-4 w-4" />
                   </div>

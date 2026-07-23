@@ -33,13 +33,13 @@ export function TrustBadges() {
               key={badge.title}
               className="group flex flex-col items-center text-center"
             >
-              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white/10 text-white ring-1 ring-white/20 transition-all group-hover:bg-white/20 group-hover:ring-white/40">
+              <div className="flex h-16 w-16 items-center justify-center border border-white/12 bg-white/5 text-white transition-colors group-hover:bg-white/10 group-hover:border-white/30">
                 <badge.icon className="h-7 w-7" strokeWidth={1.5} />
               </div>
-              <h3 className="mt-4 text-sm font-semibold text-white sm:text-base">
+              <h3 className="mt-4 font-display text-base font-medium text-white sm:text-lg">
                 {badge.title}
               </h3>
-              <p className="mt-1 text-xs text-white/60 sm:text-sm">
+              <p className="mt-1 text-xs leading-relaxed text-white/60 sm:text-sm">
                 {badge.description}
               </p>
             </div>

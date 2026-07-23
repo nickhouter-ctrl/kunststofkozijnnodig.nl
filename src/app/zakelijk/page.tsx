@@ -35,10 +35,10 @@ export default function ZakelijkPage() {
 
       <BrandMarquee />
 
-      <section className="section bg-white">
+      <section className="section bg-paper">
         <div className="container-rebu">
           <div className="mx-auto max-w-3xl text-center">
-            <span className="section-eyebrow">Wie wij helpen</span>
+            <span className="section-eyebrow justify-center">Wie wij helpen</span>
             <h2 className="section-title mt-3">
               Eén partij voor <span className="italic text-rebu-green">elk zakelijk project.</span>
             </h2>
@@ -46,21 +46,21 @@ export default function ZakelijkPage() {
 
           <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
             {audiences.map((a) => (
-              <div key={a.title} className="card transition-all hover:-translate-y-1 hover:shadow-glow">
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-rebu-green/10 text-rebu-green">
+              <div key={a.title} className="card">
+                <div className="flex h-12 w-12 items-center justify-center bg-rebu-green/10 text-rebu-green">
                   <a.icon className="h-6 w-6" />
                 </div>
-                <h3 className="mt-5 font-display text-xl font-semibold text-rebu-charcoal">{a.title}</h3>
-                <p className="mt-2 text-sm text-neutral-600">{a.body}</p>
+                <h3 className="mt-5 font-display text-xl font-medium text-ink">{a.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-ink-soft">{a.body}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="section bg-rebu-cream">
+      <section className="section border-t border-ink/10 bg-rebu-cream">
         <div className="container-rebu grid items-center gap-14 lg:grid-cols-2">
-          <div className="overflow-hidden rounded-3xl shadow-soft">
+          <div className="overflow-hidden border border-ink/10">
             <Image
               src="/images/showcase-leveringen-3.webp"
               alt="Zakelijk project"
@@ -74,10 +74,10 @@ export default function ZakelijkPage() {
             <h2 className="section-title mt-3">
               Afnemen bij Kunststofkozijnnodig.nl? <span className="italic text-rebu-green">Krijg leads cadeau.</span>
             </h2>
-            <p className="mt-6 text-lg text-neutral-600">
+            <p className="mt-6 text-lg leading-relaxed text-ink-soft">
               Partners die hun kozijnen bij Kunststofkozijnnodig.nl afnemen krijgen van ons gratis klantleads in hun werkgebied. Zo groei je samen met ons, zonder extra marketingkosten.
             </p>
-            <ul className="mt-6 space-y-3 text-sm text-neutral-700">
+            <ul className="mt-6 space-y-3 text-sm text-ink-soft">
               {[
                 "Gratis klantleads voor partners",
                 "Eigen merken: Schüco, Aluplast, Gealan",
@@ -85,7 +85,7 @@ export default function ZakelijkPage() {
                 "Persoonlijke accountmanager",
               ].map((i) => (
                 <li key={i} className="flex items-start gap-3">
-                  <span className="mt-0.5 flex h-5 w-5 flex-none items-center justify-center rounded-full bg-rebu-green/10 text-rebu-green">
+                  <span className="mt-0.5 flex h-5 w-5 flex-none items-center justify-center bg-rebu-green/10 text-rebu-green">
                     <Check className="h-3 w-3" />
                   </span>
                   {i}

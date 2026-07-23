@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, Download } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { PageHero } from "@/components/PageHero";
 import { CTASection } from "@/components/CTASection";
 
@@ -89,15 +89,15 @@ const standardColors = [
 
 function ColorCard({ color }: { color: ColorItem }) {
   return (
-    <div className="group overflow-hidden rounded-2xl border border-rebu-stone bg-white transition-all hover:shadow-soft">
+    <div className="group overflow-hidden border border-ink/10 bg-paper transition-colors hover:border-rebu-green">
       <div
         className="h-24 w-full transition-transform duration-500 group-hover:scale-110"
         style={{ backgroundColor: color.hex }}
       />
       <div className="p-4">
         <p className="text-xs font-bold text-rebu-green">{color.code}</p>
-        <p className="mt-1 font-semibold text-rebu-charcoal">{color.name}</p>
-        <p className="mt-1 text-xs text-neutral-500">{color.structure}</p>
+        <p className="mt-1 font-semibold text-ink">{color.name}</p>
+        <p className="mt-1 text-xs text-ink-soft">{color.structure}</p>
       </div>
     </div>
   );
@@ -124,17 +124,17 @@ export default function KleurenPage() {
           <h2 className="section-title mt-3">
             Standaard <span className="italic text-rebu-green">basiskleuren</span>
           </h2>
-          <p className="mt-4 text-neutral-600">De basiskleuren zonder folie. Snelst leverbaar en het meest gekozen.</p>
+          <p className="mt-4 text-ink-soft">De basiskleuren zonder folie. Snelst leverbaar en het meest gekozen.</p>
           <div className="mt-10 grid gap-6 md:grid-cols-3">
             {standardColors.map((c) => (
-              <div key={c.name} className="overflow-hidden rounded-2xl border border-rebu-stone bg-white">
+              <div key={c.name} className="overflow-hidden border border-ink/10 bg-paper">
                 <div
                   className="h-32 w-full"
                   style={{ backgroundColor: c.hex, border: c.border ? "1px solid #e0e0e0" : "none" }}
                 />
                 <div className="p-5">
-                  <p className="font-display text-lg font-semibold text-rebu-charcoal">{c.name}</p>
-                  <p className="mt-1 text-sm text-neutral-500">{c.structure}</p>
+                  <p className="font-display text-lg font-medium text-ink">{c.name}</p>
+                  <p className="mt-1 text-sm text-ink-soft">{c.structure}</p>
                 </div>
               </div>
             ))}
@@ -149,7 +149,7 @@ export default function KleurenPage() {
           <h2 className="section-title mt-3">
             Houtlook kleuren <span className="italic text-rebu-green">met nerf</span>
           </h2>
-          <p className="mt-4 text-neutral-600">
+          <p className="mt-4 text-ink-soft">
             De warme uitstraling van echt hout, maar dan volledig onderhoudsvrij. Alle houtlook kleuren hebben een natuurlijke nerfstructuur.
           </p>
           <div className="mt-10 grid grid-cols-2 gap-4 md:grid-cols-4 lg:grid-cols-5">
@@ -167,7 +167,7 @@ export default function KleurenPage() {
           <h2 className="section-title mt-3">
             RAL kleuren <span className="italic text-rebu-green">met nerf</span>
           </h2>
-          <p className="mt-4 text-neutral-600">
+          <p className="mt-4 text-ink-soft">
             Uni-kleuren met een subtiele nerfstructuur. Van klassiek groen tot modern staalblauw.
           </p>
           <div className="mt-10 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5">
@@ -185,7 +185,7 @@ export default function KleurenPage() {
           <h2 className="section-title mt-3">
             Grijs tinten & <span className="italic text-rebu-green">aluminium look</span>
           </h2>
-          <p className="mt-4 text-neutral-600">
+          <p className="mt-4 text-ink-soft">
             Moderne grijstinten met zandstructuur of glad oppervlak. Inclusief geborsteld aluminium voor een industriële uitstraling.
           </p>
           <div className="mt-10 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
@@ -199,8 +199,8 @@ export default function KleurenPage() {
       {/* Info */}
       <section className="section bg-white">
         <div className="container-rebu max-w-3xl">
-          <div className="rounded-3xl bg-rebu-green p-10 text-white">
-            <h2 className="font-display text-3xl font-semibold md:text-4xl">
+          <div className="bg-rebu-green-dark p-10 text-white md:p-12">
+            <h2 className="font-display text-3xl font-medium md:text-4xl">
               Binnenkant en buitenkant apart kiezen
             </h2>
             <p className="mt-4 text-white/80">
@@ -221,17 +221,11 @@ export default function KleurenPage() {
                 Kleuren weergave op scherm kan afwijken — vraag een staal aan
               </li>
             </ul>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link
-                href="/offerte"
-                className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-rebu-green-dark hover:bg-rebu-cream"
-              >
+            <div className="mt-8 flex flex-wrap gap-4">
+              <Link href="/offerte" className="btn-light">
                 Offerte aanvragen <ArrowRight className="h-4 w-4" />
               </Link>
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-6 py-3 text-sm font-semibold text-white hover:bg-white/20"
-              >
+              <Link href="/contact" className="btn-light">
                 Kleurstaal aanvragen
               </Link>
             </div>
