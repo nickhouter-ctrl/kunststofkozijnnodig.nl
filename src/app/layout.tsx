@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
 import { Montserrat, Cormorant } from "next/font/google";
 import "./globals.css";
-import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { WhatsAppButton } from "@/components/WhatsAppButton";
-import { CookieBanner } from "@/components/CookieBanner";
+import { SiteChrome } from "@/components/SiteChrome";
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 import { site } from "@/lib/site";
 
@@ -88,11 +86,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         <GoogleAnalytics />
-        <Header />
-        <main>{children}</main>
-        <Footer />
-        <WhatsAppButton />
-        <CookieBanner />
+        {/* De configurator draait als eigen werkomgeving, zonder sitemenu. */}
+        <SiteChrome voettekst={<Footer />}>{children}</SiteChrome>
       </body>
     </html>
   );

@@ -7,7 +7,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "seo": "node scripts/seo-agent.mjs"
+    "seo": "node scripts/seo-agent.mjs",
+    "test": "vitest run src/configurator",
+    "test:watch": "vitest src/configurator",
+    "kleuren": "node scripts/extract-kleuren.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.103.3",
@@ -30,6 +33,7 @@
     "autoprefixer": "^10.4.20",
     "postcss": "^8.4.49",
     "tailwindcss": "^3.4.17",
-    "typescript": "^5.7.2"
+    "typescript": "^5.7.2",
+    "vitest": "^3.2.7"
   }
 }
