@@ -72,20 +72,7 @@ export async function POST(req: Request) {
       `[offerte] Mail niet geconfigureerd — ontbrekende env vars: ${missing.join(", ")}. ` +
         `Onverzonden aanvraag: ${JSON.stringify(data)}`,
     );
-    // TIJDELIJK: namen (nooit waarden) meesturen om te zien wat de runtime ziet.
-    return NextResponse.json(
-      {
-        error: "E-mail is niet geconfigureerd",
-        missing,
-        debug: {
-          userAanwezig: !!smtpUser,
-          passAanwezig: !!smtpPass,
-          aantalEnvKeys: Object.keys(process.env).length,
-          mailKeys: Object.keys(process.env).filter((k) => /GMAIL|MAIL|SMTP/i.test(k)),
-        },
-      },
-      { status: 502 },
-    );
+    return NextResponse.json({ error: "E-mail is niet geconfigureerd" }, { status: 502 });
   }
 
   try {
