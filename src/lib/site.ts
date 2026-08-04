@@ -71,6 +71,9 @@ export const site = {
     { name: "Schüco", logo: "/images/merk-schuco.jpg" },
     { name: "Aluplast", logo: "/images/merk-aluplast.jpg" },
     { name: "Gealan", logo: "/images/merk-gealan.jpg" },
+    // Naam moet matchen met `brands` in lib/brands.ts, zodat de marquee
+    // naar de juiste merkpagina linkt.
+    { name: "K-Vision", logo: "/images/merk-kommerling.jpg" },
   ],
 } as const;
 

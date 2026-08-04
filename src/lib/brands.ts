@@ -151,7 +151,9 @@ export const brands: Brand[] = [
     name: "K-Vision",
     systeem: "Kömmerling K-VISION",
     land: "Duitsland",
-    logo: null,
+    // K-VISION is een systeemnaam van Kömmerling en heeft geen eigen beeldmerk;
+    // dit is het corporate logo van Kömmerling zelf.
+    logo: "/images/merk-kommerling.jpg",
     kicker: "Speciaal ontworpen voor de Nederlandse markt",
     intro:
       "K-VISION is het systeem dat Kömmerling (onderdeel van de profine-groep) specifiek voor de Nederlandse markt heeft ontwikkeld. Waar andere systemen een Duitse basis hebben die voor Nederland wordt aangepast, is dit systeem vanaf de tekentafel op het Nederlandse gevelbeeld ontworpen — inclusief de karakteristieke overslagschuinte van 15°. Het kozijn is 120 mm diep, de vleugel 76 mm.",
