@@ -13,6 +13,15 @@ const transporter = nodemailer.createTransport({
   },
 });
 
+/**
+ * Ontbrekende mailconfiguratie gaf eerder dezelfde generieke 502 als een echte
+ * verzendfout, waardoor niet te zien was dat GMAIL_USER/GMAIL_APP_PASSWORD
+ * simpelweg niet in Vercel stonden. Nu staat dat expliciet in de log.
+ */
+function missingMailEnv(): string[] {
+  return ["GMAIL_USER", "GMAIL_APP_PASSWORD"].filter((k) => !process.env[k]);
+}
+
 export async function POST(req: Request) {
   let body: unknown;
   try {
@@ -41,6 +50,17 @@ export async function POST(req: Request) {
     contentType: a.type,
   }));
 
+  const missing = missingMailEnv();
+  if (missing.length > 0) {
+    // De aanvraag is geldig maar kan nergens heen. Log de aanvraag volledig,
+    // zodat de lead terug te vinden is in de Vercel-logs en niet verdwijnt.
+    console.error(
+      `[offerte] Mail niet geconfigureerd — ontbrekende env vars: ${missing.join(", ")}. ` +
+        `Onverzonden aanvraag: ${JSON.stringify(data)}`,
+    );
+    return NextResponse.json({ error: "E-mail is niet geconfigureerd" }, { status: 502 });
+  }
+
   try {
     // 1. Send full quote to info@kunststofkozijnnodig.nl (with attachments)
     await transporter.sendMail({
@@ -63,7 +83,10 @@ export async function POST(req: Request) {
 
     return NextResponse.json({ ok: true });
   } catch (e) {
+    // Ook hier de aanvraag meeloggen: liever een lead uit de logs vissen dan
+    // hem kwijt zijn omdat de mailserver even niet meewerkte.
     console.error("[offerte] Mail error:", e);
+    console.error(`[offerte] Onverzonden aanvraag: ${JSON.stringify(data)}`);
     return NextResponse.json({ error: "E-mail kon niet worden verstuurd" }, { status: 502 });
   }
 }
@@ -89,7 +112,7 @@ function renderEmail(d: QuoteData): string {
         const dim = item.dimensions[i];
         const w = dim.width ? `${dim.width}` : "?";
         const h = dim.height ? `${dim.height}` : "?";
-        const size = dim.width || dim.height ? `${w} × ${h} cm` : "Nog niet opgegeven";
+        const size = dim.width || dim.height ? `${w} × ${h} mm` : "Nog niet opgegeven";
         const note = dim.note ? ` — ${escape(dim.note)}` : "";
         itemsHtml += row(`#${i + 1}`, `${size}${note}`);
       }

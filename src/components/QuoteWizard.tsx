@@ -349,7 +349,7 @@ export function QuoteWizard() {
                             onChange={(e) => setDimension(item.product, idx, "height", parseInt(e.target.value, 10) || 0)}
                             className="w-24 border border-rebu-stone bg-paper px-3 py-2 text-sm focus:border-rebu-green focus:outline-none focus:ring-1 focus:ring-rebu-green/40"
                           />
-                          <span className="text-xs text-ink-soft">cm</span>
+                          <span className="text-xs text-ink-soft">mm</span>
                         </div>
                         <input
                           type="text"
@@ -386,7 +386,7 @@ export function QuoteWizard() {
           <StepShell title="Specificaties" subtitle="Nog niet zeker? Kies 'geen voorkeur' en wij adviseren.">
             <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-ink-soft">Merk voorkeur</p>
             <OptionGrid cols={4}>
-              {(["geen-voorkeur", "schuco", "aluplast", "gealan"] as const).map((b) => (
+              {(["geen-voorkeur", "schuco", "aluplast", "gealan", "k-vision"] as const).map((b) => (
                 <MiniOption key={b} label={label(b)} selected={data.brand === b} onSelect={() => update("brand", b)} />
               ))}
             </OptionGrid>
@@ -482,7 +482,7 @@ export function QuoteWizard() {
                       {item.dimensions.map((d, i) => (
                         (d.width || d.height) && (
                           <li key={i}>
-                            #{i + 1}: {d.width ?? "?"}×{d.height ?? "?"} cm
+                            #{i + 1}: {d.width ?? "?"}×{d.height ?? "?"} mm
                             {d.note && <span className="text-ink-soft/70"> — {d.note}</span>}
                           </li>
                         )
