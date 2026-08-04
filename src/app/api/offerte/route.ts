@@ -5,21 +5,35 @@ import { site } from "@/lib/site";
 
 export const runtime = "nodejs";
 
+/**
+ * Zelfde SMTP-conventie als het CRM (zie KunststofkozijnnodigCRM/src/lib/email.ts),
+ * zodat beide projecten dezelfde variabelenamen delen. De oude GMAIL_USER /
+ * GMAIL_APP_PASSWORD blijven werken als fallback.
+ */
+const smtpUser = process.env.SMTP_USER || process.env.GMAIL_USER;
+const smtpPass = process.env.SMTP_PASS || process.env.GMAIL_APP_PASSWORD;
+const smtpFrom = process.env.SMTP_FROM || smtpUser;
+
 const transporter = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    user: process.env.GMAIL_USER,
-    pass: process.env.GMAIL_APP_PASSWORD,
-  },
+  host: process.env.SMTP_HOST || "smtp.gmail.com",
+  port: parseInt(process.env.SMTP_PORT || "587", 10),
+  secure: false,
+  auth: { user: smtpUser, pass: smtpPass },
+  connectionTimeout: 10000,
+  greetingTimeout: 10000,
+  socketTimeout: 15000,
 });
 
 /**
  * Ontbrekende mailconfiguratie gaf eerder dezelfde generieke 502 als een echte
- * verzendfout, waardoor niet te zien was dat GMAIL_USER/GMAIL_APP_PASSWORD
- * simpelweg niet in Vercel stonden. Nu staat dat expliciet in de log.
+ * verzendfout, waardoor niet te zien was dat de credentials simpelweg niet in
+ * Vercel stonden. Nu staat dat expliciet in de log.
  */
 function missingMailEnv(): string[] {
-  return ["GMAIL_USER", "GMAIL_APP_PASSWORD"].filter((k) => !process.env[k]);
+  const missing: string[] = [];
+  if (!smtpUser) missing.push("SMTP_USER (of GMAIL_USER)");
+  if (!smtpPass) missing.push("SMTP_PASS (of GMAIL_APP_PASSWORD)");
+  return missing;
 }
 
 export async function POST(req: Request) {
@@ -58,13 +72,26 @@ export async function POST(req: Request) {
       `[offerte] Mail niet geconfigureerd — ontbrekende env vars: ${missing.join(", ")}. ` +
         `Onverzonden aanvraag: ${JSON.stringify(data)}`,
     );
-    return NextResponse.json({ error: "E-mail is niet geconfigureerd" }, { status: 502 });
+    // TIJDELIJK: namen (nooit waarden) meesturen om te zien wat de runtime ziet.
+    return NextResponse.json(
+      {
+        error: "E-mail is niet geconfigureerd",
+        missing,
+        debug: {
+          userAanwezig: !!smtpUser,
+          passAanwezig: !!smtpPass,
+          aantalEnvKeys: Object.keys(process.env).length,
+          mailKeys: Object.keys(process.env).filter((k) => /GMAIL|MAIL|SMTP/i.test(k)),
+        },
+      },
+      { status: 502 },
+    );
   }
 
   try {
     // 1. Send full quote to info@kunststofkozijnnodig.nl (with attachments)
     await transporter.sendMail({
-      from: `Kunststofkozijnnodig.nl Website <${process.env.GMAIL_USER}>`,
+      from: `Kunststofkozijnnodig.nl Website <${smtpFrom}>`,
       to,
       replyTo: data.email,
       subject,
@@ -74,7 +101,7 @@ export async function POST(req: Request) {
 
     // 2. Send confirmation to customer + BCC to info@ so you always know
     await transporter.sendMail({
-      from: `Kunststofkozijnnodig.nl <${process.env.GMAIL_USER}>`,
+      from: `Kunststofkozijnnodig.nl <${smtpFrom}>`,
       to: data.email,
       bcc: to,
       subject: "Bedankt voor je offerteaanvraag — Kunststofkozijnnodig.nl",
