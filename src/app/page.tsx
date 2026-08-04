@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
@@ -6,6 +7,10 @@ import { Reveal } from "@/components/ui/Reveal";
 import { EditorialHeading } from "@/components/ui/EditorialHeading";
 import { site } from "@/lib/site";
 import { products, workflow, projects } from "@/lib/content";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
 
 export default function HomePage() {
   return (

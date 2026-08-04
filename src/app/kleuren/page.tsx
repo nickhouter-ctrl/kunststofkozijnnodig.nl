@@ -5,6 +5,7 @@ import { PageHero } from "@/components/PageHero";
 import { CTASection } from "@/components/CTASection";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/kleuren" },
   title: "Kleuren kunststof kozijnen — alle opties op een rij",
   description:
     "Bekijk alle beschikbare kleuren voor kunststof kozijnen: houtlook, RAL-kleuren, glad en met nerf. Binnenkant en buitenkant apart te kiezen.",

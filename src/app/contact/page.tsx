@@ -6,6 +6,7 @@ import { ContactForm } from "@/components/ContactForm";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/contact" },
   title: "Contact",
   description: "Neem vrijblijvend contact op met Kunststofkozijnnodig.nl in Wormerveer. Telefoon, WhatsApp, e-mail of kom langs op afspraak.",
 };

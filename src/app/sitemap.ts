@@ -17,6 +17,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: "/producten/schuifpuien", priority: 0.85 },
     { url: "/projecten", priority: 0.8 },
     { url: "/prijzen", priority: 0.9 },
+    { url: "/kleuren", priority: 0.8 },
+    { url: "/besparing", priority: 0.75 },
     { url: "/veelgestelde-vragen", priority: 0.85 },
     { url: "/over-ons", priority: 0.7 },
     { url: "/contact", priority: 0.8 },

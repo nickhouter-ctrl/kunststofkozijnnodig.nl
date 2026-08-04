@@ -5,6 +5,7 @@ import { Workflow } from "@/components/Workflow";
 import { CTASection } from "@/components/CTASection";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/over-ons" },
   title: "Over ons",
   description: "Leer Kunststofkozijnnodig.nl kennen: een jong en gedreven team specialisten in kunststof kozijnen, deuren en schuifpuien uit Wormerveer.",
 };

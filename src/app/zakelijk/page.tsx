@@ -7,6 +7,7 @@ import { BrandMarquee } from "@/components/BrandMarquee";
 import { CTASection } from "@/components/CTASection";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/zakelijk" },
   title: "Zakelijk — kozijnen voor aannemers, bouwbedrijven & VvE",
   description:
     "Kunststofkozijnnodig.nl is dé partner voor aannemers, architecten, bouwbedrijven, VvE en vastgoedbeheerders. Maatwerk kozijnen, korte lijnen en gratis leads.",

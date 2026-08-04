@@ -8,6 +8,7 @@ import { Workflow } from "@/components/Workflow";
 import { CTASection } from "@/components/CTASection";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/particulier" },
   title: "Kunststof kozijnen voor particulieren",
   description:
     "Voor particulieren levert Kunststofkozijnnodig.nl hoogwaardige kunststof kozijnen, deuren en schuifpuien op maat. Inclusief advies, inmeten, plaatsen en financiering.",

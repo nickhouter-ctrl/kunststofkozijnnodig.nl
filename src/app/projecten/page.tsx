@@ -6,6 +6,7 @@ import { createServiceClient } from "@/lib/supabase";
 import { projects as staticProjects } from "@/lib/projects";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/projecten" },
   title: "Projecten — zo werkt Kunststofkozijnnodig.nl",
   description: "Een selectie van recente projecten. Klik op een project om alle foto's en details te bekijken.",
 };

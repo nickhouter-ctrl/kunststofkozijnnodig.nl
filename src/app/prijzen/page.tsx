@@ -8,6 +8,7 @@ import { CTASection } from "@/components/CTASection";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/prijzen" },
   title: "Prijzen kunststof kozijnen 2026 — altijd de scherpste prijs",
   description:
     "Kunststof kozijnen tegen altijd de scherpste prijs. Rechtstreeks van de fabriek, geen tussenpersonen. Vraag gratis en vrijblijvend een offerte op maat aan.",

@@ -53,7 +53,9 @@ export const metadata: Metadata = {
     description: site.description,
     images: ["/images/hero-main.jpg"],
   },
-  alternates: { canonical: site.url },
+  // Geen canonical hier: die geldt anders voor élke pagina die er zelf geen
+  // zet, waardoor alle subpagina's de homepage als canoniek aanwijzen.
+  // Elke pagina zet zijn eigen canonical via `alternates`.
   icons: { icon: "/logos/favicon.svg" },
 };
 

@@ -3,6 +3,7 @@ import { PageHero } from "@/components/PageHero";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/privacyverklaring" },
   title: "Privacyverklaring",
   description: "Privacyverklaring van Kunststofkozijnnodig.nl — hoe wij omgaan met persoonsgegevens.",
 };

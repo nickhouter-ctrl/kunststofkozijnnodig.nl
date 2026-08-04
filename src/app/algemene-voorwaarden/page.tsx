@@ -3,6 +3,7 @@ import { PageHero } from "@/components/PageHero";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/algemene-voorwaarden" },
   title: "Algemene voorwaarden",
   description: "Algemene voorwaarden van Kunststofkozijnnodig.nl.",
 };

@@ -3,6 +3,7 @@ import { ShieldCheck, Clock, Star, Euro } from "lucide-react";
 import { QuoteWizard } from "@/components/QuoteWizard";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/offerte" },
   title: "Offerte aanvragen — binnen 1 werkdag op maat",
   description:
     "Vraag je offerte voor kunststof kozijnen, deuren of schuifpuien aan via onze stap-voor-stap configurator. Gratis, vrijblijvend en binnen 1 werkdag antwoord.",

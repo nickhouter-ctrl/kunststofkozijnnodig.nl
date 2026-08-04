@@ -32,7 +32,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const p = (await getProject(slug)) ?? getStaticProject(slug);
   if (!p) return {};
-  return { title: p.title, description: p.summary, openGraph: { title: p.title, description: p.summary, images: p.cover ? [{ url: p.cover }] : undefined } };
+  return {
+    title: p.title,
+    description: p.summary,
+    openGraph: { title: p.title, description: p.summary, images: p.cover ? [{ url: p.cover }] : undefined },
+    alternates: { canonical: `/projecten/${slug}` },
+  };
 }
 
 export default async function ProjectDetailPage({ params }: { params: Promise<{ slug: string }> }) {

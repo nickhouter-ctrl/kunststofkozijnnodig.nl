@@ -4,6 +4,7 @@ import { SavingsCalculator } from "@/components/SavingsCalculator";
 import { CTASection } from "@/components/CTASection";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/besparing" },
   title: "Energiebesparing berekenen — hoeveel bespaar je?",
   description:
     "Bereken hoeveel je bespaart op energiekosten met nieuwe kunststof kozijnen. Inclusief ISDE-subsidie berekening. Gratis en vrijblijvend.",

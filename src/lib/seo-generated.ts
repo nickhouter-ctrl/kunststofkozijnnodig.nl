@@ -572,13 +572,13 @@ export const generatedSeo: Record<string, GeneratedSeo> = {
             "@type": "ListItem",
             "position": 1,
             "name": "Kunststof Kozijnen",
-            "url": "https://www.kunststofkozijnnodig.nl/producten/kunststof-kozijnen"
+            "url": "https://www.kunststofkozijnnodig.nl/producten/kozijnen"
           },
           {
             "@type": "ListItem",
             "position": 2,
             "name": "Kunststof Deuren",
-            "url": "https://www.kunststofkozijnnodig.nl/producten/kunststof-deuren"
+            "url": "https://www.kunststofkozijnnodig.nl/producten/deuren"
           },
           {
             "@type": "ListItem",
