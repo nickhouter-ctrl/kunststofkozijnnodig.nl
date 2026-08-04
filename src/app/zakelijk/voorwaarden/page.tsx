@@ -55,8 +55,8 @@ const levering = [
     body: "Bij een project in fases leveren wij per bouwdeel in plaats van in één keer, zodat er geen opslagprobleem op de bouwplaats ontstaat.",
   },
   {
-    titel: "Maatvoering door ons",
-    body: "Wij nemen zelf op en produceren op de door ons vastgelegde maten. Daarmee ligt de verantwoordelijkheid voor de maatvoering bij ons.",
+    titel: "Productie op de goedgekeurde tekening",
+    body: "Wij werken uw tekening uit tot een detailtekening met alle specificaties en produceren pas nadat u die heeft goedgekeurd. Wat op de goedgekeurde tekening staat, is wat u geleverd krijgt.",
   },
 ];
 

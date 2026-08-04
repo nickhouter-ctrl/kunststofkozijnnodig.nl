@@ -3,67 +3,28 @@ import Link from "next/link";
 import { ArrowRight, Check } from "lucide-react";
 import { PageHero } from "@/components/PageHero";
 import { CTASection } from "@/components/CTASection";
+import { fases } from "@/lib/werkwijze";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/zakelijk/werkwijze" },
-  title: "Projectproces — van opname tot levering op locatie",
+  title: "Werkwijze — van uw tekening tot levering binnen vier weken",
   description:
-    "Hoe een projectlevering bij ons verloopt: aanvraag, opname, calculatie, productie en levering op locatie. Met de doorlooptijd per fase en wie waarvoor verantwoordelijk is.",
+    "Hoe een projectlevering verloopt: u mailt uw tekening, wij maken er een detailtekening met alle specificaties van, en na uw akkoord leveren wij binnen vier weken.",
   keywords: [
     "projectlevering kozijnen",
     "kozijnen aannemer proces",
+    "detailtekening kozijnen",
     "levertijd kunststof kozijnen project",
-    "opname kozijnen",
   ],
 };
 
-// LET OP: alleen de levertijd van vier weken is een vastgelegde toezegging
-// (staat zo in de FAQ). Voor de fases daarvoor is bewust geen doorlooptijd
-// opgenomen — die zijn nergens afgesproken en horen niet als belofte op de
-// site te staan. Zodra Nick ze bevestigt kunnen ze hier in het `duur`-veld.
-const fases = [
-  {
-    fase: "01",
-    titel: "Aanvraag",
-    duur: "Uw opgave is het startpunt",
-    body: "U stuurt de gevelopeningen, een bestek of een tekening. Voor een eerste indicatie is een lijst met aantallen en globale maten al genoeg — een volledige uitwerking is in dit stadium niet nodig.",
-    levert: ["Prijsindicatie op basis van uw opgave", "Advies over het passende profielsysteem"],
-  },
-  {
-    fase: "02",
-    titel: "Opname op locatie",
-    duur: "Wij meten zelf in",
-    body: "Wij nemen zelf op. Dat is geen formaliteit: de maatvoering die wij vastleggen is de maatvoering waarop geproduceerd wordt, en daarmee ligt de verantwoordelijkheid voor de maat bij ons in plaats van bij uw tekening.",
-    levert: ["Opnameverslag met maatvoering per element", "Vaststelling van aansluitdetails"],
-  },
-  {
-    fase: "03",
-    titel: "Calculatie en offerte",
-    duur: "Vaste projectprijs",
-    body: "U krijgt een projectofferte met de prijs per element en het totaal. Dit is de prijs die op de factuur terugkomt — er volgt geen tussentijdse indexering en geen toeslag achteraf.",
-    levert: ["Prijs per element en totaalprijs", "Opgave van het toegepaste profielsysteem"],
-  },
-  {
-    fase: "04",
-    titel: "Opdracht en productie",
-    duur: "4 weken na opname",
-    body: "Bij opdrachtbevestiging leggen wij de leverdatum vast. Onze standaard levertijd is vier weken na opname, tegen een marktgemiddelde van acht tot twaalf weken.",
-    levert: ["Bevestigde leverdatum", "Productie op de opgenomen maatvoering"],
-  },
-  {
-    fase: "05",
-    titel: "Levering op locatie",
-    duur: "Op de bevestigde datum",
-    body: "Wij leveren door heel Nederland, op de afgesproken datum en op het afgesproken adres. Bij een gefaseerd project leveren wij per bouwdeel, zodat u niet de hele partij hoeft op te slaan.",
-    levert: ["Levering op locatie", "Levering op afroep per bouwdeel bij fasering"],
-  },
-];
-
 const verantwoordelijkheid = [
-  { wie: "Wij", wat: "Opname en maatvoering" },
-  { wie: "Wij", wat: "Productie conform de opgenomen maten" },
-  { wie: "Wij", wat: "Levering op de bevestigde datum" },
-  { wie: "Wij", wat: "Garantie op profiel, beslag en plaatsing" },
+  { wie: "U", wat: "Aanleveren van de tekening" },
+  { wie: "Wij", wat: "Uitwerken tot detailtekening met alle specificaties" },
+  { wie: "U", wat: "Controle en akkoord op de detailtekening" },
+  { wie: "Wij", wat: "Productie conform de goedgekeurde tekening" },
+  { wie: "Wij", wat: "Levering binnen vier weken na akkoord" },
+  { wie: "Wij", wat: "Garantie op profiel en beslag" },
   { wie: "U", wat: "Bereikbaarheid van de locatie op de leverdatum" },
   { wie: "U", wat: "Lossen en opslag na levering, tenzij anders afgesproken" },
 ];
@@ -72,9 +33,9 @@ export default function WerkwijzePage() {
   return (
     <>
       <PageHero
-        eyebrow="Projectproces"
-        title="Van eerste aanvraag tot levering op locatie."
-        description="Vijf fases, met per fase wat u krijgt en hoe lang het duurt. Zodat u weet waar u aan toe bent voordat u belt — en zodat de kozijnpost geen open eind is in uw planning."
+        eyebrow="Werkwijze"
+        title="U mailt een tekening. Wij maken er een productietekening van."
+        description="Vier stappen, en de belangrijkste is dat u de detailtekening met alle specificaties vooraf ter controle krijgt. Er gaat niets in productie voordat u akkoord bent — en daarna leveren wij binnen vier weken."
         image="/images/showcase-leveringen-6.webp"
         breadcrumb={[
           { label: "Home", href: "/" },
@@ -88,7 +49,7 @@ export default function WerkwijzePage() {
         <div className="container-rebu py-16 md:py-24">
           <span className="eyebrow">Stap voor stap</span>
           <h2 className="mt-5 max-w-2xl font-display text-3xl font-medium leading-tight text-ink md:text-4xl">
-            De vijf fases van een projectlevering
+            De vier stappen van een projectlevering
           </h2>
 
           <div className="mt-14 space-y-px bg-ink/10">

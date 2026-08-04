@@ -6,8 +6,9 @@ import { Hero } from "@/components/Hero";
 import { Reveal } from "@/components/ui/Reveal";
 import { EditorialHeading } from "@/components/ui/EditorialHeading";
 import { site } from "@/lib/site";
-import { products, workflow, projects } from "@/lib/content";
+import { products, projects } from "@/lib/content";
 import { brands } from "@/lib/brands";
+import { fases } from "@/lib/werkwijze";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/" },
@@ -114,20 +115,28 @@ export default function HomePage() {
       {/* ---- Werkwijze — numbered process ---- */}
       <section className="section bg-paper">
         <div className="container-rebu">
-          <EditorialHeading
-            eyebrow="Werkwijze"
-            title="Van inmeten tot oplevering, strak georganiseerd."
-            text="Een vaste, gefaseerde aanpak per project — zodat u weet wanneer er geleverd en geplaatst wordt en uw bouwplanning blijft staan."
-          />
-          <ol className="mt-16 grid grid-cols-1 gap-x-10 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
-            {workflow.map((s, idx) => (
-              <Reveal as="li" key={s.step} delay={idx * 0.05}>
+          <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+            <EditorialHeading
+              eyebrow="Werkwijze"
+              title="U mailt een tekening. Wij maken er een productietekening van."
+              text="Wij werken uw tekening uit tot een detailtekening met alle specificaties erin en sturen die terug ter controle. Er gaat niets in productie voordat u akkoord bent."
+              className="max-w-2xl"
+            />
+            <Reveal direction="left">
+              <Link href="/zakelijk/werkwijze" className="link-underline">
+                Volledige werkwijze <ArrowUpRight className="h-3.5 w-3.5" />
+              </Link>
+            </Reveal>
+          </div>
+          <ol className="mt-16 grid grid-cols-1 gap-x-10 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
+            {fases.map((f, idx) => (
+              <Reveal as="li" key={f.fase} delay={idx * 0.05}>
                 <div className="border-t border-ink/15 pt-6">
                   <span className="text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-rebu-green">
-                    {s.step}
+                    {f.fase}
                   </span>
-                  <h3 className="mt-3 font-display text-xl font-medium leading-snug text-ink">{s.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-ink-soft">{s.body}</p>
+                  <h3 className="mt-3 font-display text-xl font-medium leading-snug text-ink">{f.titel}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-ink-soft">{f.body}</p>
                 </div>
               </Reveal>
             ))}

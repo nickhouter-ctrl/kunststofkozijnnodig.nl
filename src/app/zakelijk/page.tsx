@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/zakelijk" },
   title: "Zakelijk — projectlevering voor aannemers, VvE's en corporaties",
   description:
-    "Projectlevering van kunststof kozijnen, deuren en schuifpuien. Vaste projectprijzen, levertijd van vier weken na opname en levering door heel Nederland.",
+    "Projectlevering van kunststof kozijnen, deuren en schuifpuien. U mailt uw tekening, wij maken de detailtekening, en na akkoord leveren wij binnen vier weken door heel Nederland.",
   keywords: [
     "kozijnen aannemer",
     "kozijnen projectlevering",
@@ -27,12 +27,12 @@ const pijlers = [
     body: "De prijs in de offerte is de prijs op de factuur. Geen indexering tussentijds, ook niet bij een project dat over meerdere maanden loopt.",
   },
   {
-    titel: "Vier weken na opname",
-    body: "Onze standaard levertijd, tegen een marktgemiddelde van acht tot twaalf weken. De datum ligt vast bij de opdrachtbevestiging.",
+    titel: "Vier weken na akkoord",
+    body: "Onze standaard levertijd, tegen een marktgemiddelde van acht tot twaalf weken. De klok begint te lopen zodra u de detailtekening goedkeurt.",
   },
   {
-    titel: "Wij nemen zelf op",
-    body: "De maatvoering komt van ons en niet uit uw tekening. Daarmee ligt de verantwoordelijkheid voor de maat bij de leverancier.",
+    titel: "Detailtekening vooraf",
+    body: "Wij werken uw tekening uit tot een productietekening met alle specificaties en sturen die eerst ter controle. Niets gaat in productie zonder uw akkoord.",
   },
   {
     titel: "Vier profielsystemen",
@@ -46,7 +46,7 @@ export default function ZakelijkPage() {
       <PageHero
         eyebrow="Zakelijke markt"
         title="Projectlevering voor wie op planning moet kunnen rekenen."
-        description="Wij leveren kunststof kozijnen, deuren en schuifpuien op projectbasis aan aannemers, VvE's, woningcorporaties en ontwikkelaars. Met een vaste prijs, een vaste leverdatum en opname door onszelf."
+        description="Wij leveren kunststof kozijnen, deuren en schuifpuien op projectbasis aan aannemers, VvE's, woningcorporaties en ontwikkelaars. U mailt uw tekening, wij werken hem uit tot een detailtekening met alle specificaties, en na uw akkoord leveren wij binnen vier weken."
         image="/images/project-zaandam-4.jpg"
         breadcrumb={[
           { label: "Home", href: "/" },
@@ -126,7 +126,7 @@ export default function ZakelijkPage() {
                 Zo verloopt een projectlevering
               </h3>
               <p className="mt-3 text-sm leading-relaxed text-ink-soft">
-                Vijf fases van aanvraag tot levering op locatie, met per fase wat u krijgt en wie
+                Vier stappen, van uw tekening tot levering. Met per stap wat u krijgt en wie
                 waarvoor verantwoordelijk is.
               </p>
               <span className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-rebu-green">
@@ -183,7 +183,7 @@ export default function ZakelijkPage() {
                 "Particuliere aanvragen uit uw werkgebied",
                 "Eén vast aanspreekpunt voor uw projecten",
                 "Keuze uit Aluplast, Gealan, Schüco en K-Vision",
-                "Levertijd van vier weken na opname",
+                "Levering binnen vier weken na akkoord",
               ].map((i) => (
                 <li key={i} className="flex items-start gap-3">
                   <Check className="mt-0.5 h-4 w-4 flex-none text-rebu-green" />

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
+import { site } from "@/lib/site";
 
 export function PageHero({
   eyebrow,
@@ -15,8 +16,25 @@ export function PageHero({
   image: string;
   breadcrumb: { label: string; href: string }[];
 }) {
+  // De breadcrumb stond alleen visueel in de pagina; met deze BreadcrumbList
+  // kan Google het kruimelpad ook in het zoekresultaat tonen.
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: breadcrumb.map((b, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: b.label,
+      item: `${site.url}${b.href === "/" ? "" : b.href}`,
+    })),
+  };
+
   return (
     <section className="relative overflow-hidden border-b border-ink/10 bg-rebu-cream">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       <div className="container-rebu relative grid gap-12 py-16 md:grid-cols-2 md:items-end md:py-24">
         <div>
           <nav className="mb-8 flex flex-wrap items-center gap-2 text-[0.7rem] uppercase tracking-[0.16em] text-ink-soft">

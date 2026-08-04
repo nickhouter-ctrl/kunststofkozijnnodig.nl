@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Montserrat, Cormorant } from "next/font/google";
 import "./globals.css";
 import { Footer } from "@/components/Footer";
@@ -18,6 +18,14 @@ const cormorant = Cormorant({
   display: "swap",
   weight: ["400", "500", "600"],
 });
+
+// Viewport hoort een aparte export te zijn; binnen `metadata` wordt hij door
+// Next.js genegeerd. themeColor kleurt de browserbalk op mobiel.
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#0b3d2e",
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -45,13 +53,14 @@ export const metadata: Metadata = {
     siteName: site.name,
     title: `${site.name} — ${site.tagline}`,
     description: site.description,
-    images: [{ url: "/images/hero-main.jpg", width: 1200, height: 630, alt: site.name }],
+    // Geen `images` hier: die komen uit app/opengraph-image.jpg. Next.js leest
+    // de echte afmetingen uit het bestand, dus ze kunnen niet meer scheelen —
+    // hiervoor stond hero-main.jpg (2560x1707) opgegeven als 1200x630.
   },
   twitter: {
     card: "summary_large_image",
     title: `${site.name} — ${site.tagline}`,
     description: site.description,
-    images: ["/images/hero-main.jpg"],
   },
   // Geen canonical hier: die geldt anders voor élke pagina die er zelf geen
   // zet, waardoor alle subpagina's de homepage als canoniek aanwijzen.

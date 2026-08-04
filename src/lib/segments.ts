@@ -30,15 +30,15 @@ export const segments: Segment[] = [
     aanhef: "aannemers",
     kicker: "Levering die uw planning respecteert",
     intro:
-      "Voor een aannemer is een kozijn zelden het probleem — de planning is dat. Een levering die twee weken schuift betekent stilstand voor de stelploeg, uitloop richting de opdrachtgever en een discussie over meerwerk. Wij werken daarom met een vaste levertijd en een opnameverslag waarop u kunt bouwen.",
+      "Voor een aannemer is een kozijn zelden het probleem — de planning is dat. Een levering die twee weken schuift betekent stilstand voor de stelploeg, uitloop richting de opdrachtgever en een discussie over meerwerk. Wij werken daarom met een vaste levertijd van vier weken en een detailtekening die u vooraf goedkeurt.",
     knelpunten: [
       {
         titel: "Levertijden die verschuiven",
         body: "Het marktgemiddelde ligt op 8 tot 12 weken en schuift regelmatig door. Uw stelploeg staat ingepland en kan niet verzet worden.",
       },
       {
-        titel: "Maatvoering die niet klopt",
-        body: "Een kozijn dat 5 mm afwijkt kost een dag inmeten, aanpassen en opnieuw stellen — en de discussie over wie dat betaalt.",
+        titel: "Fouten die pas op de bouwplaats blijken",
+        body: "Een verkeerde draairichting of een afwijkende maat merkt u vaak pas bij het stellen. Dan staat de ploeg stil en volgt de discussie over wie het betaalt.",
       },
       {
         titel: "Prijzen die tijdens het project bewegen",
@@ -47,12 +47,12 @@ export const segments: Segment[] = [
     ],
     aanpak: [
       {
-        titel: "Vier weken na opname",
-        body: "Onze standaard levertijd is vier weken na opname, tegen een marktgemiddelde van acht tot twaalf. Die datum leggen wij vast bij de opdrachtbevestiging.",
+        titel: "Vier weken na akkoord",
+        body: "Onze standaard levertijd is vier weken, tegen een marktgemiddelde van acht tot twaalf. De klok begint te lopen zodra u de detailtekening goedkeurt.",
       },
       {
-        titel: "Wij nemen zelf op",
-        body: "De maatvoering komt van ons, niet uit uw tekening. Daarmee ligt de verantwoordelijkheid voor de maat waar hij hoort — bij de leverancier.",
+        titel: "Detailtekening vooraf ter controle",
+        body: "U mailt uw tekening, wij werken hem uit tot een productietekening met alle specificaties erin — maatvoering, profiel, glas, kleur, draairichtingen en beslag. Die gaat eerst terug naar u. Zo komt u niet op de bouwplaats achter een fout.",
       },
       {
         titel: "Vaste projectprijs",
@@ -64,8 +64,8 @@ export const segments: Segment[] = [
       },
     ],
     feiten: [
-      "Levertijd 4 weken na opname",
-      "Opname en maatvoering door ons",
+      "Levering 4 weken na akkoord",
+      "Detailtekening vooraf ter controle",
       "Vaste projectprijs, geen tussentijdse indexering",
       "Levering op afroep per bouwdeel",
     ],
