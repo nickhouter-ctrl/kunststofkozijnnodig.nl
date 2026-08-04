@@ -37,7 +37,7 @@ export const generatedSeo: Record<string, GeneratedSeo> = {
       ],
       "name": "Kunststofkozijnnodig.nl",
       "url": "https://www.kunststofkozijnnodig.nl/",
-      "logo": "https://www.kunststofkozijnnodig.nl/logo.png",
+      "logo": "https://www.kunststofkozijnnodig.nl/logos/logo-kkn.png",
       "image": "https://www.kunststofkozijnnodig.nl/og-home.jpg",
       "description": "Specialist in kunststof kozijnen, deuren en schuifpuien. Merken: Schüco, Aluplast en Gealan. SKG 2-ster gecertificeerd en binnen 4 weken geleverd.",
       "telephone": "+31-75-XXXXXXX",
@@ -725,7 +725,7 @@ export const generatedSeo: Record<string, GeneratedSeo> = {
       "provider": {
         "@type": "LocalBusiness",
         "name": "Kunststofkozijnnodig.nl",
-        "image": "https://www.kunststofkozijnnodig.nl/images/logo.png",
+        "image": "https://www.kunststofkozijnnodig.nl/logos/logo-kkn.png",
         "address": {
           "@type": "PostalAddress",
           "addressLocality": "Wormerveer",
@@ -776,7 +776,7 @@ export const generatedSeo: Record<string, GeneratedSeo> = {
         "name": "Kunststofkozijnnodig.nl",
         "logo": {
           "@type": "ImageObject",
-          "url": "https://www.kunststofkozijnnodig.nl/logo.png"
+          "url": "https://www.kunststofkozijnnodig.nl/logos/logo-kkn.png"
         }
       },
       "mainEntityOfPage": {

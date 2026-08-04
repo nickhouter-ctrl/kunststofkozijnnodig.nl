@@ -31,7 +31,7 @@ export function Header() {
       <div className="container-rebu flex items-center justify-between py-3">
         <Link href="/" className="flex items-center" aria-label={site.name}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/logos/logo-dark.svg" alt={site.name} className="h-11 w-auto sm:h-12 md:h-14" />
+          <img src="/logos/logo-kkn.png" alt={site.name} className="h-11 w-auto sm:h-12 md:h-14" />
         </Link>
 
         <nav className="hidden items-center gap-8 lg:flex">

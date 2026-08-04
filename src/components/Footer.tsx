@@ -47,7 +47,7 @@ export function Footer() {
         <div className="grid gap-14 lg:grid-cols-12">
           <div className="lg:col-span-4">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/logos/logo-white.svg" alt={site.name} className="h-12 w-auto md:h-14" />
+            <img src="/logos/logo-kkn-white.png" alt={site.name} className="h-12 w-auto md:h-14" />
             <p className="mt-6 max-w-sm text-sm leading-relaxed text-white/60">{site.description}</p>
             <ul className="mt-8 space-y-4 text-sm">
               <li className="flex items-start gap-3">
