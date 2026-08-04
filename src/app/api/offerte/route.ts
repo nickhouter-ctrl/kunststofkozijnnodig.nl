@@ -1,18 +1,30 @@
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
+import { Resend } from "resend";
 import { quoteSchema, label, type QuoteData } from "@/lib/quote";
 import { site } from "@/lib/site";
 
 export const runtime = "nodejs";
 
 /**
- * Zelfde SMTP-conventie als het CRM (zie KunststofkozijnnodigCRM/src/lib/email.ts),
- * zodat beide projecten dezelfde variabelenamen delen. De oude GMAIL_USER /
- * GMAIL_APP_PASSWORD blijven werken als fallback.
+ * Verzendlaag, gelijk aan die van het CRM (KunststofkozijnnodigCRM/src/lib/email.ts).
+ *
+ * Voorkeur is Resend: het domein heeft daar een geverifieerde DKIM-sleutel en
+ * SPF, waardoor mail authenticeert. Rechtstreeks via smtp.gmail.com versturen
+ * met een @kunststofkozijnnodig.nl-afzender doet dat níét — dan ziet een
+ * ontvanger een onbevestigde afzender en belandt het bericht in spam.
+ *
+ * Zolang RESEND_API_KEY niet gezet is valt hij terug op SMTP, zodat de
+ * omschakeling risicoloos is: deploy de code, zet de env var, klaar.
  */
+const resendApiKey = process.env.RESEND_API_KEY;
+const resend = resendApiKey ? new Resend(resendApiKey) : null;
+
 const smtpUser = process.env.SMTP_USER || process.env.GMAIL_USER;
 const smtpPass = process.env.SMTP_PASS || process.env.GMAIL_APP_PASSWORD;
-const smtpFrom = process.env.SMTP_FROM || smtpUser;
+
+/** Afzender moet binnen het bij Resend geverifieerde domein vallen, anders faalt DMARC. */
+const mailFrom = process.env.RESEND_FROM || process.env.SMTP_FROM || smtpUser || site.email;
 
 const transporter = nodemailer.createTransport({
   host: process.env.SMTP_HOST || "smtp.gmail.com",
@@ -30,10 +42,58 @@ const transporter = nodemailer.createTransport({
  * Vercel stonden. Nu staat dat expliciet in de log.
  */
 function missingMailEnv(): string[] {
+  if (resend) return [];
   const missing: string[] = [];
-  if (!smtpUser) missing.push("SMTP_USER (of GMAIL_USER)");
-  if (!smtpPass) missing.push("SMTP_PASS (of GMAIL_APP_PASSWORD)");
+  if (!smtpUser) missing.push("RESEND_API_KEY of SMTP_USER");
+  if (!smtpPass) missing.push("RESEND_API_KEY of SMTP_PASS");
   return missing;
+}
+
+type Attachment = { filename: string; content: string; contentType?: string };
+
+/** Eén verzendpad, zodat Resend en SMTP niet uit elkaar lopen. */
+async function sendMail(opts: {
+  from: string;
+  to: string;
+  subject: string;
+  html: string;
+  replyTo?: string;
+  bcc?: string;
+  attachments?: Attachment[];
+}) {
+  if (resend) {
+    const { error } = await resend.emails.send({
+      from: opts.from,
+      to: opts.to,
+      subject: opts.subject,
+      html: opts.html,
+      replyTo: opts.replyTo,
+      bcc: opts.bcc,
+      attachments: opts.attachments?.map((a) => ({
+        filename: a.filename,
+        content: Buffer.from(a.content, "base64"),
+      })),
+    });
+    // Resend gooit niet maar geeft { error } terug; throwen houdt de
+    // bestaande try/catch hieronder werkend.
+    if (error) throw new Error(`Resend: ${error.message || JSON.stringify(error)}`);
+    return;
+  }
+
+  await transporter.sendMail({
+    from: opts.from,
+    to: opts.to,
+    subject: opts.subject,
+    html: opts.html,
+    replyTo: opts.replyTo,
+    bcc: opts.bcc,
+    attachments: opts.attachments?.map((a) => ({
+      filename: a.filename,
+      content: a.content,
+      encoding: "base64" as const,
+      contentType: a.contentType,
+    })),
+  });
 }
 
 export async function POST(req: Request) {
@@ -77,8 +137,8 @@ export async function POST(req: Request) {
 
   try {
     // 1. Send full quote to info@kunststofkozijnnodig.nl (with attachments)
-    await transporter.sendMail({
-      from: `Kunststofkozijnnodig.nl Website <${smtpFrom}>`,
+    await sendMail({
+      from: `Kunststofkozijnnodig.nl Website <${mailFrom}>`,
       to,
       replyTo: data.email,
       subject,
@@ -87,8 +147,8 @@ export async function POST(req: Request) {
     });
 
     // 2. Send confirmation to customer + BCC to info@ so you always know
-    await transporter.sendMail({
-      from: `Kunststofkozijnnodig.nl <${smtpFrom}>`,
+    await sendMail({
+      from: `Kunststofkozijnnodig.nl <${mailFrom}>`,
       to: data.email,
       bcc: to,
       subject: "Bedankt voor je offerteaanvraag — Kunststofkozijnnodig.nl",
