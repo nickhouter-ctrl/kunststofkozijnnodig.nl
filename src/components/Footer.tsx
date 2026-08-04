@@ -6,6 +6,7 @@ const productLinks = [
   { label: "Kozijnen", href: "/producten/kozijnen" },
   { label: "Deuren", href: "/producten/deuren" },
   { label: "Schuifpuien", href: "/producten/schuifpuien" },
+  { label: "Merken", href: "/merken" },
   { label: "Projecten", href: "/projecten" },
 ];
 

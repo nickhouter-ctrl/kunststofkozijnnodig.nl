@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { site } from "@/lib/site";
 import { cities } from "@/lib/cities";
 import { projects } from "@/lib/projects";
+import { brands } from "@/lib/brands";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = site.url;
@@ -17,6 +18,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: "/producten/schuifpuien", priority: 0.85 },
     { url: "/projecten", priority: 0.8 },
     { url: "/prijzen", priority: 0.9 },
+    { url: "/merken", priority: 0.85 },
     { url: "/kleuren", priority: 0.8 },
     { url: "/besparing", priority: 0.75 },
     { url: "/veelgestelde-vragen", priority: 0.85 },
@@ -37,7 +39,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  return [...pages, ...cityPages, ...projectPages].map((p) => ({
+  const brandPages = brands.map((b) => ({
+    url: `/merken/${b.slug}`,
+    priority: 0.75,
+  }));
+
+  return [...pages, ...cityPages, ...projectPages, ...brandPages].map((p) => ({
     url: `${base}${p.url}`,
     lastModified: now,
     changeFrequency: "weekly" as const,

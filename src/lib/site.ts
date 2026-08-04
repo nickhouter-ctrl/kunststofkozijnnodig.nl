@@ -70,6 +70,7 @@ export const site = {
 export const nav = [
   { label: "Zakelijk", href: "/zakelijk" },
   { label: "Producten", href: "/producten" },
+  { label: "Merken", href: "/merken" },
   { label: "Projecten", href: "/projecten" },
   { label: "Prijzen", href: "/prijzen" },
   { label: "Over ons", href: "/over-ons" },
