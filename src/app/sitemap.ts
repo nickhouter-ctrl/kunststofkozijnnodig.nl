@@ -3,6 +3,7 @@ import { site } from "@/lib/site";
 import { cities } from "@/lib/cities";
 import { projects } from "@/lib/projects";
 import { brands } from "@/lib/brands";
+import { segments } from "@/lib/segments";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = site.url;
@@ -12,6 +13,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: "", priority: 1 },
     { url: "/particulier", priority: 0.9 },
     { url: "/zakelijk", priority: 0.9 },
+    { url: "/zakelijk/werkwijze", priority: 0.8 },
+    { url: "/zakelijk/voorwaarden", priority: 0.75 },
     { url: "/producten", priority: 0.9 },
     { url: "/producten/kozijnen", priority: 0.85 },
     { url: "/producten/deuren", priority: 0.85 },
@@ -44,7 +47,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.75,
   }));
 
-  return [...pages, ...cityPages, ...projectPages, ...brandPages].map((p) => ({
+  const segmentPages = segments.map((s) => ({
+    url: `/zakelijk/${s.slug}`,
+    priority: 0.85,
+  }));
+
+  return [...pages, ...cityPages, ...projectPages, ...brandPages, ...segmentPages].map((p) => ({
     url: `${base}${p.url}`,
     lastModified: now,
     changeFrequency: "weekly" as const,

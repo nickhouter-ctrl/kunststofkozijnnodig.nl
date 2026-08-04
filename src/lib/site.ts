@@ -33,24 +33,31 @@ export const site = {
     { title: "Vaste projectprijzen", description: "Eén heldere prijs per project — scherp gecalculeerd, zonder verrassingen achteraf." },
     { title: "Betrouwbare planning", description: "Voorspelbare levertijden zodat uw bouwplanning blijft staan." },
     { title: "Levering door heel NL", description: "Van losse posten tot complete gevelpakketten, op locatie geleverd." },
-    { title: "Duitse topmerken", description: "Schüco, Aluplast en Gealan — SKG-gecertificeerd en onderhoudsvrij." },
+    { title: "Duitse topmerken", description: "Schüco, Aluplast, Gealan en K-Vision — SKG-gecertificeerd en onderhoudsvrij." },
   ],
   // Zakelijke doelgroepen — de kern van de positionering.
+  // Verwijst naar de doelgroeppagina's onder /zakelijk; houd de slugs gelijk
+  // aan die in lib/segments.ts.
   audiences: [
     {
-      title: "Aannemers & bouwbedrijven",
-      body: "Projectlevering met vaste inkoopprijzen, korte lijnen en betrouwbare levertijden die uw planning respecteren.",
-      href: "/zakelijk",
+      title: "Aannemers",
+      body: "Projectlevering met vaste prijzen en een leverdatum die vastligt, zodat uw stelploeg niet voor niets staat ingepland.",
+      href: "/zakelijk/aannemers",
     },
     {
-      title: "VvE's & woningcorporaties",
-      body: "Groot onderhoud en renovatie van tientallen tot honderden woningen — uniform, gecertificeerd en gefaseerd geleverd.",
-      href: "/zakelijk",
+      title: "VvE's",
+      body: "Een offerte die per woning is uitgesplitst, zodat het bestuur de ledenvergadering kan laten zien wat een lid bijdraagt.",
+      href: "/zakelijk/vve",
+    },
+    {
+      title: "Woningcorporaties",
+      body: "Verduurzaming in bewoonde staat, met isolatiewaarden die de labelstap daadwerkelijk onderbouwen.",
+      href: "/zakelijk/woningcorporaties",
     },
     {
       title: "Projectontwikkelaars",
-      body: "Nieuwbouw op volume, volledig op maat per bouwstroom en afgestemd op uw bestek en detaillering.",
-      href: "/zakelijk",
+      body: "Meedenken in de calculatiefase, zodat de kozijnpost realistisch in de begroting staat voordat die vastligt.",
+      href: "/zakelijk/projectontwikkelaars",
     },
   ],
   // Kengetallen voor de vertrouwensstrook.

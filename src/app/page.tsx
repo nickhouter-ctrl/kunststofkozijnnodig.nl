@@ -7,6 +7,7 @@ import { Reveal } from "@/components/ui/Reveal";
 import { EditorialHeading } from "@/components/ui/EditorialHeading";
 import { site } from "@/lib/site";
 import { products, workflow, projects } from "@/lib/content";
+import { brands } from "@/lib/brands";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/" },
@@ -25,7 +26,7 @@ export default function HomePage() {
             title="Eén projectleverancier voor iedereen die bouwt aan volume."
             text="Van een enkele bouwstroom tot honderden woningen in groot onderhoud — wij leveren en plaatsen kozijnen op de schaal en het tempo dat uw project vraagt."
           />
-          <div className="mt-16 grid grid-cols-1 gap-x-12 gap-y-10 md:grid-cols-3">
+          <div className="mt-16 grid grid-cols-1 gap-x-12 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
             {site.audiences.map((a, i) => (
               <Reveal key={a.title} delay={i * 0.08}>
                 <Link href={a.href} className="group block border-t border-ink/15 pt-7">
@@ -53,7 +54,7 @@ export default function HomePage() {
             <EditorialHeading
               eyebrow="Assortiment"
               title="Kozijnen, deuren en schuifpuien."
-              text="Duitse topprofielen van Schüco, Aluplast en Gealan — onderhoudsvrij, energiezuinig en SKG-gecertificeerd, volledig op maat per project."
+              text="Duitse topprofielen van Schüco, Aluplast, Gealan en K-Vision — onderhoudsvrij, energiezuinig en SKG-gecertificeerd, volledig op maat per project."
               className="max-w-2xl"
             />
             <Reveal direction="left">
@@ -94,11 +95,17 @@ export default function HomePage() {
           <p className="text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-ink-soft">
             Wij verwerken uitsluitend Duitse topprofielen
           </p>
+          {/* Uit `brands` en niet uit `site.brands`: die laatste is de logolijst
+              voor de marquee en bevat alleen merken waarvan wij een logo hebben. */}
           <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-4">
-            {site.brands.map((b) => (
-              <span key={b.name} className="font-display text-2xl font-medium text-ink/70">
+            {brands.map((b) => (
+              <Link
+                key={b.name}
+                href={`/merken/${b.slug}`}
+                className="font-display text-2xl font-medium text-ink/70 transition-colors hover:text-rebu-green"
+              >
                 {b.name}
-              </span>
+              </Link>
             ))}
           </div>
         </div>

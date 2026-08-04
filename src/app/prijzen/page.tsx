@@ -40,7 +40,7 @@ const reasons = [
   {
     icon: ShieldCheck,
     title: "Kwaliteit zonder compromis",
-    body: "Scherpe prijs betekent bij ons niet minder kwaliteit. Wij werken uitsluitend met Europese topmerken: Schüco, Aluplast en Gealan.",
+    body: "Scherpe prijs betekent bij ons niet minder kwaliteit. Wij werken uitsluitend met Europese topmerken: Schüco, Aluplast, Gealan en K-Vision.",
   },
   {
     icon: Clock,

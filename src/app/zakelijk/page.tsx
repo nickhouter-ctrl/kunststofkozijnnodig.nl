@@ -1,32 +1,52 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { Building2, HardHat, Hammer, Users, ArrowRight, Check } from "lucide-react";
+import { ArrowRight, Check } from "lucide-react";
 import { PageHero } from "@/components/PageHero";
 import { BrandMarquee } from "@/components/BrandMarquee";
 import { CTASection } from "@/components/CTASection";
+import { segments } from "@/lib/segments";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/zakelijk" },
-  title: "Zakelijk — kozijnen voor aannemers, bouwbedrijven & VvE",
+  title: "Zakelijk — projectlevering voor aannemers, VvE's en corporaties",
   description:
-    "Kunststofkozijnnodig.nl is dé partner voor aannemers, architecten, bouwbedrijven, VvE en vastgoedbeheerders. Maatwerk kozijnen, korte lijnen en gratis leads.",
+    "Projectlevering van kunststof kozijnen, deuren en schuifpuien. Vaste projectprijzen, levertijd van vier weken na opname en levering door heel Nederland.",
+  keywords: [
+    "kozijnen aannemer",
+    "kozijnen projectlevering",
+    "kunststof kozijnen VvE",
+    "kozijnen woningcorporatie",
+    "kozijnen projectontwikkelaar",
+  ],
 };
 
-const audiences = [
-  { icon: HardHat, title: "Aannemers", body: "Korte lijnen, maatwerk en gratis leads voor partners die bij Kunststofkozijnnodig.nl afnemen." },
-  { icon: Building2, title: "Architecten", body: "Technische ondersteuning bij bestekken en detailleringen — wij denken mee." },
-  { icon: Hammer, title: "Bouwbedrijven", body: "Voor nieuwbouw én renovatie: levering op afroep, planning afgestemd op jouw project." },
-  { icon: Users, title: "VvE & Vastgoedbeheer", body: "Grotere projecten efficiënt en zorgvuldig uitgevoerd, met transparante rapportage." },
+const pijlers = [
+  {
+    titel: "Vaste projectprijs",
+    body: "De prijs in de offerte is de prijs op de factuur. Geen indexering tussentijds, ook niet bij een project dat over meerdere maanden loopt.",
+  },
+  {
+    titel: "Vier weken na opname",
+    body: "Onze standaard levertijd, tegen een marktgemiddelde van acht tot twaalf weken. De datum ligt vast bij de opdrachtbevestiging.",
+  },
+  {
+    titel: "Wij nemen zelf op",
+    body: "De maatvoering komt van ons en niet uit uw tekening. Daarmee ligt de verantwoordelijkheid voor de maat bij de leverancier.",
+  },
+  {
+    titel: "Vier profielsystemen",
+    body: "Wij zijn niet aan één fabrikant gebonden en kiezen het systeem dat bij de eis van uw project past.",
+  },
 ];
 
 export default function ZakelijkPage() {
   return (
     <>
       <PageHero
-        eyebrow="Voor de vakman"
-        title="Kunststofkozijnnodig.nl maken het verschil. Voor en door de vakman."
-        description="Wij zijn Kunststofkozijnnodig.nl: kleinschalig maar groots in wat we doen. Voor zakelijke afnemers leveren we maatwerk kozijnen met vakmanschap, korte lijnen en advies dat écht meedenkt met jouw project."
+        eyebrow="Zakelijke markt"
+        title="Projectlevering voor wie op planning moet kunnen rekenen."
+        description="Wij leveren kunststof kozijnen, deuren en schuifpuien op projectbasis aan aannemers, VvE's, woningcorporaties en ontwikkelaars. Met een vaste prijs, een vaste leverdatum en opname door onszelf."
         image="/images/project-zaandam-4.jpg"
         breadcrumb={[
           { label: "Home", href: "/" },
@@ -34,67 +54,145 @@ export default function ZakelijkPage() {
         ]}
       />
 
-      <BrandMarquee />
-
-      <section className="section bg-paper">
-        <div className="container-rebu">
-          <div className="mx-auto max-w-3xl text-center">
-            <span className="section-eyebrow justify-center">Wie wij helpen</span>
-            <h2 className="section-title mt-3">
-              Eén partij voor <span className="italic text-rebu-green">elk zakelijk project.</span>
-            </h2>
-          </div>
-
-          <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-            {audiences.map((a) => (
-              <div key={a.title} className="card">
-                <div className="flex h-12 w-12 items-center justify-center bg-rebu-green/10 text-rebu-green">
-                  <a.icon className="h-6 w-6" />
-                </div>
-                <h3 className="mt-5 font-display text-xl font-medium text-ink">{a.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-ink-soft">{a.body}</p>
+      {/* ---- Pijlers ---- */}
+      <section className="border-b border-ink/10 bg-paper">
+        <div className="container-rebu py-16 md:py-24">
+          <div className="grid gap-px border border-ink/10 bg-ink/10 md:grid-cols-2 lg:grid-cols-4">
+            {pijlers.map((p) => (
+              <div key={p.titel} className="bg-paper p-8">
+                <h3 className="font-display text-lg font-medium leading-snug text-ink">{p.titel}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-ink-soft">{p.body}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="section border-t border-ink/10 bg-rebu-cream">
-        <div className="container-rebu grid items-center gap-14 lg:grid-cols-2">
+      {/* ---- Doelgroepen ---- */}
+      <section className="bg-rebu-cream">
+        <div className="container-rebu py-16 md:py-24">
+          <span className="eyebrow">Wie wij leveren</span>
+          <h2 className="mt-5 max-w-2xl font-display text-3xl font-medium leading-tight text-ink md:text-4xl">
+            Elke opdrachtgever heeft een ander knelpunt
+          </h2>
+          <p className="mt-5 max-w-2xl text-base leading-relaxed text-ink-soft">
+            Een aannemer wordt afgerekend op planning, een VvE-bestuur op het besluit en een
+            corporatie op de labelstap. Daarom is er per doelgroep een aparte pagina met wat er in
+            die situatie werkelijk speelt.
+          </p>
+
+          <div className="mt-12 grid gap-6 md:grid-cols-2">
+            {segments.map((s) => (
+              <Link
+                key={s.slug}
+                href={`/zakelijk/${s.slug}`}
+                className="group flex flex-col border border-ink/10 bg-paper p-8 transition-colors hover:border-rebu-green/40"
+              >
+                <h3 className="font-display text-xl font-medium text-ink">{s.naam}</h3>
+                <p className="mt-2 text-sm font-medium text-rebu-green">{s.kicker}</p>
+                <p className="mt-4 flex-1 text-sm leading-relaxed text-ink-soft">
+                  {s.intro.split(". ").slice(0, 2).join(". ").replace(/\.?$/, ".")}
+                </p>
+                <ul className="mt-6 space-y-2">
+                  {s.feiten.slice(0, 3).map((f) => (
+                    <li key={f} className="flex items-start gap-2 text-sm text-ink-soft">
+                      <Check className="mt-0.5 h-4 w-4 flex-none text-rebu-green" />
+                      {f}
+                    </li>
+                  ))}
+                </ul>
+                <span className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-rebu-green">
+                  Lees verder
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <BrandMarquee />
+
+      {/* ---- Werkwijze + voorwaarden ---- */}
+      <section className="bg-paper">
+        <div className="container-rebu py-16 md:py-24">
+          <div className="grid gap-8 md:grid-cols-2">
+            <Link
+              href="/zakelijk/werkwijze"
+              className="group border border-ink/10 p-8 transition-colors hover:border-rebu-green/40"
+            >
+              <span className="eyebrow">Projectproces</span>
+              <h3 className="mt-4 font-display text-xl font-medium text-ink">
+                Zo verloopt een projectlevering
+              </h3>
+              <p className="mt-3 text-sm leading-relaxed text-ink-soft">
+                Vijf fases van aanvraag tot levering op locatie, met per fase wat u krijgt en wie
+                waarvoor verantwoordelijk is.
+              </p>
+              <span className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-rebu-green">
+                Bekijk de werkwijze
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </span>
+            </Link>
+
+            <Link
+              href="/zakelijk/voorwaarden"
+              className="group border border-ink/10 p-8 transition-colors hover:border-rebu-green/40"
+            >
+              <span className="eyebrow">Condities</span>
+              <h3 className="mt-4 font-display text-xl font-medium text-ink">
+                Garantie, certificering en voorwaarden
+              </h3>
+              <p className="mt-3 text-sm leading-relaxed text-ink-soft">
+                Tien jaar op het profiel, vijf op de plaatsing en twee op het beslag — plus wat er
+                standaard aan certificering in zit.
+              </p>
+              <span className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-rebu-green">
+                Bekijk de voorwaarden
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </span>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ---- Partnerprogramma ---- */}
+      <section className="border-t border-ink/10 bg-rebu-cream">
+        <div className="container-rebu grid items-center gap-14 py-16 md:py-24 lg:grid-cols-2">
           <div className="overflow-hidden border border-ink/10">
             <Image
               src="/images/showcase-leveringen-3.webp"
-              alt="Zakelijk project"
+              alt="Projectlevering op locatie"
               width={900}
               height={700}
               className="h-[460px] w-full object-cover"
             />
           </div>
           <div>
-            <span className="section-eyebrow">Gratis leads</span>
-            <h2 className="section-title mt-3">
-              Afnemen bij Kunststofkozijnnodig.nl? <span className="italic text-rebu-green">Krijg leads cadeau.</span>
+            <span className="eyebrow">Voor vaste partners</span>
+            <h2 className="mt-5 font-display text-3xl font-medium leading-tight text-ink md:text-4xl">
+              Neemt u structureel af? Dan krijgt u leads van ons.
             </h2>
-            <p className="mt-6 text-lg leading-relaxed text-ink-soft">
-              Partners die hun kozijnen bij Kunststofkozijnnodig.nl afnemen krijgen van ons gratis klantleads in hun werkgebied. Zo groei je samen met ons, zonder extra marketingkosten.
+            <p className="mt-6 text-base leading-relaxed text-ink-soft">
+              Partners die hun kozijnen bij ons afnemen krijgen particuliere aanvragen uit hun eigen
+              werkgebied doorgestuurd. Wij leveren, u plaatst — zonder dat daar marketingkosten
+              tegenover staan.
             </p>
-            <ul className="mt-6 space-y-3 text-sm text-ink-soft">
+            <ul className="mt-8 space-y-3 text-sm text-ink-soft">
               {[
-                "Gratis klantleads voor partners",
-                "Eigen merken: Schüco, Aluplast, Gealan",
-                "Maatwerk binnen 4 weken",
-                "Persoonlijke accountmanager",
+                "Particuliere aanvragen uit uw werkgebied",
+                "Eén vast aanspreekpunt voor uw projecten",
+                "Keuze uit Aluplast, Gealan, Schüco en K-Vision",
+                "Levertijd van vier weken na opname",
               ].map((i) => (
                 <li key={i} className="flex items-start gap-3">
-                  <span className="mt-0.5 flex h-5 w-5 flex-none items-center justify-center bg-rebu-green/10 text-rebu-green">
-                    <Check className="h-3 w-3" />
-                  </span>
+                  <Check className="mt-0.5 h-4 w-4 flex-none text-rebu-green" />
                   {i}
                 </li>
               ))}
             </ul>
-            <Link href="/offerte" className="mt-10 btn-primary">
-              Start zakelijke offerte <ArrowRight className="h-4 w-4" />
+            <Link href="/offerte" className="btn btn-primary mt-10">
+              Projectofferte aanvragen <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
         </div>

@@ -117,7 +117,7 @@ const faqCategories = [
       },
       {
         q: "Welke merken gebruiken jullie?",
-        a: "Wij werken met drie Europese topmerken: Schüco (Duits, premium), Aluplast (Duits, uitstekende prijs-kwaliteit) en Gealan (Duits, innovatief). Elk merk is KOMO-gecertificeerd.",
+        a: "Wij werken met vier Europese topmerken: Schüco (premium, 7-kamerprofiel), Aluplast (uitstekende prijs-kwaliteit), Gealan (de hoogste isolatiewaarde van ons assortiment) en K-Vision van Kömmerling (speciaal voor de Nederlandse markt ontworpen). Op onze merkenpagina staan de specificaties per systeem naast elkaar.",
       },
       {
         q: "Wat als er iets mis is na plaatsing?",
