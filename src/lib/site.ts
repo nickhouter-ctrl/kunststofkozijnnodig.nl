@@ -3,7 +3,7 @@ export const site = {
   tagline: "Uw zakelijke partner in kunststof kozijnen",
   description:
     "Kunststofkozijnnodig.nl is de projectleverancier van kunststof kozijnen, deuren en schuifpuien voor aannemers, VvE's, woningcorporaties en projectontwikkelaars. Vaste projectprijzen, betrouwbare planning en levering door heel Nederland.",
-  url: "https://kunststofkozijnnodig.nl",
+  url: "https://www.kunststofkozijnnodig.nl",
   locale: "nl-NL",
   address: {
     street: "Samsonweg 26F",

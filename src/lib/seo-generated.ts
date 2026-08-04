@@ -364,7 +364,7 @@ export const generatedSeo: Record<string, GeneratedSeo> = {
       "provider": {
         "@type": "LocalBusiness",
         "name": "Kunststofkozijnnodig.nl",
-        "url": "https://kunststofkozijnnodig.nl",
+        "url": "https://www.kunststofkozijnnodig.nl",
         "telephone": "+31756369533",
         "address": {
           "@type": "PostalAddress",
@@ -564,7 +564,7 @@ export const generatedSeo: Record<string, GeneratedSeo> = {
       "@type": "CollectionPage",
       "name": "Kunststof Kozijnen, Deuren & Schuifpuien – Productassortiment",
       "description": "Compleet assortiment kunststof kozijnen, deuren en schuifpuien. Draaikiepramen, vastglas, voordeuren, hefschuifpuien en meer — leverbaar in elke kleur en profiel.",
-      "url": "https://kunststofkozijnnodig.nl/producten",
+      "url": "https://www.kunststofkozijnnodig.nl/producten",
       "mainEntity": {
         "@type": "ItemList",
         "itemListElement": [
@@ -572,26 +572,26 @@ export const generatedSeo: Record<string, GeneratedSeo> = {
             "@type": "ListItem",
             "position": 1,
             "name": "Kunststof Kozijnen",
-            "url": "https://kunststofkozijnnodig.nl/producten/kunststof-kozijnen"
+            "url": "https://www.kunststofkozijnnodig.nl/producten/kunststof-kozijnen"
           },
           {
             "@type": "ListItem",
             "position": 2,
             "name": "Kunststof Deuren",
-            "url": "https://kunststofkozijnnodig.nl/producten/kunststof-deuren"
+            "url": "https://www.kunststofkozijnnodig.nl/producten/kunststof-deuren"
           },
           {
             "@type": "ListItem",
             "position": 3,
             "name": "Schuifpuien",
-            "url": "https://kunststofkozijnnodig.nl/producten/schuifpuien"
+            "url": "https://www.kunststofkozijnnodig.nl/producten/schuifpuien"
           }
         ]
       },
       "provider": {
         "@type": "LocalBusiness",
         "name": "Kunststofkozijnnodig.nl",
-        "url": "https://kunststofkozijnnodig.nl",
+        "url": "https://www.kunststofkozijnnodig.nl",
         "telephone": "+31756700'; vul aan",
         "address": {
           "@type": "PostalAddress",
