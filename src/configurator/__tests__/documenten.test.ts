@@ -143,11 +143,32 @@ describe("profielgegevens per uitvoering in de documenten", () => {
   });
 
   it("laat de profielkaartrijen weg zolang de uitvoering geen kaart heeft", () => {
-    const b = bereken(standaardConfiguratie(), AANNEMER);
+    // Gealan heeft (nog) geen catalogusblad in het datamodel; aluplast wél.
+    const b = bereken(standaardConfiguratie("gealan-s9000-aanslag"), AANNEMER);
     const html = klantofferte(b, GEGEVENS, REBU_BRANDING);
     // Geen lege rijen of 'undefined' in het document wanneer de data ontbreekt.
     expect(html).not.toContain("Profielklasse");
     expect(html).not.toContain("undefined");
+  });
+
+  it("toont nooit 'null' wanneer de catalogus een kaartveld niet noemt", () => {
+    const b = bereken(standaardConfiguratie("gealan-s9000-aanslag"), AANNEMER);
+    const kaart: Profielkaart = {
+      profielklasse: null,
+      afdichtingen: 2,
+      staal: null,
+      antiInbraak: null,
+      hfl: null,
+    };
+    const profielMetKaart: typeof b.profiel & { profielkaart: Profielkaart } = {
+      ...b.profiel,
+      profielkaart: kaart,
+    };
+    const html = klantofferte({ ...b, profiel: profielMetKaart }, GEGEVENS, REBU_BRANDING);
+
+    expect(html).toContain("2 afdichtingen");
+    expect(html).not.toContain("null");
+    expect(html).not.toContain("HFL");
   });
 });
 

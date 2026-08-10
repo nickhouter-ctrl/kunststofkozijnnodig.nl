@@ -45,14 +45,16 @@ import type { Berekening, Profiel } from "../types";
  * de rijen gewoon weg in plaats van lege waarden te tonen.
  */
 export interface Profielkaart {
-  /** Profielklasse volgens EN 12608, bijvoorbeeld "B". */
-  profielklasse: string;
+  /** Profielklasse volgens EN 12608; `null` wanneer de catalogus hem niet noemt. */
+  profielklasse: "A" | "B" | "C" | null;
   /** Aantal afdichtingen in het systeem. */
-  afdichtingen: number;
+  afdichtingen: number | null;
   /** Omschrijving van de staalversterking, bijvoorbeeld "standaard open staal 1,5 mm". */
   staal: string | null;
   /** Omschrijving van de anti-inbraakvoorziening van de vleugel. */
   antiInbraak: string | null;
+  /** Of HFL-technologie (verlijmd glas) op deze uitvoering mogelijk is. */
+  hfl?: boolean | null;
 }
 
 /**
@@ -329,11 +331,17 @@ function profielgegevensRijen(b: Berekening): string {
 
   const kaart = profielkaartVan(p);
   if (kaart) {
-    rijen.push(["Profielklasse", `${kaart.profielklasse} — ${kaart.afdichtingen} afdichtingen`]);
+    // De catalogus noemt niet altijd alles; alleen wat er wél is komt op de kaart.
+    const klasse = [
+      kaart.profielklasse,
+      kaart.afdichtingen === null ? null : `${kaart.afdichtingen} afdichtingen`,
+    ].filter((deel): deel is string => deel !== null);
+    if (klasse.length > 0) rijen.push(["Profielklasse", klasse.join(" — ")]);
     // Niet "Staalversterking": dat label is in de specificatie al de ja/nee-keuze
     // van dit kozijn; dit is wat de fabrikant standaard in het profiel legt.
     if (kaart.staal) rijen.push(["Staal in het profiel", kaart.staal]);
     if (kaart.antiInbraak) rijen.push(["Anti-inbraak", kaart.antiInbraak]);
+    if (kaart.hfl) rijen.push(["HFL-technologie", "Mogelijk op deze uitvoering"]);
   }
 
   return rijen
