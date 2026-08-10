@@ -11,6 +11,7 @@ import {
   berekenLeverweek,
   fabrieksorder,
   klantofferte,
+  type Profielkaart,
 } from "../engine/documenten";
 import { orderLock } from "../engine/orderlock";
 import { standaardConfiguratie } from "../data/standaard";
@@ -97,6 +98,56 @@ describe("regel 6 — strikt gescheiden documenten", () => {
       }
       expect(html).toContain("<svg");
     }
+  });
+});
+
+describe("profielgegevens per uitvoering in de documenten", () => {
+  it("toont de per-uitvoering maten ook in de klantofferte", () => {
+    const b = bereken(standaardConfiguratie(), AANNEMER);
+    const html = klantofferte(b, GEGEVENS, REBU_BRANDING);
+
+    // De maten die per uitvoering verschillen (PROFIELGEGEVENS-EKO4U.md) horen
+    // zichtbaar te zijn voor de klant, niet alleen in de fabrieksorder.
+    expect(html).toContain(`${b.profiel.inbouwdiepte.waarde} mm`);
+    expect(html).toContain(`${b.profiel.kamers.waarde} kamers`);
+    expect(html).toContain(`Maximale glasdikte`);
+    expect(html).toContain(`${b.profiel.maxGlasdikte.waarde} mm`);
+    expect(html).toContain(b.profiel.uitvoeringLabel);
+  });
+
+  it("toont de maximale glasdikte van de uitvoering in de fabrieksorder", () => {
+    const b = bereken(standaardConfiguratie(), REBU);
+    const html = fabrieksorder(b, GEGEVENS);
+    expect(html).toContain(`Maximale glasdikte`);
+    expect(html).toContain(`${b.profiel.maxGlasdikte.waarde} mm`);
+  });
+
+  it("toont de profielkaartvelden zodra de uitvoering ze heeft", () => {
+    const b = bereken(standaardConfiguratie(), AANNEMER);
+    const kaart: Profielkaart = {
+      profielklasse: "B",
+      afdichtingen: 2,
+      staal: "standaard open staal 1,5 mm",
+      antiInbraak: "twee anti-inbraakpunten aan de vleugel",
+    };
+    const profielMetKaart: typeof b.profiel & { profielkaart: Profielkaart } = {
+      ...b.profiel,
+      profielkaart: kaart,
+    };
+    const html = klantofferte({ ...b, profiel: profielMetKaart }, GEGEVENS, REBU_BRANDING);
+
+    expect(html).toContain("Profielklasse");
+    expect(html).toContain("2 afdichtingen");
+    expect(html).toContain("standaard open staal 1,5 mm");
+    expect(html).toContain("twee anti-inbraakpunten aan de vleugel");
+  });
+
+  it("laat de profielkaartrijen weg zolang de uitvoering geen kaart heeft", () => {
+    const b = bereken(standaardConfiguratie(), AANNEMER);
+    const html = klantofferte(b, GEGEVENS, REBU_BRANDING);
+    // Geen lege rijen of 'undefined' in het document wanneer de data ontbreekt.
+    expect(html).not.toContain("Profielklasse");
+    expect(html).not.toContain("undefined");
   });
 });
 

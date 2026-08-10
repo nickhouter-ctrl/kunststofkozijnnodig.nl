@@ -33,7 +33,36 @@ import {
   hormaatTekst,
   vullingsVakken,
 } from "./maten";
-import type { Berekening } from "../types";
+import type { Berekening, Profiel } from "../types";
+
+/**
+ * De profielkaart van een uitvoering: de eigenschappen uit de fabrikantcatalogus
+ * (PROFIELGEGEVENS-EKO4U.md) die naast de maatvoering op de kaart horen.
+ *
+ * De velden landen met het datamodel per uitvoering (T1) op `Profiel`; dit type
+ * beschrijft wat de documenten ervan tonen. Ontbreekt de kaart op een profiel —
+ * oudere data of een uitvoering zonder catalogusblad — dan laten de documenten
+ * de rijen gewoon weg in plaats van lege waarden te tonen.
+ */
+export interface Profielkaart {
+  /** Profielklasse volgens EN 12608, bijvoorbeeld "B". */
+  profielklasse: string;
+  /** Aantal afdichtingen in het systeem. */
+  afdichtingen: number;
+  /** Omschrijving van de staalversterking, bijvoorbeeld "standaard open staal 1,5 mm". */
+  staal: string | null;
+  /** Omschrijving van de anti-inbraakvoorziening van de vleugel. */
+  antiInbraak: string | null;
+}
+
+/**
+ * Leest de profielkaart van een uitvoering, tolerant voor profielen van vóór
+ * het per-uitvoering-datamodel. Dit is bewust de enige plek die de cast doet.
+ */
+export function profielkaartVan(profiel: Profiel): Profielkaart | null {
+  const kaart = (profiel as Profiel & { profielkaart?: Profielkaart }).profielkaart;
+  return kaart ?? null;
+}
 
 export interface Aannemersbranding {
   bedrijfsnaam: string;
@@ -284,6 +313,35 @@ function specificatieRijen(b: Berekening): string {
 }
 
 /**
+ * De profielgegevens die per úítvoering verschillen — inbouwdiepte, kamers en
+ * maximale glasdikte horen bij het gekozen profiel, niet bij het systeem
+ * (PROFIELGEGEVENS-EKO4U.md). Eén bron voor alle drie de documenten, zodat de
+ * klantofferte, de factuur en de fabrieksorder nooit uiteenlopen.
+ */
+function profielgegevensRijen(b: Berekening): string {
+  const p = b.profiel;
+  const rijen: [string, string][] = [
+    ["Uitvoering", p.uitvoeringLabel],
+    ["Inbouwdiepte", `${p.inbouwdiepte.waarde} mm — ${p.kamers.waarde} kamers`],
+    ["Maximale glasdikte", `${p.maxGlasdikte.waarde} mm`],
+    ["Uf-waarde", `${p.uWaarde.waarde} W/m²K`],
+  ];
+
+  const kaart = profielkaartVan(p);
+  if (kaart) {
+    rijen.push(["Profielklasse", `${kaart.profielklasse} — ${kaart.afdichtingen} afdichtingen`]);
+    // Niet "Staalversterking": dat label is in de specificatie al de ja/nee-keuze
+    // van dit kozijn; dit is wat de fabrikant standaard in het profiel legt.
+    if (kaart.staal) rijen.push(["Staal in het profiel", kaart.staal]);
+    if (kaart.antiInbraak) rijen.push(["Anti-inbraak", kaart.antiInbraak]);
+  }
+
+  return rijen
+    .map(([label, waarde]) => `<tr><th>${esc(label)}</th><td>${esc(waarde)}</td></tr>`)
+    .join("");
+}
+
+/**
  * De maatvoeringsblokken die in BEIDE documenten verplicht zijn (regel 2):
  * glasmaat, cilindermaat en hormaat, ook wanneer het product niet meegaat.
  */
@@ -396,6 +454,10 @@ export function klantofferte(
 
     <h2>${esc(c.naam)}</h2>
     <table>${specificatieRijen(b)}</table>
+
+    <h2>Profielgegevens</h2>
+    <table>${profielgegevensRijen(b)}</table>
+
     <table>
       <tr><th>Glas</th><td>${esc(
         c.glas.meegeleverd && b.glastype
@@ -508,7 +570,7 @@ export function fabrieksorder(b: Berekening, gegevens: Documentgegevens): string
     <h2>Profiel en uitvoering</h2>
     <table>${specificatieRijen(b)}</table>
     <table>
-      <tr><th>Inbouwdiepte</th><td>${b.profiel.inbouwdiepte.waarde} mm — ${b.profiel.kamers.waarde} kamers</td></tr>
+      ${profielgegevensRijen(b)}
       <tr><th>Aanslag</th><td>${b.profiel.geometrie.aanslag.waarde} mm</td></tr>
       <tr><th>Zichtbreedte kozijn / vleugel</th><td>${b.profiel.geometrie.kozijnZichtbreedte.waarde} / ${b.profiel.geometrie.vleugelZichtbreedte.waarde} mm, vleugeloverslag ${b.profiel.geometrie.vleugelOverslag.waarde} mm</td></tr>
       <tr><th>Glasaftrek per zijde</th><td>${b.profiel.geometrie.kozijnZichtbreedte.waarde} mm bij vast glas, ${
@@ -631,6 +693,9 @@ export function rebuFactuur(b: Berekening, gegevens: Documentgegevens): string {
 
     <h2>${esc(c.naam)}</h2>
     <table>${specificatieRijen(b)}</table>
+
+    <h2>Profielgegevens</h2>
+    <table>${profielgegevensRijen(b)}</table>
 
     ${maatvoeringBlok(b)}
 
