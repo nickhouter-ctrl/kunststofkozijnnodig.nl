@@ -47,10 +47,12 @@ import { kleurenVanMerk } from "@/configurator/data/kleuren";
 import type {
   Afwatering,
   Configuratie,
+  Glastype,
   Indeling,
   Invulling,
   KozijnType,
   MerkId,
+  Profiel,
   VakInvoer,
   VakMaten,
 } from "@/configurator/types";
@@ -67,6 +69,23 @@ import { MINIMALE_VAKMAAT, type Selectie } from "./Bewerkvlak";
 function invullingenVoor(kozijnType: KozijnType): Invulling[] {
   if (kozijnType === "schuifpui") return ["schuifvleugel", "vast", "paneel"];
   return ["vast", "draaikiep", "valraam", "deur", "vastedeur", "paneel", "rooster", "geen"];
+}
+
+/**
+ * Waarom een glastype niet in dít kozijn kan — of null als het gewoon past.
+ *
+ * De grens verschilt per uitvoering, niet per systeem: het NL-blokprofiel van
+ * IDEAL 7000 neemt glas tot 41 mm waar het basissysteem 52 mm aankan. De optie
+ * blijft zichtbaar mét de reden, zodat duidelijk is dat een andere uitvoering
+ * het glas wél kan dragen.
+ */
+function glasBeperking(glas: Glastype, profiel: Profiel | null): string | null {
+  if (!profiel) return null;
+  if (!profiel.toegestaneGlastypes.includes(glas.id)) return "niet leverbaar op dit profiel";
+  if (glas.dikte > profiel.maxGlasdikte.waarde) {
+    return `te dik voor deze uitvoering (max ${profiel.maxGlasdikte.waarde} mm)`;
+  }
+  return null;
 }
 
 interface Props {
@@ -191,6 +210,10 @@ export function Eigenschappen({
   onSelecteer,
 }: Props) {
   const zetIndeling = (indeling: Indeling) => wijzig({ indeling });
+
+  // Eén profielopzoeking voor het hele paneel: de glaskeuzes en de
+  // kozijnlijst-afwerking lezen allebei de grenzen van de gekozen uitvoering.
+  const gekozenProfiel = profielOpId(configuratie.profielId);
 
   if (!selectie) {
     return (
@@ -460,11 +483,15 @@ export function Eigenschappen({
                 className="w-full rounded-lg border border-sand px-3 py-2 text-sm outline-none focus:border-rebu-green"
               >
                 <option value="">Zelfde glas als het kozijn</option>
-                {GLASTYPES.map((g) => (
-                  <option key={g.id} value={g.id}>
-                    {g.naam} — {g.dikte} mm{g.mat ? " · geen doorzicht" : ""}
-                  </option>
-                ))}
+                {GLASTYPES.map((g) => {
+                  const beperking = glasBeperking(g, gekozenProfiel);
+                  return (
+                    <option key={g.id} value={g.id} disabled={beperking !== null}>
+                      {g.naam} — {g.dikte} mm{g.mat ? " · geen doorzicht" : ""}
+                      {beperking ? ` · ${beperking}` : ""}
+                    </option>
+                  );
+                })}
               </select>
               <p className="mt-1 text-[11px] text-ink-soft">
                 {knoop.glastypeId
@@ -987,11 +1014,14 @@ export function Eigenschappen({
               className="w-full rounded-lg border border-sand px-3 py-2 text-sm outline-none focus:border-rebu-green"
             >
               <option value="">Zelfde glas als het kozijn</option>
-              {GLASTYPES.map((g) => (
-                <option key={g.id} value={g.id}>
-                  {g.naam} — {g.dikte} mm
-                </option>
-              ))}
+              {GLASTYPES.map((g) => {
+                const beperking = glasBeperking(g, gekozenProfiel);
+                return (
+                  <option key={g.id} value={g.id} disabled={beperking !== null}>
+                    {g.naam} — {g.dikte} mm{beperking ? ` · ${beperking}` : ""}
+                  </option>
+                );
+              })}
             </select>
           </Blok>
         )}
@@ -1199,7 +1229,7 @@ export function Eigenschappen({
     rechts: "rechterstijl",
   }[selectie.zijde];
 
-  const profiel = profielOpId(configuratie.profielId);
+  const profiel = gekozenProfiel;
   const aanslagMm = profiel?.geometrie.aanslag.waarde ?? 0;
   const zijdeafwerking = configuratie.kozijnzijden[selectie.zijde];
   const stelmaat = profiel
