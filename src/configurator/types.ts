@@ -68,6 +68,16 @@ export type Hoekverbinding = "verstek" | "houtlook";
 export type Uitvoering = "aanslag" | "vlak" | "verdiept";
 
 /**
+ * Een waarde die per uitvoering kan verschillen.
+ *
+ * Inbouwdiepte en maximale glasdikte hangen niet aan het systeem maar aan het
+ * profiel zelf: het NL-blokprofiel mét aanslag van IDEAL 7000 is 120 mm diep en
+ * neemt glas tot 41 mm, terwijl het basissysteem 85 mm is. Ontbreekt een
+ * uitvoering, dan geldt de systeemwaarde.
+ */
+export type PerUitvoering<T = Constante> = Partial<Record<Uitvoering, T>>;
+
+/**
  * Hoe het regenwater uit de onderste sponning naar buiten loopt.
  *
  *   zichtbaar — open afwateringssleuven in de buitenwand; de standaard
@@ -278,10 +288,84 @@ export interface Geometrie {
   /** Breedte van een tussenstijl. De glasaftrek is daarvan de helft per zijde. */
   tussenstijlBreedte: Constante;
   /**
+   * Zichtbreedte van de puistijl: de stijl tussen een vast deel en een
+   * schuifvleugel in een hefschuifpui. `null` = geen pui; de engine valt dan
+   * terug op de scheidingsbreedtes uit de indeling.
+   */
+  puistijlBreedte: Constante | null;
+  /**
+   * Zichtbreedte van de ontmoetingsstijl: waar twee schuifvleugels elkaar
+   * ontmoeten grijpen hun profielen in elkaar. Bij aluplast HST 85 is dat
+   * 63 mm (schema C), bij Gealan 256 mm. `null` = geen pui.
+   */
+  ontmoetingsstijlBreedte: Constante | null;
+  /**
    * Glasinleg: hoe diep het glas onder de glaslat valt. Wordt gebruikt voor de
    * daglichtmaat en detail D, en zit al verwerkt in de zichtbreedte hierboven.
    */
   glasinleg: Constante;
+}
+
+/**
+ * De profielklasse volgens EN 12608 — de wanddikteklasse van het profiel.
+ * Klasse A heeft de dikste buitenwanden; B is de gangbare klasse in Nederland.
+ */
+export type Profielklasse = "A" | "B" | "C";
+
+/**
+ * De eigenschappen op de profielkaart, zoals de technische catalogus ze bij een
+ * concreet profiel vermeldt: doorsnede + eigenschappen + levertijd + prijs.
+ *
+ * De kaart hoort bij een uitvoering, niet bij het systeem: het 7000 NL
+ * blokprofiel heeft zijn eigen kaart, het basissysteem een andere. Alleen
+ * uitvoeringen waarvan de cataloguskaart is overgenomen dragen er een.
+ */
+export interface Profielkaart {
+  /** Profielklasse volgens EN 12608; `null` = de catalogus vermeldt hem niet. */
+  profielklasse: Profielklasse | null;
+  /** Aantal afdichtingsniveaus, bv. 2 bij "systeem met 2 afdichtingen". */
+  afdichtingen: number | null;
+  /** De staalversterking zoals de catalogus hem omschrijft, bv. "standaard open staal 1,5 mm". */
+  staal: string | null;
+  /** De anti-inbraakvoorziening, bv. "twee anti-inbraakpunten aan de vleugel". */
+  antiInbraak: string | null;
+  /** Is HFL-technologie (verlijmde beglazing) mogelijk? `null` = de catalogus zegt niets. */
+  hfl?: boolean | null;
+  /** Waar deze kaart vandaan komt. */
+  bron?: Bron;
+}
+
+/**
+ * Een kader × vleugel-combinatie zoals de fabrikant hem levert.
+ *
+ * Kader en vleugel zijn een combinatie, geen systeemmaat: op hetzelfde kader
+ * 170054 zet aluplast zowel een raamvleugel van 77 mm als een zware deurvleugel
+ * van 96 mm. Elke combinatie heeft zijn eigen zichtbreedtes en — waar het blad
+ * uit de technische catalogus is overgenomen — zijn eigen doorsnedetekening.
+ */
+export interface ProfielCombinatie {
+  id: string;
+  /** Kort label, bv. "NL kader 84 mm × raamvleugel 77 mm". */
+  label: string;
+  /** Waarvoor deze combinatie bedoeld is. Een vast vak gebruikt alleen het kader. */
+  toepassing: "raam" | "deur" | "hefschuif";
+  /** Artikelnummer van het kaderprofiel, bv. "170054". `null` = onbekend. */
+  kaderArtikel: string | null;
+  /** Artikelnummer van het vleugelprofiel, bv. "170020". `null` = onbekend. */
+  vleugelArtikel: string | null;
+  kaderZichtbreedte: Constante;
+  vleugelZichtbreedte: Constante;
+  /** Inbouwdiepte van deze combinatie; `null` = de systeemwaarde geldt. */
+  inbouwdiepte: Constante | null;
+  /** Maximale glasdikte van deze combinatie; `null` = de systeemwaarde geldt. */
+  maxGlasdikte: Constante | null;
+  /**
+   * Publiek pad naar de fabrikantsdoorsnede (SVG) voor detail A, bv.
+   * "/configurator/profielen/aluplast-ideal-7000-nl-kader84-vleugel77.svg".
+   * `null` zolang het catalogusblad nog niet is opgehaald — de tekening valt
+   * dan terug op de parametrische benadering.
+   */
+  doorsnedeSvg: string | null;
 }
 
 /** Een profielsysteem in een specifieke uitvoering, zoals Aluplast IDEAL 7000 NL blok. */
@@ -315,6 +399,15 @@ export interface Profiel {
 
   /** Toegestane totale glasdikte in mm. */
   maxGlasdikte: Constante;
+
+  /**
+   * De cataloguskaart van deze uitvoering. Alleen aanwezig waar het blad uit de
+   * technische catalogus is overgenomen; de documenten laten de kaartrijen weg
+   * zolang hij ontbreekt.
+   */
+  profielkaart?: Profielkaart;
+  /** De kader × vleugel-combinaties die de fabrikant op deze uitvoering levert. */
+  combinaties?: ProfielCombinatie[];
 
   /** Harde maatgrenzen. */
   grenzen: {

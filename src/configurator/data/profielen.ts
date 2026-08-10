@@ -13,7 +13,15 @@
  * livegang uit de leverancierstekeningen worden overgenomen. Het adminscherm
  * toont ze als 'te bevestigen' zolang de bron een aanname is.
  */
-import type { Constante, Geometrie, Profiel, Uitvoering } from "../types";
+import type {
+  Constante,
+  Geometrie,
+  PerUitvoering,
+  Profiel,
+  ProfielCombinatie,
+  Profielkaart,
+  Uitvoering,
+} from "../types";
 
 const fabrikant = (waarde: number, url: string): Constante => ({
   waarde,
@@ -29,10 +37,6 @@ const aanname = (waarde: number, toelichting: string): Constante => ({
   waarde,
   bron: { soort: "aanname", toelichting },
 });
-
-/** Herbruikbare toelichting voor zichtbreedtes die nog bevestigd moeten worden. */
-const ZICHTBREEDTE_TODO =
-  "Zichtbreedte nog niet uit de leverancierstekening overgenomen. Bevestigen bij Rebu vóór livegang — deze waarde bepaalt de glasmaat.";
 
 /** Geverifieerde bron voor de zichtbreedte van een profiel. */
 const geijkt = (waarde: number, toelichting: string): Constante => ({
@@ -68,6 +72,13 @@ function geometrieVoor(
     aanslag?: Constante;
     tussenstijl: number;
     glasinleg: number;
+    /**
+     * De stijlen van een hefschuifpui: de puistijl tussen een vast deel en een
+     * vleugel, en de ontmoetingsstijl waar twee vleugels elkaar ontmoeten.
+     * Alleen hefschuifsystemen vullen deze; bij een raamsysteem blijven ze weg.
+     */
+    puistijl?: Constante;
+    ontmoetingsstijl?: Constante;
   }
 ): Geometrie {
   const bekend = basis.kozijnZicht[uitvoering];
@@ -104,6 +115,8 @@ function geometrieVoor(
       basis.glasinleg,
       "Glasinleg onder de glaslat. Wordt gebruikt voor de daglichtmaat en detail D."
     ),
+    puistijlBreedte: basis.puistijl ?? null,
+    ontmoetingsstijlBreedte: basis.ontmoetingsstijl ?? null,
   };
 }
 
@@ -128,8 +141,18 @@ interface Systeem {
    * 41 mm, terwijl het basissysteem 85 mm is. Staat een uitvoering hier niet in,
    * dan geldt de waarde van het systeem.
    */
-  dieptePerUitvoering?: Partial<Record<Uitvoering, Constante>>;
-  maxGlasPerUitvoering?: Partial<Record<Uitvoering, Constante>>;
+  dieptePerUitvoering?: PerUitvoering;
+  maxGlasPerUitvoering?: PerUitvoering;
+  /**
+   * De cataloguskaart per uitvoering. Alleen uitvoeringen waarvan het blad uit
+   * de technische catalogus is overgenomen krijgen er een.
+   */
+  kaartPerUitvoering?: PerUitvoering<Profielkaart>;
+  /**
+   * De kader × vleugel-combinaties per uitvoering. Het kader hoort bij de
+   * uitvoering (170054 ís het kader mét aanslag), dus de combinaties ook.
+   */
+  combinatiesPerUitvoering?: PerUitvoering<ProfielCombinatie[]>;
   grenzen: Profiel["grenzen"];
   toegestaneTypes: Profiel["toegestaneTypes"];
   toegestaneGlastypes: string[];
@@ -138,6 +161,13 @@ interface Systeem {
   uitvoeringen: Uitvoering[];
   zicht: Parameters<typeof geometrieVoor>[1];
 }
+
+/**
+ * De technische catalogus met alle aluplast-doorsneden per profielcombinatie.
+ * Elk blad noemt de kader- en vleugelmaat expliciet ("NL kader: 84 mm").
+ */
+const EKOOKNA_CATALOGUS_URL =
+  "https://benefit.ekookna.com/nl/technische-catalogus?filters%5BSystemodawca%5D%5B0%5D=ALUPLAST";
 
 const ALUPLAST_4000_URL = "https://www.aluplast.net/nl/produkte/kunststofffenster-systeme/ideal-4000.php";
 const ALUPLAST_7000_URL = "https://www.aluplast.net/eng-us/product/window/ideal/ideal-7000/";
@@ -158,8 +188,43 @@ const SYSTEMEN: Systeem[] = [
     vleugeldikte: ontwerp(70, "6.2 voorbeeldberekening"),
     horAansluitmaat: aanname(12, "Hor-aansluitmaat overgenomen van IDEAL 7000; per systeem bevestigen."),
     maxGlasdikte: fabrikant(41, ALUPLAST_4000_URL),
+    /*
+     * Het catalogusblad 'Ideal 4000 Vin 20 mm' (artikel 140041) — de uitvoering
+     * met de 20 mm aanslagvin — geeft beglazing tot 42 mm. Voor het vlakke
+     * standaardkader staat dezelfde 42 mm op het EKO4U-blad.
+     */
     maxGlasPerUitvoering: {
+      aanslag: fabrikant(42, "Ideal 4000 Vin 20 mm (140041) — beglazing met een breedte tot 42 mm."),
       vlak: fabrikant(42, "Ideal 4000 Vin 20 mm (140041) — beglazing met een breedte tot 42 mm."),
+    },
+    kaartPerUitvoering: {
+      aanslag: {
+        profielklasse: "B",
+        afdichtingen: 2,
+        staal: "standaard open staal 1,5 mm",
+        antiInbraak: "twee anti-inbraakpunten aan de vleugel",
+        hfl: null,
+        bron: { soort: "fabrikant", url: EKOOKNA_CATALOGUS_URL },
+      },
+    },
+    combinatiesPerUitvoering: {
+      vlak: [
+        {
+          id: "aluplast-4000-140001-140020",
+          label: "Kader standard 65 mm × vleugel recht 77 mm",
+          toepassing: "raam",
+          kaderArtikel: "140001",
+          vleugelArtikel: "140020",
+          kaderZichtbreedte: geijkt(
+            65,
+            "EKO4U, kaderprofiel 140001 'Raam kader standard' (diep 70 mm, hoog 65 mm)."
+          ),
+          vleugelZichtbreedte: geijkt(77, "EKO4U, vleugelprofiel 140020 'vleugel RECHT 77mm'."),
+          inbouwdiepte: null,
+          maxGlasdikte: null,
+          doorsnedeSvg: null,
+        },
+      ],
     },
     grenzen: {
       minBreedte: aanname(300, "Ondergrens productie; bevestigen bij Rebu."),
@@ -231,6 +296,76 @@ const SYSTEMEN: Systeem[] = [
     },
     maxGlasPerUitvoering: {
       aanslag: fabrikant(41, "IDEAL 7000 NL BLOKPROFIEL 84 mm — beglazing tot 41 mm mogelijk."),
+    },
+    kaartPerUitvoering: {
+      aanslag: {
+        profielklasse: "B",
+        afdichtingen: 2,
+        staal: null,
+        antiInbraak: null,
+        hfl: true,
+        bron: { soort: "fabrikant", url: EKOOKNA_CATALOGUS_URL },
+      },
+    },
+    combinatiesPerUitvoering: {
+      aanslag: [
+        {
+          id: "aluplast-7000-170054-170020",
+          label: "NL kader 84 mm × raamvleugel 77 mm",
+          toepassing: "raam",
+          kaderArtikel: "170054",
+          vleugelArtikel: "170020",
+          kaderZichtbreedte: geijkt(
+            84,
+            "EKO4U, kaderprofiel 170054 'kader NL met aanslag' (diepte 120 mm, hoogte 84 mm)."
+          ),
+          vleugelZichtbreedte: geijkt(77, "EKO4U, vleugelprofiel 170020 'vleugel RECHT 77mm'."),
+          inbouwdiepte: fabrikant(120, "Catalogusblad 170054 × 170020 — 144 breed, 120 diep, 133 hoog."),
+          maxGlasdikte: fabrikant(41, "IDEAL 7000 NL BLOKPROFIEL 84 mm — beglazing tot 41 mm."),
+          doorsnedeSvg: "/configurator/profielen/aluplast-ideal-7000-nl-kader84-vleugel77.svg",
+        },
+        {
+          /*
+           * Hetzelfde kader 170054 draagt ook de zware deurvleugel 170033: in
+           * doorsnede 96 mm in plaats van 57, totaal 172 mm. Een deur krijgt dus
+           * minder glas dan een raam van dezelfde maat.
+           */
+          id: "aluplast-7000-170054-170033",
+          label: "NL kader 84 mm × deurvleugel 96 mm",
+          toepassing: "deur",
+          kaderArtikel: "170054",
+          vleugelArtikel: "170033",
+          kaderZichtbreedte: geijkt(
+            84,
+            "EKO4U, kaderprofiel 170054 'kader NL met aanslag' (diepte 120 mm, hoogte 84 mm)."
+          ),
+          vleugelZichtbreedte: fabrikant(
+            96,
+            "ALUPLAST IDEAL 7000 NL 170x54 - 170x33 — deurvleugel, doorsnede 96 mm."
+          ),
+          inbouwdiepte: fabrikant(120, "Zelfde kader 170054, dus dezelfde diepte van 120 mm."),
+          maxGlasdikte: fabrikant(41, "IDEAL 7000 NL BLOKPROFIEL 84 mm — beglazing tot 41 mm."),
+          doorsnedeSvg: "/configurator/profielen/aluplast-ideal-7000-nl-17054-17033-deur.svg",
+        },
+        {
+          id: "aluplast-7000-170053-170030",
+          label: "Kader 170053 × vleugel 170030",
+          toepassing: "raam",
+          kaderArtikel: "170053",
+          vleugelArtikel: "170030",
+          kaderZichtbreedte: aanname(
+            84,
+            "Zichtbreedte van kader 170053 nog niet van het catalogusblad overgenomen."
+          ),
+          vleugelZichtbreedte: aanname(
+            77,
+            "Zichtbreedte van vleugel 170030 nog niet van het catalogusblad overgenomen."
+          ),
+          inbouwdiepte: null,
+          maxGlasdikte: null,
+          doorsnedeSvg: "/configurator/profielen/aluplast-ideal-7000-nl-17053-17030.svg",
+        },
+      ],
     },
     grenzen: {
       minBreedte: aanname(300, "Ondergrens productie; bevestigen bij Rebu."),
@@ -517,20 +652,32 @@ const SYSTEMEN: Systeem[] = [
       aanslag: aanname(20, "Klik-aanslag hefschuif, 20 mm; bevestigen bij Rebu."),
       tussenstijl: 130,
       glasinleg: 20,
+      puistijl: geijkt(
+        130,
+        "AKUGT ExtraNet — de stijl tussen vast deel en vleugel, geijkt op de 2- en 4-delige pui."
+      ),
+      ontmoetingsstijl: geijkt(
+        256,
+        "AKUGT ExtraNet — de stijl tussen twee vleugels in de 4-delige pui van 4000: 256 mm."
+      ),
     },
   },
   {
     /**
-     * Ook bij dit merk is de hefschuif een eigen profielsysteem. De maten
-     * hieronder zijn overgenomen van het geijkte Gealan-hefschuifprofiel en dus
-     * nog een aanname; overnemen uit de technische catalogus van Aluplast.
+     * Ook bij dit merk is de hefschuif een eigen profielsysteem. De HST 85 staat
+     * sinds de catalogusdoorsneden op zijn eigen maten (schema C en de
+     * standaarddoorsnede 170080 × 170081); wat daar niet op staat is nog van het
+     * geijkte Gealan-profiel overgenomen.
      */
     id: "aluplast-hst85",
     merk: "aluplast",
     merkLabel: "Aluplast",
     naam: "Schuifpui",
     toepassing: "Hefschuifpui",
-    inbouwdiepte: aanname(194, "Bouwdiepte hefschuifkader; bevestigen bij Gealan."),
+    inbouwdiepte: fabrikant(
+      197,
+      "ALUPLAST HST 85 standaarddoorsnede 170080 × 170081 — totale opbouw 197 mm: 112 mm vast deel + 85 mm vleugel."
+    ),
     kamers: aanname(5, "Bevestigen bij Gealan."),
     uWaarde: aanname(1.3, "Uf hefschuifprofiel; bevestigen bij Gealan."),
     vleugeldikte: aanname(70, "Vleugeldikte hefschuif; bevestigen bij Gealan."),
@@ -564,13 +711,41 @@ const SYSTEMEN: Systeem[] = [
     toegestaanBeslag: ["hefschuif-skg2"],
     // Alleen stomp: een hefschuifkader heeft geen aanslag over het metselwerk.
     uitvoeringen: ["vlak"],
+    combinatiesPerUitvoering: {
+      vlak: [
+        {
+          id: "aluplast-hst85-170080-170081",
+          label: "HST 85 kader 170080 × vleugel 170081",
+          toepassing: "hefschuif",
+          kaderArtikel: "170080",
+          vleugelArtikel: "170081",
+          kaderZichtbreedte: fabrikant(
+            100,
+            "HST 85 schema C — schuifraam links, rechts en boven: 100 mm."
+          ),
+          vleugelZichtbreedte: fabrikant(
+            100,
+            "HST 85 standaarddoorsnede — vleugelhoogte 100 mm (zichtmaat 80/100)."
+          ),
+          inbouwdiepte: fabrikant(
+            197,
+            "HST 85 standaarddoorsnede — 197 mm totale opbouw: 112 mm vast deel + 85 mm vleugel; rail 163/178."
+          ),
+          maxGlasdikte: null,
+          doorsnedeSvg: "/configurator/profielen/aluplast-hst85-standard-170x80-170x81.svg",
+        },
+      ],
+    },
     zicht: {
       kozijnZicht: {
-        // Geijkt: AKUGT, 2-delige hefschuif van 2000 breed, delen 1000 + 1000,
-        // geeft in beide vakken een glasmaat van 758. Dat is 121 mm per zijde.
-        vlak: aanname(
-          177,
-          "Overgenomen van het geijkte Gealan-hefschuifkader; overnemen uit de technische catalogus van Aluplast."
+        /*
+         * Schema C van de HST 85-catalogus geeft de zichtmaten rechtstreeks:
+         * schuifraam links, rechts en boven 100 mm. Daarmee vervalt de van
+         * Gealan overgenomen 177 mm.
+         */
+        vlak: fabrikant(
+          100,
+          "ALUPLAST HST 85 schema C, horizontale doorsnede — schuifraam links, rechts en boven: 100 mm."
         ),
       },
       vleugelZicht: aanname(0, "Zit verwerkt in de kaderzichtbreedte; nog te ijken."),
@@ -581,8 +756,16 @@ const SYSTEMEN: Systeem[] = [
        * hij is per zijde bij te zetten.
        */
       aanslag: aanname(20, "Klik-aanslag hefschuif, 20 mm; bevestigen bij Rebu."),
-      tussenstijl: 130,
+      tussenstijl: 100,
       glasinleg: 20,
+      puistijl: fabrikant(
+        100,
+        "ALUPLAST HST 85 schema C — de stijl tussen vast deel en vleugel meet dezelfde 100 mm als het kader rondom."
+      ),
+      ontmoetingsstijl: fabrikant(
+        63,
+        "ALUPLAST HST 85 schema C, horizontale doorsnede — schuifraam (ontmoetingsstijl): 63 mm."
+      ),
     },
   },
   {
@@ -649,6 +832,14 @@ const SYSTEMEN: Systeem[] = [
       aanslag: aanname(20, "Klik-aanslag hefschuif, 20 mm; bevestigen bij Rebu."),
       tussenstijl: 130,
       glasinleg: 20,
+      puistijl: aanname(
+        130,
+        "Overgenomen van het geijkte Gealan-hefschuifprofiel; overnemen uit de technische catalogus van Kömmerling."
+      ),
+      ontmoetingsstijl: aanname(
+        256,
+        "Overgenomen van het geijkte Gealan-hefschuifprofiel; overnemen uit de technische catalogus van Kömmerling."
+      ),
     },
   },
 ];
@@ -677,6 +868,11 @@ export const PROFIELEN: Profiel[] = SYSTEMEN.flatMap((s) =>
     vleugeldikte: s.vleugeldikte,
     horAansluitmaat: s.horAansluitmaat,
     maxGlasdikte: s.maxGlasPerUitvoering?.[uitvoering] ?? s.maxGlasdikte,
+    // De kaart en de combinaties horen bij de uitvoering; uitvoeringen zonder
+    // catalogusblad krijgen er bewust geen, zodat de documenten de kaartrijen
+    // kunnen weglaten in plaats van lege velden te tonen.
+    profielkaart: s.kaartPerUitvoering?.[uitvoering],
+    combinaties: s.combinatiesPerUitvoering?.[uitvoering],
     grenzen: s.grenzen,
     toegestaneTypes: s.toegestaneTypes,
     toegestaneGlastypes: s.toegestaneGlastypes,
@@ -700,9 +896,17 @@ export function openstaandeAannames(profiel: Profiel): { veld: string; waarde: n
   bekijk("Vleugeldikte", profiel.vleugeldikte);
   bekijk("Hor-aansluitmaat", profiel.horAansluitmaat);
   bekijk("Max. glasdikte", profiel.maxGlasdikte);
-  for (const [naam, c] of Object.entries(profiel.geometrie)) bekijk(naam, c as Constante);
+  // Sommige geometrievelden zijn nullable (deurvleugel, puistijlen); die slaan
+  // we over — een ontbrekende waarde is geen openstaande aanname.
+  for (const [naam, c] of Object.entries(profiel.geometrie)) {
+    if (c) bekijk(naam, c as Constante);
+  }
   for (const [naam, c] of Object.entries(profiel.grenzen)) {
     if (c) bekijk(naam, c as Constante);
+  }
+  for (const combinatie of profiel.combinaties ?? []) {
+    bekijk(`${combinatie.label} — kader`, combinatie.kaderZichtbreedte);
+    bekijk(`${combinatie.label} — vleugel`, combinatie.vleugelZichtbreedte);
   }
   return uit;
 }
