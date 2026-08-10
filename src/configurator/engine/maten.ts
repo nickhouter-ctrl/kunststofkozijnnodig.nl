@@ -42,6 +42,8 @@ import type {
   Beslag,
   Cilindermaat,
   Configuratie,
+  Constante,
+  Geometrie,
   Glastype,
   Indeling,
   Kozijnzijde,
@@ -311,6 +313,51 @@ export function legUitIn(knoop: Indeling, gebied: Gebied): IndelingGeometrie {
   return uit;
 }
 
+/**
+ * De stijlmaten van een hefschuifpui zoals de productdatabase ze per
+ * profielsysteem kent: de gewone puistijl (vast deel naast een vleugel) en de
+ * bredere ontmoetingsstijl (twee vleugels die elkaar ontmoeten).
+ *
+ * `null` wanneer dit profiel geen eigen puimaten heeft; de uitleg valt dan
+ * terug op de breedtes die bij het maken van de indeling zijn vastgelegd.
+ */
+function puiStijlmaten(profiel: Profiel): { puistijl: Millimeter; ontmoeting: Millimeter } | null {
+  // De velden worden structureel gelezen zolang het datamodel ze nog niet
+  // overal kent; zodra `Geometrie` ze declareert is deze verbreding een no-op.
+  const g = profiel.geometrie as Geometrie & {
+    puistijlBreedte?: Constante | null;
+    ontmoetingsstijlBreedte?: Constante | null;
+  };
+  const puistijl = g.puistijlBreedte?.waarde ?? null;
+  const ontmoeting = g.ontmoetingsstijlBreedte?.waarde ?? null;
+  if (puistijl === null || ontmoeting === null) return null;
+  return { puistijl, ontmoeting };
+}
+
+/**
+ * Een hefschuifpui rekent met de stijlbreedtes van het gekozen profielsysteem,
+ * niet met de waarden die bij het maken van de indeling zijn ingevroren.
+ * Dezelfde indeling geeft zo bij aluplast (HST 85: 100 mm puistijl, 63 mm
+ * ontmoetingsstijl) andere glasmaten dan bij Gealan (130/256) — en wisselen
+ * van merk herrekent de pui vanzelf, zonder de indeling opnieuw op te bouwen.
+ */
+function metPuiStijlmaten(
+  indeling: Indeling,
+  configuratie: Configuratie,
+  profiel: Profiel
+): Indeling {
+  if (configuratie.kozijnType !== "schuifpui") return indeling;
+  const maten = puiStijlmaten(profiel);
+  if (!maten || indeling.soort !== "splitsing" || indeling.as !== "kolommen") return indeling;
+
+  const schuift = (knoop: Indeling): boolean =>
+    knoop.soort === "vak" && knoop.invulling === "schuifvleugel";
+  const scheidingBreedtes = indeling.kinderen.slice(0, -1).map((kind, i) =>
+    schuift(kind) && schuift(indeling.kinderen[i + 1]) ? maten.ontmoeting : maten.puistijl
+  );
+  return { ...indeling, scheidingBreedte: maten.puistijl, scheidingBreedtes };
+}
+
 /** De sponningopening van het hele kozijn — het startgebied van de indeling. */
 export function kozijnGebied(configuratie: Configuratie, profiel: Profiel): Gebied {
   const kozijnZicht = profiel.geometrie.kozijnZichtbreedte.waarde;
@@ -335,7 +382,7 @@ export function kozijnGebied(configuratie: Configuratie, profiel: Profiel): Gebi
 export function berekenGeometrie(configuratie: Configuratie, profiel: Profiel): IndelingGeometrie {
   const uit: IndelingGeometrie = { vakken: [], stijlen: [], kozijndelen: [] };
   const gebied = kozijnGebied(configuratie, profiel);
-  legUit(configuratie.indeling, gebied, uit);
+  legUit(metPuiStijlmaten(configuratie.indeling, configuratie, profiel), gebied, uit);
 
   // De vier lijsten van het kozijn zelf. De onderregel is klikbaar zodat er een
   // dorpel van gemaakt kan worden.
