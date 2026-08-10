@@ -791,6 +791,129 @@ describe("grenzen van een pui", () => {
   });
 });
 
+describe("maten per uitvoering en per kader/vleugel-combinatie", () => {
+  /**
+   * De maxGlasdikte hangt aan de uitvoering, niet aan het systeem: het
+   * blokprofiel van IDEAL 7000 neemt 41 mm, de vlakke uitvoering van hetzelfde
+   * systeem 52 mm. De regelmotor moet dat verschil dus per uitvoering zien.
+   */
+  it("beoordeelt de glasdikte per uitvoering, niet per systeem", () => {
+    const dik = { meegeleverd: true, glastypeId: "triple-06", afstandshouderId: "alu" };
+
+    // Triple 0.6 is 48 mm: te dik voor het blokprofiel (41 mm)…
+    const blok = bereken(config({ glas: dik }, "aluplast-ideal-7000-aanslag"), AANNEMER);
+    expect(
+      blok.bevindingen.some(
+        (x) => x.regelId === "glasdikte-past-in-sponning" && x.type === "blokkade"
+      )
+    ).toBe(true);
+
+    // …maar past prima in de vlakke uitvoering van hetzelfde systeem (52 mm).
+    const vlak = bereken(config({ glas: dik }, "aluplast-ideal-7000-vlak"), AANNEMER);
+    expect(vlak.bevindingen.some((x) => x.regelId === "glasdikte-past-in-sponning")).toBe(false);
+  });
+
+  /**
+   * Kader en vleugel zijn een combinatie, geen systeemmaat: op kader 170054
+   * levert aluplast zowel de raamvleugel van 77 mm als de zware deurvleugel van
+   * 96 mm. Een deur krijgt dus minder glas dan een raam van dezelfde maat.
+   */
+  it("geeft een deur op hetzelfde kader de zware 96 mm-vleugel", () => {
+    const profiel = profielOpId("aluplast-ideal-7000-aanslag")!;
+    expect(profiel.geometrie.deurVleugelZichtbreedte?.waarde).toBe(96);
+
+    const c = config(
+      { breedte: 1000, hoogte: 2100, indeling: nieuwVak("Deur", "deur") },
+      "aluplast-ideal-7000-aanslag"
+    );
+    const [vak] = berekenVakken(c, profiel, null);
+
+    // 1000 − 2 × 84 = 832 sponning; glasaftrek 96 − 28 = 68 per zijde → 696.
+    expect(vak.sponningBreedte).toBe(832);
+    expect(vak.glasBreedte).toBe(696);
+
+    // Een raam op datzelfde kader houdt de 77 mm-vleugel: 832 − 2 × 49 = 734.
+    const raam = berekenVakken(
+      config(
+        { breedte: 1000, hoogte: 2100, indeling: nieuwVak("Raam", "draaikiep") },
+        "aluplast-ideal-7000-aanslag"
+      ),
+      profiel,
+      null
+    )[0];
+    expect(raam.glasBreedte).toBe(734);
+  });
+});
+
+describe("hefschuifpui aluplast HST 85 — eigen maten uit schema C", () => {
+  /**
+   * De aluplast-hefschuif stond tot nu toe op de Gealan-maten (kader 177,
+   * puistijl 130, ontmoetingsstijl 256). Schema C van de HST 85-catalogus geeft
+   * de echte maten: schuifraam links/rechts/boven 100 mm, ontmoetingsstijl 63 mm.
+   */
+  async function aluplastPui(breedte: number) {
+    const { blancoIndeling, maakSchuifpui } = await import("../engine/indeling");
+    const { wisselKozijnType, standaardConfiguratie } = await import("../data/standaard");
+    const start = wisselKozijnType(standaardConfiguratie("aluplast-hst85-vlak", "vast"), "schuifpui");
+    const basis = blancoIndeling("Pui");
+    return {
+      ...start,
+      breedte,
+      hoogte: 2200,
+      indeling: maakSchuifpui(basis, basis.id, "4-midden-actief"),
+    };
+  }
+
+  it("zet de pui op 100 mm rondom en 63 mm ontmoetingsstijl", async () => {
+    const { berekenGeometrie } = await import("../engine/maten");
+    const profiel = profielOpId("aluplast-hst85-vlak")!;
+    const c = await aluplastPui(4000);
+    const geo = berekenGeometrie(c, profiel);
+
+    // Kader rondom 100 mm: het eerste vak begint op x = 100.
+    expect(profiel.geometrie.kozijnZichtbreedte.waarde).toBe(100);
+    expect(geo.vakken[0].gebied.x).toBe(100);
+
+    // vast | vleugel | vleugel | vast → puistijl, ontmoetingsstijl, puistijl.
+    expect(geo.stijlen.map((s) => s.breedte)).toEqual([100, 63, 100]);
+  });
+
+  it("houdt de maatketen sluitend op de aluplast-maten", async () => {
+    const profiel = profielOpId("aluplast-hst85-vlak")!;
+    const c = await aluplastPui(4000);
+    const b = bereken(c, AANNEMER);
+
+    // Kader 2 × 100 + stijlen 100 + 63 + 100 = 463; de rest is glas.
+    const glas = b.vakken.map((v) => v.glasBreedte);
+    expect(glas.reduce((a, x) => a + x, 0)).toBe(4000 - 463);
+
+    // Waar twee vleugels elkaar ontmoeten grijpen hun profielen in elkaar: de
+    // vleugels winnen samen de 13 mm die de vaste delen inleveren.
+    const [vast1, vleugel1, vleugel2, vast2] = glas;
+    expect(vleugel1 + vleugel2 - (vast1 + vast2)).toBe(26);
+  });
+
+  it("laat de Gealan-hefschuif onveranderd op de geijkte AKUGT-maten", async () => {
+    const { berekenGeometrie } = await import("../engine/maten");
+    const { blancoIndeling, maakSchuifpui } = await import("../engine/indeling");
+    const { wisselKozijnType, standaardConfiguratie } = await import("../data/standaard");
+
+    const start = wisselKozijnType(standaardConfiguratie("gealan-s9000-aanslag", "vast"), "schuifpui");
+    const basis = blancoIndeling("Pui");
+    const c = {
+      ...start,
+      breedte: 4000,
+      hoogte: 2000,
+      indeling: maakSchuifpui(basis, basis.id, "4-midden-actief"),
+    };
+    // wisselKozijnType wisselt mee naar het hefschuifprofiel van hetzelfde merk.
+    const profiel = profielOpId(c.profielId)!;
+    expect(profiel.id).toBe("gealan-s9000-hefschuif-vlak");
+    const geo = berekenGeometrie(c, profiel);
+    expect(geo.stijlen.map((s) => s.breedte)).toEqual([130, 256, 130]);
+  });
+});
+
 describe("letselveilig glas", () => {
   it("eist gelaagd of gehard glas onder 70 cm vanaf de vloer", async () => {
     const { bereken } = await import("../engine");
