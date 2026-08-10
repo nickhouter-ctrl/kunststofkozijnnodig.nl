@@ -13,16 +13,18 @@
  * getekend wordt.
  *
  * OVER DE DETAILDOORSNEDEN
- * De doorsneden worden parametrisch opgebouwd uit de gegevens in de
- * productdatabase: inbouwdiepte, aantal kamers, zichtbreedtes, aanslag,
- * glasinleg en glasdikte. Ze tonen de opbouw — meerkamerprofiel, stalen kern,
- * afdichtingsniveaus, glaslat — en de maatvoering van dít kozijn. Het zijn geen
- * exacte kopieën van de fabrikantsdoorsnede; elke detailtekening vermeldt dat
- * in de voettekst. Levert Rebu de leverancierstekeningen aan, dan kunnen de
- * constanten in de productdatabase erop gekalibreerd worden.
+ * Detail A toont waar mogelijk de échte fabrikantsdoorsnede: de vectorbladen
+ * uit de technische catalogus in `public/configurator/profielen/`, gekozen per
+ * kader×vleugel-combinatie (zie `fabrikantDoorsnedeVoor`). Is er voor de
+ * gekozen combinatie geen catalogusblad, dan valt detail A terug op de
+ * parametrische doorsnede — opgebouwd uit de productdatabase: inbouwdiepte,
+ * aantal kamers, zichtbreedtes, aanslag, glasinleg en glasdikte. De voettekst
+ * vermeldt altijd welke van de twee je ziet. De overige details (B t/m G)
+ * blijven parametrisch; daarvoor zijn geen catalogusbladen beschikbaar.
  */
 import { tekenAanzicht } from "./aanzicht";
 import {
+  afbeelding,
   arceringPatroon,
   lijn,
   maatHorizontaal,
@@ -198,7 +200,105 @@ function afdichting(x: number, y: number, straal: number): string {
 // Detail A — horizontale doorsnede door kozijn en vleugel
 // ---------------------------------------------------------------------------
 
+/** Eén doorsnedeblad uit de technische catalogus van de fabrikant. */
+export interface FabrikantDoorsnede {
+  /** Pad binnen de site; bij export vervangt `maakZelfstandig()` dit door een data-URI. */
+  pad: string;
+  /** Welke kader×vleugel-combinatie het blad toont, voor het onderschrift. */
+  combinatie: string;
+}
+
+const DOORSNEDE_MAP = "/configurator/profielen";
+
+/**
+ * Zoekt het catalogusblad dat bij dít kozijn hoort.
+ *
+ * Kader en vleugel zijn een combinatie, geen systeemmaat: bij hetzelfde kader
+ * 170054 hoort voor een raam vleugel 170020 (77 mm) en voor een deur de zware
+ * vleugel 170033 (96 mm) — twee verschillende bladen. De beschikbare bladen
+ * (bron: PROFIELGEGEVENS-EKO4U.md, benefit.ekookna.com):
+ *
+ *   - IDEAL 7000 NL-blokprofiel (aanslag) — raam- én deurcombinatie
+ *   - HST 85 hefschuif — kader 170080 × vleugel 170081
+ *
+ * Nog niet toegewezen: `aluplast-ideal-7000-nl-17053-17030.svg` (combinatie
+ * hoort niet aantoonbaar bij een uitvoering in ons model) en het schema
+ * C-blad van de HST 85 (toont een complete 4-delige pui, geen profielpaar).
+ * Voor Ideal 4000, Gealan en Kömmerling zijn nog geen bladen opgehaald; al
+ * die gevallen krijgen `null` en daarmee de parametrische doorsnede.
+ */
+export function fabrikantDoorsnedeVoor(b: Berekening): FabrikantDoorsnede | null {
+  const p = b.profiel;
+  const t = b.configuratie.kozijnType;
+
+  if (p.systeemId === "aluplast-ideal-7000" && p.uitvoering === "aanslag") {
+    // De bladen tonen het NL-blokprofiel mét aanslag; de vlakke en verdiepte
+    // uitvoering hebben een ander kaderprofiel en vallen dus terug.
+    return t === "voordeur" || t === "achterdeur"
+      ? {
+          pad: `${DOORSNEDE_MAP}/aluplast-ideal-7000-nl-17054-17033-deur.svg`,
+          combinatie: "kader 170054 × deurvleugel 170033, zware vleugel 96 mm",
+        }
+      : {
+          pad: `${DOORSNEDE_MAP}/aluplast-ideal-7000-nl-kader84-vleugel77.svg`,
+          combinatie: "kader 170054 × raamvleugel 170020, NL-kader 84 mm / vleugel 77 mm",
+        };
+  }
+  if (p.systeemId === "aluplast-hst85") {
+    return {
+      pad: `${DOORSNEDE_MAP}/aluplast-hst85-standard-170x80-170x81.svg`,
+      combinatie: "kader 170080 × vleugel 170081, opbouw 197 mm (112 + 85)",
+    };
+  }
+  return null;
+}
+
+/**
+ * Detail A op basis van het echte catalogusblad. De maatvoering op het blad is
+ * de fabrikantsmaat van de profielcombinatie; wat bij dit specifieke kozijn
+ * hoort (glasdikte) staat in het onderschrift.
+ */
+function detailAFabrikant(b: Berekening, doorsnede: FabrikantDoorsnede): Tekening {
+  const p = b.profiel;
+  const glasdikte = b.glastype?.dikte ?? 28;
+
+  const delen: string[] = [];
+  delen.push(afbeelding(0, -6, D.breedte, D.hoogte - 4, doorsnede.pad));
+  delen.push(
+    tekst(0, D.hoogte + 6, `${p.merkLabel} ${p.naam} — ${p.uitvoeringLabel} · ${doorsnede.combinatie}`, {
+      grootte: dStijl.tekst * 0.88,
+      anker: "start",
+      vet: true,
+    })
+  );
+  delen.push(
+    tekst(
+      0,
+      D.hoogte + 20,
+      `Fabrikantsdoorsnede uit de technische catalogus — glas ${glasdikte} mm in dit kozijn`,
+      { grootte: dStijl.tekst * 0.7, anker: "start", kleur: "#767b78" }
+    )
+  );
+
+  return {
+    id: "A",
+    titel: "Detail A — Profieldoorsnede",
+    omschrijving: `Fabrikantsdoorsnede van ${p.merkLabel} ${p.naam} (${doorsnede.combinatie}), rechtstreeks uit de technische catalogus.`,
+    wanneerVerplicht: "Altijd",
+    svg: detailDocument(delen.join("")),
+  };
+}
+
+/**
+ * Kiest tussen het catalogusblad en de parametrische opbouw. Beide varianten
+ * heten detail A: welke je krijgt hangt alleen af van of het blad bestaat.
+ */
 function detailA(b: Berekening): Tekening {
+  const doorsnede = fabrikantDoorsnedeVoor(b);
+  return doorsnede ? detailAFabrikant(b, doorsnede) : detailAParametrisch(b);
+}
+
+function detailAParametrisch(b: Berekening): Tekening {
   const p = b.profiel;
   const g = p.geometrie;
   const kamers = p.kamers.waarde;

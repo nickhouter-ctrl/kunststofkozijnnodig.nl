@@ -155,6 +155,24 @@ export function maatVerticaal(
   return delen.join("");
 }
 
+/**
+ * Een externe afbeelding (bv. een fabrikantsdoorsnede) in een tekening.
+ *
+ * Bewust een `<image>`-verwijzing en géén inline markup: in image-context
+ * voert de browser niets uit het bestand uit — geen scripts, geen externe
+ * verwijzingen — precies zoals bij een `<img>`. Bij export vervangt
+ * `maakZelfstandig()` het pad door een data-URI, met dezelfde beperking.
+ */
+export function afbeelding(
+  x: number,
+  y: number,
+  breedte: number,
+  hoogte: number,
+  href: string
+): string {
+  return `<image x="${n(x)}" y="${n(y)}" width="${n(breedte)}" height="${n(hoogte)}" href="${esc(href)}" preserveAspectRatio="xMidYMid meet"/>`;
+}
+
 /** Arcering voor doorgesneden kunststof in een detaildoorsnede. */
 export function arceringPatroon(id: string, kleur = "#9aa39e"): string {
   return `<pattern id="${id}" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="6" stroke="${kleur}" stroke-width="1.4"/></pattern>`;

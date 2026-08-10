@@ -111,6 +111,55 @@ describe("tekeningenengine", () => {
   });
 });
 
+describe("detail A — fabrikantsdoorsneden", () => {
+  const detailA = (b: ReturnType<typeof bereken>) =>
+    genereerTekeningen(b).find((t) => t.id === "A")!;
+
+  it("gebruikt de fabrikant-SVG voor het IDEAL 7000 NL-blokprofiel", () => {
+    // Het standaardprofiel ís aluplast-ideal-7000-aanslag: daarvoor staat de
+    // echte doorsnede (kader 170054 × raamvleugel 170020) in het project.
+    const a = detailA(bereken(standaardConfiguratie(), AANNEMER));
+    expect(a.svg).toContain("/configurator/profielen/aluplast-ideal-7000-nl-kader84-vleugel77.svg");
+    expect(a.svg).toContain("Fabrikantsdoorsnede");
+    expect(a.svg).not.toContain("Parametrische doorsnede");
+  });
+
+  it("kiest de zware deurvleugel (96 mm) voor een deur op hetzelfde kader", () => {
+    // Bij kader 170054 hoort voor deuren vleugel 170033 — een andere
+    // combinatie, dus een andere doorsnede (PROFIELGEGEVENS-EKO4U.md).
+    const a = detailA(bereken(standaardConfiguratie("aluplast-ideal-7000-aanslag", "voordeur"), AANNEMER));
+    expect(a.svg).toContain("/configurator/profielen/aluplast-ideal-7000-nl-17054-17033-deur.svg");
+  });
+
+  it("gebruikt de HST 85-doorsnede voor de aluplast hefschuifpui", () => {
+    const a = detailA(bereken(standaardConfiguratie("aluplast-hst85-vlak", "schuifpui"), AANNEMER));
+    expect(a.svg).toContain("/configurator/profielen/aluplast-hst85-standard-170x80-170x81.svg");
+  });
+
+  it("valt terug op de parametrische doorsnede zonder passende fabrikant-SVG", () => {
+    // Voor Gealan zijn (nog) geen catalogusdoorsneden opgehaald.
+    const a = detailA(bereken(standaardConfiguratie("gealan-s9000-aanslag"), AANNEMER));
+    expect(a.svg).toContain("Parametrische doorsnede");
+    expect(a.svg).not.toContain("/configurator/profielen/");
+  });
+
+  it("valt terug voor uitvoeringen waar de doorsnede niet bij hoort", () => {
+    // De kader84/vleugel77-doorsnede is van het NL-blokprofiel mét aanslag;
+    // de vlakke uitvoering mag hem dus niet tonen.
+    const a = detailA(bereken(standaardConfiguratie("aluplast-ideal-7000-vlak"), AANNEMER));
+    expect(a.svg).toContain("Parametrische doorsnede");
+    expect(a.svg).not.toContain("/configurator/profielen/");
+  });
+
+  it("voegt de fabrikant-SVG alleen als afbeelding in, nooit als markup", () => {
+    // De doorsnede wordt via <image href> getoond: in die context voert de
+    // browser geen scripts of externe verwijzingen uit het bestand uit.
+    const a = detailA(bereken(standaardConfiguratie(), AANNEMER));
+    expect(a.svg).toContain("<image ");
+    expect(a.svg).not.toContain("<script");
+  });
+});
+
 describe("perspectief", () => {
   it("tekent hetzelfde kozijn met diepte erbij", async () => {
     const { tekenIsometrie } = await import("../engine/isometrie");
