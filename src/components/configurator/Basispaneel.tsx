@@ -8,16 +8,102 @@
  * kozijn opnieuw te kiezen, en kunnen ze ook niet per kozijn uiteenlopen.
  * De indeling zelf maak je in de tekening.
  */
+import { Fragment } from "react";
 import { Minus, Plus } from "lucide-react";
 import { BESLAGEN } from "@/configurator/data/onderdelen";
 import { KOZIJNTYPE_LABEL, KOZIJNTYPE_UITLEG, wisselKozijnType } from "@/configurator/data/standaard";
-import type { Berekening, Configuratie, KozijnType } from "@/configurator/types";
+import type { Berekening, Configuratie, KozijnType, Profiel } from "@/configurator/types";
 
 interface Props {
   configuratie: Configuratie;
   berekening: Berekening;
   wijzig: (patch: Partial<Configuratie>) => void;
   vervang: (configuratie: Configuratie) => void;
+}
+
+/**
+ * De profielkaartvelden zoals de productdatabase ze aanlevert.
+ *
+ * Het veld `profielkaart` op Profiel is in aanbouw in de productdatabase; tot
+ * het er is leest de kaart defensief en toont hij alleen de rijen waarvoor
+ * gegevens bestaan. De per-uitvoeringmaten (inbouwdiepte, max. glasdikte,
+ * kamers, Uf) staan wél al op Profiel en verschijnen altijd.
+ */
+interface ProfielkaartData {
+  /** Pad naar de fabrikantdoorsnede onder public/, per uitvoering. */
+  doorsnede?: string | null;
+  /** Bijvoorbeeld "B" — de klasse uit de technische catalogus. */
+  profielklasse?: string | null;
+  /** Aantal dichtingsniveaus, bijvoorbeeld 2. */
+  afdichtingen?: number | null;
+  /** Bijvoorbeeld "standaard open staal 1,5 mm". */
+  staal?: string | null;
+  /** Bijvoorbeeld "2 anti-inbraakpunten aan de vleugel". */
+  antiInbraak?: string | null;
+  /** Is HFL-technologie mogelijk op dit profiel? */
+  hfl?: boolean | null;
+}
+
+/**
+ * De profielkaart: doorsnede plus eigenschappen van de gekozen uitvoering —
+ * zoals de vergelijkingskaart bij toelevering. Het profiel zelf kies je in de
+ * bovenbalk; deze kaart laat zien wat die keuze technisch betekent, en
+ * verschilt dus per uitvoering (het NL-blokprofiel is dieper en neemt minder
+ * glas dan het basissysteem).
+ */
+export function Profielkaart({ profiel }: { profiel: Profiel }) {
+  const kaart: ProfielkaartData =
+    (profiel as Profiel & { profielkaart?: ProfielkaartData }).profielkaart ?? {};
+
+  // Rijen zonder gegevens vallen weg, zodat de kaart nooit lege waarden toont.
+  const rijen: [string, string][] = [];
+  if (kaart.profielklasse) rijen.push(["Profielklasse", kaart.profielklasse]);
+  rijen.push(["Kamers", `${profiel.kamers.waarde} kamers`]);
+  if (kaart.afdichtingen != null) rijen.push(["Afdichtingen", `${kaart.afdichtingen} dichtingsniveaus`]);
+  if (kaart.staal) rijen.push(["Staalversterking", kaart.staal]);
+  if (kaart.antiInbraak) rijen.push(["Anti-inbraak", kaart.antiInbraak]);
+  rijen.push(["Inbouwdiepte", `${profiel.inbouwdiepte.waarde} mm`]);
+  rijen.push(["Max. glasdikte", `${profiel.maxGlasdikte.waarde} mm`]);
+  rijen.push(["Uf-waarde", `${profiel.uWaarde.waarde} W/m²K`]);
+  if (kaart.hfl) rijen.push(["HFL", "HFL-technologie mogelijk"]);
+
+  return (
+    <section
+      aria-label={`Profielkaart ${profiel.merkLabel} ${profiel.naam}, ${profiel.uitvoeringLabel}`}
+      className="rounded-xl border border-sand bg-paper p-4"
+    >
+      <h3 className="text-sm font-medium text-ink">
+        {profiel.merkLabel} {profiel.naam}
+      </h3>
+      <p className="mt-0.5 text-xs text-ink-soft">
+        {profiel.uitvoeringLabel} · {profiel.toepassing}
+      </p>
+
+      {kaart.doorsnede ? (
+        // De doorsnede is een vectortekening uit de fabrikantcatalogus; hij
+        // wordt op ware verhouding getoond, niet geschaald naar de kaart.
+        // eslint-disable-next-line @next/next/no-img-element -- lokale SVG, next/image voegt hier niets toe
+        <img
+          src={kaart.doorsnede}
+          alt={`Technische doorsnede van ${profiel.merkLabel} ${profiel.naam}, ${profiel.uitvoeringLabel}`}
+          className="mt-3 h-36 w-full rounded-lg border border-sand bg-white object-contain p-2"
+        />
+      ) : (
+        <p className="mt-3 rounded-lg border border-dashed border-sand p-3 text-center text-[11px] text-ink-soft">
+          Doorsnede van deze uitvoering volgt uit de technische catalogus.
+        </p>
+      )}
+
+      <dl className="mt-3 grid grid-cols-2 gap-x-4 gap-y-1.5 text-xs">
+        {rijen.map(([label, waarde]) => (
+          <Fragment key={label}>
+            <dt className="text-ink-soft">{label}</dt>
+            <dd className="text-right text-ink">{waarde}</dd>
+          </Fragment>
+        ))}
+      </dl>
+    </section>
+  );
 }
 
 function Groep({ titel, uitleg, children }: { titel: string; uitleg?: string; children: React.ReactNode }) {
@@ -113,6 +199,8 @@ export function Basispaneel({ configuratie, berekening, wijzig, vervang }: Props
 
   return (
     <div className="space-y-4">
+      <Profielkaart profiel={huidig} />
+
       <section>
         <h3 className="text-sm font-medium text-ink">Wat voor kozijn maakt u?</h3>
         <p className="mb-2 mt-0.5 text-xs text-ink-soft">
