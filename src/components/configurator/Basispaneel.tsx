@@ -24,14 +24,12 @@ interface Props {
 /**
  * De profielkaartvelden zoals de productdatabase ze aanlevert.
  *
- * Het veld `profielkaart` op Profiel is in aanbouw in de productdatabase; tot
- * het er is leest de kaart defensief en toont hij alleen de rijen waarvoor
- * gegevens bestaan. De per-uitvoeringmaten (inbouwdiepte, max. glasdikte,
- * kamers, Uf) staan wél al op Profiel en verschijnen altijd.
+ * De velden `profielkaart` en `combinaties` op Profiel zijn in aanbouw in de
+ * productdatabase; tot ze er zijn leest de kaart defensief en toont hij alleen
+ * de rijen waarvoor gegevens bestaan. De per-uitvoeringmaten (inbouwdiepte,
+ * max. glasdikte, kamers, Uf) staan wél al op Profiel en verschijnen altijd.
  */
 interface ProfielkaartData {
-  /** Pad naar de fabrikantdoorsnede onder public/, per uitvoering. */
-  doorsnede?: string | null;
   /** Bijvoorbeeld "B" — de klasse uit de technische catalogus. */
   profielklasse?: string | null;
   /** Aantal dichtingsniveaus, bijvoorbeeld 2. */
@@ -45,6 +43,21 @@ interface ProfielkaartData {
 }
 
 /**
+ * Eén kader/vleugel-combinatie uit de fabrikantcatalogus. De doorsnede hoort
+ * bij de combinatie, niet bij het systeem: op hetzelfde kader 170054 past
+ * zowel de raamvleugel 77 als de zware deurvleugel 96, elk met een eigen blad.
+ */
+interface KaderVleugelCombinatie {
+  toepassing?: string;
+  kaderArtikel?: string;
+  vleugelArtikel?: string;
+  kaderZichtbreedte?: { waarde: number };
+  vleugelZichtbreedte?: { waarde: number };
+  /** Pad naar de fabrikantsdoorsnede onder public/. */
+  doorsnedeSvg?: string | null;
+}
+
+/**
  * De profielkaart: doorsnede plus eigenschappen van de gekozen uitvoering —
  * zoals de vergelijkingskaart bij toelevering. Het profiel zelf kies je in de
  * bovenbalk; deze kaart laat zien wat die keuze technisch betekent, en
@@ -52,8 +65,18 @@ interface ProfielkaartData {
  * glas dan het basissysteem).
  */
 export function Profielkaart({ profiel }: { profiel: Profiel }) {
-  const kaart: ProfielkaartData =
-    (profiel as Profiel & { profielkaart?: ProfielkaartData }).profielkaart ?? {};
+  const uitgebreid = profiel as Profiel & {
+    profielkaart?: ProfielkaartData;
+    combinaties?: KaderVleugelCombinatie[];
+  };
+  const kaart: ProfielkaartData = uitgebreid.profielkaart ?? {};
+
+  // De doorsnede van de raamcombinatie is het gezicht van de kaart; bij een
+  // profiel zonder raamvleugel (een hefschuif) pakt de kaart het eerste blad.
+  const combinaties = uitgebreid.combinaties ?? [];
+  const getoond =
+    combinaties.find((c) => c.toepassing === "raam" && c.doorsnedeSvg) ??
+    combinaties.find((c) => c.doorsnedeSvg);
 
   // Rijen zonder gegevens vallen weg, zodat de kaart nooit lege waarden toont.
   const rijen: [string, string][] = [];
@@ -66,6 +89,15 @@ export function Profielkaart({ profiel }: { profiel: Profiel }) {
   rijen.push(["Max. glasdikte", `${profiel.maxGlasdikte.waarde} mm`]);
   rijen.push(["Uf-waarde", `${profiel.uWaarde.waarde} W/m²K`]);
   if (kaart.hfl) rijen.push(["HFL", "HFL-technologie mogelijk"]);
+  if (getoond?.kaderZichtbreedte && getoond.vleugelZichtbreedte) {
+    rijen.push([
+      "Kader × vleugel",
+      `${getoond.kaderZichtbreedte.waarde} × ${getoond.vleugelZichtbreedte.waarde} mm`,
+    ]);
+  }
+  if (getoond?.kaderArtikel && getoond.vleugelArtikel) {
+    rijen.push(["Artikelen", `${getoond.kaderArtikel} × ${getoond.vleugelArtikel}`]);
+  }
 
   return (
     <section
@@ -79,12 +111,12 @@ export function Profielkaart({ profiel }: { profiel: Profiel }) {
         {profiel.uitvoeringLabel} · {profiel.toepassing}
       </p>
 
-      {kaart.doorsnede ? (
+      {getoond?.doorsnedeSvg ? (
         // De doorsnede is een vectortekening uit de fabrikantcatalogus; hij
         // wordt op ware verhouding getoond, niet geschaald naar de kaart.
         // eslint-disable-next-line @next/next/no-img-element -- lokale SVG, next/image voegt hier niets toe
         <img
-          src={kaart.doorsnede}
+          src={getoond.doorsnedeSvg}
           alt={`Technische doorsnede van ${profiel.merkLabel} ${profiel.naam}, ${profiel.uitvoeringLabel}`}
           className="mt-3 h-36 w-full rounded-lg border border-sand bg-white object-contain p-2"
         />
