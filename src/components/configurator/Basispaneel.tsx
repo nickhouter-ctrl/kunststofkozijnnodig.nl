@@ -12,7 +12,15 @@ import { Fragment } from "react";
 import { Minus, Plus } from "lucide-react";
 import { BESLAGEN } from "@/configurator/data/onderdelen";
 import { KOZIJNTYPE_LABEL, KOZIJNTYPE_UITLEG, wisselKozijnType } from "@/configurator/data/standaard";
-import type { Berekening, Configuratie, KozijnType, Profiel } from "@/configurator/types";
+import type {
+  Berekening,
+  Configuratie,
+  KozijnType,
+  Profiel,
+  // De kaartvelden heten net als de component hieronder; de alias houdt ze uit
+  // elkaar zonder de component te hernoemen die elders al wordt gebruikt.
+  Profielkaart as ProfielkaartVelden,
+} from "@/configurator/types";
 
 interface Props {
   configuratie: Configuratie;
@@ -22,58 +30,19 @@ interface Props {
 }
 
 /**
- * De profielkaartvelden zoals de productdatabase ze aanlevert.
- *
- * De velden `profielkaart` en `combinaties` op Profiel zijn in aanbouw in de
- * productdatabase; tot ze er zijn leest de kaart defensief en toont hij alleen
- * de rijen waarvoor gegevens bestaan. De per-uitvoeringmaten (inbouwdiepte,
- * max. glasdikte, kamers, Uf) staan wél al op Profiel en verschijnen altijd.
- */
-interface ProfielkaartData {
-  /** Bijvoorbeeld "B" — de klasse uit de technische catalogus. */
-  profielklasse?: string | null;
-  /** Aantal dichtingsniveaus, bijvoorbeeld 2. */
-  afdichtingen?: number | null;
-  /** Bijvoorbeeld "standaard open staal 1,5 mm". */
-  staal?: string | null;
-  /** Bijvoorbeeld "2 anti-inbraakpunten aan de vleugel". */
-  antiInbraak?: string | null;
-  /** Is HFL-technologie mogelijk op dit profiel? */
-  hfl?: boolean | null;
-}
-
-/**
- * Eén kader/vleugel-combinatie uit de fabrikantcatalogus. De doorsnede hoort
- * bij de combinatie, niet bij het systeem: op hetzelfde kader 170054 past
- * zowel de raamvleugel 77 als de zware deurvleugel 96, elk met een eigen blad.
- */
-interface KaderVleugelCombinatie {
-  toepassing?: string;
-  kaderArtikel?: string;
-  vleugelArtikel?: string;
-  kaderZichtbreedte?: { waarde: number };
-  vleugelZichtbreedte?: { waarde: number };
-  /** Pad naar de fabrikantsdoorsnede onder public/. */
-  doorsnedeSvg?: string | null;
-}
-
-/**
  * De profielkaart: doorsnede plus eigenschappen van de gekozen uitvoering —
  * zoals de vergelijkingskaart bij toelevering. Het profiel zelf kies je in de
  * bovenbalk; deze kaart laat zien wat die keuze technisch betekent, en
  * verschilt dus per uitvoering (het NL-blokprofiel is dieper en neemt minder
- * glas dan het basissysteem).
+ * glas dan het basissysteem). Kaart en combinaties komen uit de
+ * productdatabase; rijen waarvoor de catalogus niets geeft vallen weg.
  */
 export function Profielkaart({ profiel }: { profiel: Profiel }) {
-  const uitgebreid = profiel as Profiel & {
-    profielkaart?: ProfielkaartData;
-    combinaties?: KaderVleugelCombinatie[];
-  };
-  const kaart: ProfielkaartData = uitgebreid.profielkaart ?? {};
+  const kaart: Partial<ProfielkaartVelden> = profiel.profielkaart ?? {};
 
   // De doorsnede van de raamcombinatie is het gezicht van de kaart; bij een
   // profiel zonder raamvleugel (een hefschuif) pakt de kaart het eerste blad.
-  const combinaties = uitgebreid.combinaties ?? [];
+  const combinaties = profiel.combinaties ?? [];
   const getoond =
     combinaties.find((c) => c.toepassing === "raam" && c.doorsnedeSvg) ??
     combinaties.find((c) => c.doorsnedeSvg);
