@@ -46,10 +46,78 @@ export interface IsometrieResultaat {
   hoogte: Millimeter;
 }
 
-/** Een punt in de ruimte. */
-type Punt3 = { x: number; y: number; z: number };
+/** Een punt in de ruimte: x naar rechts, y naar beneden, z naar achteren. */
+export type Punt3 = { x: number; y: number; z: number };
 /** Een vlak met zijn kleur en de diepte waarop het geschilderd wordt. */
 type Vlak = { punten: [number, number][]; vul: string; lijn: string; dikte: number; diepte: number };
+
+/**
+ * Roteert een punt om een verticale as door (asX, asZ).
+ *
+ * Dit is een échte rotatie — afstanden tot de as blijven behouden. Dat klinkt
+ * vanzelfsprekend, maar dit is precies waar een openstaande vleugel eerder
+ * vervormde: de dz·sin-term was weggevallen en de z-term miste zijn cosinus,
+ * waardoor de "rotatie" een afschuiving was die de vleugel uitrekte.
+ *
+ * Tekenafspraak: positieve hoek draait een punt rechts van de as naar de
+ * kijker toe (z omlaag). De y blijft onaangeroerd: de as is verticaal.
+ */
+export function roteerOmVerticaleAs(p: Punt3, asX: number, asZ: number, hoek: number): Punt3 {
+  const dx = p.x - asX;
+  const dz = p.z - asZ;
+  const cos = Math.cos(hoek);
+  const sin = Math.sin(hoek);
+  return { x: asX + dx * cos + dz * sin, y: p.y, z: asZ + dz * cos - dx * sin };
+}
+
+/**
+ * De verplaatsing van een hefschuifvleugel bij een gegeven openingsstand.
+ *
+ * Een hefschuifvleugel draait niet en komt ook niet naar voren: het beslag
+ * tilt hem een paar millimeter van zijn afdichting en dan glijdt hij opzij,
+ * evenwijdig aan het vaste deel, in zijn eigen loopvlak. Vandaar dz = 0 —
+ * elke dieptecomponent zou de vleugel uit de pui tekenen.
+ *
+ * `draairichting` betekent hier: de kant waar de vleugel naartoe openschuift.
+ */
+export function schuifVerplaatsing(
+  vak: { breedte: Millimeter; draairichting: "links" | "rechts" | "geen" },
+  opening: number
+): { dx: number; dy: number; dz: number } {
+  const stand = Math.max(0, Math.min(1, opening));
+  if (stand === 0 || vak.draairichting === "geen") return { dx: 0, dy: 0, dz: 0 };
+  const kant = vak.draairichting === "links" ? -1 : 1;
+  return {
+    // Tot ruim een halve vakbreedte opzij: de vleugel komt voor het vaste
+    // deel te hangen maar blijft binnen de pui.
+    dx: vak.breedte * 0.6 * stand * kant,
+    // Het hefje: zodra de vleugel van het slot is, staat hij een paar
+    // millimeter hoger op zijn loopwagens. Omhoog is negatieve y.
+    dy: -8 * Math.min(1, stand * 4),
+    dz: 0,
+  };
+}
+
+/**
+ * De twee loopvlakken van een hefschuifpui, verdeeld over de inbouwdiepte.
+ *
+ * Uit de HST 85-doorsnede (PROFIELGEGEVENS-EKO4U.md): totale opbouw 197 mm,
+ * waarvan 112 mm vast deel en 85 mm vleugelloopvlak. Die verhouding houden we
+ * aan en schalen we mee met de opbouwdiepte van de gekozen uitvoering, zodat
+ * ook de Gealan-pui (194 mm) zijn eigen maat volgt. De vleugel loopt aan de
+ * binnenzijde (z = 0), het vaste deel zit daarachter.
+ */
+export function hefschuifLagen(diepte: Millimeter): {
+  vleugel: { z0: number; z1: number };
+  vast: { z0: number; z1: number };
+} {
+  const vastAandeel = 112 / 197;
+  const grens = diepte * (1 - vastAandeel);
+  return {
+    vleugel: { z0: 0, z1: grens },
+    vast: { z0: grens, z1: diepte },
+  };
+}
 
 /**
  * Maakt een kleur donkerder of lichter. De zijkanten van een profiel vangen
@@ -96,17 +164,20 @@ export function tekenIsometrie(
   const midZ = diepte / 2;
 
   /** Projecteert een punt in de ruimte naar het platte vlak. */
-  const projecteer = ({ x, y, z }: Punt3): [number, number] => {
-    const dx = x - midX;
-    const dz = z - midZ;
-    const xr = dx * Math.cos(yaw) + dz * Math.sin(yaw);
-    const zr = -dx * Math.sin(yaw) + dz * Math.cos(yaw);
-    return [midX + xr, y * Math.cos(pitch) - zr * Math.sin(pitch)];
+  const projecteer = (p: Punt3): [number, number] => {
+    const r = roteerOmVerticaleAs(p, midX, midZ, yaw);
+    return [r.x, p.y * Math.cos(pitch) - (r.z - midZ) * Math.sin(pitch)];
   };
 
-  /** De diepte van een punt: bepaalt wat er vóór wat komt. */
-  const dieptevan = ({ x, y, z }: Punt3): number =>
-    -(x - midX) * Math.sin(yaw) + (z - midZ) * Math.cos(yaw);
+  /**
+   * De diepte van een punt: bepaalt wat er vóór wat komt. De kijkhoek telt
+   * mee — kijk je van boven, dan ligt wat lager zit ook verder van je af.
+   * Zonder die term klopte de stapelvolgorde alleen bij een horizontale blik.
+   */
+  const dieptevan = (p: Punt3): number => {
+    const r = roteerOmVerticaleAs(p, midX, midZ, yaw);
+    return p.y * Math.sin(pitch) + (r.z - midZ) * Math.cos(pitch);
+  };
 
   const vlakken: Vlak[] = [];
   const lijnDik = Math.max(1, Math.max(c.breedte, c.hoogte) / 900);
@@ -121,12 +192,9 @@ export function tekenIsometrie(
 
   /** De normaal van een vlak, ná de draaiing om de verticale as. */
   const normaalNa = (punten: Punt3[]) => {
-    const draaiPunt = ({ x, y, z }: Punt3) => ({
-      x: (x - midX) * Math.cos(yaw) + (z - midZ) * Math.sin(yaw),
-      y,
-      z: -(x - midX) * Math.sin(yaw) + (z - midZ) * Math.cos(yaw),
-    });
-    const [a, b2, c2] = punten.map(draaiPunt);
+    // Voor de normaal doen alleen de onderlinge verschillen ertoe, dus de
+    // rotatie mag om hetzelfde middelpunt als de projectie.
+    const [a, b2, c2] = punten.map((p) => roteerOmVerticaleAs(p, midX, midZ, yaw));
     const u = { x: b2.x - a.x, y: b2.y - a.y, z: b2.z - a.z };
     const v = { x: c2.x - a.x, y: c2.y - a.y, z: c2.z - a.z };
     const n = {
@@ -182,9 +250,13 @@ export function tekenIsometrie(
     const gg = p(x + breedte, y + hoogte, z1);
     const h = p(x, y + hoogte, z1);
 
-    // Voorvlak, bovenvlak, ondervlak en de twee zijkanten. De achterkant slaan
-    // we over: die zie je nooit.
+    // Alle zes de vlakken, ook de achterkant. Die leek overbodig, maar de
+    // buitenaanzicht-camera staat een halve slag verderop en een openstaande
+    // vleugel draait zijn rug naar de kijker — zonder achtervlak kijk je dan
+    // een holle doos in. De schildersvolgorde legt vanzelf het juiste vlak
+    // bovenop.
     voegVlakToe([a, bb, cc, d], vulling);
+    voegVlakToe([e, f, gg, h], vulling);
     voegVlakToe([a, bb, f, e], vulling, lijnDik * 0.6);
     voegVlakToe([d, cc, gg, h], vulling, lijnDik * 0.6);
     voegVlakToe([a, d, h, e], vulling, lijnDik * 0.6);
@@ -320,22 +392,30 @@ export function tekenIsometrie(
   }
 
   // ---- De vakken ----------------------------------------------------------
+  /*
+   * Een hefschuifpui heeft twee evenwijdige loopvlakken achter elkaar: de
+   * vleugel loopt aan de binnenzijde, het vaste deel zit daarachter. Alle
+   * z-posities van schuifdelen komen uit deze verdeling, zodat vleugel en
+   * vast deel elkaar nooit doorsnijden.
+   */
+  const lagen = hefschuifLagen(diepte);
+
   for (const vak of b.vakken) {
     const top = Math.min(vak.topLinks, vak.topRechts);
     const hoogte = vak.onderkant - top;
     const isVleugel = BEWEEGBAAR.includes(vak.invulling);
+    const isSchuif = vak.invulling === "schuifvleugel";
     const heeftBlad = isVleugel || vak.invulling === "vastedeur";
 
     /**
-     * De draaiing van deze vleugel om zijn scharnieras. Een schuifvleugel draait
-     * niet maar schuift: die verplaatst naar voren en opzij.
+     * De beweging van deze vleugel. Een schuifvleugel tilt en glijdt in zijn
+     * loopvlak; een draaiende vleugel roteert om zijn scharnieras.
      */
     let draai: ((p: Punt3) => Punt3) | undefined;
     if (isVleugel && opening > 0) {
-      if (vak.invulling === "schuifvleugel") {
-        const kant = vak.draairichting === "links" ? -1 : 1;
-        const verzet = vak.breedte * 0.55 * opening * kant;
-        draai = (p) => ({ x: p.x + verzet, y: p.y, z: p.z - diepte * 0.9 * opening });
+      if (isSchuif) {
+        const v = schuifVerplaatsing(vak, opening);
+        draai = (p) => ({ x: p.x + v.dx, y: p.y + v.dy, z: p.z + v.dz });
       } else if (vak.draairichting !== "geen") {
         /*
          * Een draaiende vleugel scharniert aan de buitenrand van de vleugel zelf,
@@ -350,15 +430,8 @@ export function tekenIsometrie(
         const naarBuiten = vak.naarBuitenDraaiend ? -1 : 1;
         const hoek = ((opening * 62) * Math.PI) / 180 * teken * naarBuiten;
         const uitDeSponning = diepte * 0.22 * Math.min(1, opening * 3) * naarBuiten;
-        draai = (p) => {
-          const dx = p.x - scharnierX;
-          const dz = p.z - uitDeSponning;
-          return {
-            x: scharnierX + dx * Math.cos(hoek) + dz * Math.sin(hoek) * 0,
-            y: p.y,
-            z: dz - dx * Math.sin(hoek),
-          };
-        };
+        draai = (p) =>
+          roteerOmVerticaleAs({ x: p.x, y: p.y, z: p.z - uitDeSponning }, scharnierX, 0, hoek);
       }
     }
 
@@ -374,10 +447,14 @@ export function tekenIsometrie(
       const vb = vak.breedte + 2 * overslag;
       const vh = hoogte + 2 * overslag;
       const rand = Math.max(1, vleugelZicht - overslag);
-      // De vleugel steekt naar voren uit het kader; dat is precies wat je in 3D
-      // wél ziet en in het vooraanzicht niet.
-      const z0 = -overslag;
-      const z1 = diepte * 0.72;
+      /*
+       * Een draaiende vleugel steekt naar voren uit het kader; dat is precies
+       * wat je in 3D wél ziet en in het vooraanzicht niet. Een schuifvleugel
+       * niet: die blijft binnen zijn eigen loopvlak, met een kleine speling
+       * zodat hij het vaste deel net niet raakt.
+       */
+      const z0 = isSchuif ? lagen.vleugel.z0 + 2 : -overslag;
+      const z1 = isSchuif ? lagen.vleugel.z1 - 2 : diepte * 0.72;
 
       balk(vx, vy, vb, rand, z0, z1, vleugelKleur, draai);
       balk(vx, vy + vh - rand, vb, rand, z0, z1, vleugelKleur, draai);
@@ -399,13 +476,16 @@ export function tekenIsometrie(
           ? vak.x + vak.breedte + overslag - stijlBreedte
           : vak.x - overslag;
       const kh = Math.min(120, hoogte * 0.14);
+      // De hefschuifgreep zit óp de vleugel en steekt dus uit vóór diens eigen
+      // loopvlak; een kruk op een draaivleugel steekt uit voor het kozijn.
+      const krukZ1 = isSchuif ? lagen.vleugel.z0 - 4 : -diepte * 0.02;
       balk(
         krukX + stijlBreedte * 0.2,
         top + hoogte / 2 - kh / 2,
         stijlBreedte * 0.6,
         kh,
-        -diepte * 0.18,
-        -diepte * 0.02,
+        krukZ1 - Math.min(28, diepte * 0.16),
+        krukZ1,
         "#9aa0a5",
         draai
       );
@@ -431,7 +511,11 @@ export function tekenIsometrie(
           : vak.roosterpositie === "onder-in-glas"
             ? vak.onderkant - rh
             : top;
-      const rz0 = heeftBlad ? diepte * 0.28 : diepte * 0.42;
+      const rz0 = isSchuif
+        ? lagen.vleugel.z0 + (lagen.vleugel.z1 - lagen.vleugel.z0) * 0.3
+        : heeftBlad
+          ? diepte * 0.28
+          : diepte * 0.42;
       balk(rx, ry, rb, rh, rz0, rz0 + Math.min(rh, diepte * 0.3), roosterKleur, draai);
 
       // De lamellen: een paar horizontale ribbels over de volle breedte.
@@ -455,7 +539,15 @@ export function tekenIsometrie(
     if (vak.glasBreedte > 0 && vak.glasHoogte > 0 && vak.invulling !== "rooster") {
       const gx = vak.x + (vak.breedte - vak.glasBreedte) / 2;
       const gy = top + (hoogte - vak.glasHoogte) / 2;
-      const gz = heeftBlad ? diepte * 0.34 : diepte * 0.5;
+      // In een hefschuifpui volgt het glas het loopvlak van zijn deel: het
+      // vleugelglas vooraan, het vaste glas in het achterste loopvlak.
+      const gz = isSchuif
+        ? (lagen.vleugel.z0 + lagen.vleugel.z1) / 2
+        : c.kozijnType === "schuifpui"
+          ? lagen.vast.z0 + (lagen.vast.z1 - lagen.vast.z0) * 0.3
+          : heeftBlad
+            ? diepte * 0.34
+            : diepte * 0.5;
       const hoeken: Punt3[] = [
         { x: gx, y: gy, z: gz },
         { x: gx + vak.glasBreedte, y: gy, z: gz },
