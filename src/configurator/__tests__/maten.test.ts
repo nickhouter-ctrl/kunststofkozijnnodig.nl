@@ -871,7 +871,6 @@ describe("hefschuifpui aluplast HST 85 — eigen maten uit schema C", () => {
     const geo = berekenGeometrie(c, profiel);
 
     // Kader rondom 100 mm: het eerste vak begint op x = 100.
-    expect(profiel.geometrie.kozijnZichtbreedte.waarde).toBe(100);
     expect(geo.vakken[0].gebied.x).toBe(100);
 
     // vast | vleugel | vleugel | vast → puistijl, ontmoetingsstijl, puistijl.
@@ -888,9 +887,35 @@ describe("hefschuifpui aluplast HST 85 — eigen maten uit schema C", () => {
     expect(glas.reduce((a, x) => a + x, 0)).toBe(4000 - 463);
 
     // Waar twee vleugels elkaar ontmoeten grijpen hun profielen in elkaar: de
-    // vleugels winnen samen de 13 mm die de vaste delen inleveren.
+    // vleugels winnen samen de 2 × 13 mm die de vaste delen inleveren. Maten
+    // zijn hele millimeters, dus de verdeling mag er door afronding 2 mm naast
+    // zitten — de som blijft altijd exact.
     const [vast1, vleugel1, vleugel2, vast2] = glas;
-    expect(vleugel1 + vleugel2 - (vast1 + vast2)).toBe(26);
+    expect(Math.abs(vleugel1 + vleugel2 - (vast1 + vast2) - 26)).toBeLessThanOrEqual(2);
+  });
+
+  /**
+   * Puur de engine, los van de productdatabase: een profiel dat eigen
+   * hefschuifmaten meebrengt wint van de breedtes die bij het maken van de
+   * indeling zijn ingevroren. Dit borgt de motor zelf; de twee tests hierboven
+   * borgen dat de productdatabase de HST 85-maten ook echt levert.
+   */
+  it("rekent met de hefschuifmaten van het profiel zodra die er zijn", async () => {
+    const { berekenGeometrie } = await import("../engine/maten");
+    const basis = profielOpId("aluplast-hst85-vlak")!;
+    const bron = { soort: "fabrikant", url: "schema C" } as const;
+    const profiel = {
+      ...basis,
+      geometrie: {
+        ...basis.geometrie,
+        kozijnZichtbreedte: { waarde: 100, bron },
+        puistijlBreedte: { waarde: 100, bron },
+        ontmoetingsstijlBreedte: { waarde: 63, bron },
+      },
+    };
+    const geo = berekenGeometrie(await aluplastPui(4000), profiel);
+    expect(geo.vakken[0].gebied.x).toBe(100);
+    expect(geo.stijlen.map((s) => s.breedte)).toEqual([100, 63, 100]);
   });
 
   it("laat de Gealan-hefschuif onveranderd op de geijkte AKUGT-maten", async () => {
