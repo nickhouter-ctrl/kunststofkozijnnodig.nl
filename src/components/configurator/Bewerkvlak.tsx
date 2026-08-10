@@ -156,7 +156,11 @@ export function Bewerkvlak({
         zijde,
         as: stijlVlak.as,
         stijlPositie: horizontaal ? stijlVlak.y : stijlVlak.x,
-        stijlBreedte: knoop.scheidingBreedte,
+        // De hartmaat op de tekening ligt op het midden van de GETEKENDE stijl.
+        // Bij een schuifpui zet de maatketen daar de puistijl-/ontmoetingsmaat
+        // uit het profiel neer, die afwijkt van knoop.scheidingBreedte; het
+        // klikvlak draagt de getekende dikte al, dus die is hier leidend.
+        stijlBreedte: horizontaal ? stijlVlak.hoogte : stijlVlak.breedte,
         vorigeMaat: stijlVlak.vorigeMaat,
         volgendeMaat: stijlVlak.volgendeMaat,
         totaal: horizontaal ? c.hoogte : c.breedte,
