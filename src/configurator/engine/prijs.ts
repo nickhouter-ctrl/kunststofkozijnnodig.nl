@@ -103,9 +103,11 @@ function berekenKostregels(invoer: PrijsInvoer): { omschrijving: string; bedrag:
   const basis = PRIJSBASIS;
   const regels: { omschrijving: string; bedrag: Eurocent }[] = [];
 
-  // Profiel: op basis van het volledige kozijnoppervlak.
+  // Profiel: op basis van het volledige kozijnoppervlak. Een tarief op de
+  // uitvoering zelf (bijv. het diepere NL-blokprofiel) gaat vóór het
+  // systeemtarief; zonder eigen tarief geldt dat van het systeem.
   const kozijnM2 = (configuratie.breedte * configuratie.hoogte) / 1_000_000;
-  const perM2 = basis.profielPerM2[profiel.systeemId] ?? 0;
+  const perM2 = basis.profielPerM2[profiel.id] ?? basis.profielPerM2[profiel.systeemId] ?? 0;
   const profielBedrag = Math.round(perM2 * kozijnM2);
   regels.push({
     omschrijving: `${profiel.merkLabel} ${profiel.naam} (${profiel.uitvoeringLabel}) — ${Math.round(kozijnM2 * 100) / 100} m²`,
