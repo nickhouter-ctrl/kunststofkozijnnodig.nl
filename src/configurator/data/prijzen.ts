@@ -63,6 +63,17 @@ export const PRIJSBASIS: Prijsbasis = {
     "aluplast-ideal-7000": euro(365),
     "gealan-s9000": euro(380),
     "kommerling-kvision": euro(340),
+    /*
+     * AANNAME — hefschuiftarieven. Zonder deze regels prijst de profielregel een
+     * pui stil op € 0/m². Afgeleid van het raamtarief van hetzelfde merk met een
+     * hefschuiffactor van ± 1,45 (zwaardere profielen, rail en beslagkader);
+     * de verhouding tussen de merken blijft gelijk aan die van de raamsystemen.
+     * Bij Rebu zijn de echte inkoopstaffels opgevraagd — deze drie waarden dan
+     * 1-op-1 vervangen.
+     */
+    "gealan-s9000-hefschuif": euro(550),
+    "aluplast-hst85": euro(530),
+    "kommerling-premislide": euro(495),
   },
   glasPerM2: {
     "hr-plus-plus-11": euro(78),
