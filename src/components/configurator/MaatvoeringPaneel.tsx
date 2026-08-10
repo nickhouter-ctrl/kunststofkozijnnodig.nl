@@ -84,6 +84,15 @@ export function MaatvoeringPaneel({ berekening }: { berekening: Berekening }) {
       </div>
 
       <dl className="mt-4 grid grid-cols-2 gap-x-4 gap-y-1.5 border-t border-sand pt-3 text-xs">
+        {/*
+          Inbouwdiepte en maximale glasdikte horen bij de gekozen uitvoering,
+          niet bij het systeem: het NL-blokprofiel mét aanslag is 120 mm diep
+          waar het basissysteem 85 mm is. Wie hier meet, meet de juiste variant.
+        */}
+        <dt className="text-ink-soft">Inbouwdiepte</dt>
+        <dd className="text-right text-ink">{berekening.profiel.inbouwdiepte.waarde} mm</dd>
+        <dt className="text-ink-soft">Max. glasdikte</dt>
+        <dd className="text-right text-ink">{berekening.profiel.maxGlasdikte.waarde} mm</dd>
         <dt className="text-ink-soft">Kozijnoppervlak</dt>
         <dd className="text-right text-ink">{berekening.kozijnOppervlakM2} m²</dd>
         <dt className="text-ink-soft">Glasoppervlak</dt>
