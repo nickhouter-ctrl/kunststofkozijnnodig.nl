@@ -346,36 +346,54 @@ const REGELS: Regel[] = [
               "Kies een ander glastype voor dit vak, of zet het terug op het glas van het kozijn."
             )
           );
-        } else if (eigen.dikte > profiel.maxGlasdikte.waarde) {
-          uit.push(
-            blokkade(
-              "glastype-toegestaan",
-              5,
-              `Het glas in '${vak.naam}' is te dik voor de sponning`,
-              `${eigen.naam} is ${eigen.dikte} mm dik; ${profiel.merkLabel} ${profiel.naam} neemt maximaal ${profiel.maxGlasdikte.waarde} mm.`,
-              "Kies een dunner glaspakket voor dit vak."
-            )
-          );
         }
+        // De glasdikte wordt in 'glasdikte-past-in-sponning' bewaakt — óók
+        // wanneer het kozijnglas niet wordt meegeleverd.
       }
       return uit;
     },
   },
 
   {
+    /**
+     * De maximale glasdikte hangt aan de gekozen uitvoering (het blokprofiel
+     * van IDEAL 7000 neemt 41 mm, de vlakke uitvoering 52 mm). Deze regel
+     * draait daarom altijd — ook wanneer het glas niet wordt meegeleverd:
+     * een eerder gekozen glastype mag nooit stilletjes blijven staan wanneer
+     * het door een wissel van uitvoering niet meer in de sponning past.
+     */
     id: "glasdikte-past-in-sponning",
-    evalueer: ({ profiel, glastype }) => {
-      if (!glastype) return geen;
-      if (glastype.dikte <= profiel.maxGlasdikte.waarde) return geen;
-      return [
-        blokkade(
-          "glasdikte-past-in-sponning",
-          5,
-          "Glas is te dik voor de sponning",
-          `${glastype.naam} is ${glastype.dikte} mm dik; ${profiel.merkLabel} ${profiel.naam} neemt maximaal ${profiel.maxGlasdikte.waarde} mm.`,
-          `Kies een dunner glaspakket, of stap over op een profiel met een diepere sponning.`
-        ),
-      ];
+    evalueer: ({ configuratie, profiel, glastype }) => {
+      const uit: Bevinding[] = [];
+      const grens = profiel.maxGlasdikte.waarde;
+
+      if (glastype && glastype.dikte > grens) {
+        uit.push(
+          blokkade(
+            "glasdikte-past-in-sponning",
+            5,
+            "Glas is te dik voor de sponning",
+            `${glastype.naam} is ${glastype.dikte} mm dik; ${profiel.merkLabel} ${profiel.naam} neemt maximaal ${grens} mm.`,
+            `Kies een dunner glaspakket, of stap over op een profiel met een diepere sponning.`
+          )
+        );
+      }
+
+      // Vakken met een eigen glassoort tellen even hard mee als het kozijnglas.
+      for (const vak of vakkenMetEigenGlas(configuratie)) {
+        const eigen = glastypeOpId(vak.glastypeId);
+        if (!eigen || eigen.dikte <= grens) continue;
+        uit.push(
+          blokkade(
+            "glasdikte-past-in-sponning",
+            5,
+            `Het glas in '${vak.naam}' is te dik voor de sponning`,
+            `${eigen.naam} is ${eigen.dikte} mm dik; ${profiel.merkLabel} ${profiel.naam} neemt maximaal ${grens} mm.`,
+            "Kies een dunner glaspakket voor dit vak."
+          )
+        );
+      }
+      return uit;
     },
   },
 

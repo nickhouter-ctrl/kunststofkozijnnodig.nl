@@ -814,6 +814,46 @@ describe("maten per uitvoering en per kader/vleugel-combinatie", () => {
   });
 
   /**
+   * Een gekozen glastype mag nooit stilletjes blijven staan wanneer het door de
+   * grenzen van de uitvoering niet meer past — ook niet op vakniveau, en ook
+   * niet wanneer het kozijnglas niet wordt meegeleverd (regel 2: de keuze
+   * blijft dan actief en moet dus gecontroleerd blijven).
+   */
+  it("meldt te dik vak-glas óók wanneer het kozijnglas niet wordt meegeleverd", () => {
+    const c = config(
+      { glas: { meegeleverd: false, glastypeId: null, afstandshouderId: "alu" } },
+      "aluplast-ideal-7000-aanslag"
+    );
+    // Triple 0.6 is 48 mm; het blokprofiel neemt 41 mm.
+    const vak = vakkenVan(c.indeling)[0];
+    c.indeling = wijzigVak(c.indeling, vak.id, { glastypeId: "triple-06" });
+
+    const b = bereken(c, AANNEMER);
+    expect(
+      b.bevindingen.filter(
+        (x) => x.regelId === "glasdikte-past-in-sponning" && x.type === "blokkade"
+      )
+    ).toHaveLength(1);
+  });
+
+  it("meldt te dik vak-glas precies één keer, ook mét meegeleverd kozijnglas", () => {
+    const c = config(
+      { glas: { meegeleverd: true, glastypeId: "hr-plus-plus-11", afstandshouderId: "alu" } },
+      "aluplast-ideal-7000-aanslag"
+    );
+    const vak = vakkenVan(c.indeling)[0];
+    c.indeling = wijzigVak(c.indeling, vak.id, { glastypeId: "triple-06" });
+
+    const b = bereken(c, AANNEMER);
+    const diktemeldingen = b.bevindingen.filter(
+      (x) =>
+        (x.regelId === "glasdikte-past-in-sponning" || x.regelId === "glastype-toegestaan") &&
+        x.uitleg.includes("dik")
+    );
+    expect(diktemeldingen).toHaveLength(1);
+  });
+
+  /**
    * Kader en vleugel zijn een combinatie, geen systeemmaat: op kader 170054
    * levert aluplast zowel de raamvleugel van 77 mm als de zware deurvleugel van
    * 96 mm. Een deur krijgt dus minder glas dan een raam van dezelfde maat.
