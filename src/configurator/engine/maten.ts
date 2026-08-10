@@ -396,6 +396,40 @@ export function berekenGeometrie(configuratie: Configuratie, profiel: Profiel): 
 // ---------------------------------------------------------------------------
 
 /**
+ * De vleugelzichtbreedte die de fabrikant op dít kader levert voor dít vak.
+ *
+ * De catalogus koppelt kader en vleugel als combinatie: hetzelfde NL-kader
+ * 170054 draagt zowel de raamvleugel 170020 (77 mm) als de deurvleugel 170033
+ * (96 mm). De glasmaat volgt dus uit de combinatie van de uitvoering, niet uit
+ * één systeembrede constante — levert de fabrikant een andere vleugel op
+ * hetzelfde kader, dan verandert de glasmaat mee.
+ *
+ * Een deurblad (draaiend of vast) krijgt de deurvleugel, elk ander vak de
+ * raamvleugel. Terugvalvolgorde, van specifiek naar algemeen:
+ *  1. de combinatie met deze toepassing; de eerste passende wint, want de
+ *     catalogus zet de geijkte uitvoering vooraan;
+ *  2. `deurVleugelZichtbreedte` van de uitvoering, bij een deurblad;
+ *  3. de systeembrede `vleugelZichtbreedte`, zodat elk profiel blijft
+ *     doorrekenen zolang een catalogusblad nog niet is overgenomen.
+ *
+ * Een schuifvleugel blijft bewust buiten de combinatieketen: bij een hefschuif
+ * zit de vleugelzichtmaat al in de kaderzichtbreedte en de puistijlen verwerkt,
+ * dus zijn combinatiewaarde zou daar dubbel tellen.
+ */
+export function vleugelZichtVoor(profiel: Profiel, invulling: VakInvoer["invulling"]): Millimeter {
+  const g = profiel.geometrie;
+  if (invulling === "schuifvleugel") return g.vleugelZichtbreedte.waarde;
+
+  const isDeurblad = invulling === "deur" || invulling === "vastedeur";
+  const toepassing = isDeurblad ? "deur" : "raam";
+  const combinatie = profiel.combinaties?.find((c) => c.toepassing === toepassing);
+  if (combinatie) return combinatie.vleugelZichtbreedte.waarde;
+
+  if (isDeurblad && g.deurVleugelZichtbreedte) return g.deurVleugelZichtbreedte.waarde;
+  return g.vleugelZichtbreedte.waarde;
+}
+
+/**
  * Berekent de afgeleide maten van elk vak.
  *
  * `glastype` mag `null` zijn (geen glas meegeleverd); de glasmaat wordt dan
@@ -409,7 +443,6 @@ export function berekenVakken(
 ): VakMaten[] {
   const g = profiel.geometrie;
   const overslag = g.vleugelOverslag.waarde;
-  const vleugelZicht = g.vleugelZichtbreedte.waarde;
   const glasinleg = g.glasinleg.waarde;
 
   const hortype = hortypeOpId(configuratie.hortypeId);
@@ -463,11 +496,10 @@ export function berekenVakken(
     /*
      * Een deur krijgt het zwaardere deurprofiel wanneer de fabrikant dat op dit
      * kader levert; een raam het gewone vleugelprofiel. Bij hetzelfde kader
-     * scheelt dat bij aluplast 19 mm per zijde (96 om 77).
+     * scheelt dat bij aluplast 19 mm per zijde (96 om 77). Welke vleugel op dit
+     * kader staat, komt uit de combinaties van de catalogus.
      */
-    const deurZicht = profiel.geometrie.deurVleugelZichtbreedte?.waarde ?? null;
-    const isDeurblad = vak.invulling === "deur" || vak.invulling === "vastedeur";
-    const vakVleugelZicht = isDeurblad && deurZicht !== null ? deurZicht : vleugelZicht;
+    const vakVleugelZicht = vleugelZichtVoor(profiel, vak.invulling);
     // Een vaste deur heeft wél het deurprofiel maar gaat niet open; hij krijgt
     // dus dezelfde glasaftrek als een draaiende deur.
     const glasAftrek = heeftVleugel || vak.invulling === "vastedeur" ? vakVleugelZicht - overslag : 0;

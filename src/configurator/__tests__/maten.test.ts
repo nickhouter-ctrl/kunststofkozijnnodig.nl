@@ -883,6 +883,40 @@ describe("maten per uitvoering en per kader/vleugel-combinatie", () => {
     )[0];
     expect(raam.glasBreedte).toBe(734);
   });
+
+  /**
+   * De vleugelzichtbreedte komt uit de kader × vleugel-combinatie van de
+   * catalogus, niet uit een systeembrede constante. Levert de fabrikant een
+   * andere vleugel op hetzelfde kader, dan verandert de glasmaat mee zonder dat
+   * er ergens een tweede waarheid ontstaat.
+   */
+  it("leest de vleugelbreedte uit de combinatie van de catalogus", () => {
+    const basis = profielOpId("aluplast-ideal-7000-aanslag")!;
+    const raam = basis.combinaties?.find((c) => c.toepassing === "raam");
+    const deur = basis.combinaties?.find((c) => c.toepassing === "deur");
+    expect(raam?.vleugelZichtbreedte.waarde).toBe(77);
+    expect(deur?.vleugelZichtbreedte.waarde).toBe(96);
+
+    // Een fictieve zwaardere raamvleugel van 87 mm geeft 10 mm minder glas per
+    // zijde: 832 − 2 × (87 − 28) = 714.
+    const zwaarder = {
+      ...basis,
+      combinaties: basis.combinaties?.map((c) =>
+        c.toepassing === "raam"
+          ? { ...c, vleugelZichtbreedte: { ...c.vleugelZichtbreedte, waarde: 87 } }
+          : c
+      ),
+    };
+    const vak = berekenVakken(
+      config(
+        { breedte: 1000, hoogte: 1000, indeling: nieuwVak("Raam", "draaikiep") },
+        "aluplast-ideal-7000-aanslag"
+      ),
+      zwaarder,
+      null
+    )[0];
+    expect(vak.glasBreedte).toBe(714);
+  });
 });
 
 describe("hefschuifpui aluplast HST 85 — eigen maten uit schema C", () => {
