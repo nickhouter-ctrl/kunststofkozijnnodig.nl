@@ -33,38 +33,7 @@ import {
   hormaatTekst,
   vullingsVakken,
 } from "./maten";
-import type { Berekening, Profiel } from "../types";
-
-/**
- * De profielkaart van een uitvoering: de eigenschappen uit de fabrikantcatalogus
- * (PROFIELGEGEVENS-EKO4U.md) die naast de maatvoering op de kaart horen.
- *
- * De velden landen met het datamodel per uitvoering (T1) op `Profiel`; dit type
- * beschrijft wat de documenten ervan tonen. Ontbreekt de kaart op een profiel —
- * oudere data of een uitvoering zonder catalogusblad — dan laten de documenten
- * de rijen gewoon weg in plaats van lege waarden te tonen.
- */
-export interface Profielkaart {
-  /** Profielklasse volgens EN 12608; `null` wanneer de catalogus hem niet noemt. */
-  profielklasse: "A" | "B" | "C" | null;
-  /** Aantal afdichtingen in het systeem. */
-  afdichtingen: number | null;
-  /** Omschrijving van de staalversterking, bijvoorbeeld "standaard open staal 1,5 mm". */
-  staal: string | null;
-  /** Omschrijving van de anti-inbraakvoorziening van de vleugel. */
-  antiInbraak: string | null;
-  /** Of HFL-technologie (verlijmd glas) op deze uitvoering mogelijk is. */
-  hfl?: boolean | null;
-}
-
-/**
- * Leest de profielkaart van een uitvoering, tolerant voor profielen van vóór
- * het per-uitvoering-datamodel. Dit is bewust de enige plek die de cast doet.
- */
-export function profielkaartVan(profiel: Profiel): Profielkaart | null {
-  const kaart = (profiel as Profiel & { profielkaart?: Profielkaart }).profielkaart;
-  return kaart ?? null;
-}
+import type { Berekening } from "../types";
 
 export interface Aannemersbranding {
   bedrijfsnaam: string;
@@ -329,7 +298,9 @@ function profielgegevensRijen(b: Berekening): string {
     ["Uf-waarde", `${p.uWaarde.waarde} W/m²K`],
   ];
 
-  const kaart = profielkaartVan(p);
+  // De cataloguskaart is er alleen waar het blad is overgenomen (types.ts);
+  // zonder kaart blijven de basisrijen hierboven gewoon staan.
+  const kaart = p.profielkaart;
   if (kaart) {
     // De catalogus noemt niet altijd alles; alleen wat er wél is komt op de kaart.
     const klasse = [

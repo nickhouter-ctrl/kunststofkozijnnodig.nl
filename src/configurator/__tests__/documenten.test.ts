@@ -11,8 +11,8 @@ import {
   berekenLeverweek,
   fabrieksorder,
   klantofferte,
-  type Profielkaart,
 } from "../engine/documenten";
+import type { Profielkaart } from "../types";
 import { orderLock } from "../engine/orderlock";
 import { standaardConfiguratie } from "../data/standaard";
 import type { Documentgegevens } from "../engine/documenten";
@@ -130,11 +130,11 @@ describe("profielgegevens per uitvoering in de documenten", () => {
       staal: "standaard open staal 1,5 mm",
       antiInbraak: "twee anti-inbraakpunten aan de vleugel",
     };
-    const profielMetKaart: typeof b.profiel & { profielkaart: Profielkaart } = {
-      ...b.profiel,
-      profielkaart: kaart,
-    };
-    const html = klantofferte({ ...b, profiel: profielMetKaart }, GEGEVENS, REBU_BRANDING);
+    const html = klantofferte(
+      { ...b, profiel: { ...b.profiel, profielkaart: kaart } },
+      GEGEVENS,
+      REBU_BRANDING
+    );
 
     expect(html).toContain("Profielklasse");
     expect(html).toContain("2 afdichtingen");
@@ -160,11 +160,11 @@ describe("profielgegevens per uitvoering in de documenten", () => {
       antiInbraak: null,
       hfl: null,
     };
-    const profielMetKaart: typeof b.profiel & { profielkaart: Profielkaart } = {
-      ...b.profiel,
-      profielkaart: kaart,
-    };
-    const html = klantofferte({ ...b, profiel: profielMetKaart }, GEGEVENS, REBU_BRANDING);
+    const html = klantofferte(
+      { ...b, profiel: { ...b.profiel, profielkaart: kaart } },
+      GEGEVENS,
+      REBU_BRANDING
+    );
 
     expect(html).toContain("2 afdichtingen");
     expect(html).not.toContain("null");
