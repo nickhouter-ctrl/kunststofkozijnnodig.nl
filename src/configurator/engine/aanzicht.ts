@@ -227,6 +227,92 @@ function openingssymbool(
 }
 
 /**
+ * De inzet van het vleugelprofiel in dit vak: hoeveel het profiel per zijde van
+ * de sponningopening afsnoept voordat het glas begint.
+ *
+ * De waarde wordt bewust niet nóg een keer uit het profiel afgeleid: welke
+ * vleugel op dit kader staat bepaalt `vleugelZichtVoor` in de maatketen, en die
+ * uitkomst zit al in de vakmaten — het verschil tussen de sponningmaat en de
+ * glasmaat is per definitie tweemaal de inzet. Zo tekent het aanzicht altijd het
+ * profiel dat ook besteld wordt: een deur de zware deurvleugel, een raam de
+ * raamvleugel, en een vaste deur dezelfde aftrek als een draaiende deur.
+ */
+export function vleugelInzet(vak: VakMaten): Millimeter {
+  return (vak.sponningBreedte - vak.glasBreedte) / 2;
+}
+
+/**
+ * Rekent een sleepafstand op het scherm om naar de richting van de
+ * indelingsboom.
+ *
+ * Het buitenaanzicht is gespiegeld: wie daar een verticale stijl naar rechts
+ * sleept, maakt in de boom het linkervak juist kleiner. Horizontale stijlen
+ * spiegelen niet — boven blijft boven.
+ */
+export function sleepDeltaNaarBoom(
+  delta: number,
+  as: StijlMaten["as"],
+  zijde: Zijde
+): number {
+  return zijde === "buiten" && as === "kolommen" ? -delta : delta;
+}
+
+/** Wat er nodig is om een getypte hartmaat terug te rekenen naar de boom. */
+export interface Hartmaatinvoer {
+  /** De getypte maat, zoals hij in dit aanzicht gelezen wordt. */
+  waarde: number;
+  /** Vanaf welke kozijnrand die maat gemeten is. */
+  vanaf: "links" | "rechts" | "boven" | "onder";
+  /** Het aanzicht waarin getypt wordt; buiten is gespiegeld. */
+  zijde: Zijde;
+  as: StijlMaten["as"];
+  /** Positie van de stijl in schermcoördinaten: x bij kolommen, y bij rijen. */
+  stijlPositie: number;
+  /** Dikte van de stijl in de maatrichting. */
+  stijlBreedte: number;
+  /** Maat van het vak vóór en ná de stijl, in boomvolgorde. */
+  vorigeMaat: number;
+  volgendeMaat: number;
+  /** De kozijnmaat in deze richting. */
+  totaal: number;
+  /** De kleinste maat die een buurvak mag overhouden. */
+  minimum: number;
+}
+
+/**
+ * Zet een in de tekening getypte hartmaat om naar de vaste maat van het vak
+ * vóór de stijl — de waarde waarmee de stijl op zijn plek blijft staan.
+ *
+ * Er wordt in drie stappen teruggerekend: een maat vanaf rechts of onder gaat
+ * eerst naar de afstand vanaf links respectievelijk boven, in het gespiegelde
+ * buitenaanzicht klapt die afstand daarna om naar de boom, en tot slot wordt de
+ * maat geklemd zodat beide buurvakken hun minimum houden.
+ */
+export function hartmaatNaarVasteMaat(invoer: Hartmaatinvoer): number {
+  const { as, stijlBreedte, vorigeMaat, volgendeMaat, totaal, minimum } = invoer;
+  const gespiegeld = invoer.zijde === "buiten" && as === "kolommen";
+
+  // 1. Alles meten vanaf de linker- respectievelijk bovenrand van het aanzicht.
+  const vanafBegin =
+    invoer.vanaf === "rechts" || invoer.vanaf === "onder" ? totaal - invoer.waarde : invoer.waarde;
+
+  // 2. Van het aanzicht naar de boom: in het buitenaanzicht liggen zowel de
+  //    hartmaat als de stijl zelf aan de andere kant van het kozijn.
+  const hart = gespiegeld ? totaal - vanafBegin : vanafBegin;
+  const stijlInBoom = gespiegeld
+    ? totaal - invoer.stijlPositie - stijlBreedte
+    : invoer.stijlPositie;
+
+  // 3. Het vak ervóór begint waar het vorige vak begint; de helft van de stijl
+  //    hoort bij de hartmaat en niet bij het vak.
+  const beginVak = stijlInBoom - vorigeMaat;
+  const gewenst = hart - beginVak - stijlBreedte / 2;
+
+  const ruimte = vorigeMaat + volgendeMaat;
+  return Math.round(Math.min(ruimte - minimum, Math.max(minimum, gewenst)));
+}
+
+/**
  * Het pad van een vlak waarvan de bovenrand schuin mag lopen: van `topLinks`
  * bij x naar `topRechts` bij x + breedte. De onderrand is altijd horizontaal.
  */
@@ -678,6 +764,14 @@ export function tekenAanzicht(
   // ---- 3. De vakken -------------------------------------------------------
   for (const vak of vakken) {
     const heeftVleugel = BEWEEGBAAR.includes(vak.invulling);
+    /**
+     * Een vaste deur gaat niet open, maar het ís een deurblad: het deurprofiel
+     * staat er wel omheen — alleen zonder overslag over het kozijn, want er is
+     * niets dat opendraait. Hij hoort dus als blad getekend te worden en niet
+     * als vlak vast glas.
+     */
+    const isVastDeurblad = vak.invulling === "vastedeur";
+    const heeftBlad = heeftVleugel || isVastDeurblad;
 
     // De sponningopening waarin het vak valt. Een rooster in de beglazing
     // verkleint de vleugel niet — die houdt zijn volle maat; het rooster komt
@@ -699,18 +793,24 @@ export function tekenAanzicht(
       delen.push(
         `<path d="${vlakPad(vak.x, vak.breedte, topL, topR, vak.onderkant)}" fill="none" stroke="${vleugelLijnFijn}" stroke-width="${lijnFijn}"/>`
       );
+    } else if (isVastDeurblad) {
+      // Een vaste deur vult de sponning precies: geen overslag, wel een blad.
+      delen.push(
+        `<path d="${vlakPad(vak.x, vak.breedte, topL, topR, vak.onderkant)}" fill="${vleugelVulling}" stroke="${vleugelLijn}" stroke-width="${lijnDik}"/>`
+      );
     }
 
     // 2b. Het glasvlak (of paneel, of rooster).
-    // Het glasvlak begint bij een vleugel achter het vleugelprofiel; bij een
-    // vast vak valt het glas direct in het kozijn en is er geen extra inzet.
-    const inzet = heeftVleugel ? g.vleugelZichtbreedte.waarde - g.vleugelOverslag.waarde : 0;
+    // Het glasvlak begint achter het vleugelprofiel; de maatketen bepaalt hoe
+    // breed dat profiel is — bij een deur de zware deurvleugel, bij een raam de
+    // raamvleugel. Bij een vast vak valt het glas direct in het kozijn.
+    const inzet = vleugelInzet(vak);
     // Alles binnen dit vak zit in de vleugel wanneer die er is; daarbuiten in het kader.
-    const vakVulling = heeftVleugel ? vleugelVulling : profielVulling;
+    const vakVulling = heeftBlad ? vleugelVulling : profielVulling;
 
     // Alles binnen dit vak volgt de contour van het profiel waarin het zit.
-    const vakLijn = heeftVleugel ? vleugelLijn : kaderLijn;
-    const vakLijnFijn = heeftVleugel ? vleugelLijnFijn : kaderLijnFijn;
+    const vakLijn = heeftBlad ? vleugelLijn : kaderLijn;
+    const vakLijnFijn = heeftBlad ? vleugelLijnFijn : kaderLijnFijn;
 
     /**
      * In een pui is elk deel een eigen element met een eigen profiel eromheen —
@@ -1093,16 +1193,18 @@ function maatlijnen(
   }
 
   if (c.vorm === "schuin" && c.hoogteLaag !== null) {
+    // De lage zijde is een echte maat van het kozijn en dus net zo overtypbaar
+    // als de totaalhoogte: hij krijgt daarom zijn eigen label.
+    const xLaag = -marges.links * 0.96;
     delen.push(
-      maatVerticaal(
-        c.hoogte - c.hoogteLaag,
-        c.hoogte,
-        -marges.links * 0.96,
-        `${c.hoogteLaag} (laag)`,
-        stijl,
-        0
-      )
+      maatVerticaal(c.hoogte - c.hoogteLaag, c.hoogte, xLaag, `${c.hoogteLaag} (laag)`, stijl, 0)
     );
+    labels.push({
+      x: xLaag,
+      y: c.hoogte - c.hoogteLaag / 2,
+      waarde: c.hoogteLaag,
+      doel: "hoogteLaag",
+    });
   }
 
   return delen.join("");

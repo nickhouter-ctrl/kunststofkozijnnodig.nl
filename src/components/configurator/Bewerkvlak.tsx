@@ -12,7 +12,14 @@
  * zodat de stijl blijft staan waar je hem neerzet en de rest meebeweegt.
  */
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { tekenAanzicht, type Klikvlak, type Maatlabel, type Zijde } from "@/configurator/engine/aanzicht";
+import {
+  hartmaatNaarVasteMaat,
+  sleepDeltaNaarBoom,
+  tekenAanzicht,
+  type Klikvlak,
+  type Maatlabel,
+  type Zijde,
+} from "@/configurator/engine/aanzicht";
 import { knoopOpId, wijzigSplitsing } from "@/configurator/engine/indeling";
 import type { Berekening, Configuratie, Indeling } from "@/configurator/types";
 
@@ -140,20 +147,21 @@ export function Bewerkvlak({
       if (!stijlVlak || stijlVlak.soort !== "stijl") return;
 
       const horizontaal = stijlVlak.as === "rijen";
-      const beginStijl = horizontaal ? stijlVlak.y : stijlVlak.x;
-      const beginVak = beginStijl - stijlVlak.vorigeMaat;
-      const dikte = knoop.scheidingBreedte;
-      const ruimte = stijlVlak.vorigeMaat + stijlVlak.volgendeMaat;
-
-      // Een maat vanaf de rechter- of onderrand meet de andere kant op; reken
-      // hem eerst terug naar de afstand vanaf links respectievelijk boven.
-      const totaal = horizontaal ? c.hoogte : c.breedte;
-      const vanafBegin =
-        label.vanaf === "rechts" || label.vanaf === "onder" ? totaal - waarde : waarde;
-      const gewenst = vanafBegin - beginVak - dikte / 2;
-      const maat = Math.round(
-        Math.min(ruimte - MINIMALE_VAKMAAT, Math.max(MINIMALE_VAKMAAT, gewenst))
-      );
+      // De klikvlakken dragen schermcoördinaten; in het buitenaanzicht zijn die
+      // gespiegeld. De omrekening naar de boom gebeurt in de engine, zodat de
+      // tekening en het bewerkvlak dezelfde maat bedoelen (regel 1).
+      const maat = hartmaatNaarVasteMaat({
+        waarde,
+        vanaf: label.vanaf,
+        zijde,
+        as: stijlVlak.as,
+        stijlPositie: horizontaal ? stijlVlak.y : stijlVlak.x,
+        stijlBreedte: knoop.scheidingBreedte,
+        vorigeMaat: stijlVlak.vorigeMaat,
+        volgendeMaat: stijlVlak.volgendeMaat,
+        totaal: horizontaal ? c.hoogte : c.breedte,
+        minimum: MINIMALE_VAKMAAT,
+      });
 
       const kinderen = knoop.kinderen.map((kind, i) => {
         if (i === label.index) return { ...kind, vasteMaat: maat };
@@ -162,7 +170,7 @@ export function Bewerkvlak({
       });
       onIndeling(wijzigSplitsing(c.indeling, knoop.id, { kinderen }));
     },
-    [aanzicht.klikvlakken, c.breedte, c.hoogte, c.indeling, onConfiguratie, onIndeling]
+    [aanzicht.klikvlakken, c.breedte, c.hoogte, c.indeling, onConfiguratie, onIndeling, zijde]
   );
 
   /** Zet een pixelpositie om naar tekencoördinaten in millimeters. */
@@ -266,9 +274,11 @@ export function Bewerkvlak({
                 const beweeg = (ev: PointerEvent) => {
                   const nu = naarMm(ev.clientX, ev.clientY);
                   if (!nu) return;
-                  const delta = vlak.as === "kolommen" ? nu.x - start.x : nu.y - start.y;
-                  if (Math.abs(delta) < 1) return;
-                  sleepStijl(vlak, delta);
+                  const opScherm = vlak.as === "kolommen" ? nu.x - start.x : nu.y - start.y;
+                  if (Math.abs(opScherm) < 1) return;
+                  // In het gespiegelde buitenaanzicht loopt de sleeprichting
+                  // andersom dan de boom; anders kruipt de stijl je muis uit.
+                  sleepStijl(vlak, sleepDeltaNaarBoom(opScherm, vlak.as, zijde));
                 };
                 const stop = (ev: PointerEvent) => {
                   doel.releasePointerCapture?.(ev.pointerId);

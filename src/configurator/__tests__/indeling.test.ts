@@ -2,7 +2,7 @@
  * Tests op de indelingsboom: stijlen, roosters tussen stijlen, schuifpuien en
  * de geometrie waar zowel de tekening als het bewerkvlak op tekenen.
  */
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import { bereken } from "../engine";
 import { berekenGeometrie } from "../engine/maten";
 import {
@@ -1221,5 +1221,268 @@ describe("positie van het rooster", () => {
     expect(b.bevindingen.some((x) => x.regelId === "rooster-in-pui" && x.type === "blokkade")).toBe(
       true
     );
+  });
+});
+
+describe("aanzicht per profielcombinatie", () => {
+  /**
+   * Bij hetzelfde kader levert de fabrikant meerdere vleugels: aluplast zet op
+   * kader 170054 zowel een raamvleugel van 77 mm als een zware deurvleugel van
+   * 96 mm. De maatketen rekent daar al mee; het aanzicht moet dezelfde inzet
+   * tekenen, anders toont de tekening een ander profiel dan er besteld wordt.
+   */
+  it("geeft een deur de inzet van de zware deurvleugel en een raam die van de raamvleugel", async () => {
+    const { vleugelInzet } = await import("../engine/aanzicht");
+    const basis = blancoIndeling();
+    let indeling = voegStijlenToe(basis, basis.id, "kolommen", 1);
+    const [eerste, tweede] = vakkenVan(indeling);
+    indeling = wijzigVak(indeling, eerste.id, { invulling: "draaikiep" });
+    indeling = wijzigVak(indeling, tweede.id, { invulling: "deur" });
+
+    const b = bereken(metIndeling(indeling, { breedte: 1000, hoogte: 2100 }), AANNEMER);
+    const [raam, deur] = b.vakken;
+
+    const g = PROFIEL.geometrie;
+    expect(vleugelInzet(raam)).toBe(g.vleugelZichtbreedte.waarde - g.vleugelOverslag.waarde);
+    expect(vleugelInzet(deur)).toBe(
+      g.deurVleugelZichtbreedte!.waarde - g.vleugelOverslag.waarde
+    );
+    // De deur eet dus meer glas op dan het raam — bij aluplast 19 mm per zijde.
+    expect(vleugelInzet(deur)).toBeGreaterThan(vleugelInzet(raam));
+  });
+
+  it("tekent het glas van de deur op de inzet van het deurprofiel", async () => {
+    const { tekenAanzicht, vleugelInzet } = await import("../engine/aanzicht");
+    const basis = blancoIndeling();
+    let indeling = voegStijlenToe(basis, basis.id, "kolommen", 1);
+    const [eerste, tweede] = vakkenVan(indeling);
+    indeling = wijzigVak(indeling, eerste.id, { invulling: "draaikiep" });
+    indeling = wijzigVak(indeling, tweede.id, { invulling: "deur" });
+
+    const b = bereken(metIndeling(indeling, { breedte: 1000, hoogte: 2100 }), AANNEMER);
+    const deur = b.vakken[1];
+    const aanzicht = tekenAanzicht(b, "binnen");
+
+    // Het glasvlak begint op vak-x plus de inzet van het deurprofiel.
+    const x = deur.x + vleugelInzet(deur);
+    const y = deur.topLinks + vleugelInzet(deur);
+    expect(aanzicht.inhoud).toContain(`M ${x} ${y}`);
+  });
+
+  it("tekent een vaste deur als deurblad met het glas erin, niet als vast glas", async () => {
+    const { tekenAanzicht, vleugelInzet } = await import("../engine/aanzicht");
+    const basis = blancoIndeling();
+    const indeling = wijzigVak(basis, basis.id, { invulling: "vastedeur" });
+
+    const b = bereken(metIndeling(indeling, { breedte: 1000, hoogte: 2100 }), AANNEMER);
+    const vak = b.vakken[0];
+
+    // De maatketen geeft de vaste deur de glasaftrek van het deurprofiel...
+    const g = PROFIEL.geometrie;
+    expect(vleugelInzet(vak)).toBe(g.deurVleugelZichtbreedte!.waarde - g.vleugelOverslag.waarde);
+
+    // ...en het aanzicht tekent het glas ook op die inzet.
+    const aanzicht = tekenAanzicht(b, "binnen");
+    const x = vak.x + vleugelInzet(vak);
+    const y = vak.topLinks + vleugelInzet(vak);
+    expect(aanzicht.inhoud).toContain(`M ${x} ${y}`);
+  });
+
+  it("tekent de stijlen exact zoals de maatketen ze oplevert", async () => {
+    const { tekenAanzicht } = await import("../engine/aanzicht");
+    const basis = blancoIndeling();
+    const indeling = voegStijlenToe(basis, basis.id, "kolommen", 2);
+    const c = metIndeling(indeling, { breedte: 3000, hoogte: 1500 });
+
+    const geo = berekenGeometrie(c, PROFIEL);
+    const aanzicht = tekenAanzicht(bereken(c, AANNEMER), "binnen");
+    const getekend = aanzicht.klikvlakken.filter((v) => v.soort === "stijl");
+
+    // Eén-op-één: elke stijl uit de maatketen staat op precies die plek in het
+    // aanzicht. Zo landen profielspecifieke stijlbreedtes (zoals de 63 mm
+    // ontmoetingsstijl van de HST 85) automatisch in de tekening.
+    expect(getekend.map((v) => [v.x, v.breedte])).toEqual(
+      geo.stijlen.map((s) => [s.x, s.breedte])
+    );
+  });
+});
+
+describe("maten in het schuine kozijn", () => {
+  it("levert een aanpasbaar label voor de lage zijde", async () => {
+    const { tekenAanzicht } = await import("../engine/aanzicht");
+    const c = metIndeling(blancoIndeling(), {
+      vorm: "schuin",
+      breedte: 1200,
+      hoogte: 1600,
+      hoogteLaag: 1100,
+    });
+    const labels = tekenAanzicht(bereken(c, AANNEMER), "binnen", { maten: true }).maatlabels;
+
+    // De lage zijde is een echte maat: hij hoort net zo overtypbaar te zijn als
+    // de totaalhoogte.
+    const laag = labels.find((m) => m.doel === "hoogteLaag");
+    expect(laag).toBeDefined();
+    expect(laag!.waarde).toBe(1100);
+  });
+});
+
+describe("bewerkvlak in het buitenaanzicht", () => {
+  /**
+   * Het buitenaanzicht is gespiegeld. De klikvlakken dragen schermcoördinaten,
+   * maar de indelingsboom rekent in binnenaanzicht-volgorde; slepen en
+   * hartmaten typen moeten daar expliciet tussen vertalen, anders beweegt de
+   * stijl tegen de sleeprichting in.
+   */
+  it("keert het slepen van een verticale stijl om, en alleen dat", async () => {
+    const { sleepDeltaNaarBoom } = await import("../engine/aanzicht");
+    expect(sleepDeltaNaarBoom(50, "kolommen", "binnen")).toBe(50);
+    expect(sleepDeltaNaarBoom(50, "kolommen", "buiten")).toBe(-50);
+    // Boven blijft boven: horizontale stijlen spiegelen niet.
+    expect(sleepDeltaNaarBoom(50, "rijen", "buiten")).toBe(50);
+    expect(sleepDeltaNaarBoom(-30, "rijen", "binnen")).toBe(-30);
+  });
+
+  it("rekent een getypte hartmaat in het binnenaanzicht om zoals voorheen", async () => {
+    const { hartmaatNaarVasteMaat } = await import("../engine/aanzicht");
+    // Kozijn 1000 breed, kader 84, twee vakken van 365 rond een stijl van 102.
+    const maat = hartmaatNaarVasteMaat({
+      waarde: 600,
+      vanaf: "links",
+      zijde: "binnen",
+      as: "kolommen",
+      stijlPositie: 449,
+      stijlBreedte: 102,
+      vorigeMaat: 365,
+      volgendeMaat: 365,
+      totaal: 1000,
+      minimum: 120,
+    });
+    // 600 − beginVak 84 − halve stijl 51 = 465.
+    expect(maat).toBe(465);
+  });
+
+  it("rekent een hartmaat vanaf rechts eerst terug naar links", async () => {
+    const { hartmaatNaarVasteMaat } = await import("../engine/aanzicht");
+    const maat = hartmaatNaarVasteMaat({
+      waarde: 300,
+      vanaf: "rechts",
+      zijde: "binnen",
+      as: "kolommen",
+      stijlPositie: 449,
+      stijlBreedte: 102,
+      vorigeMaat: 365,
+      volgendeMaat: 365,
+      totaal: 1000,
+      minimum: 120,
+    });
+    // Vanaf rechts 300 is vanaf links 700; 700 − 84 − 51 = 565.
+    expect(maat).toBe(565);
+  });
+
+  it("rekent een getypte hartmaat in het buitenaanzicht terug naar de boom", async () => {
+    const { hartmaatNaarVasteMaat } = await import("../engine/aanzicht");
+    /**
+     * Zelfde kozijn, maar in de boom vak 1 = 200 en vak 2 = 530. In het
+     * gespiegelde aanzicht staat de stijl dan op schermpositie
+     * 1000 − 284 − 102 = 614. Wie daar 'hart op 600 vanaf links' typt bedoelt
+     * de zichtbare linkerkant — in de boom is dat 400 vanaf links.
+     */
+    const maat = hartmaatNaarVasteMaat({
+      waarde: 600,
+      vanaf: "links",
+      zijde: "buiten",
+      as: "kolommen",
+      stijlPositie: 614,
+      stijlBreedte: 102,
+      vorigeMaat: 200,
+      volgendeMaat: 530,
+      totaal: 1000,
+      minimum: 120,
+    });
+    // Boomhart 400: 400 − beginVak 84 − halve stijl 51 = 265.
+    expect(maat).toBe(265);
+  });
+
+  it("klemt de maat zodat de buurvakken hun minimum houden", async () => {
+    const { hartmaatNaarVasteMaat } = await import("../engine/aanzicht");
+    const maat = hartmaatNaarVasteMaat({
+      waarde: 950,
+      vanaf: "links",
+      zijde: "binnen",
+      as: "kolommen",
+      stijlPositie: 449,
+      stijlBreedte: 102,
+      vorigeMaat: 365,
+      volgendeMaat: 365,
+      totaal: 1000,
+      minimum: 120,
+    });
+    // Ruimte 730 − minimum 120 = maximaal 610.
+    expect(maat).toBe(610);
+  });
+});
+
+describe("id's blijven uniek na het herladen van een opgeslagen boom", () => {
+  /**
+   * Een opgeslagen configuratie draagt id's uit een eerdere sessie, waarin de
+   * teller ook bij nul begon. Zou een nieuwe sessie blind dezelfde reeks
+   * uitdelen, dan krijgt een toegevoegd vak een al bezet id — en vanaf dat
+   * moment treffen selectie en bewerking het verkeerde vak.
+   */
+  /**
+   * Bouwt een boom in de huidige sessie en levert hem daarna aan een verse
+   * module — precies wat er gebeurt bij het openen van een opgeslagen offerte:
+   * de boom draagt id's uit een eerdere sessie, terwijl de teller weer op nul
+   * staat.
+   */
+  async function geladenBoom(): Promise<{
+    boom: Indeling;
+    vers: typeof import("../engine/indeling");
+  }> {
+    const basis = blancoIndeling();
+    const boom = voegStijlenToe(basis, basis.id, "kolommen", 1);
+    vi.resetModules();
+    return { boom, vers: await import("../engine/indeling") };
+  }
+
+  it("deelt in een geladen boom geen bezet id opnieuw uit", async () => {
+    const { boom, vers } = await geladenBoom();
+    const eerste = vers.vakkenVan(boom)[0];
+
+    const erbij = vers.voegStijlenToe(boom, eerste.id, "kolommen", 1);
+    const ids = [
+      ...vers.vakkenVan(erbij).map((v) => v.id),
+      ...vers.splitsingenVan(erbij).map((s) => s.id),
+    ];
+    expect(new Set(ids).size).toBe(ids.length);
+  });
+
+  it("houdt ook de splitsing-id vrij bij het nesten in een geladen boom", async () => {
+    const { boom, vers } = await geladenBoom();
+    const eerste = vers.vakkenVan(boom)[0];
+
+    // Een rijen-splitsing in het eerste vak nest een nieuwe splitsing in de boom.
+    const genest = vers.voegStijlenToe(boom, eerste.id, "rijen", 1);
+    const ids = [
+      ...vers.vakkenVan(genest).map((v) => v.id),
+      ...vers.splitsingenVan(genest).map((s) => s.id),
+    ];
+    expect(new Set(ids).size).toBe(ids.length);
+  });
+
+  it("geeft een gekopieerde geladen boom volledig eigen id's", async () => {
+    const { boom, vers } = await geladenBoom();
+    const kopie = vers.kopieerIndeling(boom);
+
+    const origineel = new Set([
+      ...vers.vakkenVan(boom).map((v) => v.id),
+      ...vers.splitsingenVan(boom).map((s) => s.id),
+    ]);
+    for (const id of [
+      ...vers.vakkenVan(kopie).map((v) => v.id),
+      ...vers.splitsingenVan(kopie).map((s) => s.id),
+    ]) {
+      expect(origineel.has(id)).toBe(false);
+    }
   });
 });
