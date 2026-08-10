@@ -42,6 +42,10 @@ export function Perspectief({
         // een hoog kozijn — of een opengedraaide vleugel — onderuit beeld.
         className="cursor-grab touch-none select-none overflow-hidden rounded-xl bg-gradient-to-b from-white to-rebu-cream active:cursor-grabbing [&_svg]:h-full [&_svg]:w-full"
         style={{ height: "56vh" }}
+        // Slepen is een extraatje; alle standen zijn ook met de schuifregelaars
+        // hieronder te bedienen. Voor een schermlezer is dit dus één afbeelding.
+        role="img"
+        aria-label={`3D-weergave van het kozijn vanaf de ${zijde}zijde`}
         onPointerDown={(e) => {
           sleep.current = { x: e.clientX, y: e.clientY, draai: draaiing, hoek: kijkhoek };
           e.currentTarget.setPointerCapture(e.pointerId);
@@ -81,6 +85,20 @@ export function Perspectief({
           />
         </label>
 
+        <label className="flex min-w-[180px] flex-1 items-center gap-2 text-xs text-ink-soft">
+          Kijkhoek
+          <input
+            type="range"
+            min={-25}
+            max={45}
+            step={1}
+            value={Math.round(kijkhoek)}
+            onChange={(e) => setKijkhoek(Number(e.target.value))}
+            className="flex-1 accent-rebu-green"
+            aria-label="Van boven of onder kijken"
+          />
+        </label>
+
         {heeftVleugels && (
           <label className="flex min-w-[180px] flex-1 items-center gap-2 text-xs text-ink-soft">
             Openen
@@ -112,7 +130,8 @@ export function Perspectief({
       </div>
 
       <p className="mt-2 text-xs text-ink-soft">
-        Sleep opzij om eromheen te lopen, omhoog of omlaag om van boven of onder te kijken. Vanaf de {zijde}zijde, profieldiepte{" "}
+        Sleep opzij om eromheen te lopen, omhoog of omlaag om van boven of onder te kijken. Vanaf de {zijde}zijde,{" "}
+        {berekening.configuratie.kozijnType === "schuifpui" ? "opbouw" : "profieldiepte"}{" "}
         {berekening.profiel.inbouwdiepte.waarde} mm.
         {heeftVleugels && " Schuif 'Openen' om de vleugels open te zetten."}
       </p>
