@@ -17,6 +17,7 @@ const nextConfig = {
         { source: "/kleuren/gealan", destination: "/kleuren/gealan.html" },
         { source: "/kleuren/aluplast", destination: "/kleuren/aluplast.html" },
         { source: "/kleuren/kvision", destination: "/kleuren/kvision.html" },
+        { source: "/kleuren/schueco", destination: "/kleuren/schueco.html" },
       ],
     };
   },

@@ -128,11 +128,12 @@ export default function KleurenPage() {
           <p className="mt-4 max-w-2xl text-ink-soft">
             Blader door alle decorfolies per profielmerk — zoek op naam, kleur of artikelnummer en bekijk realistische kleurindrukken.
           </p>
-          <div className="mt-10 grid gap-6 md:grid-cols-3">
+          <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
             {[
               { merk: "Gealan", href: "/kleuren/gealan", desc: "52 decorfolies van Gealan — het volledige overzicht met houtlook en effen tinten." },
               { merk: "Aluplast", href: "/kleuren/aluplast", desc: "De complete Aluplast-decorfoliecollectie voor kozijnen, deuren en schuifpuien." },
               { merk: "K-Vision", href: "/kleuren/kvision", desc: "77 Kömmerling-decorfolies voor K-Vision — unikleuren, houtprint, metallic en mattex." },
+              { merk: "Schüco", href: "/kleuren/schueco", desc: "329 Schüco UnlimitedFinish-folies — standaard- en sondersortiment plus de Selected Special Edition." },
             ].map((b) => (
               <Link
                 key={b.merk}
